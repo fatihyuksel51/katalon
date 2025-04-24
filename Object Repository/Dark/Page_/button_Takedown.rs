@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_Takedown</name>
+   <tag></tag>
+   <elementGuidId>b04c5d64-2987-4c55-87a0-31852d9ad80e</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div[2]/div/div/div[3]/div/div[3]/button</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>div > div:nth-child(3) > .inline-flex >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>88b8deff-1c8e-4b07-b96a-ccb4b531e9c5</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>inline-flex items-center cursor-pointer justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:opacity-90 rounded-md px-3 h-7 border-2 bg-transparent hover:animate-none hover:text-destructive-foreground animate-pulse border-destructive text-destructive</value>
+      <webElementGuid>c32802e9-96b3-42fa-b2b6-8d80e881c6b8</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Takedown</value>
+      <webElementGuid>6fe0b713-f369-4efe-b66d-67c064a72774</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[2]/div[@class=&quot;mt-2&quot;]/div[@class=&quot;flex flex-col gap-y-2&quot;]/div[@class=&quot;flex w-full justify-start gap-4 rounded-lg bg-card p-4&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;flex items-center gap-2&quot;]/div[3]/button[@class=&quot;inline-flex items-center cursor-pointer justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:opacity-90 rounded-md px-3 h-7 border-2 bg-transparent hover:animate-none hover:text-destructive-foreground animate-pulse border-destructive text-destructive&quot;]</value>
+      <webElementGuid>e48b099c-9851-4910-8d05-10cfad08456d</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div[2]/div/div/div[3]/div/div[3]/button</value>
+      <webElementGuid>36e15a02-2305-4fc6-9bd7-fb2bbb0ca484</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ACTIVE'])[1]/following::button[1]</value>
+      <webElementGuid>e019677b-fc7c-405d-b512-65f01a6f17a6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='https://id.atlassian.com/login?co.........ation=jira'])[1]/following::button[1]</value>
+      <webElementGuid>18285bcf-f66c-4740-9d70-d5407664feeb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Target / Leak:'])[1]/preceding::button[1]</value>
+      <webElementGuid>c9f5f9ba-30ff-44cc-8b56-f6f1a1c28ffb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Takedown']/parent::*</value>
+      <webElementGuid>9ca958f2-d188-4434-a496-c072bfdc4b8a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/div/div[3]/button</value>
+      <webElementGuid>38ed51c2-28d2-4be8-9339-35ff0e497773</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[(text() = 'Takedown' or . = 'Takedown')]</value>
+      <webElementGuid>4af095be-a211-40b2-9bcd-27eebbb6c1c4</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

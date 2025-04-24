@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>figure_Image_sc-bcXHqe iaMfJy loaded fullVi_120cb0</name>
+   <tag></tag>
+   <elementGuidId>43c533f4-6af5-4a81-a2e0-d0d168d72ab0</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:ran:']/div/div/div/div/figure</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=figure</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>figure</value>
+      <webElementGuid>f2b033e9-3e1a-4422-9231-48767ab974fe</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>sc-bcXHqe iaMfJy loaded fullView w-auto min-w-[300px] rounded-md object-contain</value>
+      <webElementGuid>882d251e-08eb-470b-b8a5-41fadc09bb10</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:ran:&quot;)/div[@class=&quot;relative overflow-hidden h-full w-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;flex h-full w-full items-start justify-center&quot;]/figure[@class=&quot;sc-bcXHqe iaMfJy loaded fullView w-auto min-w-[300px] rounded-md object-contain&quot;]</value>
+      <webElementGuid>fcb322d0-11ef-4626-ab63-186708debd2d</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:ran:']/div/div/div/div/figure</value>
+      <webElementGuid>fc9c0fe6-e702-42d2-ae54-da58256dd145</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Image'])[1]/following::figure[1]</value>
+      <webElementGuid>56ff17c4-932c-497b-ab6c-c2407ae46c2c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Privacy Policy'])[1]/following::figure[1]</value>
+      <webElementGuid>31afc641-a5a8-43f6-9422-710ae10158cd</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Close'])[1]/preceding::figure[1]</value>
+      <webElementGuid>43114aa4-c1f8-4b3f-9eaa-10eeea327347</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//figure</value>
+      <webElementGuid>3cebed30-8474-4c88-bfd2-904b9939b8cc</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

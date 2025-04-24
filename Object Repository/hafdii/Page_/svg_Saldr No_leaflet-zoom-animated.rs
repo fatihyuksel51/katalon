@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>svg_Saldr No_leaflet-zoom-animated</name>
+   <tag></tag>
+   <elementGuidId>be9a6b0e-55b0-48bd-81a9-a4f7e6ac53cb</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Saldırı No'])[1]/preceding::*[name()='svg'][2]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>svg.leaflet-zoom-animated</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>svg >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>svg</value>
+      <webElementGuid>78c4220f-8231-4c18-9efd-fd4c8ef4ab96</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>leaflet-zoom-animated</value>
+      <webElementGuid>5ec4959e-c22b-4a8a-b56b-d465dca862f1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>width</name>
+      <type>Main</type>
+      <value>1184</value>
+      <webElementGuid>d21da0cf-45da-46a5-af37-7eb963226650</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>height</name>
+      <type>Main</type>
+      <value>417</value>
+      <webElementGuid>0d2479dc-02c1-48a1-b80e-cdd2d268451a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;map&quot;)/div[@class=&quot;leaflet-pane leaflet-map-pane&quot;]/div[@class=&quot;leaflet-pane leaflet-overlay-pane&quot;]/svg[@class=&quot;leaflet-zoom-animated&quot;]</value>
+      <webElementGuid>6dca61d4-f3ac-481b-adc1-e734a0a29661</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>ref_element</name>
+      <type>Main</type>
+      <value>Object Repository/hafdii/Page_/iframe_DDOS Attack Map_fullScreenThreatwayA_fe63ad</value>
+      <webElementGuid>320c073d-6243-4fe6-aa22-49839356c539</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Saldırı No'])[1]/preceding::*[name()='svg'][2]</value>
+      <webElementGuid>450ae69d-d804-401c-88fd-a066b8abfe84</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Saldırgan Ülke'])[1]/preceding::*[name()='svg'][2]</value>
+      <webElementGuid>e3a8bfe1-eb77-4b88-915a-4f57c3de4dae</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

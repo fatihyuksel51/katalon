@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>ddos_source</name>
+   <tag></tag>
+   <elementGuidId>68a4a547-fe1b-44f6-8748-80d054fe5d15</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//*[@id=&quot;attack-tracking&quot;]/tr[1]/td[5]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>#live-attacks-table > thead > tr > th:nth-of-type(2)</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=cell[name=&quot;Source Countries&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>th</value>
+      <webElementGuid>583b06af-c851-496f-92cd-043d70db513d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Source Countries</value>
+      <webElementGuid>31186a10-de59-487b-931f-32422f2a961b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;live-attacks-table&quot;)/thead[1]/tr[1]/th[2]</value>
+      <webElementGuid>b5f16335-0df4-4fc7-af03-f22f6bd50e40</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//table[@id='live-attacks-table']/thead/tr/th[2]</value>
+      <webElementGuid>f1f4149a-3e2d-4044-9c3f-c20709d0b6b7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Time'])[1]/following::th[1]</value>
+      <webElementGuid>e41ee6cc-e97e-4aac-b606-f40e489e0d89</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Hedef Ülke'])[1]/following::th[2]</value>
+      <webElementGuid>1eac2d74-c039-4ed5-b1d6-dcc350b75d48</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Source Ports'])[1]/preceding::th[1]</value>
+      <webElementGuid>806fef89-6e73-43fb-a9ac-ccacf7810a3d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Destination Countries'])[1]/preceding::th[2]</value>
+      <webElementGuid>e62225ed-ad6f-40b1-b6a5-6c6c3f0f6a53</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Source Countries']/parent::*</value>
+      <webElementGuid>3e178cc4-18bc-4f28-ba3a-9abe8ff74d0f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/table/thead/tr/th[2]</value>
+      <webElementGuid>333e4669-5486-452c-959d-922c8c98f876</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//th[(text() = 'Source Countries' or . = 'Source Countries')]</value>
+      <webElementGuid>20ac7bf6-e2b6-4a51-a3c1-f17760375102</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_CatchProbe AI AnalystSurface Webillegal_1cfec2</name>
+   <tag></tag>
+   <elementGuidId>658380c2-fb96-4f7d-bdb2-bd6c1013de5a</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.col-span-2.my-2.flex.flex-wrap.gap-1</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div[2]/div/div/div[3]/div[3]/div[7]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>.col-span-2 >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>3b0b3c41-72a9-4f0f-b306-cbf4ddfd7c3a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>col-span-2 my-2 flex flex-wrap gap-1</value>
+      <webElementGuid>211db173-021d-419e-84c1-dabc5649d71a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>CatchProbe AI AnalystSurface Webillegalplatform</value>
+      <webElementGuid>260d3319-2689-477e-8e22-aeff465b4a22</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[2]/div[@class=&quot;mt-2&quot;]/div[@class=&quot;flex flex-col gap-y-2&quot;]/div[@class=&quot;flex w-full justify-start gap-4 rounded-lg bg-card p-4&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;grid grid-cols-2 gap-2&quot;]/div[@class=&quot;col-span-2 my-2 flex flex-wrap gap-1&quot;]</value>
+      <webElementGuid>496bc4de-8b6c-444d-b6fe-b6a934144fa4</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div[2]/div/div/div[3]/div[3]/div[7]</value>
+      <webElementGuid>13414587-9f1c-4a05-aa4b-7ef168b7f40b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Risk Impact Area:'])[1]/following::div[1]</value>
+      <webElementGuid>5bebee60-0c54-49c4-8f76-aa694da6ceee</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/div[7]</value>
+      <webElementGuid>1069e959-1bb5-43d7-962a-847dce883c3c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'CatchProbe AI AnalystSurface Webillegalplatform' or . = 'CatchProbe AI AnalystSurface Webillegalplatform')]</value>
+      <webElementGuid>7fe335ca-d40b-4ef3-b2e4-642255268d59</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
