@@ -4,6 +4,19 @@
    <name>div_Appointment</name>
    <tag></tag>
    <elementGuidId>c255d16b-6f69-4f80-9054-e354f56604e6</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[@id = 'appointment']</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -11,5 +24,6 @@
       <name>id</name>
       <type>Main</type>
       <value>appointment</value>
+      <webElementGuid>549d5355-4bed-40e2-bb9c-ce917402afbd</webElementGuid>
    </webElementProperties>
 </WebElementEntity>

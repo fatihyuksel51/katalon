@@ -4,6 +4,19 @@
    <name>btn_MakeAppointment</name>
    <tag></tag>
    <elementGuidId>36ab10ef-42ea-4957-9e53-f8e9886ae996</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[@id = 'btn-make-appointment']</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -11,5 +24,6 @@
       <name>id</name>
       <type>Main</type>
       <value>btn-make-appointment</value>
+      <webElementGuid>746a43df-c4ca-41a3-9977-6e10e2a7143e</webElementGuid>
    </webElementProperties>
 </WebElementEntity>
