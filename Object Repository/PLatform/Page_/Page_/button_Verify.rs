@@ -3,7 +3,7 @@
    <description></description>
    <name>button_Verify</name>
    <tag></tag>
-   <elementGuidId>62b6ce3e-066a-4f51-b11a-614572d18dc8</elementGuidId>
+   <elementGuidId>3412d7f7-d6f2-4063-a25d-16e408b4ecfc</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
@@ -29,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>button</value>
-      <webElementGuid>0af6d45a-df7a-425e-8885-40dc52d16213</webElementGuid>
+      <webElementGuid>5c1b3fd2-6dd5-4023-bec8-65ab333d1d36</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -37,7 +37,7 @@
       <name>class</name>
       <type>Main</type>
       <value>inline-flex items-center cursor-pointer justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary hover:opacity-90 text-primary-foreground h-12 px-4 py-2 w-full</value>
-      <webElementGuid>2397795d-852e-4ab6-82c7-e628a71706fc</webElementGuid>
+      <webElementGuid>39170cbf-3a9f-419a-9688-30b009a14b2e</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -45,7 +45,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Verify</value>
-      <webElementGuid>b8276ff0-5f3a-4353-bb72-2187b5f441b0</webElementGuid>
+      <webElementGuid>11166acc-d9f8-415d-a9fd-a4a4a5b5aaac</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -53,7 +53,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;relative h-full w-full bg-background text-sm text-foreground&quot;]/div[@class=&quot;h-full w-full&quot;]/div[@class=&quot;container relative h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0&quot;]/div[@class=&quot;flex h-full items-center lg:p-8&quot;]/div[@class=&quot;mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]&quot;]/div[3]/button[@class=&quot;inline-flex items-center cursor-pointer justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary hover:opacity-90 text-primary-foreground h-12 px-4 py-2 w-full&quot;]</value>
-      <webElementGuid>f424a19d-f275-49fc-b7da-924b583b5277</webElementGuid>
+      <webElementGuid>c7619594-a087-4aa0-85cd-be88a0aa21b6</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -61,15 +61,15 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Return Login'])[1]/following::button[1]</value>
-      <webElementGuid>36ffebed-aa1d-48aa-a74a-c92b96dbe0c2</webElementGuid>
+      <webElementGuid>dd7c5e7d-d81e-49d8-bee0-c0686a862603</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='_'])[6]/following::button[1]</value>
-      <webElementGuid>e31ca841-be0f-4686-8c3c-d110b96fbafa</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OTP Digit'])[1]/following::button[1]</value>
+      <webElementGuid>fced7bb3-8fd7-47c3-97ad-520b378693ae</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -77,7 +77,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Terms of Service'])[1]/preceding::button[1]</value>
-      <webElementGuid>91ab3e43-0642-488b-884a-79763f5478b6</webElementGuid>
+      <webElementGuid>166cf425-0d3c-4f84-82f4-57e5d3218ced</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -85,7 +85,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Privacy Policy'])[1]/preceding::button[1]</value>
-      <webElementGuid>5ab5ee1b-fa72-4782-b310-42247cb03c54</webElementGuid>
+      <webElementGuid>c414fc97-bd41-4d4d-acab-29d73ca7f0b3</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -93,7 +93,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>//*/text()[normalize-space(.)='Verify']/parent::*</value>
-      <webElementGuid>17035bb4-4aa2-4f54-b108-d16bdbde12be</webElementGuid>
+      <webElementGuid>ac8ac6df-d92f-43d7-8b23-5d436916273c</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -101,7 +101,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//button</value>
-      <webElementGuid>cfe937d5-6d15-490e-a51f-b778600cf173</webElementGuid>
+      <webElementGuid>226d3395-ddd5-41c5-9a8b-1258c2d890ba</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -109,6 +109,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//button[(text() = 'Verify' or . = 'Verify')]</value>
-      <webElementGuid>634bef1c-ac85-45fd-85f0-ae9405435bb0</webElementGuid>
+      <webElementGuid>526eca86-8aa7-48c0-85df-697a46c1400b</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

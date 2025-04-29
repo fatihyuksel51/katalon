@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>input_OTP Digit_vi</name>
+   <tag></tag>
+   <elementGuidId>41675d8e-1916-4386-9e06-336e73079333</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>input.vi</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//input[@value='']</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:label=&quot;verification input&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>input</value>
+      <webElementGuid>5fb090fa-f254-4c9f-8b7a-0eb4d7fff8f0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>aria-label</name>
+      <type>Main</type>
+      <value>verification input</value>
+      <webElementGuid>72a4092f-cca6-4b7b-803a-22ec9babe4b2</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>spellcheck</name>
+      <type>Main</type>
+      <value>false</value>
+      <webElementGuid>7950c635-b6c0-4fdf-9906-7d6963417275</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>vi</value>
+      <webElementGuid>10762702-43b4-42a3-90d9-af508e8fa060</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;relative h-full w-full bg-background text-sm text-foreground&quot;]/div[@class=&quot;h-full w-full&quot;]/div[@class=&quot;container relative h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0&quot;]/div[@class=&quot;flex h-full items-center lg:p-8&quot;]/div[@class=&quot;mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]&quot;]/form[@class=&quot;flex flex-col space-y-3&quot;]/div[@class=&quot;space-y-2 w-full&quot;]/div[@class=&quot;m-auto flex justify-center&quot;]/div[@class=&quot;vi__wrapper&quot;]/input[@class=&quot;vi&quot;]</value>
+      <webElementGuid>11505019-6a1d-4296-a2d1-488936589d55</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//input[@value='']</value>
+      <webElementGuid>88d80253-d4c9-479d-b3b8-b7ca7af26438</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//input</value>
+      <webElementGuid>0e535e98-0aac-4fa9-9f8e-9b7c8becfe73</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

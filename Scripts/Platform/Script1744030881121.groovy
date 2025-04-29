@@ -20,7 +20,8 @@ import org.openqa.selenium.Keys as Keys
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
-WebUI.click(findTestObject('Object Repository/Dark/Page_/a_PLATFORM LOGIN'))
+
+WebUI.click(findTestObject('Dark/Page_/a_PLATFORM LOGIN'))
 
 WebUI.maximizeWindow()
 

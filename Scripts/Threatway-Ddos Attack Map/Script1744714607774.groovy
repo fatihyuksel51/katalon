@@ -34,7 +34,7 @@ WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/button_Sign in'
 
 WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/svg_G_lucide lucide-webhook h-6 w-6'))
 
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/svg_DDOS_lucide lucide-chevron-right h-4 w-_2b2afb'))
+WebUI.click(findTestObject('hafdii/Page_/Page_/svg_DDOS_lucide lucide-chevron-right h-4 w-_2b2afb'))
 
 WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/div_DDOS Attack Map'))
 
