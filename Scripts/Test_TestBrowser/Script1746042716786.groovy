@@ -16,33 +16,12 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
+import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+
+import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 WebUI.openBrowser('')
-try {
-    def agentIp = new URL("https://ifconfig.me/ip").openStream().getText().trim()
-    println "👉 TestOps Agent IP Adresi: " + agentIp
-} catch(Exception e) {
-    println "❌ IP alınamadı: " + e.getMessage()
-}
-
-
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
-
-WebUI.maximizeWindow()
-
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
-
-WebUI.setText(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/hafdii/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/button_Sign in'))
-
-// login olduktan sonra birkaç saniye bekle
-WebUI.delay(3)
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-WebUI.setText(findTestObject('hafdii/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-WebUI.click(findTestObject('hafdii/Page_/button_Verify'))
-
+WebUI.navigateToUrl('https://google.com')
+WebUI.delay(5)
+WebUI.closeBrowser()
