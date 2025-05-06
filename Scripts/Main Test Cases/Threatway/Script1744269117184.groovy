@@ -66,13 +66,15 @@ try {
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-def isHeadless = RunConfiguration.getDriverPreferencesProperties().get("args").toString().contains("headless")
+def driverPrefs = RunConfiguration.getDriverPreferencesProperties()
+def argsList = driverPrefs?.get("args")?.toString() ?: ""
 
-if (isHeadless) {
+if (argsList.contains("headless")) {
     WebUI.setViewPortSize(1920, 1080)
-    WebUI.comment("Headless modda olduğu için setViewPortSize uygulandı.")
+    WebUI.comment("👉 Headless modda olduğu için setViewPortSize uygulandı.")
 } else {
     WebUI.maximizeWindow()
+    WebUI.comment("👉 Normal modda çalışıyor, pencere maximize edildi.")
 }
 
 WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
