@@ -53,6 +53,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
+import com.kms.katalon.core.configuration.RunConfiguration
 
 WebUI.openBrowser('')
 try {
@@ -65,7 +66,14 @@ try {
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-WebUI.maximizeWindow()
+def isHeadless = RunConfiguration.getDriverPreferencesProperties().get("args").toString().contains("headless")
+
+if (isHeadless) {
+    WebUI.setViewPortSize(1920, 1080)
+    WebUI.comment("Headless modda olduğu için setViewPortSize uygulandı.")
+} else {
+    WebUI.maximizeWindow()
+}
 
 WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
 
