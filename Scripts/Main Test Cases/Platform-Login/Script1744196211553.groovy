@@ -34,7 +34,7 @@ WebUI.setEncryptedText(findTestObject('Object Repository/Dark/Page_/input_Passwo
 WebUI.sendKeys(findTestObject('Object Repository/Dark/Page_/input_Password_password'), Keys.chord(Keys.ENTER))
 
 WebUI.delay(13)
-WebUI.executeJavaScript("document.body.style.zoom='80%'", null)
+
 
 
 WebUI.click(findTestObject('Object Repository/Dark/Page_/div_Threat Intelligence'))
