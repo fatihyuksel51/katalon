@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>select_AllIPv4IPv6Domain NameBTCEMAILADDRUR_d9a7be</name>
+   <tag></tag>
+   <elementGuidId>9b0446c2-0d97-495a-a252-ad46f36c312c</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//*[@id=&quot;cpApp&quot;]/div[2]/main/div/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div/form/div[3]/div/div/div/div[5]/select/option[2]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>div:nth-child(5) > select</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>select</value>
+      <webElementGuid>bf658524-8314-4f05-9227-743566c84efc</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>aria-hidden</name>
+      <type>Main</type>
+      <value>true</value>
+      <webElementGuid>b4dbb90a-58a6-497d-bf5f-01a13f8973ea</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tabindex</name>
+      <type>Main</type>
+      <value>-1</value>
+      <webElementGuid>34a3bf6f-dea1-44da-a490-815aacb8164f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>AllIPv4IPv6Domain NameBTCEMAILADDRURLSHA1MD5SHA256FQDNAutonomous SystemBank AccountDirectoryFileMutexPayment cardUser agentWindows Registry Key</value>
+      <webElementGuid>ec70f30c-2ae7-4882-8ea9-2a0349733cc3</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[2]/div[@class=&quot;flex w-full justify-between&quot;]/div[@class=&quot;flex flex-1 flex-col gap-2 lg:flex-row&quot;]/div[1]/div[@class=&quot;fixed top-[89px] z-[9] flex h-[calc(100%-89px)] w-60 flex-col bg-background transition-all duration-300 lg:block 2xl:w-80 left-24&quot;]/form[@class=&quot;flex h-[calc(100%-68px)] w-full flex-col rounded-md bg-card shadow-md&quot;]/div[@class=&quot;flex-1 overflow-hidden&quot;]/div[@class=&quot;relative overflow-hidden h-full w-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;space-y-2 mx-4 mb-4&quot;]/select[1]</value>
+      <webElementGuid>d483cd30-fcaa-436b-833c-a1e1f6261cc2</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div/div/div/div/form/div[3]/div/div/div/div[5]/select</value>
+      <webElementGuid>143b3d10-ff16-4db6-8a3e-d1f1ad8d7107</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='IPv4'])[1]/following::select[1]</value>
+      <webElementGuid>daf371b8-4f9c-4c9c-af68-d5e6e4da2e9d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Observable Types :'])[1]/following::select[1]</value>
+      <webElementGuid>6d24e61a-b953-4e36-95a4-17f5f7930726</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='All Categories :'])[1]/preceding::select[1]</value>
+      <webElementGuid>65316898-26b1-4ddd-968c-0cdb4a0d679a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='All'])[8]/preceding::select[1]</value>
+      <webElementGuid>c114430e-8852-4858-bc7c-08b3cdc96929</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[5]/select</value>
+      <webElementGuid>cc59aff6-fbd9-430e-8c84-9db17c5f1a3c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//select[(text() = 'AllIPv4IPv6Domain NameBTCEMAILADDRURLSHA1MD5SHA256FQDNAutonomous SystemBank AccountDirectoryFileMutexPayment cardUser agentWindows Registry Key' or . = 'AllIPv4IPv6Domain NameBTCEMAILADDRURLSHA1MD5SHA256FQDNAutonomous SystemBank AccountDirectoryFileMutexPayment cardUser agentWindows Registry Key')]</value>
+      <webElementGuid>20735828-36eb-4c1d-8f2c-71f4789c59ec</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

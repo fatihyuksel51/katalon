@@ -36,6 +36,15 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
+// Login sonrası ana ekran elementini bekle
+if (WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/svg_G_lucide lucide-webhook h-6 w-6'), 30)) {
+    WebUI.comment("✅ Login başarılı.")
+} else {
+    WebUI.comment("❌ Login başarısız.")
+    WebUI.takeScreenshot()
+    WebUI.closeBrowser()
+    assert false : "Login sonrası element bulunamadı!"
+}
 WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/svg_G_lucide lucide-webhook h-6 w-6'))
 WebUI.delay(3)
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_Signature List</name>
+   <tag></tag>
+   <elementGuidId>70f24be3-077c-4bb4-a8d7-ac49d28ca26c</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/aside/div/div/a[4]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Signature List&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>2b6e2580-e00e-4b8d-ab35-699ffff29dac</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>relative flex w-full gap-2 rounded-md p-2 hover:bg-background-item hover:text-primary</value>
+      <webElementGuid>20d8f197-2303-4834-8647-d0c22168a5f7</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>/threatway/signature-list</value>
+      <webElementGuid>d53f63b3-fffb-43aa-97ad-4212cc116757</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Signature List</value>
+      <webElementGuid>263dc6cd-7006-4916-b7b9-23a870f7046a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/aside[@class=&quot;relative mr-4 hidden w-60 min-w-60 lg:block 2xl:w-80 2xl:min-w-80&quot;]/div[@class=&quot;sticky left-0 top-[89px] z-0&quot;]/div[@class=&quot;flex flex-col gap-1 rounded-md bg-card p-3 text-sm&quot;]/a[@class=&quot;relative flex w-full gap-2 rounded-md p-2 hover:bg-background-item hover:text-primary&quot;]</value>
+      <webElementGuid>63bb5c6d-ac17-4905-8b16-20bddd71446e</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/aside/div/div/a[4]</value>
+      <webElementGuid>c0649e4f-d0df-4ce5-8740-1ff58884f819</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Collections'])[1]/following::a[1]</value>
+      <webElementGuid>e75fe5c0-398e-487e-947b-f2ff27ff31b5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Channel Management'])[1]/following::a[2]</value>
+      <webElementGuid>8cdb867a-1a2b-4389-a826-7b26ee443428</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Malware Analysis'])[1]/preceding::a[1]</value>
+      <webElementGuid>f8210f4c-ceac-45d4-bca6-feda5dd46799</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '/threatway/signature-list')]</value>
+      <webElementGuid>6f705496-6deb-4b49-833e-180279cd5aa5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a[4]</value>
+      <webElementGuid>129804e2-930b-453c-8307-f5a08c4cdbd1</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[@href = '/threatway/signature-list' and (text() = 'Signature List' or . = 'Signature List')]</value>
+      <webElementGuid>50c4ebb0-7906-4265-9cbd-a0b1cc5d40ed</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

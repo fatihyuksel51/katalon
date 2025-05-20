@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>newborndomain</name>
+   <tag></tag>
+   <elementGuidId>ee04209e-42f7-46e1-99ef-e4ddb14a0e92</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(//div[contains(@class, 'grid') and contains(@class, 'hover:bg-background-item')]//div[contains(@class, 'col-span-9')]//a)[31]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:attr=[title=&quot;35.226.120.32&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>b2b62c5e-6ace-4498-842b-4b440ddbb26c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>col-span-9 truncate xl:col-span-7</value>
+      <webElementGuid>d3334e35-22d3-43cf-aa7b-f360b13f256c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>title</name>
+      <type>Main</type>
+      <value>35.226.120.32</value>
+      <webElementGuid>37385f9e-48f4-4588-ae1a-3364addc7c9a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>35.226.120.32</value>
+      <webElementGuid>4aad89d6-7c6d-4b5a-9924-a3cb2c6c2897</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[@class=&quot;grid grid-cols-1 gap-4 max-lg:grid-cols-2 xl:grid-cols-4&quot;]/div[@class=&quot;rounded-md bg-card text-card-foreground flex h-full flex-col&quot;]/div[@class=&quot;p-6 pt-0 flex-grow&quot;]/div[@class=&quot;grid grid-cols-12 content-center items-center gap-2 border-b px-2 py-2 text-sm hover:bg-background-item&quot;]/div[@class=&quot;col-span-9 truncate xl:col-span-7&quot;]</value>
+      <webElementGuid>b1769a16-a944-41e0-abc0-4f3b703063c9</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div[4]/div[3]/div[5]/div</value>
+      <webElementGuid>7a10c20f-7ab7-40bc-a494-fe02f5ae81ab</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Percentage'])[4]/following::div[3]</value>
+      <webElementGuid>5512ae11-af4c-4fbb-9e19-04d65bb529e3</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Captured Signatures'])[4]/following::div[6]</value>
+      <webElementGuid>06509b43-5bad-4c91-8c7d-4e3611652034</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='IPv4'])[18]/preceding::div[1]</value>
+      <webElementGuid>2b4ebb5f-fed0-4493-ba3f-69ff2ce82c8a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='IPv4'])[19]/preceding::div[3]</value>
+      <webElementGuid>68aa43ec-efa3-41a5-ad7e-ba65d9322f75</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[4]/div[3]/div[5]/div</value>
+      <webElementGuid>52e03a1b-57ed-4bc9-9efc-c30bcf0d54ec</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[@title = '35.226.120.32' and (text() = '35.226.120.32' or . = '35.226.120.32')]</value>
+      <webElementGuid>c9b67e34-3712-47fd-84bf-543e9f485c4e</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

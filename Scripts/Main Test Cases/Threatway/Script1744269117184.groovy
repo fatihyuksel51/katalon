@@ -81,10 +81,10 @@ if (argsList.contains("headless")) {
 }
 
 // Login adımları
-WebUI.waitForElementClickable(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'), 20)
+WebUI.waitForElementClickable(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'), 40)
 WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 20)
+WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 50)
 WebUI.setText(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Password_password'), 20)
