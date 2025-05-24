@@ -3,12 +3,11 @@
    <description></description>
    <name>Show detail text</name>
    <tag></tag>
-   <elementGuidId>cc0d55ed-84d5-4ff8-9ba2-07e9827b0608</elementGuidId>
+   <elementGuidId>36a8cc06-aba5-4158-9ddd-693eb45ee551</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>(//input[@readonly and @value])[1]&#xd;
-</value>
+         <value>(//input[@readonly and @value])[1]</value>
       </entry>
       <entry>
          <key>BASIC</key>

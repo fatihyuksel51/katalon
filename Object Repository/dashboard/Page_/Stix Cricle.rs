@@ -3,7 +3,7 @@
    <description></description>
    <name>Stix Cricle</name>
    <tag></tag>
-   <elementGuidId>9ec62732-15ff-4b20-ae0c-ae38c0f92068</elementGuidId>
+   <elementGuidId>9e72651c-3615-440e-a7e3-9a66fec080c0</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>

@@ -3,15 +3,15 @@
    <description></description>
    <name>Show detail circle</name>
    <tag></tag>
-   <elementGuidId>5bb827d8-6b59-4bec-b8c1-e53b043edec6</elementGuidId>
+   <elementGuidId>bf272915-f134-4489-a29f-d58f4773b5f2</elementGuidId>
    <selectorCollection>
-      <entry>
-         <key>BASIC</key>
-         <value></value>
-      </entry>
       <entry>
          <key>XPATH</key>
          <value>(//div[@class='flex flex-col gap-4'])[2]</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

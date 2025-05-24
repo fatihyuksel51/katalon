@@ -65,25 +65,26 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
 
 // Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'), 30)
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 30)
-WebUI.setText(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/hafdii/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/button_Sign in'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
+WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
 WebUI.delay(3)
 
 // OTP işlemi
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-WebUI.setText(findTestObject('Object Repository/hafdii/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/button_Verify'))
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
 
 // Threatway sekmesine tıkla
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway'), 15)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway'))
 
 // Signature List öğesinin görünmesini bekle ve tıkla
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/div_Signature List'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/div_Signature List'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Signature List'), 10)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Signature List'))
 
 
 // Bugünün tarihini al
@@ -96,27 +97,27 @@ WebUI.delay(5)
   // Tabloyu scroll et ve location’a tıkla
 CustomKeywords.'com.catchprobe.utils.TableUtils.scrollTableAndClickLocation'( today)
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_Download CSV'), 30)
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/filterbuton'), 40)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/filterbuton'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway button_Download CSV'), 30)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Theatway filterbuton'), 40)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Theatway filterbuton'))
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/span_Choose a Date'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/span_Choose a Date'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway-Choese One'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway-Choese One'))
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_1'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_1'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Thteatway Chose Button One'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Thteatway Chose Button One'))
 
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'))
-String startdate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_Choose a Date'))
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
+String startdate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway Chose button second'))
 println('start date '+  startdate  )
 
 
 
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/span_Choose a Date_1'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/span_Choose a Date_1'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Second'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Second'))
 String todayDay = new SimpleDateFormat("d").format(new Date())
 // Bugünün gününe tıkla
 TestObject todayButton = new TestObject()
@@ -129,65 +130,65 @@ WebUI.delay(2)
 
 
 
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'))
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 2)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
 
 
-//WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_13'), 30)
-//WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_13'))
+//WebUI.waitForElementClickable(findTestObject('null'), 30)
+//WebUI.click(findTestObject('null'))
 
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'))
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
 WebUI.delay(2)
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/span_Choose a Date_1'), 30)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Second'), 30)
 
 
 // Select elementinden 'IPv4' seç
-WebUI.waitForElementClickable(findTestObject('Object Repository/Smartdeceptive/Page_/ipv4/Page_/İPv4-buton'), 20)
-WebUI.scrollToElement(findTestObject('Object Repository/Smartdeceptive/Page_/ipv4/Page_/İPv4-buton'), 5)
-WebUI.click(findTestObject('Object Repository/Smartdeceptive/Page_/ipv4/Page_/İPv4-buton'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway İPv4-buton'), 20)
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway İPv4-buton'), 5)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway İPv4-buton'))
 
 WebUI.delay(2)
-WebUI.click(findTestObject('Object Repository/Smartdeceptive/Page_/select_dropdown'))
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway select_dropdown'))
 WebUI.delay(2)
-String obserble = WebUI.getText(findTestObject('Object Repository/Smartdeceptive/Page_/ipv4/Page_/İPv4-buton'))
+String obserble = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway İPv4-buton'))
 println('start date '+  obserble )
 // tik
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'))
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
 
 
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 5)
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/nav_Previous12More pages177095Next'))
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_APPLY AND SEARCH'), 5)
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/favori_ip'), 30)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 5)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway favori_ip'), 30)
 
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_APPLY AND SEARCH'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_APPLY AND SEARCH'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/a_113.27.28.61'), 30)
-String FavoriIp = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Page_/favori_ip'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'), 30)
+String FavoriIp = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway favori_ip'))
 println('favori ip'+ FavoriIp  )
 
-WebUI.verifyElementText(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/a_113.27.28.61'), FavoriIp )
+WebUI.verifyElementText(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'), FavoriIp )
 
 
-WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/input_Keyword_search_filters'), 5)
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/input_Keyword_search_filters'), 30)
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 5)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 10)
 
 
 
 try {
 	// Arama alanı görünür mü diye kontrol et
-	if (WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/input_Keyword_search_filters'), 5)) {
+	if (WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 5)) {
 		// Eğer görünürse text'i set et
-		WebUI.setText(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/input_Keyword_search_filters'), FavoriIp)
+		WebUI.setText(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), FavoriIp)
 		KeywordUtil.logInfo("Arama alanına IP yazıldı ✅")
 	} else {
 		throw new StepFailedException("Arama alanı görünmedi.")
@@ -197,28 +198,29 @@ try {
 	// Hata alırsa filter butonuna tıklayıp yeniden dene
 	KeywordUtil.logInfo("Arama alanı bulunamadı. Filter butonuna basılıyor 🔄")
 
-	WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/filterbuton'), 10)
-	WebUI.click(findTestObject('Object Repository/dashboard/Page_/filterbuton'))
+	WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Theatway filterbuton'), 10)
+	WebUI.click(findTestObject('Object Repository/dashboard/Page_/Theatway filterbuton'))
 	WebUI.delay(1)
 
 	// Tekrar arama alanının gelmesini bekle ve setText dene
-	WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/input_Keyword_search_filters'), 10)
-	WebUI.setText(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/input_Keyword_search_filters'), FavoriIp)
+	WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 10)
+	WebUI.setText(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), FavoriIp)
 	KeywordUtil.logInfo("Arama alanına IP tekrar yazıldı ✅")
 }
 
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_APPLY AND SEARCH'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_APPLY AND SEARCH'))
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/favori_ip'), 30)
-WebUI.verifyElementText(findTestObject('Object Repository/dashboard/Page_/SignatureList-CollectionName'), obserble )
-WebUI.verifyElementText(findTestObject('Object Repository/dashboard/Page_/Keywordpop'), FavoriIp )
-String actualDate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Startdatepop'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway favori_ip'), 30)
+WebUI.verifyElementText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'), obserble )
+WebUI.verifyElementText(findTestObject('Object Repository/dashboard/Page_/Threatway Keywordpop'), FavoriIp )
+String actualDate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway Startdatepop'))
 actualDate = actualDate.replace('/', '.')
 WebUI.verifyMatch(actualDate, startdate, false)
-String actualendDate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Page_/Enddatepop'))
+String actualendDate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway Enddatepop'))
 
 WebUI.verifyMatch(actualendDate, today , false)
+
 
 // Doğru XPath ile butonu tanımla
 
@@ -247,34 +249,28 @@ TestObject removedMessage = new TestObject()
 removedMessage.addProperty("xpath", ConditionType.EQUALS, "//div[contains(text(), 'removed to favorite successfully')]")  // <- bu senin belirttiğin doğru mesaj
 
 // Butonun rengine göre işlem yap
-if (buttonClass != null && buttonClass.contains('bg-warning')) {
+if (buttonClass.contains('bg-primary')) {
+    // Eğer mavi renkli ise — favoriye eklenmemiştir, ekleyelim
     WebUI.click(favButton)
-    WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_Add_'))
-
-    WebUI.waitForElementVisible(removedMessage, 10)
-    WebUI.verifyElementText(removedMessage, 'Signature removed to favorite successfully')
-
-    KeywordUtil.logInfo("Favori kaldırıldı ✅")
-}
-else if (buttonClass != null && buttonClass.contains('bg-primary')) {
-    WebUI.click(favButton)
-    WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/button_Add_'))
-
+	WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway button_Add_'))
     WebUI.waitForElementVisible(addedMessage, 10)
-    WebUI.verifyElementText(addedMessage, 'Signature added to favorite successfully')
-
-    KeywordUtil.logInfo("Favori eklendi ✅")
+    KeywordUtil.logInfo("Favoriye ekleme işlemi başarılı ✅")
+} else if (buttonClass.contains('bg-warning')) {
+    // Eğer sarı renkli ise — favoride, çıkaralım
+    WebUI.click(favButton)
+	WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway button_Add_'))
+    WebUI.waitForElementVisible(removedMessage, 10)
+    KeywordUtil.logInfo("Favoriden çıkarma işlemi başarılı ✅")
+} else {
+    KeywordUtil.markFailed("Buton beklenen class'lara sahip değil ❌ Class: " + buttonClass)
 }
-else {
-    KeywordUtil.markFailed("Favori butonunun class bilgisi okunamadı 🚨: " + buttonClass)
-}
 
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/a_113.27.28.61'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Page_/Page_/a_113.27.28.61'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'))
 
 // Test Object'i al
-TestObject divObject = findTestObject('Object Repository/dashboard/Page_/Number of Views')
+TestObject divObject = findTestObject('Object Repository/dashboard/Page_/Threatway Number of Views')
 
 // Div'in görünmesini bekle (maksimum 10 saniye)
 if (WebUI.waitForElementVisible(divObject, 5)) {
@@ -302,7 +298,7 @@ if (WebUI.waitForElementVisible(divObject, 5)) {
 }
 
 // Risk Score Object'i al
-TestObject riskscore = findTestObject('Object Repository/dashboard/Page_/Risk Score')
+TestObject riskscore = findTestObject('Object Repository/dashboard/Page_/Threatway Risk Score')
 
 // Div'in görünmesini bekle (maksimum 10 saniye)
 if (WebUI.waitForElementVisible(riskscore, 5)) {
@@ -332,7 +328,7 @@ if (WebUI.waitForElementVisible(riskscore, 5)) {
 
 
 // Buton elementi al
-WebElement iocDetailButton = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/Dark/Page_/iocDetailButton'), 10)
+WebElement iocDetailButton = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Threatway iocDetailButton'), 10)
 
 // WebDriver ve JS tanımla
 WebDriver driver = DriverFactory.getWebDriver()
@@ -349,7 +345,7 @@ if (scrollToVisible(iocDetailButton, js)) {
 }
 
 // İlgili indicator elementini al
-WebElement indicatorTextElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/Dark/Page_/İndicatortext'), 10)
+WebElement indicatorTextElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'), 10)
 
 // Scroll ve text çekme işlemi
 String indicatorText = ''
@@ -361,7 +357,7 @@ if (scrollToVisible(indicatorTextElement, js)) {
 }
 
 // İlgili doğrulamayı yap
-WebUI.waitForElementClickable(findTestObject('Object Repository/Dark/Page_/İndicatortext'), 10)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'), 10)
 WebUI.verifyMatch(indicatorText, FavoriIp, false)
 //Threatway doğrulaması yap
 WebElement ThreatwayTextElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/button_THREATWAY'), 10)
@@ -437,7 +433,7 @@ TestObject sightingmappath =new TestObject().addProperty("id", ConditionType.EQU
 WebUI.delay(2)
 
 // Sighting Map elementi görünür mü?
-if (WebUI.waitForElementVisible(sightingmappath, 15)) {
+if (WebUI.waitForElementVisible(sightingmappath, 10)) {
 
 	WebElement sightingmappathelement = WebUI.findWebElement(sightingmappath, 10)
 
@@ -460,21 +456,27 @@ if (WebUI.waitForElementVisible(sightingmappath, 15)) {
 }
 
 
-// Close butonuna tıkla
+// Sayfa zoom-out: 0.7 yani %70'e al
 
-WebElement ShowDetailClose = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Page_/Show detail Close button'), 20)
+js.executeScript("document.body.style.zoom='0.7'")
 
-if (scrollToVisible(ShowDetailClose, js)) {
+// Close butonunu bul
+WebElement ShowDetailClose = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Show detail Close button'), 20)
+
+// Element varsa click'le
+if (ShowDetailClose != null) {
 	js.executeScript("arguments[0].click();", ShowDetailClose)
-	WebUI.comment("👉 'show detail' butonu kapatıldı.")
+	WebUI.comment("👉 'show detail' popup kapatıldı.")
 } else {
-	WebUI.comment("❌ 'show detail close' butonu görünür değil, kapatılamadı.")
+	WebUI.comment("❌ 'show detail close' butonu bulunamadı.")
 }
 
+// İş bittikten sonra zoom'u eski haline getir (isteğe bağlı)
+js.executeScript("document.body.style.zoom='1'")
 
 
-/*// ioc detail popup'ını kapat
-WebElement iocDetailButtonClose = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/Dark/Page_/iocDetailButton'), 10)
+// ioc detail popup'ını kapat
+WebElement iocDetailButtonClose = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Threatway iocDetailButton'), 10)
 
 if (scrollToVisible(iocDetailButtonClose, js)) {
     js.executeScript("arguments[0].click();", iocDetailButtonClose)
@@ -484,7 +486,7 @@ if (scrollToVisible(iocDetailButtonClose, js)) {
 }
 
 // Stic package butonu tıkla
-WebElement StixPackageButton = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/Dark/Page_/StixPackageButton'), 10)
+WebElement StixPackageButton = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/StixPackageButton'), 10)
 // Scroll ve click işlemi
 if (scrollToVisible(StixPackageButton, js)) {
 	js.executeScript("arguments[0].click();", StixPackageButton)
@@ -520,10 +522,10 @@ if (WebUI.waitForElementVisible(circle, 10)) {
 	KeywordUtil.logInfo("Stix Package Circle elementi görünmedi ⏰")
 }
 // stix package popup'ını kapat
-WebUI.click(findTestObject('Object Repository/Dark/Page_/StixPackageButton'))
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/StixPackageButton'))
 
 
 
 
-/*/ //Tarayıcıyı kapat
+ //Tarayıcıyı kapat
  WebUI.closeBrowser()

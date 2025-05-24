@@ -3,15 +3,15 @@
    <description></description>
    <name>threatway</name>
    <tag></tag>
-   <elementGuidId>fc3ea619-f3fd-4d5a-82e9-0dd978f850a8</elementGuidId>
+   <elementGuidId>6313c05a-949e-47d8-a0a0-3c246fe127d2</elementGuidId>
    <selectorCollection>
-      <entry>
-         <key>BASIC</key>
-         <value></value>
-      </entry>
       <entry>
          <key>XPATH</key>
          <value>//*[@href='/threatway']</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

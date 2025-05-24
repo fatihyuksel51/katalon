@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>colection share name</name>
+   <tag></tag>
+   <elementGuidId>4f6dccca-737c-4cd1-9bf7-6a226b18d50b</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(//span[@class='text-card-foreground'])[3]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:label=&quot;Share Collection&quot;i >> internal:text=&quot;1984sh&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>011841c9-c60c-4a62-91b1-1509cbb54da1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>inline-block lg:px-3 lg:py-1 md:px-2 md:py-0.5 md:text-[0.60rem] lg:text-[0.65rem] uppercase font-bold rounded-full bg-primary text-primary-foreground py-1 text-xs m-1 px-1</value>
+      <webElementGuid>49410c50-e19d-4c22-985d-6cde41367d84</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>1984sh</value>
+      <webElementGuid>44810acc-239d-4a12-92a4-8939fb70f5aa</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:rib:&quot;)/div[@class=&quot;rounded-md bg-card text-card-foreground&quot;]/div[@class=&quot;flex flex-col space-y-0 p-4 pt-0 md:p-6&quot;]/form[1]/div[@class=&quot;flex flex-col gap-4&quot;]/div[@class=&quot;space-y-2&quot;]/span[@class=&quot;inline-block lg:px-3 lg:py-1 md:px-2 md:py-0.5 md:text-[0.60rem] lg:text-[0.65rem] uppercase font-bold rounded-full bg-primary text-primary-foreground py-1 text-xs m-1 px-1&quot;]</value>
+      <webElementGuid>b59c1959-6f11-4297-9ee9-ee14bf97ecd7</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:rib:']/div/div[3]/form/div/div/span</value>
+      <webElementGuid>ff82f817-e7fe-44c7-99f9-6b7ded23a7e8</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Selected Collections :'])[1]/following::span[1]</value>
+      <webElementGuid>257d54ee-0f52-4e75-9299-bb17f1af7bc3</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Share Collection'])[2]/following::span[1]</value>
+      <webElementGuid>23833ab4-7bc2-4d13-988b-d62c738c1063</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='a-b-c'])[2]/preceding::span[1]</value>
+      <webElementGuid>421bab6d-9e7e-4689-ad9d-329a8ba5bf61</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Organizations'])[1]/preceding::span[2]</value>
+      <webElementGuid>f7cfd99f-d17c-4b3f-9c12-406f8f6094fd</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//form/div/div/span</value>
+      <webElementGuid>8f4a5bc8-5731-48f8-9ae8-0f3a9eadad76</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = '1984sh' or . = '1984sh')]</value>
+      <webElementGuid>48945bc7-df68-4c61-bef9-50abe8e1e4f8</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

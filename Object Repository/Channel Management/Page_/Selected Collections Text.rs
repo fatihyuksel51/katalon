@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Selected Collections Text</name>
+   <tag></tag>
+   <elementGuidId>7e9526ac-f04b-4e9c-ba4e-a76d90ed3178</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.space-y-2</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//span[contains(@class, 'rounded-full') and contains(@class, 'bg-primary') and contains(@class, 'text-primary-foreground')]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Selected Collections : 1984sha-b-c&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>688534f6-71d3-4f6c-be48-3e86d80a18f9</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>space-y-2</value>
+      <webElementGuid>09f1e11d-24b9-4091-8761-3a494648a4e9</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>translate</name>
+      <type>Main</type>
+      <value>no</value>
+      <webElementGuid>80e141ba-a6b7-4d2b-a755-1b400fcdbf21</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>data-aria-hidden</name>
+      <type>Main</type>
+      <value>true</value>
+      <webElementGuid>84e37305-bd6f-4cb2-896f-8265559acdea</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>aria-hidden</name>
+      <type>Main</type>
+      <value>true</value>
+      <webElementGuid>4b4d8a22-ecb9-4771-a926-09e89fdc4571</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Selected Collections : 1984sha-b-c</value>
+      <webElementGuid>f4dc180c-474a-4eeb-bac4-90a6301cc99f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:rib:&quot;)/div[@class=&quot;rounded-md bg-card text-card-foreground&quot;]/div[@class=&quot;flex flex-col space-y-0 p-4 pt-0 md:p-6&quot;]/form[1]/div[@class=&quot;flex flex-col gap-4&quot;]/div[@class=&quot;space-y-2&quot;]</value>
+      <webElementGuid>bae33633-5053-4fe7-9c18-1bc29f6b02b8</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:rib:']/div/div[3]/form/div/div</value>
+      <webElementGuid>94ffe1ee-ac1e-4c6b-a424-1a4a76236daf</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Share Collection'])[2]/following::div[4]</value>
+      <webElementGuid>009a2fb7-a27a-4c79-a1f0-07731fd033f9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Privacy Policy'])[1]/following::div[12]</value>
+      <webElementGuid>5fec8bab-eeec-4449-8505-049fc7fdcafb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//form/div/div</value>
+      <webElementGuid>8bafa69e-d62f-45ae-b816-b6552dcad2b9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Selected Collections : 1984sha-b-c' or . = 'Selected Collections : 1984sha-b-c')]</value>
+      <webElementGuid>a9f5858d-bbf4-496c-864e-67dedf5d2a71</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

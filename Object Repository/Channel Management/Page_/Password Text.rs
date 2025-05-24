@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Password Text</name>
+   <tag></tag>
+   <elementGuidId>ce4bba14-488a-4c15-ad6d-b9c2d8e953ed</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div/div/div/div/div/div/div[2]/div/span</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;1efc52caede10618&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>6468cc44-3640-4d47-ac15-7924929b8a82</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>1efc52caede10618</value>
+      <webElementGuid>d422d508-bd3e-4fb1-9656-185f7d7d0654</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[@class=&quot;grid grid-cols-12 gap-6 rounded-xl&quot;]/div[@class=&quot;col-span-12 bg-card&quot;]/div[@class=&quot;flex flex-col gap-1 rounded-md bg-card&quot;]/div[@class=&quot;rounded-md bg-card text-card-foreground&quot;]/div[@class=&quot;flex flex-col space-y-1.5 p-6&quot;]/div[@class=&quot;font-semibold leading-none tracking-tight&quot;]/div[@class=&quot;relative flex flex-col items-start&quot;]/div[@class=&quot;flex flex-row gap-1 text-base&quot;]/div[@class=&quot;flex flex-row items-center gap-1&quot;]/span[1]</value>
+      <webElementGuid>dddc06ee-c35c-49de-977a-128b1576dbc4</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div/div/div/div/div/div/div[2]/div/span</value>
+      <webElementGuid>d73d5e6b-a3ac-4ecc-99e1-5403f13143bf</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='PASSWORD :'])[1]/following::span[1]</value>
+      <webElementGuid>a66cbefa-fe7f-488a-9bab-b523110ed938</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='taxii2'])[1]/following::span[2]</value>
+      <webElementGuid>e5611be3-f984-4ad4-a9c8-37aa241b338a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='(YOUR API KEY)'])[1]/preceding::span[1]</value>
+      <webElementGuid>ecd7be5a-5b13-4a48-bd68-831e64bce085</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='DOCUMENT'])[1]/preceding::span[2]</value>
+      <webElementGuid>e3f97ac8-e80c-48a1-b436-8f978d32d365</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='1efc52caede10618']/parent::*</value>
+      <webElementGuid>0e147041-587b-4a2c-8c6a-33e4b47eb86a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/div/span</value>
+      <webElementGuid>743cc7bf-843c-4461-a04c-99b826dfebc6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = '1efc52caede10618' or . = '1efc52caede10618')]</value>
+      <webElementGuid>115f6b72-6c33-4400-b31d-fca4c604c4f1</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

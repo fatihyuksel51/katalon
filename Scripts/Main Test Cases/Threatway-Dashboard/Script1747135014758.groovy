@@ -31,18 +31,18 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
 
 // Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'), 30)
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 30)
-WebUI.setText(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/hafdii/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/button_Sign in'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
+WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
 WebUI.delay(3)
 
 // OTP işlemi
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-WebUI.setText(findTestObject('hafdii/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-WebUI.click(findTestObject('hafdii/Page_/button_Verify'))
+WebUI.setText(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+WebUI.click(findTestObject('otp/Page_/button_Verify'))
 
 // Dashboard sekmeleri
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/newborndomain'),15)
@@ -128,11 +128,11 @@ String result = basedOnTodayText.replaceAll(/\d+$/, '').trim()
 // Sadece 'stamparm-ipsum' kalsın
 result = result.substring(result.lastIndexOf(":") + 1).trim()
 
-WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/SignatureList-CollectionName'), 10)
-String Collectionname = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/SignatureList-CollectionName'))
+WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'), 10)
+String Collectionname = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'))
 println("📌 Collectionname: " + result)
 // Her iki metinden assetleme yap
-assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/SignatureList-CollectionName')).contains(result)
+assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName')).contains(result)
 
 // ========== 📌 Based On Yesterday ==========
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
@@ -152,8 +152,8 @@ if (scrollToVisible(basedOnYesterdayElement, js)) {
 String yesterdayResult = basedOnYesterdayText.replaceAll(/\d+$/, '').trim()
 yesterdayResult = yesterdayResult.substring(yesterdayResult.lastIndexOf(":") + 1).trim()
 
-WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/SignatureList-CollectionName'), 10)
-String collectionNameYesterday = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/SignatureList-CollectionName'))
+WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'), 10)
+String collectionNameYesterday = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'))
 println("📌 Collectionname (Yesterday): " + yesterdayResult)
 assert collectionNameYesterday.contains(yesterdayResult)
 

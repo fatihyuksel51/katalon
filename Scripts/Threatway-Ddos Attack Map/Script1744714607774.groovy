@@ -24,21 +24,21 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
 WebUI.maximizeWindow()
 
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/a_PLATFORM LOGIN'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/Page_/a_PLATFORM LOGIN'))
 
-WebUI.setText(findTestObject('Object Repository/hafdii/Page_/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/otp/Page_/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/hafdii/Page_/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/button_Sign in'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/Page_/button_Sign in'))
 
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/svg_G_lucide lucide-webhook h-6 w-6'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/Page_/svg_G_lucide lucide-webhook h-6 w-6'))
 
-WebUI.click(findTestObject('hafdii/Page_/Page_/svg_DDOS_lucide lucide-chevron-right h-4 w-_2b2afb'))
+WebUI.click(findTestObject('otp/Page_/Page_/svg_DDOS_lucide lucide-chevron-right h-4 w-_2b2afb'))
 
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/div_DDOS Attack Map'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/Page_/div_DDOS Attack Map'))
 
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/Page_/iframe_DDOS Attack Map_fullScreenThreatwayA_fe63ad'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/Page_/iframe_DDOS Attack Map_fullScreenThreatwayA_fe63ad'))
 
 TestObject iframeObj = new TestObject('iframe')
 
@@ -53,7 +53,7 @@ scrollableDiv.addProperty('xpath', ConditionType.EQUALS, '//div[@class=\'col-md-
 
 WebUI.executeJavaScript('arguments[0].scrollTop = 300', Arrays.asList(WebUI.findWebElement(scrollableDiv)))
 
-String time1 = WebUI.getText(findTestObject('Object Repository/hafdii/Page_/ddos_source'))
+String time1 = WebUI.getText(findTestObject('Object Repository/otp/Page_/ddos_source'))
 
 println('faaa' + time1)
 
@@ -61,7 +61,7 @@ println('faaa' + time1)
 WebUI.delay(10)
 
 // İkinci Time bilgisini al
-String time2 = WebUI.getText(findTestObject('Object Repository/hafdii/Page_/ddos_source'))
+String time2 = WebUI.getText(findTestObject('Object Repository/otp/Page_/ddos_source'))
 
 println('faaa' + time2)
 

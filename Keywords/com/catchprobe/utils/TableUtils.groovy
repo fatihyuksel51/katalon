@@ -8,6 +8,14 @@ import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import java.text.SimpleDateFormat
+import java.util.Date
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.exception.StepFailedException
+import com.kms.katalon.core.model.FailureHandling
+
+
 
 class TableUtils {
 	static void clickDateInTable(WebDriver driver, WebElement tableContainer, String currentDate) {
@@ -80,6 +88,75 @@ class TableUtils {
 		} catch (Exception e) {
 			WebUI.comment("❌ Hata oluştu: " + e.getMessage())
 			KeywordUtil.markFailed("❌ Hata oluştu: " + e.getMessage())
+		}
+	}
+
+	@Keyword
+	def checkMySharedTableAndAssert(String expectedName, String expectedCollection, String expectedUser, String expectedStatus) {
+		WebDriver driver = DriverFactory.getWebDriver()
+		Date today = new Date()
+		String todayStr = new SimpleDateFormat("dd/MM/yyyy").format(today)
+		WebUI.comment("📅 Bugünün tarihi: " + todayStr)
+
+		boolean isMatchFound = false
+
+		try {
+			List<WebElement> rows = driver.findElements(By.cssSelector("tbody.ant-table-tbody tr.ant-table-row"))
+			WebUI.comment("🔍 Toplam satır sayısı: " + rows.size())
+
+			for (WebElement row : rows) {
+				List<WebElement> cells = row.findElements(By.tagName("td"))
+
+				if (cells.size() > 0) {
+					String sharedName = cells.get(0).getText()
+					String CollectionName = cells.get(1).getText()
+					String UserText = cells.get(2).getText()
+					String dateText = cells.get(3).getText()
+					String statusText = cells.get(4).getText()
+
+					WebUI.comment("👉 Paylaşım Adı: " + sharedName + " | Collection: " + CollectionName + " | Kullanıcı: " + UserText + " | Tarih: " + dateText + " | Durum: " + statusText)
+
+					if (sharedName.equals(expectedName) && CollectionName.equals(expectedCollection) && UserText.equals(expectedUser) && dateText.contains(todayStr) && statusText.equalsIgnoreCase(expectedStatus)) {
+						WebUI.comment("✅ Eşleşme bulundu!")
+						isMatchFound = true
+						break
+					}
+				}
+			}
+
+			if (isMatchFound) {
+				KeywordUtil.markPassed("🎉 Tablo satırında beklenen veri bulundu.")
+			} else {
+				KeywordUtil.markFailedAndStop("❌ Beklenen veri tablo satırlarında bulunamadı.")
+			}
+		} catch (Exception e) {
+			WebUI.comment("❌ Hata oluştu: " + e.getMessage())
+			KeywordUtil.markFailedAndStop("❌ Hata oluştu: " + e.getMessage())
+		}
+	}
+	@Keyword
+	def static checkForUnexpectedToasts() {
+		// Toast elementi tanımı
+		TestObject toastMessage = new TestObject().addProperty("xpath",
+			ConditionType.CONTAINS, "//li[contains(@class, 'bg-destructive')]")
+
+		// Eğer ekranda toast varsa
+		if (WebUI.verifyElementPresent(toastMessage, 2, FailureHandling.OPTIONAL)) {
+			String toastText = WebUI.getText(toastMessage)
+
+			// Planlı beklenen mesajlar
+			List<String> allowedToasts = ['Operation successful', 'User created successfully']
+
+			// Hata/şüpheli içerikler
+			List<String> errorKeywords = ['error', 'invalid', 'exception', 'failed', 'an error occurred']
+
+			// Hata içeriyor mu kontrolü
+			boolean containsError = errorKeywords.any { toastText.toLowerCase().contains(it) }
+
+			if (!allowedToasts.contains(toastText) || containsError) {
+				WebUI.comment("❌ Beklenmeyen veya hata içeren toast mesajı tespit edildi: ${toastText}")
+				throw new StepFailedException("Unexpected or error toast message: ${toastText}")
+			}
 		}
 	}
 }

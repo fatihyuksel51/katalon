@@ -81,27 +81,27 @@ if (argsList.contains("headless")) {
 }
 
 // Login adımları
-WebUI.waitForElementClickable(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'), 40)
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/a_PLATFORM LOGIN'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 40)
+WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 50)
-WebUI.setText(findTestObject('Object Repository/hafdii/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 50)
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/input_Password_password'), 20)
-WebUI.setEncryptedText(findTestObject('Object Repository/hafdii/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Password_password'), 20)
+WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/hafdii/Page_/button_Sign in'), 20)
-WebUI.click(findTestObject('Object Repository/hafdii/Page_/button_Sign in'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/otp/Page_/button_Sign in'), 20)
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
 
 // OTP ekranına geçiş için bekle
-WebUI.waitForElementVisible(findTestObject('hafdii/Page_/input_OTP Digit_vi_1_2_3_4_5'), 30)
+WebUI.waitForElementVisible(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), 30)
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 
-WebUI.setText(findTestObject('hafdii/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-WebUI.click(findTestObject('hafdii/Page_/button_Verify'))
+WebUI.setText(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+WebUI.click(findTestObject('otp/Page_/button_Verify'))
 
 // Login sonrası ana ekran elementini bekle
-if (WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/svg_G_lucide lucide-webhook h-6 w-6'), 30)) {
+if (WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/svg_G_lucide lucide-webhook h-6 w-6'), 30)) {
     WebUI.comment("✅ Login başarılı.")
 } else {
     WebUI.comment("❌ Login başarısız.")
@@ -125,13 +125,13 @@ TestObject scrollableDiv = new TestObject('scrollableInsideIframe')
 scrollableDiv.addProperty('xpath', ConditionType.EQUALS, "//div[@class='col-md-12 live-attacks-timestamp']")
 
 WebUI.executeJavaScript('arguments[0].scrollTop = 300', Arrays.asList(WebUI.findWebElement(scrollableDiv)))
-WebUI.waitForElementVisible(findTestObject('Object Repository/hafdii/Page_/ddos_source'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/ddos_source'), 15)
 
-String time1 = WebUI.getText(findTestObject('Object Repository/hafdii/Page_/ddos_source'))
+String time1 = WebUI.getText(findTestObject('Object Repository/otp/Page_/ddos_source'))
 println "⏰ İlk zaman: $time1"
 
 WebUI.delay(10)
-String time2 = WebUI.getText(findTestObject('Object Repository/hafdii/Page_/ddos_source'))
+String time2 = WebUI.getText(findTestObject('Object Repository/otp/Page_/ddos_source'))
 println "⏰ İkinci zaman: $time2"
 
 // Zaman kontrolü

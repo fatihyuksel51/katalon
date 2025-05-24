@@ -3,167 +3,18 @@
    <description></description>
    <name>button_THREATWAY</name>
    <tag></tag>
-   <elementGuidId>5ed7e188-867a-427a-aa55-d2c2a10a84b4</elementGuidId>
+   <elementGuidId>fea57fc7-37dc-42ee-8904-9b5870729f4e</elementGuidId>
    <selectorCollection>
-      <entry>
-         <key>CSS</key>
-      </entry>
       <entry>
          <key>XPATH</key>
          <value>//button[normalize-space(text())='THREATWAY']</value>
       </entry>
+      <entry>
+         <key>BASIC</key>
+         <value></value>
+      </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
-   <smartLocatorCollection>
-      <entry>
-         <key>SMART_LOCATOR</key>
-         <value>internal:role=button[name=&quot;THREATWAY&quot;i]</value>
-      </entry>
-   </smartLocatorCollection>
    <smartLocatorEnabled>false</smartLocatorEnabled>
-   <useRalativeImagePath>true</useRalativeImagePath>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>tag</name>
-      <type>Main</type>
-      <value>button</value>
-      <webElementGuid>64771fad-b603-4e49-a508-3d27e233372f</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>type</name>
-      <type>Main</type>
-      <value>button</value>
-      <webElementGuid>576e90ce-2159-4cde-8f2d-f0f0fbea3555</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>aria-controls</name>
-      <type>Main</type>
-      <value>radix-:r36:</value>
-      <webElementGuid>3e07cc10-12b3-4152-a276-d4d3ed5df80e</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>aria-expanded</name>
-      <type>Main</type>
-      <value>false</value>
-      <webElementGuid>39597e11-0528-4ffd-ad71-8219627e6b2b</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>data-state</name>
-      <type>Main</type>
-      <value>closed</value>
-      <webElementGuid>3c7988cb-e48d-4d92-98ff-2f797499a551</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>data-orientation</name>
-      <type>Main</type>
-      <value>vertical</value>
-      <webElementGuid>cbd2c474-4c91-4c9e-b1db-179244db585b</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>id</name>
-      <type>Main</type>
-      <value>radix-:r35:</value>
-      <webElementGuid>6fb39aad-ef64-49df-bac6-96f6de4ca5b8</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>class</name>
-      <type>Main</type>
-      <value>flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&amp;[data-state=open]>svg]:rotate-180</value>
-      <webElementGuid>f2ec2095-64b7-42a8-a9a4-656cc318bdf1</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>text</name>
-      <type>Main</type>
-      <value>THREATWAY</value>
-      <webElementGuid>5be40599-2805-42d9-a6ab-f1e29e9ae68d</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath</name>
-      <type>Main</type>
-      <value>id(&quot;radix-:r35:&quot;)</value>
-      <webElementGuid>0f86deb9-8b24-4656-be58-ae8ee316ba69</webElementGuid>
-   </webElementProperties>
-   <webElementXpaths>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:attributes</name>
-      <type>Main</type>
-      <value>//button[@id='radix-:r35:']</value>
-      <webElementGuid>ae813c05-72fb-4234-80ac-a2a2f2c15323</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:idRelative</name>
-      <type>Main</type>
-      <value>//div[@id='radix-:r2q:']/div/div[2]/div[3]/div/div/div/h3/button</value>
-      <webElementGuid>a7899153-db25-458f-a596-2149b49bbb79</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Location:'])[1]/following::button[1]</value>
-      <webElementGuid>0210383e-5e86-4336-ac65-db055f93b49c</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Malicious-'])[1]/following::button[1]</value>
-      <webElementGuid>8f0ee585-8c39-4b1d-a396-49f1951a6e08</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Sightings'])[1]/preceding::button[1]</value>
-      <webElementGuid>1f4eea9f-e8ab-4be2-aa9b-474c116ad512</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>//*/text()[normalize-space(.)='THREATWAY']/parent::*</value>
-      <webElementGuid>7e1c626e-11ad-4a57-8b2f-df881098dc06</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:position</name>
-      <type>Main</type>
-      <value>//div[2]/div[3]/div/div/div/h3/button</value>
-      <webElementGuid>e8431940-bc24-4876-a462-2d381209c943</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:customAttributes</name>
-      <type>Main</type>
-      <value>//button[@type = 'button' and @id = 'radix-:r35:' and (text() = 'THREATWAY' or . = 'THREATWAY')]</value>
-      <webElementGuid>cfccb578-14cc-4b4b-ac74-81205693bcfd</webElementGuid>
-   </webElementXpaths>
+   <useRalativeImagePath>false</useRalativeImagePath>
 </WebElementEntity>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Channel name</name>
+   <tag></tag>
+   <elementGuidId>4e706763-04c3-454a-bc1d-c01f98533a39</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.flex.items-center.justify-between.pl-2.pt-2.text-base</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(//div[contains(@class, 'relative') and contains(@class, 'cursor-pointer')])[1]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;developer-xx&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>84b3a1b1-401a-47d9-ad8b-106afc268714</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>flex items-center justify-between pl-2 pt-2 text-base</value>
+      <webElementGuid>b6788c8d-3a65-45ec-9976-83a5fdb95951</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>developer-xx</value>
+      <webElementGuid>a310c7c9-8c29-41ba-96c2-e81f78611fbb</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[@class=&quot;mt-4 grid grid-cols-12 gap-6 rounded-xl md:grid-flow-col&quot;]/div[@class=&quot;col-span-12 bg-card md:col-span-4&quot;]/div[@class=&quot;flex flex-col gap-1 rounded-md bg-card p-4&quot;]/div[@class=&quot;relative flex w-full cursor-pointer justify-between gap-2 rounded-md border-b pb-2 hover:text-primary false&quot;]/div[@class=&quot;flex items-center justify-between pl-2 pt-2 text-base&quot;]</value>
+      <webElementGuid>e20c113d-f3a4-4882-bba8-d70cfa653b06</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[3]/div/div/div[3]/div</value>
+      <webElementGuid>a68a9044-076b-4478-bf97-186e17275d3a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='CHANNEL LIST'])[1]/following::div[3]</value>
+      <webElementGuid>fcd4da37-50f3-42a2-a9c7-94aa0b415001</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='GENERATE'])[1]/following::div[7]</value>
+      <webElementGuid>53817884-4b84-4d8b-88ba-9cd430c9e845</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='test-channel-1'])[1]/preceding::div[2]</value>
+      <webElementGuid>2fbc5493-36eb-48ff-917e-baf0a17f76f8</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='COLLECTION LIST'])[1]/preceding::div[6]</value>
+      <webElementGuid>c25bb36f-d226-4de5-8d90-834002d18fa0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='developer-xx']/parent::*</value>
+      <webElementGuid>07a168da-9c3f-42b5-ac76-f08e7b4aace3</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/div/div/div[3]/div</value>
+      <webElementGuid>6eb2abb5-d2fc-4486-9a19-d265bf425462</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'developer-xx' or . = 'developer-xx')]</value>
+      <webElementGuid>f9715a94-6d4b-4fda-810b-db5f0691a3c9</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
