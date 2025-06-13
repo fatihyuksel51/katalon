@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC_EncryptedLogin</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>e898198f-c9ec-44a4-b29e-70d0d9082e53</testCaseGuid>
+</TestCaseEntity>

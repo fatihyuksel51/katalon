@@ -124,6 +124,8 @@ assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway
 // ==== 📌 Based On Yesterday ====
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Basedonyesterdaycollection'), 10)
+WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Basedonyesterdaycollection'), 5)
+
 WebElement basedOnYesterdayElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Basedonyesterdaycollection'), 10)
 
 String basedOnYesterdayText = ''
@@ -140,5 +142,4 @@ yesterdayResult = yesterdayResult.substring(yesterdayResult.lastIndexOf(":") + 1
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'), 10)
 assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName')).contains(yesterdayResult)
 
-// Tarayıcıyı kapat
-WebUI.closeBrowser()
+

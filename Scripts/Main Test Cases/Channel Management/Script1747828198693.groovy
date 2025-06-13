@@ -21,7 +21,7 @@ import com.kms.katalon.core.webui.driver.DriverFactory
 import com.catchprobe.utils.TableUtils
 
 
-// Tarayıcıyı aç ve siteye git
+/// Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -40,10 +40,13 @@ def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+//
+
 
 // Threatway sekmesine tıkla
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway'), 10)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway'))
+// Threatway sekmesine git
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
+WebUI.waitForPageLoad(30)
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 // Shared With Me sayfasına git
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/shares/shared-with-me')
@@ -144,7 +147,7 @@ if (passwordtext != passwordsecondtext) {
 	assert false : 'Password aynı kaldı → test fail!'
 }
 
-// DOCUMENT butonuna tıkla
+/*/ DOCUMENT butonuna tıkla
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/a_DOCUMENT'))
 
 // Yeni sekmeye geç
@@ -163,6 +166,7 @@ WebUI.closeWindowTitle('Introduction – Threatway APIv1 Documentation')
 
 // İlk pencereye dön
 WebUI.switchToWindowIndex(0)
+*/
 
 
 
@@ -301,6 +305,9 @@ if (buttonClass.contains('bg-primary')) {
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()	
 	WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/Share_Accept_Toast'), 5)	
 	KeywordUtil.logInfo("Favoriye ekleme işlemi başarılı ✅")
+	// Sayfayı yenile
+	WebUI.refresh()	
+	WebUI.delay(5)
 	
 	// Tıklamadan sonra aynı butonun class'ını tekrar al
 	String updatedClass = WebUI.getAttribute(acceptButton, 'class')
@@ -331,7 +338,7 @@ WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
 
-// Sayfanın kendini güncellemesi için biraz bekleQWWWWWWWWWWWWWWWWWWWWWWĞ
+// Sayfanın kendini güncellemesi için biraz bekle
 WebUI.delay(2)
 
 // Sayfada hâlâ delete butonu var mı kontrol et
@@ -345,8 +352,7 @@ if (!isDeleteButtonExist) {
 	WebUI.comment("Başarılı: Delete butonu silindi, veri kalmadı.")
 }
 
-// Tarayıcıyı Kapat
-WebUI.closeBrowser()
+
 
 
 

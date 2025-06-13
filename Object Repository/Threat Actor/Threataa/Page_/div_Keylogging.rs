@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Keylogging</name>
+   <tag></tag>
+   <elementGuidId>9f8c89a0-eb32-4b9c-8018-54b945d143ac</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.flex.flex-1.flex-col > div.my-2.font-semibold</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1q6:']/div[2]/div/div/div/div/div[2]/div[2]/div[4]/div/div[2]/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=dialog >> div >> internal:has-text=/^Keylogging$/</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>354b7cc4-a484-408e-8deb-83fd1f63c0b0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>my-2 font-semibold</value>
+      <webElementGuid>a4906a3d-75f8-48e2-866c-27d859400134</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Keylogging</value>
+      <webElementGuid>4a253020-8991-4859-8e59-dcdc14da7ab8</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1q6:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative grid grid-cols-3 gap-4 pt-4 pb-0&quot;]/div[@class=&quot;col-span-2&quot;]/div[@class=&quot;h-auto rounded-md bg-card p-2&quot;]/div[@class=&quot;group flex gap-2 border-b border-b-input px-2 py-1 last:border-none&quot;]/div[@class=&quot;flex flex-1 flex-col&quot;]/div[@class=&quot;my-2 font-semibold&quot;]</value>
+      <webElementGuid>3eb6db46-5147-46fe-9810-936338cb9e5a</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1q6:']/div[2]/div/div/div/div/div[2]/div[2]/div[4]/div/div[2]/div</value>
+      <webElementGuid>fd47be25-eaeb-4a0e-9bbe-38ac8c369ef7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='T1056.001'])[1]/following::div[2]</value>
+      <webElementGuid>017cc780-391f-4ec3-8f92-4d15fe3cd991</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OS Credential Dumping'])[1]/preceding::div[1]</value>
+      <webElementGuid>fe3c0623-3b24-47d6-8b7a-b560058778a4</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/div[2]/div[4]/div/div[2]/div</value>
+      <webElementGuid>1ddb5a76-1a1f-45f9-afbf-3406d9a260bb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Keylogging' or . = 'Keylogging')]</value>
+      <webElementGuid>89d8d781-5dce-4143-82a7-7daaa538d436</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

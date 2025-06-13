@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_ascendo</name>
+   <tag></tag>
+   <elementGuidId>f55e8fe6-aca1-425d-a79c-0523f46566b7</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div[2]/div/a/div/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;ascendo First Seen: 07/01/2025 00:00 Last Seen: 07/01/2025 00:00 Attribution: - Industry: Geography: SG Expertise tags: Compromised data Last Threats Attempt to sell 2021 Facebook data as \&quot;Singaporean Peoples Database\&quot; 07/01/2025 00:00&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>754b5ade-3686-4b45-b366-5d74394d1014</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mb-1 flex items-center gap-2 text-xl font-semibold group-hover:text-primary</value>
+      <webElementGuid>da102360-e7ad-4890-9c30-6f941113a54d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>ascendo</value>
+      <webElementGuid>4ddd7c13-07b2-4ddb-8094-6ef42c628e0e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12&quot;]/div[@class=&quot;grid w-full grid-cols-1 gap-4 pb-4 md:grid-cols-2&quot;]/a[@class=&quot;group col-span-1 grid min-w-[200px]  grid-cols-3  flex-col gap-1 overflow-hidden rounded-md bg-card px-4 py-3 pl-6 shadow-sm hover:bg-background-item&quot;]/div[@class=&quot;col-span-2 border-r&quot;]/div[@class=&quot;mb-1 flex items-center gap-2 text-xl font-semibold group-hover:text-primary&quot;]</value>
+      <webElementGuid>a8549796-605f-4e1a-9d3e-7ef7704cc6ee</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div[2]/div/a/div/div</value>
+      <webElementGuid>4ddebeb4-49c5-43df-bbf3-d8f1699f8a5b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SEARCH'])[1]/following::div[3]</value>
+      <webElementGuid>10ad1cce-2d92-44fc-bb44-4860de10772d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First Seen'])[1]/following::div[4]</value>
+      <webElementGuid>26d16177-a031-4245-ad55-62ed88b26543</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First Seen:'])[1]/preceding::div[1]</value>
+      <webElementGuid>32353fce-467c-40b2-9804-8da0974e5f0d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Last Seen:'])[1]/preceding::div[3]</value>
+      <webElementGuid>3554f3bd-3c7a-45e3-8f96-53df1573ff05</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='ascendo']/parent::*</value>
+      <webElementGuid>3b223731-2784-4943-a5df-4e404669a164</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a/div/div</value>
+      <webElementGuid>e23c449b-7669-461f-bb25-4c272556aad7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'ascendo' or . = 'ascendo')]</value>
+      <webElementGuid>210bb195-4ae6-488f-82c3-2ee7f7d99839</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

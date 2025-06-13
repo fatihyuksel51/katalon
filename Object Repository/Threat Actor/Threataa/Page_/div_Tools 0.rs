@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Tools 0</name>
+   <tag></tag>
+   <elementGuidId>7c02b6f0-6cc8-4195-8bf9-390c4cf17809</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1q3:']/div[2]/div/div/div/div/div/div/div[2]/div[4]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Tools 0&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>6410031a-86ac-4c4a-80ae-b21fd10f1e34</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link border-b-transparent font-semibold</value>
+      <webElementGuid>7f21bb68-c8c2-4099-aacf-6bb95c566f73</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Tools 0</value>
+      <webElementGuid>0a525ade-1935-400e-a91d-1b58106f0366</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1q3:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[1]/div[@class=&quot;relative flex w-full items-end justify-between gap-2 border-b border-b-border&quot;]/div[@class=&quot;group relative flex h-full w-full flex-1 items-end -mb-[1px] border-b border-b-border&quot;]/div[@class=&quot;-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link border-b-transparent font-semibold&quot;]</value>
+      <webElementGuid>bea938e3-1941-44d8-be29-463a567274a7</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1q3:']/div[2]/div/div/div/div/div/div/div[2]/div[4]</value>
+      <webElementGuid>d385cc1d-57d2-4791-be8e-4d2d1f780e2a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Timeline'])[1]/preceding::div[2]</value>
+      <webElementGuid>0290f70e-e416-4b10-97ea-096530e9a207</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Tools']/parent::*</value>
+      <webElementGuid>845c527a-76ab-4c72-9f2a-c3904b4387dc</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div[2]/div[4]</value>
+      <webElementGuid>76f0b54b-cc59-42b2-bbe3-e8ef21820011</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Tools 0' or . = 'Tools 0')]</value>
+      <webElementGuid>a5754e7b-abc0-441d-b3fc-78a6dd0ef9ca</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

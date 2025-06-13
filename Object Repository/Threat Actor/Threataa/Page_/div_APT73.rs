@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_APT73</name>
+   <tag></tag>
+   <elementGuidId>4454b947-2753-4218-bdb5-4997d4696288</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div[2]/div/a/div/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;APT73 First Seen: 23/04/2024 00:00 Last Seen: 22/08/2024 00:00 Attribution: - Industry: information-technology software commerce-and-shopping:retail food-and-beverage:grocery health-care:hospital manufacturing:industrial-engineering +3 Geography: GB US CA DE CZ Expertise tags: Ransomware AutoReport Leak Last Threats APT73 Ransomware attack on Ryland Peters And Small 22/08/2024 00:00 APT73 Ransomware attack on Globacap 21/08/2024 00:00 APT73 Ransomware attack on Pindrop Hearing Limited 21/08/2024 00:00&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>d669ced7-342d-42d4-af96-878ee101e31a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mb-1 flex items-center gap-2 text-xl font-semibold group-hover:text-primary</value>
+      <webElementGuid>17c04f4b-999c-41e5-a32f-eabbc210a632</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>APT73</value>
+      <webElementGuid>c7844166-b986-41cf-8fd8-9a5d2f153c2d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12&quot;]/div[@class=&quot;grid w-full grid-cols-1 gap-4 pb-4 md:grid-cols-2&quot;]/a[@class=&quot;group col-span-1 grid min-w-[200px]  grid-cols-3  flex-col gap-1 overflow-hidden rounded-md bg-card px-4 py-3 pl-6 shadow-sm hover:bg-background-item&quot;]/div[@class=&quot;col-span-2 border-r&quot;]/div[@class=&quot;mb-1 flex items-center gap-2 text-xl font-semibold group-hover:text-primary&quot;]</value>
+      <webElementGuid>b9808cb5-54f0-4c66-96d8-f3967dbaa418</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div[2]/div/a/div/div</value>
+      <webElementGuid>b9fb676a-be0f-4b8f-8163-61a2d1f39f5c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SEARCH'])[1]/following::div[3]</value>
+      <webElementGuid>8909a1b0-10db-48e0-b635-1779e0a852c7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First Seen'])[1]/following::div[4]</value>
+      <webElementGuid>8636a0eb-97b9-4fa6-8751-799ba4d9adfc</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First Seen:'])[1]/preceding::div[1]</value>
+      <webElementGuid>699bdef2-8034-45c5-8c1a-12cd9c115089</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Last Seen:'])[1]/preceding::div[3]</value>
+      <webElementGuid>632d661e-6f6c-4bd0-8938-202117b5aeef</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='APT73']/parent::*</value>
+      <webElementGuid>9890fc36-c0da-4af6-a306-6d7a99b162aa</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a/div/div</value>
+      <webElementGuid>3f64ad67-da6c-4ec4-a473-3a534889cc2c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'APT73' or . = 'APT73')]</value>
+      <webElementGuid>b1886d30-f26a-4c55-9f3e-1c60b6978eab</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

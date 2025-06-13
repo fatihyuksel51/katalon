@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>input_Cybercriminals_flex rounded-md border_26dcbc</name>
+   <tag></tag>
+   <elementGuidId>c5ead41a-df70-46d5-aa5c-76d88bef3860</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div[2]/form/div/input</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:attr=[placeholder=&quot;Search by name&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>input</value>
+      <webElementGuid>68d5da9e-0b47-499c-b5eb-cb962e1c80fd</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>flex rounded-md border border-input px-5 py-2 text-sm ring-offset-card file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-destructive h-10 w-full bg-card ps-8</value>
+      <webElementGuid>af25ca47-dfc4-4fce-8e96-7b7ceed6052a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>placeholder</name>
+      <type>Main</type>
+      <value>Search by name</value>
+      <webElementGuid>5369968c-7960-4495-901e-523f4fcef4b4</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>maxlength</name>
+      <type>Main</type>
+      <value>255</value>
+      <webElementGuid>7b1ddc7e-e9c1-4916-85ca-8ad6ff4ea3a5</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>minlength</name>
+      <type>Main</type>
+      <value>0</value>
+      <webElementGuid>ce2ee22e-aebb-48b2-bb4b-9fed15d7bc87</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12&quot;]/form[@class=&quot;flex-w sticky left-0 top-[68px] z-[10] flex w-auto flex-wrap items-center justify-start gap-2 overflow-hidden bg-background p-2 py-4&quot;]/div[@class=&quot;group relative flex-1&quot;]/input[@class=&quot;flex rounded-md border border-input px-5 py-2 text-sm ring-offset-card file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-destructive h-10 w-full bg-card ps-8&quot;]</value>
+      <webElementGuid>dbc5ac16-c767-45bc-9c18-fa29a899c127</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div[2]/form/div/input</value>
+      <webElementGuid>4be933a8-30b2-4e61-89fd-bcac7c1cab29</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//input</value>
+      <webElementGuid>cfc3d35a-4a42-4841-9eb2-49f2bbe838d6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//input[@placeholder = 'Search by name']</value>
+      <webElementGuid>63133172-507e-45ae-b6c5-4d7d5b4289d0</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

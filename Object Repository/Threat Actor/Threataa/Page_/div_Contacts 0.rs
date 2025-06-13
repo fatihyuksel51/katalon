@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Contacts 0</name>
+   <tag></tag>
+   <elementGuidId>218f8acb-4d60-4ddd-929d-848b23e60c44</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1e:']/div[2]/div/div/div/div/div/div/div[2]/div[5]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Contacts 0&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>e50e798c-a3fe-4b3b-8d54-20f9f6e9b051</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link border-b-transparent font-semibold</value>
+      <webElementGuid>9924d6db-60e0-432a-9108-6579e87a3fb2</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Contacts 0</value>
+      <webElementGuid>115fb46b-a902-4769-aeb6-7b802fbbf04a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1e:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[1]/div[@class=&quot;relative flex w-full items-end justify-between gap-2 border-b border-b-border&quot;]/div[@class=&quot;group relative flex h-full w-full flex-1 items-end -mb-[1px] border-b border-b-border&quot;]/div[@class=&quot;-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link border-b-transparent font-semibold&quot;]</value>
+      <webElementGuid>ef72f28a-cebe-409c-a684-07e2967f8bcb</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1e:']/div[2]/div/div/div/div/div/div/div[2]/div[5]</value>
+      <webElementGuid>4dafca3a-ae9e-4e7a-b9a5-59f61b0cacd5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Timeline'])[1]/preceding::div[1]</value>
+      <webElementGuid>3656d447-df32-4cbb-a9a4-07f60ffbc5fa</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='CSV'])[1]/preceding::div[3]</value>
+      <webElementGuid>3a46ad2d-8bc2-4977-be1b-0b18b62b51ed</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Contacts']/parent::*</value>
+      <webElementGuid>1012ae69-c781-4c1b-b190-2c8440682dec</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/div[5]</value>
+      <webElementGuid>fc0459ca-f210-47e8-b89e-39a6d1cf98b9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Contacts 0' or . = 'Contacts 0')]</value>
+      <webElementGuid>186fd569-4e69-472d-9073-efd9c9280025</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

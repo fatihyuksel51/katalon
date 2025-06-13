@@ -138,17 +138,26 @@ class TableUtils {
 	def static checkForUnexpectedToasts() {
 		// Toast elementi tanımı
 		TestObject toastMessage = new TestObject().addProperty("xpath",
-			ConditionType.CONTAINS, "//li[contains(@class, 'bg-destructive')]")
+				ConditionType.CONTAINS, "//li[contains(@class, 'bg-destructive')]")
 
 		// Eğer ekranda toast varsa
 		if (WebUI.verifyElementPresent(toastMessage, 2, FailureHandling.OPTIONAL)) {
 			String toastText = WebUI.getText(toastMessage)
 
 			// Planlı beklenen mesajlar
-			List<String> allowedToasts = ['Operation successful', 'User created successfully']
+			List<String> allowedToasts = [
+				'Operation successful',
+				'User created successfully'
+			]
 
 			// Hata/şüpheli içerikler
-			List<String> errorKeywords = ['error', 'invalid', 'exception', 'failed', 'an error occurred']
+			List<String> errorKeywords = [
+				'error',
+				'invalid',
+				'exception',
+				'failed',
+				'an error occurred'
+			]
 
 			// Hata içeriyor mu kontrolü
 			boolean containsError = errorKeywords.any { toastText.toLowerCase().contains(it) }

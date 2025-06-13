@@ -6,12 +6,11 @@
    <elementGuidId>4f595720-21c5-4284-9047-f9ceb8377da6</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>(//button[@name='day'])[5]</value>
+         <key>BASIC</key>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(//button[@name='day'])[1]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

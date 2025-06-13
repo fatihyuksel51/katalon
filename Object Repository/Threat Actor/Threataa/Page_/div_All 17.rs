@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_All 17</name>
+   <tag></tag>
+   <elementGuidId>7672a5a8-8bf6-4af5-bd63-344a2ddcc0a9</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div[2]/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;All 17&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>c3bec66d-ae5d-45cf-9c1c-ba9626f35be2</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link font-semibold</value>
+      <webElementGuid>62f3901f-fe2d-4873-aaa9-a083e20ac0ee</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>All 17</value>
+      <webElementGuid>8be489c4-1291-406b-b7e8-5c47f4998c62</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[1]/div[@class=&quot;relative flex w-full items-end justify-between gap-2 border-b border-b-border&quot;]/div[@class=&quot;group relative flex h-full w-full flex-1 items-end -mb-[1px] border-b border-b-border&quot;]/div[@class=&quot;-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link font-semibold&quot;]</value>
+      <webElementGuid>2c1e4c83-31b2-4768-8a83-87189ccf2ce5</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div[2]/div</value>
+      <webElementGuid>66b291a1-0592-46db-9942-4f284dab59f1</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='&amp;Actors'])[1]/following::div[2]</value>
+      <webElementGuid>68540c5c-6177-4694-aabb-d00e392914a8</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Threat'])[1]/following::div[2]</value>
+      <webElementGuid>b7e3e6f3-a491-4056-bdd4-b3c73c8e3989</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='All']/parent::*</value>
+      <webElementGuid>1b559bd2-7fb9-4f2c-a61d-c97c81b2c365</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div/div[2]/div</value>
+      <webElementGuid>95a3a979-dd1a-4c87-940c-75044a51005e</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'All 17' or . = 'All 17')]</value>
+      <webElementGuid>3fbc37ea-9840-454e-bd37-6fed4f06289f</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

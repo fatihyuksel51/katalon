@@ -4,4 +4,14 @@
    <name>default</name>
    <tag></tag>
    <defaultProfile>true</defaultProfile>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'fatih.yuksel@catchprobe.com\r\n'</initValue>
+      <name>outlookMail</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'rkGu6nXfBls16cHFeIe+4A==\r\n'</initValue>
+      <name>outlookPass</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

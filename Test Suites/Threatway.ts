@@ -19,31 +19,45 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>b68965ce-2599-4952-8141-ae9cc2e69e47</guid>
+      <guid>17f919cd-653e-4385-87bf-6b9f5b065d12</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Main Test Cases/Signature List</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>ebe89495-c6c4-4feb-982a-681733349d0f</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Main Test Cases/Threat Actor</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>715b41a6-f9bf-4573-b687-2eb7e09e5cbf</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Main Test Cases/Threatway-Dashboard</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>692e42ea-a016-48db-9208-e85e83013adb</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Main Test Cases/Channel Management</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>d4367402-893d-4db4-b1a3-ce2830792a00</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Main Test Cases/TC_ThreatwayTest</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>6f886881-2370-43ea-ba9f-260193e2f237</guid>
+      <guid>07ee6e01-4b66-481b-9f51-44f9cf81d3b9</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Main Test Cases/TC_ThreatwayTest</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>c9d3a0d4-3620-4890-b583-9c315bc5c878</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Main Test Cases/TC_ThreatwayTest</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>9687e2d5-50cd-4626-9a21-67dfcb561184</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Main Test Cases/TC_ThreatwayTest</testCaseId>
+      <testCaseId>Test Cases/Main Test Cases/Malwares</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Input Capture</name>
+   <tag></tag>
+   <elementGuidId>dc5c4820-013c-43c8-904d-4c85059ad2aa</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1q6:']/div[2]/div/div/div/div/div/div/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Input Capture&quot;s</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>d0c0875f-ea7c-48e6-ad00-743a5287af41</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>truncate pb-6 pl-4 pr-8 text-3xl</value>
+      <webElementGuid>c8c9ef1d-32e2-4268-974a-cf8891f489b1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Input Capture</value>
+      <webElementGuid>97f346ec-a69f-4d71-89bd-598df4eef0ea</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1q6:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[1]/div[@class=&quot;relative flex w-full items-end justify-between gap-2 border-b border-b-border&quot;]/div[@class=&quot;truncate pb-6 pl-4 pr-8 text-3xl&quot;]</value>
+      <webElementGuid>9028c70c-7c88-4999-809e-14eec8bb3de2</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1q6:']/div[2]/div/div/div/div/div/div/div</value>
+      <webElementGuid>fd50796a-8e8c-4b59-a180-0377dafcb096</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Close'])[1]/following::div[11]</value>
+      <webElementGuid>973fa9e2-867f-4e87-90ba-29b973e93283</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[5]/div[2]/div/div/div/div/div/div/div</value>
+      <webElementGuid>ee2c4ffa-e19d-4ed2-a069-ee36d8183df0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Input Capture' or . = 'Input Capture')]</value>
+      <webElementGuid>f0cade1c-3647-4221-8397-3dad908316fc</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

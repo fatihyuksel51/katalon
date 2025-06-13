@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>Map</name>
+   <name>Threat detail</name>
    <tag></tag>
    <comment></comment>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>90ea937d-5c33-4318-b839-eae48081588c</testCaseGuid>
+   <testCaseGuid>43ae81e1-9592-4829-9140-cbee04824535</testCaseGuid>
 </TestCaseEntity>

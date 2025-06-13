@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_14</name>
+   <tag></tag>
+   <elementGuidId>0f971f39-58ce-4b2b-8fbe-2a43e07a6af6</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1q3:']/div[2]/div/div/div/div/div[2]/div/div/div/div/span</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;14&quot;i >> nth=2</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>0d40768c-9fc6-4d19-a2ef-9c2e8fd5a51b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>rounded-full bg-accent px-2 py-0.5 text-xs</value>
+      <webElementGuid>b16e2aa9-3b2a-4b88-a59d-9a3dafd48925</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>14</value>
+      <webElementGuid>f1e93435-2d45-4ab2-88dc-689dbb4dbeca</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1q3:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative flex h-full flex-col pb-0&quot;]/div[@class=&quot;w-full  p-4&quot;]/div[@class=&quot;mx-8 flex flex-1 gap-2 border-b border-input text-sm&quot;]/div[@class=&quot;px-3 py-2 border-b border-primary text-primary&quot;]/div[@class=&quot;flex items-center justify-center gap-2 text-xs&quot;]/span[@class=&quot;rounded-full bg-accent px-2 py-0.5 text-xs&quot;]</value>
+      <webElementGuid>d6dc8672-fe12-4aeb-93b6-ebc9a407b088</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1q3:']/div[2]/div/div/div/div/div[2]/div/div/div/div/span</value>
+      <webElementGuid>5e8ebd10-8543-49e8-8b44-40e29b780617</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Timeline'])[1]/following::span[1]</value>
+      <webElementGuid>fcdeb93c-a065-41e1-b7e0-238cb0b3bc24</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='CSV'])[1]/preceding::span[1]</value>
+      <webElementGuid>c70bf9b2-a60a-45d1-b6f8-aef9dd04ec98</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='JSON'])[1]/preceding::span[1]</value>
+      <webElementGuid>fd1acb22-3936-43f6-94af-868c44ab97c2</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/div/div/div/div/span</value>
+      <webElementGuid>58f5cc78-fb35-40bf-82bc-ccff0f7d238a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = '14' or . = '14')]</value>
+      <webElementGuid>3f96ab4b-e414-49ae-9160-b38d1596473f</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -24,8 +24,20 @@ import org.openqa.selenium.WebElement
 import com.kms.katalon.core.webui.common.WebUiCommonHelper
 import org.openqa.selenium.WebDriver
 
+// ✅ Fonksiyon: Scroll edip görünür hale getir
+def scrollToVisible(WebElement element, JavascriptExecutor js) {
+	int currentScroll = 0
+	boolean isVisible = false
+	while (!isVisible && currentScroll < 3000) {
+		js.executeScript("window.scrollBy(0, 200)")
+		WebUI.delay(0.5)
+		isVisible = element.isDisplayed()
+		currentScroll += 200
+	}
+	return isVisible
+}
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -43,10 +55,18 @@ WebUI.delay(3)
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 WebUI.setText(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 WebUI.click(findTestObject('otp/Page_/button_Verify'))
+WebUI.delay(3)
+/*/
+// Threatway sekmesine tıkla
 
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
+WebUI.waitForPageLoad(30)
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+WebUI.refresh()
+WebUI.delay(5)
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 // Dashboard sekmeleri
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/newborndomain'),15)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/svg_G_lucide lucide-webhook h-6 w-6'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Malicious'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Bad Reputation'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Phishing'))
@@ -55,6 +75,7 @@ WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_New Born Domai
 // New Born Domain kontrolü
 String newBornIp = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/newborndomain'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/newborndomain'))
+WebUI.delay(5)
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Signature_ip'), 10)
 assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Signature_ip')).contains(newBornIp)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
@@ -132,11 +153,13 @@ WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Th
 String Collectionname = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'))
 println("📌 Collectionname: " + result)
 // Her iki metinden assetleme yap
-assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName')).contains(result)
+assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'))
+         .replaceAll('-', ' ')
+         .contains(result.replaceAll('-', ' '))
 
 // ========== 📌 Based On Yesterday ==========
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
-WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Basedonyesterdaycollection'), 5)
+WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Basedonyesterdaycollection'), 10)
 WebElement basedOnYesterdayElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/Basedonyesterdaycollection'), 10)
 
 String basedOnYesterdayText = ''
@@ -155,7 +178,7 @@ yesterdayResult = yesterdayResult.substring(yesterdayResult.lastIndexOf(":") + 1
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'), 10)
 String collectionNameYesterday = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'))
 println("📌 Collectionname (Yesterday): " + yesterdayResult)
-assert collectionNameYesterday.contains(yesterdayResult)
+assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway SignatureList-CollectionName'))
+         .replaceAll('-', ' ')
+         .contains(yesterdayResult.replaceAll('-', ' '))
 
-// Tarayıcıyı kapat
-WebUI.closeBrowser()

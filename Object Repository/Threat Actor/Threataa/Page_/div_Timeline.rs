@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Timeline</name>
+   <tag></tag>
+   <elementGuidId>2aa39f71-3e94-4783-ae81-626e9d4befd6</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1e:']/div[2]/div/div/div/div/div/div/div[2]/div[6]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Timeline&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>94287705-14c4-484b-b1e2-77162769d45d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>-mb-[2px] flex h-full cursor-pointer truncate border-b-[3px] p-3 hover:text-text-link border-b-transparent font-semibold</value>
+      <webElementGuid>a6925576-4ce6-40e4-be77-7ed88677b605</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Timeline </value>
+      <webElementGuid>bf807f21-91df-42c3-87e2-489b4e14d35c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1e:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[1]/div[@class=&quot;relative flex w-full items-end justify-between gap-2 border-b border-b-border&quot;]/div[@class=&quot;group relative flex h-full w-full flex-1 items-end -mb-[1px] border-b border-b-border&quot;]/div[@class=&quot;-mb-[2px] flex h-full cursor-pointer truncate border-b-[3px] p-3 hover:text-text-link border-b-transparent font-semibold&quot;]</value>
+      <webElementGuid>a63e5a97-2878-4650-b75e-f86664340fb7</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1e:']/div[2]/div/div/div/div/div/div/div[2]/div[6]</value>
+      <webElementGuid>46af887b-9971-4bb4-8d3c-147e6583a521</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='CSV'])[1]/preceding::div[2]</value>
+      <webElementGuid>8d62b47b-481e-40d9-851b-a604f2837f8c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ID'])[1]/preceding::div[3]</value>
+      <webElementGuid>1357c47a-fa22-4ee5-8e97-be462c5a5c6d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Timeline']/parent::*</value>
+      <webElementGuid>405d64a1-03e0-4105-86b8-6580c02bae1f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/div[6]</value>
+      <webElementGuid>7111d854-02bb-464b-94ee-0b9d055e8dec</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Timeline ' or . = 'Timeline ')]</value>
+      <webElementGuid>29a23eca-9a16-4430-b3bb-59ce19f8a4cf</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

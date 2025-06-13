@@ -36,17 +36,34 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-// Login sonrası ana ekran elementini bekle
-if (WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/svg_G_lucide lucide-webhook h-6 w-6'), 30)) {
-    WebUI.comment("✅ Login başarılı.")
-} else {
-    WebUI.comment("❌ Login başarısız.")
-    WebUI.takeScreenshot()
-    WebUI.closeBrowser()
-    assert false : "Login sonrası element bulunamadı!"
-}
-WebUI.click(findTestObject('Object Repository/otp/Page_/Page_/svg_G_lucide lucide-webhook h-6 w-6'))
+
+
+/*// Tarayıcıyı aç ve siteye git
+WebUI.openBrowser('')
+WebUI.navigateToUrl('https://platform.catchprobe.org/')
+WebUI.maximizeWindow()
+
+// Login işlemleri
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
+WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
 WebUI.delay(3)
+
+// OTP işlemi
+def randomOtp = (100000 + new Random().nextInt(900000)).toString()
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+/*/ 
+//Threatway sekmesine tıkla
+// Threatway sekmesine git
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
+WebUI.waitForPageLoad(30)
+WebUI.delay(5)
+
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/ddos/attack-map')
 

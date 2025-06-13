@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_2</name>
+   <tag></tag>
+   <elementGuidId>3e8da4af-fc4c-4a74-bc09-517984d7c677</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div[2]/nav/ul/li[3]/a</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:label=&quot;pagination&quot;i >> internal:text=&quot;2&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>eab4bbec-afa2-4fce-8d84-0a77a8db0b7c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 w-auto min-w-10 px-3 text-text-title hover:bg-card hover:text-card-foreground cursor-pointer</value>
+      <webElementGuid>a88a0041-6b3d-4184-a355-bf2fd8aa9e05</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>2</value>
+      <webElementGuid>366b9348-2f33-439d-8427-63e2e79609dc</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12&quot;]/nav[@class=&quot;mx-auto flex w-full justify-center mt-4 text-xs md:text-base&quot;]/ul[@class=&quot;flex flex-row items-center gap-1&quot;]/li[3]/a[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 w-auto min-w-10 px-3 text-text-title hover:bg-card hover:text-card-foreground cursor-pointer&quot;]</value>
+      <webElementGuid>e4d1a89c-f462-42af-a02c-7129285ca57d</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div[2]/nav/ul/li[3]/a</value>
+      <webElementGuid>24d96b43-f2fd-41fa-b879-d4aaf3c2b13e</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:link</name>
+      <type>Main</type>
+      <value>//a[contains(text(),'2')]</value>
+      <webElementGuid>ccfc8ca2-3592-4f0b-ace3-03f59f6b44c0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Previous'])[1]/following::a[2]</value>
+      <webElementGuid>3f042b72-0b96-4f51-831a-b09aa74d12c5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Next'])[1]/preceding::a[1]</value>
+      <webElementGuid>6aa64184-b431-40e7-96ea-4d3e2f648e80</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//li[3]/a</value>
+      <webElementGuid>2467c918-a716-4509-b617-755efdc21615</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[(text() = '2' or . = '2')]</value>
+      <webElementGuid>25888221-ef1f-4be7-ba66-f59d0703ae35</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

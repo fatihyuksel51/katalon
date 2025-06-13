@@ -59,7 +59,8 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
     return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -77,10 +78,12 @@ WebUI.delay(3)
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
+/*/
 
-// Threatway sekmesine tıkla
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway'), 15)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway'))
+
+// Threatway sekmesine git
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
+WebUI.waitForPageLoad(30)
 
 // Signature List öğesinin görünmesini bekle ve tıkla
 WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Signature List'), 10)
@@ -110,29 +113,46 @@ WebUI.click(findTestObject('Object Repository/dashboard/Page_/Thteatway Chose Bu
 WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
 WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
-String startdate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway Chose button second'))
+String startdate = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Start date'))
 println('start date '+  startdate  )
 
 
 
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Second'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Second'))
+
+// End Date butonuna tıkla
+TestObject endDateButton = new TestObject()
+endDateButton.addProperty("xpath", ConditionType.EQUALS, "//label[contains(.,'End Date :')]/following::button[1]")
+WebUI.click(endDateButton)
+WebUI.delay(1)
+
+// Bugünün gününü al
 String todayDay = new SimpleDateFormat("d").format(new Date())
-// Bugünün gününe tıkla
+
+// Xpath'i gün değerine ve koşula göre belirle
+String xpath = ""
+
+if (todayDay.toInteger() >= 27) {
+    xpath = "(//button[@name='day' and text()='" + todayDay + "'])[2]"
+} else {
+    xpath = "(//button[@name='day' and text()='" + todayDay + "'])[1]"
+}
+
+// Bugünün gününe tıklayacak butonu oluştur
 TestObject todayButton = new TestObject()
-todayButton.addProperty("xpath", ConditionType.EQUALS, "//button[@name='day' and text()='" + todayDay + "']")
+todayButton.addProperty("xpath", ConditionType.EQUALS, xpath)
 
 WebUI.click(todayButton)
-WebUI.delay(2)
+WebUI.delay(3)
 
 
 
 
 
 WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 2)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
+
 
 
 //WebUI.waitForElementClickable(findTestObject('null'), 30)
@@ -142,7 +162,6 @@ WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatwa
 WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway null click'), 5)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway null click'))
 WebUI.delay(2)
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway Chose Second'), 30)
 
 
 // Select elementinden 'IPv4' seç
@@ -357,7 +376,7 @@ if (scrollToVisible(indicatorTextElement, js)) {
 }
 
 // İlgili doğrulamayı yap
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'), 10)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'), 15)
 WebUI.verifyMatch(indicatorText, FavoriIp, false)
 //Threatway doğrulaması yap
 WebElement ThreatwayTextElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/dashboard/Page_/button_THREATWAY'), 10)
@@ -527,5 +546,4 @@ WebUI.click(findTestObject('Object Repository/dashboard/Page_/StixPackageButton'
 
 
 
- //Tarayıcıyı kapat
- WebUI.closeBrowser()
+

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_Input Capture1</name>
+   <tag></tag>
+   <elementGuidId>8ec439b8-f06b-4ba5-aa6c-cfd38493a917</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r1q3:']/div[2]/div/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[2]/div[2]/a</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Input Capture 1&quot;i] >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>7b1886e3-0942-4aa3-85ac-19379b49259a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mr-2 flex w-full items-center justify-between px-3 text-xs font-semibold text-text-title hover:cursor-pointer hover:text-primary</value>
+      <webElementGuid>f3dcbb44-12b9-4ab0-99d1-68a66dddfe3a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>/riskroute/mitre/T1056</value>
+      <webElementGuid>22f54c3e-2987-4f90-937f-9c661b886844</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Input Capture1</value>
+      <webElementGuid>8771c8ea-77fe-4987-9475-19310a133b2b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1q3:&quot;)/div[@class=&quot;h-full&quot;]/div[@class=&quot;overflow-hidden relative h-full&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative flex h-full flex-col pb-0&quot;]/div[@class=&quot;w-full  p-4&quot;]/div[@class=&quot;mt-4 w-[1300px]  overflow-x-auto&quot;]/div[@class=&quot;relative&quot;]/div[@class=&quot;relative overflow-hidden&quot;]/div[@class=&quot;relative mx-auto w-full pt-10&quot;]/div[@class=&quot;flex space-x-2 overflow-hidden scroll-smooth&quot;]/div[@class=&quot;relative h-full min-w-[200px]&quot;]/div[@class=&quot;mitre-teqs grid grid-cols-1 gap-2&quot;]/div[@class=&quot;relative w-full rounded-sm bg-card p-2&quot;]/a[@class=&quot;mr-2 flex w-full items-center justify-between px-3 text-xs font-semibold text-text-title hover:cursor-pointer hover:text-primary&quot;]</value>
+      <webElementGuid>56a163c6-9dd0-440d-b444-ff3205c7fd9c</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1q3:']/div[2]/div/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[2]/div[2]/a</value>
+      <webElementGuid>ab908a58-943c-4a2f-935b-636e8518f197</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Collection'])[1]/following::a[2]</value>
+      <webElementGuid>9282d7e1-4a48-418c-a2af-a940215c2ad0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Keylogging'])[1]/preceding::a[1]</value>
+      <webElementGuid>082a24f0-2aa6-4d78-b0b5-af8cb3b64614</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Input Capture']/parent::*</value>
+      <webElementGuid>1b37993b-d9bb-4874-a76e-20a185972727</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '/riskroute/mitre/T1056')]</value>
+      <webElementGuid>b892fc10-eae3-475e-8495-fd6dfb9973e6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/a</value>
+      <webElementGuid>0488caaf-e89a-4b48-8689-40873c059302</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[@href = '/riskroute/mitre/T1056' and (text() = 'Input Capture1' or . = 'Input Capture1')]</value>
+      <webElementGuid>0e2fd902-3186-45fd-b64a-9b6975171a4b</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

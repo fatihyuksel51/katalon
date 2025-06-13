@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Threat Actor</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>d50b6e84-1fe5-4ba3-85ff-c398ad7225a1</testCaseGuid>
+</TestCaseEntity>

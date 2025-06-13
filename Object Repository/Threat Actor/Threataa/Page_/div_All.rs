@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_All</name>
+   <tag></tag>
+   <elementGuidId>77049326-a56b-444c-bc9c-a062fa9269c2</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div[2]/div[1]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Nation State 159&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>dae70684-c6a7-46e1-ad64-7a95b64f1a03</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link font-semibold</value>
+      <webElementGuid>8f12bc90-047b-4bae-83c3-3c1667b70072</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Nation State 159</value>
+      <webElementGuid>3c40c6b0-a62e-4ee8-bdbd-ff811d12caac</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[1]/div[@class=&quot;relative flex w-full items-end justify-between gap-2 border-b border-b-border&quot;]/div[@class=&quot;group relative flex h-full w-full flex-1 items-end -mb-[1px] border-b border-b-border&quot;]/div[@class=&quot;-mb-[2px] h-full cursor-pointer truncate border-b-[3px] p-3 flex flex-wrap items-center hover:text-text-link font-semibold&quot;]</value>
+      <webElementGuid>6aa11837-f4a3-45b2-b85a-88507c0831f3</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div[2]/div[2]</value>
+      <webElementGuid>682c2cd6-00ba-4646-9c43-0748d8d36447</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='&amp;Actors'])[1]/following::div[3]</value>
+      <webElementGuid>b2035b13-e2a7-4ffb-815b-36b0b966cd37</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Select Company Sector'])[1]/preceding::div[3]</value>
+      <webElementGuid>5b727e71-0927-4eff-b071-4b09fac2d348</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Nation State']/parent::*</value>
+      <webElementGuid>65e72b33-8426-4ea7-8d12-dd61c5d42fef</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div[2]/div[2]</value>
+      <webElementGuid>810204b9-d863-40ee-abc6-ec86cb1ded1e</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Nation State 159' or . = 'Nation State 159')]</value>
+      <webElementGuid>8bd011ec-1263-41a8-93b3-a4403abd5cc3</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

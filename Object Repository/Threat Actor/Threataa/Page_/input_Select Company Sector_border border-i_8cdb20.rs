@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>input_Select Company Sector_border border-i_8cdb20</name>
+   <tag></tag>
+   <elementGuidId>b717317a-eeb6-4e0f-88ef-4660a6097ebe</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r5t:']/div/div/input</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:attr=[placeholder=&quot;Search Field...&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>input</value>
+      <webElementGuid>8fd498de-12f5-4190-9aa6-6f52e117753b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>border border-input px-5 ring-offset-card file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-ring focus-visible:ring-offset-2 aria-invalid:ring-destructive flex h-10 w-full rounded-none rounded-b-none border-l-0 border-r-0 border-t-0 border-none bg-transparent py-3 text-sm outline-none ring-0 ring-offset-0 placeholder:text-muted-foreground focus-within:outline-none focus:outline-none focus-visible:border-none focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50</value>
+      <webElementGuid>e6a53d38-a90e-411b-9b06-a89dc99f4b37</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>placeholder</name>
+      <type>Main</type>
+      <value>Search Field...</value>
+      <webElementGuid>2df7755e-68a1-4db8-a955-ae63c597419f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r5t:&quot;)/div[@class=&quot;flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground&quot;]/div[@class=&quot;relative flex items-center overflow-hidden border-b px-3&quot;]/input[@class=&quot;border border-input px-5 ring-offset-card file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-ring focus-visible:ring-offset-2 aria-invalid:ring-destructive flex h-10 w-full rounded-none rounded-b-none border-l-0 border-r-0 border-t-0 border-none bg-transparent py-3 text-sm outline-none ring-0 ring-offset-0 placeholder:text-muted-foreground focus-within:outline-none focus:outline-none focus-visible:border-none focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50&quot;]</value>
+      <webElementGuid>c29b1d0e-a205-471e-a22e-722d2da2f8f8</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r5t:']/div/div/input</value>
+      <webElementGuid>cc705f66-c28b-4612-bded-15bc2e662473</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div/input</value>
+      <webElementGuid>0c57ae1e-c30e-4cbe-9b3f-b221162ca632</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//input[@placeholder = 'Search Field...']</value>
+      <webElementGuid>06cf5712-4ae1-496a-b738-870efea137f1</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

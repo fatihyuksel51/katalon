@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_Select Company Sector</name>
+   <tag></tag>
+   <elementGuidId>9a4bd65d-db91-416d-a73b-81c1c7bf9d3e</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>span.truncate</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div[2]/form/div[2]/button/span</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>button >> internal:has-text=&quot;Select Company Sector&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>80af3770-4202-44aa-b791-7f86a20a282d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>truncate</value>
+      <webElementGuid>dbb596d0-58be-4af2-abc9-de08b7193644</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Select Company Sector</value>
+      <webElementGuid>d28fab6f-d362-4cb9-91a8-3a7df01160cf</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12&quot;]/form[@class=&quot;flex-w sticky left-0 top-[68px] z-[10] flex w-auto flex-wrap items-center justify-start gap-2 overflow-hidden bg-background p-2 py-4&quot;]/div[@class=&quot;flex items-center justify-end&quot;]/button[@class=&quot;inline-flex items-center cursor-pointer rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 h-10 justify-between bg-card w-56&quot;]/span[@class=&quot;truncate&quot;]</value>
+      <webElementGuid>9a0b32e8-0b11-41f6-8b71-5e0359809cdd</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div[2]/form/div[2]/button/span</value>
+      <webElementGuid>9236ab96-1029-426d-a919-194e4cc69e1c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Select Start Date'])[1]/preceding::span[1]</value>
+      <webElementGuid>cbfee112-9571-461e-a0ee-5d0cdf6e460c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Select End Date'])[1]/preceding::span[2]</value>
+      <webElementGuid>e8b6b92c-92f1-4b65-af28-3d1b9a1efa84</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Select Company Sector']/parent::*</value>
+      <webElementGuid>86fbb714-3f59-4986-bbb3-ffe72a30a79d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//form/div[2]/button/span</value>
+      <webElementGuid>1eb6a968-e8d0-4686-a563-80ddbb3d3aa2</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = 'Select Company Sector' or . = 'Select Company Sector')]</value>
+      <webElementGuid>a0f7c083-5c74-4302-95ab-195f50891fff</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

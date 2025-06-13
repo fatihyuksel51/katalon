@@ -26,31 +26,32 @@ try {
 }
 
 
+
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
 WebUI.maximizeWindow()
 
-// Platform Login linki görünene kadar bekle ve tıkla
+// Login işlemleri
 WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
+
 WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
-// Email input görünene kadar bekle ve değer gir
 WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
+
 WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
 
-// Password input görünene kadar bekle ve şifreyi gir
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Password_password'), 30)
 WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
-// Sign in butonu görünene kadar bekle ve tıkla
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/button_Sign in'), 30)
 WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
 
-// login olduktan sonra birkaç saniye bekle
-WebUI.delay(3)
+WebUI.delay(10)
+
+// OTP işlemi
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 
-WebUI.setText(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 
-WebUI.click(findTestObject('otp/Page_/button_Verify'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
+
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 

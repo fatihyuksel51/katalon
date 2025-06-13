@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_APT28</name>
+   <tag></tag>
+   <elementGuidId>bc3fc612-d51b-4273-9cef-51ccd34bdd61</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div[2]/div/a/div/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;APT28 First Seen: 01/01/2004 00:00 Last Seen: 03/11/2024 00:00 Attribution: - Industry: government-and-military:government government-and-military:military government-and-military:national-security government-and-military energy:energy information-technology:unified-communications +31 Geography: UA US PL KZ DE FR +71 Expertise tags: Current crisis Backdoor Brief Report Stealer Unique_data Windows +1 Last Threats APT28 new phishing attacks - yahoo.com 01/10/2024 00:00 APT28 new phishing attacks - outlook.com 01/10/2024 00:00 APT28 new phishing attacks - ukr.net 01/10/2024 00:00&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>9111f5cf-d0a1-4895-8742-1d06d1aa1c77</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mb-1 flex items-center gap-2 text-xl font-semibold group-hover:text-primary</value>
+      <webElementGuid>c9376cd1-2228-4e22-b231-1a34c81e145a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>APT28</value>
+      <webElementGuid>7f9b61aa-9ebd-43f9-b9b1-b658f9db0ba6</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12&quot;]/div[@class=&quot;grid w-full grid-cols-1 gap-4 pb-4 md:grid-cols-2&quot;]/a[@class=&quot;group col-span-1 grid min-w-[200px]  grid-cols-3  flex-col gap-1 overflow-hidden rounded-md bg-card px-4 py-3 pl-6 shadow-sm hover:bg-background-item&quot;]/div[@class=&quot;col-span-2 border-r&quot;]/div[@class=&quot;mb-1 flex items-center gap-2 text-xl font-semibold group-hover:text-primary&quot;]</value>
+      <webElementGuid>11e7920d-7b77-4799-9712-2c71849342ee</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div[2]/div/a/div/div</value>
+      <webElementGuid>cc58b6ab-2b7d-4a14-9e34-83dc525f8268</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SEARCH'])[1]/following::div[3]</value>
+      <webElementGuid>f240732c-336e-463e-a0f4-67388e9bb34f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First Seen'])[1]/following::div[4]</value>
+      <webElementGuid>7b2355ed-532c-4c43-a48a-b758ebd27721</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First Seen:'])[1]/preceding::div[1]</value>
+      <webElementGuid>a26cfb18-36ce-494c-814a-d00d06ca9b2d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Last Seen:'])[1]/preceding::div[3]</value>
+      <webElementGuid>740696b0-bfba-42c5-bf59-dbc0f1762294</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='APT28']/parent::*</value>
+      <webElementGuid>bbddd177-bc7f-4d1b-82fc-e75da481b76a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a/div/div</value>
+      <webElementGuid>cd389c3f-d374-415e-8aa8-f2a56bed7f6d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'APT28' or . = 'APT28')]</value>
+      <webElementGuid>39df45d2-1baf-4c74-9d5d-dc441cd32b80</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
