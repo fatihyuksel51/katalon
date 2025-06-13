@@ -43,7 +43,7 @@
       <guid>692e42ea-a016-48db-9208-e85e83013adb</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Main Test Cases/Channel Management</testCaseId>
+      <testCaseId>Test Cases/Common Test Cases/Channel Management</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
