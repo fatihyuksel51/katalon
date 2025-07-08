@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>Threatway-Ddos Attack Map</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>207dd79d-05a2-4219-91a8-ef15999c1e52</testCaseGuid>
-</TestCaseEntity>

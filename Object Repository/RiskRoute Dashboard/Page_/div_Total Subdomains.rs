@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Total Subdomains</name>
+   <tag></tag>
+   <elementGuidId>4b8c0d88-6caa-4226-afd7-a0b61c72e705</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div/div/div[2]/div/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Total Subdomains&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>8a93ae71-69e8-430d-8236-07813fc3b314</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>text-sm</value>
+      <webElementGuid>9c732095-885c-4441-8208-6f57a4d8373d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Total Subdomains</value>
+      <webElementGuid>1905540e-bd38-4f79-b53e-394964070e44</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12 flex flex-col pt-4&quot;]/div[@class=&quot;flex w-full gap-4&quot;]/div[@class=&quot;mb-2 rounded-md bg-card p-2 text-card-foreground md:mb-4 md:p-4 flex h-48 w-1/3 flex-col items-center justify-center&quot;]/div[@class=&quot;flex h-full flex-col items-center justify-center text-3xl font-semibold&quot;]/div[@class=&quot;text-sm&quot;]</value>
+      <webElementGuid>942efaac-b233-4eae-af60-7b7022d7fb8a</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div/div/div[2]/div/div</value>
+      <webElementGuid>69d59f81-a8a6-4b74-a078-a1e23a1c13ac</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Total Assets'])[1]/following::div[4]</value>
+      <webElementGuid>af86472b-252d-4b38-b3eb-1e32d2fd6f20</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dashboard'])[2]/following::div[9]</value>
+      <webElementGuid>f701819b-a109-4927-8844-7adf9ad91a1e</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Total Vulnerabilities'])[1]/preceding::div[2]</value>
+      <webElementGuid>14cce176-015a-45bf-87c9-801a46725e16</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Most Common Vulnerabilities'])[1]/preceding::div[12]</value>
+      <webElementGuid>ebf17916-bad4-4899-bb6a-0dfab8692db4</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Total Subdomains']/parent::*</value>
+      <webElementGuid>691b76e8-4f9e-4e56-abe9-d0eda38bc685</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div/div/div/div/div/div/div[2]/div/div</value>
+      <webElementGuid>ec173560-24bf-4bfc-8961-865c5be1cbc3</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Total Subdomains' or . = 'Total Subdomains')]</value>
+      <webElementGuid>4eeb5d0b-fe87-4cc2-b13b-bde8cfe5b903</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>DDOS Attack Map</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>c3ccf0f9-4e91-46a8-b2e5-19aaebd01cd6</testCaseGuid>
+</TestCaseEntity>

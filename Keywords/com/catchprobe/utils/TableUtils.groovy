@@ -153,6 +153,7 @@ class TableUtils {
 			// Hata/şüpheli içerikler
 			List<String> errorKeywords = [
 				'error',
+				'dict',
 				'invalid',
 				'exception',
 				'failed',

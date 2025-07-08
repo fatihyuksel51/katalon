@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Total Vulnerabilities</name>
+   <tag></tag>
+   <elementGuidId>6159e61e-47f5-46c1-b649-5b06959c7409</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div/div/div[3]/div/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;Total Vulnerabilities&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>b2bbf69d-881d-4ecf-8bc9-f5a921db52e4</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>text-sm</value>
+      <webElementGuid>a0f69a27-190d-4c59-b214-c07c496aa6a3</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Total Vulnerabilities</value>
+      <webElementGuid>815848a6-be79-4f0d-b035-f232d054e533</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[@class=&quot;relative w-full&quot;]/div[@class=&quot;relative pb-12 flex flex-col pt-4&quot;]/div[@class=&quot;flex w-full gap-4&quot;]/div[@class=&quot;mb-2 rounded-md bg-card p-2 text-card-foreground md:mb-4 md:p-4 relative flex h-48 w-1/3 flex-col items-center justify-center&quot;]/div[@class=&quot;flex h-full flex-col items-center justify-center text-3xl font-semibold&quot;]/div[@class=&quot;text-sm&quot;]</value>
+      <webElementGuid>98b4d5ad-d945-4eaf-8327-8dd92accac9a</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div/div/div[3]/div/div</value>
+      <webElementGuid>bcd21919-c913-4c73-a750-4df439f91118</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Total Subdomains'])[1]/following::div[4]</value>
+      <webElementGuid>0de90266-0da1-46b6-b47d-50bf92e33a56</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Total Assets'])[1]/following::div[8]</value>
+      <webElementGuid>6ebc24aa-100a-4fc2-9daf-f8bf0311e84c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Most Common Vulnerabilities'])[1]/preceding::div[8]</value>
+      <webElementGuid>ffcc2f8e-de73-4f66-96ce-371ca03dd5bd</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Ignore Info Vulnerabilities'])[1]/preceding::div[10]</value>
+      <webElementGuid>e8ca7039-4f04-4814-a51e-76a4840af4c1</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Total Vulnerabilities']/parent::*</value>
+      <webElementGuid>e85a03d6-e130-4780-a8ee-3ca8e17a5f1c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div/div/div/div/div/div/div[3]/div/div</value>
+      <webElementGuid>5a24c9d6-5ccf-49f6-a4f5-33390dbc49fc</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Total Vulnerabilities' or . = 'Total Vulnerabilities')]</value>
+      <webElementGuid>be004a2e-565e-4861-a8bc-8d323672df55</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
