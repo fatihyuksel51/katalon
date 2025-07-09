@@ -5,88 +5,98 @@
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
-   <numberOfRerun>0</numberOfRerun>
-   <pageLoadTimeout>45</pageLoadTimeout>
+   <numberOfRerun>3</numberOfRerun>
+   <pageLoadTimeout>30</pageLoadTimeout>
    <pageLoadTimeoutDefault>true</pageLoadTimeoutDefault>
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
    <rerunImmediately>true</rerunImmediately>
-   <testSuiteGuid>4088ea76-d007-4921-af21-e437b004846e</testSuiteGuid>
+   <testSuiteGuid>9d58cbf7-db63-4db0-8a39-2a72367e7fa6</testSuiteGuid>
    <testCaseLink>
-      <guid>caf9df28-70ac-48ca-a55a-847c88a38619</guid>
+      <guid>36ba258b-e618-433d-bcb5-9f4e0b60416e</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Threatway Test Cases/TC_OpenAndLogin</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>715b41a6-f9bf-4573-b687-2eb7e09e5cbf</guid>
+      <guid>44a45c1a-0eb1-4927-826e-d5f72f690a00</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Threatway Test Cases/Threatway-Dashboard</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>692e42ea-a016-48db-9208-e85e83013adb</guid>
+      <guid>55b587e9-db59-4069-b96f-ec5983271f79</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-<<<<<<< HEAD
-      <testCaseId>Test Cases/Common Test Cases/Channel Management</testCaseId>
-=======
       <testCaseId>Test Cases/Threatway Test Cases/Channel Management</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>17f919cd-653e-4385-87bf-6b9f5b065d12</guid>
+      <guid>09fcac08-f2dd-4fd0-b6f2-60f074a23d81</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Threatway Test Cases/Collections</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>9e480c0a-966a-47c9-93d3-733510d5ed0a</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Threatway Test Cases/Signature List</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>470fa246-64ff-48c7-9eff-5c87cf407984</guid>
+      <guid>150b122a-c313-4787-bea6-c7a69c3293ed</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Collections</testCaseId>
->>>>>>> fb21766 (Katalon TestCloud deneyimi için yeni test senaryoları eklendi)
+      <testCaseId>Test Cases/Threatway Test Cases/Malware Analysis</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>d4367402-893d-4db4-b1a3-ce2830792a00</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/DDOS Attack Map</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>ebe89495-c6c4-4feb-982a-681733349d0f</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Threat Actor</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>07ee6e01-4b66-481b-9f51-44f9cf81d3b9</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Malwares</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>b3682d08-f69e-4dce-b11b-e66d17a4fe1d</guid>
+      <guid>8db1c8d7-37e8-4708-9ed4-348a23f4e42e</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Threatway Test Cases/PLatform IOC Discoveries</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>54bd0eca-5360-4138-8bb9-0fd881dc088a</guid>
+      <guid>43ee12c8-30bb-46c6-b169-970d0dd9f166</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Threatway Test Cases/DDOS Attack Map</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>790d7b3a-3d87-44e2-9d0e-d53f80079481</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Threatway Test Cases/Threat Actor</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>00711b62-ceac-46d5-b4f6-c9caf98fc34a</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Threatway Test Cases/Malwares</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>bfa1326c-a1b8-46b1-b9c4-5dc92a87b622</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Threatway Test Cases/Threat Actor</testCaseId>
+      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>63842159-8cfa-4fee-b9e0-58e0d980088c</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Threatway Test Cases/Coin Search Engine</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>9c81bbcd-893d-4712-867c-29c1eb49484e</guid>
+      <guid>1e1176d8-ee62-406c-8eeb-68de762590ca</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Threatway Test Cases/TC_CloseBrowser</testCaseId>
