@@ -87,13 +87,10 @@ WebDriver driver = DriverFactory.getWebDriver()
 JavascriptExecutor js = (JavascriptExecutor) driver
 Actions actions = new Actions(driver)
 
-WebUI.waitForPageLoad(30)
-
-WebUI.click(findTestObject('Object Repository/CVE/CVE'))
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/cwe-list')
 
 WebUI.delay(2)
-
-WebUI.click(findTestObject('Object Repository/CVE/CWE List'))
+WebUI.waitForPageLoad(30)
 
 // CREATE CRON butonu için TestObject oluştur
 TestObject İdtext = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//td[contains(@class,'ant-table-cell-fix-left')]/span")

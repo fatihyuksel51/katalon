@@ -85,7 +85,7 @@ WebUI.waitForElementClickable(findTestObject('Object Repository/otp/Page_/a_PLAT
 WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 50)
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Password_password'), 20)
 WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
