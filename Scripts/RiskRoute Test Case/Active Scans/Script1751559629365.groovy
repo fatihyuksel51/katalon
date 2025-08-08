@@ -43,7 +43,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -83,6 +83,7 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 WebUI.waitForPageLoad(30)
 
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+/*/
 
 
 WebUI.delay(3)
@@ -91,7 +92,7 @@ WebUI.click(findTestObject('Object Repository/Scan/Scan'))
 
 WebUI.waitForPageLoad(30)
 
-WebUI.click(findTestObject('Object Repository/Active Scan/Active Scans'))
+WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Active Scans'))
 
 WebDriver driver = DriverFactory.getWebDriver()
 JavascriptExecutor js = (JavascriptExecutor) driver
@@ -112,7 +113,7 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	
 	// Go Scan detail butonuna tıkla
 	TestObject goScanButton = new TestObject()
-	goScanButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href, '/riskroute/recon')])[1]")
+	goScanButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href, '/riskroute/recon')])[2]")
 	
 	WebUI.click(goScanButton)
 	
@@ -140,8 +141,8 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
         WebUI.delay(1)
 
         // Revoke confirm butonu
-        WebUI.click(findTestObject('Object Repository/Active Scan/Revoke'))
-        WebUI.waitForElementVisible(findTestObject('Object Repository/Active Scan/Revoke succes'), 15)
+        WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Revoke'))
+        WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Active Scan/Revoke succes'), 15)
 
         // Kapat
         WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
@@ -160,8 +161,8 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
         WebUI.delay(1)
 
         // Revoke confirm butonu
-        WebUI.click(findTestObject('Object Repository/Active Scan/Revoke'))
-        WebUI.waitForElementVisible(findTestObject('Object Repository/Active Scan/Revoke succes'), 15)
+        WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Revoke'))
+        WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Active Scan/Revoke succes'), 15)
 
         // Kapat
         WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))

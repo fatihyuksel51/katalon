@@ -46,7 +46,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -60,7 +60,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFO
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -79,16 +79,16 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
 WebUI.waitForPageLoad(30)
 
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Butonu'))
+//WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
 
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Seçimi'))
+//WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Seçimi'))
 
 WebUI.delay(3)
 
@@ -98,70 +98,88 @@ WebUI.delay(1)
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/quick-search/domain')
 WebDriver driver = DriverFactory.getWebDriver()
-JavascriptExecutor js = (JavascriptExecutor) driver
-Actions actions = new Actions(driver)
+// JavaScript Executor
+JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+
 
 // 📥 Arama yap (sen manuel yapacaksan bu kısmı çıkar)
 WebUI.setText(findTestObject('Object Repository/Labs/input_SearchBox'), 'catchprobe.org')
 WebUI.click(findTestObject('Object Repository/Labs/button_Scan'))
 WebUI.delay(1)
-WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Toast Message'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Toast Message'), 15)
 
 // ⏳ Sayfa yüklensin
 WebUI.waitForPageLoad(30)
-js.executeScript("document.body.style.zoom='0.8'")
 
-// 🔁 Tüm component listesi
+
+// 📌 Tüm component listesi
 def components = [
     'Phishing Domain Lists',
-    'Os Details',
-    'Threatway Details',
-    'Darkmap Details',
-    'DNS Info',
-    'WhoIs Record',
-    'Subdomain Details',
-    'Http Details',
-    'Certificate Details',
-    'Censys',
+    'OS Intelligence',
+    'Threatway Intelligence',
+    'Darkmap Intelligence',
+    'DNS Intelligence',
+    'WhoIs Intelligence',
+    'Subdomain Intelligence',
+    'Http Analysis',
+    'Certificate Analysis', 
+	'Network Intelligence',
     'Netlas',
-    'Zoomeye',
-    'Network Data',
-    'Vulnerability Detail',
+    'Content Intelligence',    
+	'Service Fingerprinting',
+    'Vulnerability Intelligence',
     'BGP (Border Gateway Protocol)',
     'Ping Results',
-    'Traceroute Details',
-    'Smartdeceptive Details'
+    'Traceroute Intelligence',
+    'Smartdeceptive Intelligence'    
 ]
-	
-for (def component : components) {
-    String componentKey = component.replaceAll(' ', '') // Örn: OSDetails
+
+for (int i = 0; i < components.size(); i++) {
+    def component = components[i]
+    String componentKey = component.replaceAll(' ', '')
     KeywordUtil.logInfo("🧪 Test başlıyor: ${component}")
 
-    // 🔽 Scroll et
-    try {
-        WebUI.scrollToElement(findTestObject("Object Repository/Labs/${componentKey}_Title"), 5)
-    } catch (Exception e) {
-        KeywordUtil.markWarning("⚠️ ${component} başlığına scroll edilemedi: ${e.message}")
+    // 📌 Title scroll ve kontrol
+    TestObject titleObj = findTestObject("Object Repository/Labs/${componentKey}_Title")
+    if (WebUI.verifyElementPresent(titleObj, 5, FailureHandling.OPTIONAL)) {
+        WebElement titleEl = WebUiCommonHelper.findWebElement(titleObj, 5)
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", titleEl)
+        WebUI.delay(1)
+    } else {
+        KeywordUtil.markFailed("❌ ${component} için başlık bulunamadı, test durduruluyor.")
     }
 
-    // 📅 Completed At alanını oku
-    def completedAtObj = findTestObject("Object Repository/Labs/${componentKey}_CompletedAt")
-    WebUI.waitForElementPresent(completedAtObj, 10)
+    // 📅 Completed At
+    TestObject completedAtObj = findTestObject("Object Repository/Labs/${componentKey}_CompletedAt")
+    if (!WebUI.verifyElementPresent(completedAtObj, 5, FailureHandling.OPTIONAL)) {
+        KeywordUtil.markFailed("❌ ${component} için Completed At bulunamadı.")
+    }
+
     String completedAtText = WebUI.getText(completedAtObj).trim()
     KeywordUtil.logInfo("${component} - Completed At: ${completedAtText}")
 
+    // ⏳ In Progress ise ilgili sıradaki Scanning continues mesajını kontrol et
     if (completedAtText.equalsIgnoreCase('In Progress')) {
-        // ⏳ Tarama devam ediyor
-        KeywordUtil.logInfo("⏳ ${component} hala taranıyor, 'Scanning continues' kontrolü yapılıyor...")
+    KeywordUtil.logInfo("⏳ ${component} In Progress — hızlı şekilde 'Scanning continues' mesajı aranıyor...")
 
-        TestObject scanningContinuesObj = new TestObject()
-        scanningContinuesObj.addProperty("xpath", ConditionType.EQUALS,
-            "(//div[contains(@class, 'text-primary') and contains(text(), 'Scanning continues')])[1]")
+    // ✅ component adı geçen parent içinde scanning continues ara (en doğru ve sağlam yöntem)
+    TestObject scanningContinuesObj = new TestObject()
+    scanningContinuesObj.addProperty("xpath", ConditionType.EQUALS,
+        "//div[.//span[text()='${component}']]//div[contains(text(), 'Scanning continues')]")
 
-        WebUI.verifyElementPresent(scanningContinuesObj, 5)
-        KeywordUtil.logInfo("✅ 'Scanning continues' mesajı bulundu.")
+    	if (WebUI.verifyElementPresent(scanningContinuesObj, 2, FailureHandling.OPTIONAL)) {
+        WebElement scanEl = WebUiCommonHelper.findWebElement(scanningContinuesObj, 2)
+        
+        // ⏱️ Çok kısa delay ve hızlı scroll
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", scanEl)
+        WebUI.delay(0.5)
+
+        KeywordUtil.logInfo("✅ ${component} için 'Scanning continues' mesajı bulundu ve scroll edildi.")
+		} else {
+        KeywordUtil.markFailed("❌ ${component} için 'Scanning continues' mesajı bulunamadı!")
+		}
     } else {
-        // ✅ Tamamlandı — Data not found kontrolü
+        // ✅ Tamamlandıysa Data not found kontrolü
         KeywordUtil.logInfo("✅ ${component} tamamlandı, veri kontrolü başlatılıyor...")
 
         TestObject dataNotFoundObj = new TestObject()
@@ -174,7 +192,6 @@ for (def component : components) {
             KeywordUtil.logInfo("📭 ${component} - 'Data not found' mesajı görüntülendi.")
         } else {
             KeywordUtil.logInfo("📊 ${component} - Veri mevcut, detaylar listeleniyor.")
-            // Component'e özel veri doğrulaması yapılabilir (örneğin tablo vs.)
         }
     }
 

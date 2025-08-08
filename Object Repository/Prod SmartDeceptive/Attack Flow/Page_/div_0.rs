@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_0</name>
+   <tag></tag>
+   <elementGuidId>af622016-5365-4dd7-be2b-1b8e49b78547</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.text-lg.font-semibold.opacity-90</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='radix-:r5k:']/div/div[3]/div/div/div/div/div[2]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:label=&quot;IP Profile&quot;i >> internal:text=&quot;0&quot;i >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>ee18e784-a92a-45df-8476-492e02e20951</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>text-lg font-semibold opacity-90</value>
+      <webElementGuid>710e2c90-8c97-4f5d-850d-ed07c9a92109</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>0</value>
+      <webElementGuid>b27441e6-dcc1-42bf-a5d4-21d03c984a2c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r5k:&quot;)/div[@class=&quot;rounded-md bg-card text-card-foreground&quot;]/div[@class=&quot;flex flex-col p-4&quot;]/div[@class=&quot;mx-auto w-full max-w-6xl p-4&quot;]/div[@class=&quot;flex items-center&quot;]/div[@class=&quot;relative m-0 flex h-16 flex-shrink-0 items-center justify-center bg-primary p-0 font-medium text-white min-w-[160px]&quot;]/div[@class=&quot;px-4 text-center hover:cursor-pointer&quot;]/div[@class=&quot;text-lg font-semibold opacity-90&quot;]</value>
+      <webElementGuid>f08c5c9d-30c4-4ae3-82f0-70748ca5e10b</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r5k:']/div/div[3]/div/div/div/div/div[2]</value>
+      <webElementGuid>957ec222-0653-4b52-ad2a-634f8a696fdb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Reconnaissance'])[2]/following::div[1]</value>
+      <webElementGuid>b3c36cf6-573c-41c6-9fba-d8b542f69ce7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Cyber Kill Chain - (IP Profile)'])[1]/following::div[8]</value>
+      <webElementGuid>45fd7dc7-c185-4b19-9a15-6e97e5c2a9ae</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Delivery'])[2]/preceding::div[1]</value>
+      <webElementGuid>7dd3c2e3-ed5e-4d07-97cb-44a874a45fba</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Exploitation'])[2]/preceding::div[5]</value>
+      <webElementGuid>1b6f0898-23f7-4bb3-b52c-bee0d8fc3263</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/div/div[3]/div/div/div/div/div[2]</value>
+      <webElementGuid>7640339a-e677-40db-9044-fbc3758ca995</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = '0' or . = '0')]</value>
+      <webElementGuid>4931807a-80bd-4925-a8d5-e91db582957a</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

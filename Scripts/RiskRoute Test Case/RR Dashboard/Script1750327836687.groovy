@@ -39,7 +39,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -53,7 +53,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFO
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -72,7 +72,7 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
@@ -556,7 +556,7 @@ WebUI.comment("--- Finished Asset Detail (IP) Pagination Test ---")
 
 WebUI.comment("--- Starting Alarm History (ScanxStart) Pagination Test ---")
 
-// Scroll to Alarm History graph
+/*/ Scroll to Alarm History graph
 WebElement alarmHistoryGraphElementScanStart = WebUiCommonHelper.findWebElement(
     findTestObject('Object Repository/RiskRoute Dashboard/Page_/Alarm History'), 20)
 
@@ -632,12 +632,12 @@ WebUI.back()
 WebUI.delay(3)
 WebUI.waitForPageLoad(30)
 WebUI.comment("--- Finished Asset Detail (IP) Pagination Test ---")
-
-/*/ Alarm History (NetworkOS) Pagination Test
+/*/
+// Alarm History (NetworkOS) Pagination Test
 // =========================================================================
 
 WebUI.comment("--- Starting Alarm History (NetworkOS) Pagination Test ---")
-
+/*/
 // Scroll to Alarm History graph
 WebElement alarmHistoryGraphElementNetworkOS = WebUiCommonHelper.findWebElement(
 	findTestObject('Object Repository/RiskRoute Dashboard/Page_/Alarm History'), 20)
@@ -711,4 +711,5 @@ if (dataValueNetworkOS > 0) {
 }
 WebUI.comment("--- Finished Alarm History (NetworkOS) Pagination Test ---")
 /*/
+//
 

@@ -38,7 +38,7 @@ WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -56,9 +56,10 @@ WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 WebUI.delay(3)
 
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Butonu'))
+WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
+WebUI.delay(1)
 
-WebUI.click(findTestObject('Object Repository/Dark/Page_/Developer'))
+WebUI.click(findTestObject('Object Repository/Riskroute/MailTest Organization'))
 
 WebUI.delay(3)
 

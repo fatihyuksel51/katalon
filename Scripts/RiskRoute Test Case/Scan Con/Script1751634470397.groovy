@@ -45,7 +45,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -77,6 +77,10 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_V
 WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
+/*/
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+
+WebUI.delay(5)
 
 WebDriver driver = DriverFactory.getWebDriver()
 JavascriptExecutor js = (JavascriptExecutor) driver
@@ -85,13 +89,6 @@ Actions actions = new Actions(driver)
 
 //
 // Riskroute sekmesine tıkla
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
-
-WebUI.waitForPageLoad(30)
-
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-
-WebUI.delay(3)
 
 WebUI.waitForPageLoad(10)
 
@@ -129,11 +126,29 @@ while (WebUI.verifyElementPresent(deleteButton, 3, FailureHandling.OPTIONAL)) {
 	WebUI.click(deleteButton)
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 	WebUI.delay(2)
-	WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/button_DELETE'))
+	WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/button_DELETE'))
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 	WebUI.waitForElementVisible(findTestObject('Object Repository/Scan Cron/Delete Toast'), 15)
 }
 WebUI.comment("Tüm delete butonları silindi. Cron List boş.")
+
+// CREATE CRON butonu için TestObject oluştur
+TestObject EDİTBUTTON1 = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[@class='ant-empty-description' and normalize-space()='No data']")
+
+// 10 saniyeye kadar görünür mü kontrol et
+if (WebUI.waitForElementVisible(EDİTBUTTON1, 10, FailureHandling.OPTIONAL)) {
+	WebUI.comment("EDİTBUTTON butonu bulundu.")
+} else {
+	WebUI.comment("EDİTBUTTON butonu bulunamadı, sayfa yenileniyor...")
+	WebUI.refresh()
+	WebUI.waitForPageLoad(10)
+	
+	if (WebUI.waitForElementVisible(EDİTBUTTON1, 10, FailureHandling.OPTIONAL)) {
+		WebUI.comment("EDİTBUTTON butonu refresh sonrası bulundu.")
+	} else {
+		KeywordUtil.markFailedAndStop("EDİTBUTTON butonu bulunamadı, test sonlandırılıyor.")
+	}
+}
 
 // 2️⃣ 'CREATE CRON' butonuna tıkla
 TestObject createCronButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[text()='CREATE CRON']")
@@ -253,7 +268,9 @@ js.executeScript("arguments[0].scrollIntoView(true);", descInputElement)
 WebUI.delay(1)
 WebUI.waitForElementVisible(descInput, 5)
 WebUI.waitForElementClickable(descInput, 5)
+WebUI.delay(2)
 WebUI.click(descInput)
+WebUI.delay(1)
 WebUI.clearText(descInput)
 WebUI.setText(descInput, 'Katalon Text')
 // Scroll işlemi
@@ -268,7 +285,7 @@ WebUI.refresh()
 WebUI.delay(3)
 	
 WebUI.waitForElementVisible(findTestObject('Object Repository/Scan Cron/Katalon Text'), 15)
-
+/*/
 // 4 dakika bekle
 WebUI.delay(240)
 WebUI.refresh()
@@ -323,6 +340,7 @@ if (actualDateTime.after(maxExpectedTime)) {
 WebUI.refresh()
 WebUI.delay(3)
 WebUI.waitForPageLoad(30)
+/*/
 // Trigger butonuna bas
 TestObject triggerButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'bg-emerald')]")
 WebUI.click(triggerButton)

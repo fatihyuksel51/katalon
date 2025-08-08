@@ -30,6 +30,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 
 
 
+
+// ✅ Güvenli scroll fonksiyonu
+WebElement safeScrollTo(TestObject to) {
+	if (to == null) {
+		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
+		return null
+	}
+	if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) {
+		KeywordUtil.logInfo("ℹ️ Element not present, scroll işlemi atlandı: ${to.getObjectId()}")
+		return null
+	}
+	WebElement element = WebUiCommonHelper.findWebElement(to, 1)
+	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
+	WebUI.delay(0.5)
+	return element
+}
 // ✅ Fonksiyon: Scroll edip görünür hale getir
 def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	int currentScroll = 0
@@ -43,7 +60,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -76,7 +93,7 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
@@ -99,7 +116,8 @@ TestObject capeclistlink = findTestObject('Object Repository/CVE/Vendor List')
 // WebElement olarak al
 WebElement linkElement = WebUiCommonHelper.findWebElement(capeclistlink, 10)
 // Scroll edip görünür yap
-scrollToVisible(linkElement, js)
+safeScrollTo(findTestObject('Object Repository/CVE/Vendor List'))
+WebUI.delay(2)
 WebUI.click(findTestObject('Object Repository/CVE/Vendor List'))
 
 WebUI.waitForPageLoad(10)
@@ -129,6 +147,10 @@ println("📋 Kopyalanan Text: " + Vendortext)
 
 // 1. Filter Options butonuna tıkla
 TestObject filterButton = findTestObject('Object Repository/CVE/FilterOptions')
+// WebElement olarak al
+WebUI.delay(2)
+// Scroll edip görünür yap
+safeScrollTo(findTestObject('Object Repository/CVE/FilterOptions'))
 WebUI.waitForElementClickable(filterButton, 10)
 WebUI.click(filterButton)
 

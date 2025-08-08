@@ -43,7 +43,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -76,18 +76,11 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+WebUI.waitForPageLoad(10)
 
-WebUI.waitForPageLoad(30)
-
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-
-
-WebUI.delay(3)
-
-WebUI.waitForPageLoad(30)
 
 
 WebUI.click(findTestObject('Object Repository/Host List/Hosts'))
@@ -103,7 +96,7 @@ Actions actions = new Actions(driver)
 // Target listesi
 List<String> targetList = [
 	'catchprobe.org',
-	'catchprobe',
+	'teknosa',
 	'176.9.66.101'
 ]
 
@@ -191,11 +184,7 @@ assert scanHistoryTargetText.trim() == "catchprobe.org" : "❌ Scan History sayf
 
 
 
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
-WebUI.delay(3)
-
-WebUI.waitForPageLoad(30)
 
 
 

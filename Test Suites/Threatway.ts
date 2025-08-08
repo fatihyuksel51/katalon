@@ -5,7 +5,7 @@
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
-   <numberOfRerun>3</numberOfRerun>
+   <numberOfRerun>1</numberOfRerun>
    <pageLoadTimeout>30</pageLoadTimeout>
    <pageLoadTimeoutDefault>true</pageLoadTimeoutDefault>
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
@@ -47,17 +47,17 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>150b122a-c313-4787-bea6-c7a69c3293ed</guid>
+      <guid>5966c8d0-2378-4e8f-bbe3-4f4cd5bf0dab</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Malware Analysis</testCaseId>
+      <testCaseId>Test Cases/Threatway Test Cases/Firewall Entegration</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>8db1c8d7-37e8-4708-9ed4-348a23f4e42e</guid>
+      <guid>921905a6-bdeb-45f0-9f11-ea1f3d08b476</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/PLatform IOC Discoveries</testCaseId>
+      <testCaseId>Test Cases/Threatway Test Cases/Malware Analysis</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>

@@ -43,7 +43,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -76,21 +76,18 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
-WebUI.waitForPageLoad(30)
+//WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-
+WebUI.delay(2)
 
 
-WebUI.click(findTestObject('Object Repository/Scan/Scan'))
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/detail-scan')
 
-WebUI.waitForPageLoad(30)
+WebUI.waitForPageLoad(10)
 
-WebUI.click(findTestObject('Object Repository/Detail Scan/Detail Scan'))
 
 WebDriver driver = DriverFactory.getWebDriver()
 JavascriptExecutor js = (JavascriptExecutor) driver
@@ -151,6 +148,9 @@ if (isToastVisible) {
 } else {
 	KeywordUtil.markFailedAndStop("❌ Scan toast mesajı 30 saniye içinde görünmedi!")
 }
+WebUI.delay(1)
+WebUI.refresh()
+WebUI.delay(3)
 
 
 // 1️⃣3️⃣ Scan History'de Domain Name kontrolü

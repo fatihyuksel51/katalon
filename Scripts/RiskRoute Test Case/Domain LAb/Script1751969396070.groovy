@@ -86,9 +86,9 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 WebUI.waitForPageLoad(30)
 
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Butonu'))
+WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
 
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Seçimi'))
+WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Seçimi'))
 
 WebUI.delay(3)
 
@@ -105,7 +105,7 @@ Actions actions = new Actions(driver)
 WebUI.setText(findTestObject('Object Repository/Labs/input_SearchBox'), 'catchprobe.org')
 WebUI.click(findTestObject('Object Repository/Labs/button_Scan'))
 WebUI.delay(1)
-WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Toast Message'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Toast Message'), 15)
 
 // ⏳ Sayfa yüklensin
 WebUI.waitForPageLoad(30)

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Asset List</name>
+   <tag></tag>
+   <elementGuidId>3f8f665b-b7f3-443d-8364-8bf497add988</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>svg.lucide.lucide-waypoints.h-6.w-6</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@class='flex items-center justify-start' and text()='Asset List']&#xd;
+</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>div:nth-child(6) > button > .relative</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>svg</value>
+      <webElementGuid>46db33a2-4359-4608-b57d-09e7c7a6039c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xmlns</name>
+      <type>Main</type>
+      <value>http://www.w3.org/2000/svg</value>
+      <webElementGuid>6526717e-48d2-47f7-bb6a-e03aadc04fd0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>width</name>
+      <type>Main</type>
+      <value>24</value>
+      <webElementGuid>1e77aed1-4cad-4dc9-8768-4091b966e0f5</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>height</name>
+      <type>Main</type>
+      <value>24</value>
+      <webElementGuid>e9a4c2cf-3fd6-4b94-a3f0-7b38980298b0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>viewBox</name>
+      <type>Main</type>
+      <value>0 0 24 24</value>
+      <webElementGuid>18c2105b-3843-4573-a0e4-f5f16cb82fa9</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>fill</name>
+      <type>Main</type>
+      <value>none</value>
+      <webElementGuid>19a29e59-49a4-45fd-bb58-59bd3750ed8e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>stroke</name>
+      <type>Main</type>
+      <value>currentColor</value>
+      <webElementGuid>e7474f59-a469-48dc-a12e-f819ce0719a9</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>stroke-width</name>
+      <type>Main</type>
+      <value>2</value>
+      <webElementGuid>938df1bc-475a-43ac-8ef4-07f48750b6ce</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>stroke-linecap</name>
+      <type>Main</type>
+      <value>round</value>
+      <webElementGuid>9911a211-87f0-4380-b89b-7d7727cc05a1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>stroke-linejoin</name>
+      <type>Main</type>
+      <value>round</value>
+      <webElementGuid>be5f25c9-8b4c-4d33-87b3-d1d20b39f610</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>lucide lucide-waypoints h-6 w-6</value>
+      <webElementGuid>de4247cf-878c-49a5-b8f5-7d9a00b7ce3a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/aside[@class=&quot;fixed left-0 z-40 h-full&quot;]/nav[@class=&quot;flex h-full w-[72px] flex-col items-start justify-center border-background bg-primary bg-gradient-to-bl from-sidebar-from to-sidebar-to&quot;]/div[@class=&quot;relative overflow-hidden z-10 w-full flex-1 overflow-y-auto&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;flex items-center justify-center&quot;]/button[1]/a[@class=&quot;relative flex h-[62px] w-[72px] flex-col items-center justify-center text-primary-foreground hover:bg-primary-dark hover:text-primary-hover&quot;]/svg[@class=&quot;lucide lucide-waypoints h-6 w-6&quot;]</value>
+      <webElementGuid>74d67ba0-c094-4ceb-9463-1b0c722d30bf</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='G'])[1]/following::*[name()='svg'][8]</value>
+      <webElementGuid>3b8fca1d-010e-44e1-83a7-02df44bec5bd</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='⌘'])[2]/following::*[name()='svg'][8]</value>
+      <webElementGuid>678b9391-7412-46b4-b346-e3c93e565171</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='RiskRoute'])[1]/preceding::*[name()='svg'][1]</value>
+      <webElementGuid>53ca9a06-3475-4362-a294-baf236b0f9d9</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

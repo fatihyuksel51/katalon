@@ -81,31 +81,8 @@ CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 // Collections sekmesine git
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/collections')
 WebUI.waitForPageLoad(10)
-// Sayfadaki tüm Delete butonlarını bul
-TestObject deleteButtons = new TestObject('dynamicDeleteButtons')
-deleteButtons.addProperty('xpath', ConditionType.EQUALS, "//div[contains(@class, 'cursor-pointer') and contains(@class, 'destructive-foreground')]")
+WebUI.delay(2)
 
-// Kaç adet Delete butonu var, say
-int deleteCount = WebUI.findWebElements(deleteButtons, 5).size()
-
-WebUI.comment("🗑️ Toplam $deleteCount adet koleksiyon silinecek.")
-
-while (WebUI.findWebElements(deleteButtons, 5).size() > 0) {
-	WebUI.comment("Silme işlemi başlatılıyor...")
-
-	// İlk Delete butonuna tıkla
-	WebUI.click(deleteButtons)
-	WebUI.delay(1)
-
-	// Silme onay butonuna tıkla
-	WebUI.click(findTestObject('Object Repository/Collections/Delete button'))
-
-	// Toast mesajının çıkmasını bekle
-	WebUI.waitForElementVisible(findTestObject('Object Repository/Collections/Delete Toast Message'), 5)
-
-	// Toast kapanmasını beklemek için biraz gecikme koy
-	WebUI.delay(1)
-}
 
 //Create collection butonuna bas
 WebUI.click(findTestObject('Object Repository/Collections/Create Collection'))

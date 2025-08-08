@@ -6,12 +6,11 @@
    <elementGuidId>0a179327-17de-444c-9980-b60d50876f09</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>//textarea[@name='description']</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>//textarea</value>
+         <key>CSS</key>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,7 +28,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>textarea</value>
-      <webElementGuid>dddafd9b-2478-42b6-bf95-8773adf87e78</webElementGuid>
+      <webElementGuid>852291b8-1eb3-448c-8c36-4fea57be2f70</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -37,7 +36,7 @@
       <name>class</name>
       <type>Main</type>
       <value>flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm ring-offset-card placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-destructive</value>
-      <webElementGuid>3484a49d-b0c8-4b63-8ddf-c9e3923ec936</webElementGuid>
+      <webElementGuid>15630215-4e96-4b97-b5ec-cdacf17a1a34</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -45,7 +44,7 @@
       <name>rows</name>
       <type>Main</type>
       <value>2</value>
-      <webElementGuid>262fbc27-ea31-4a65-aa93-7a4643552bca</webElementGuid>
+      <webElementGuid>ad1502c0-ef45-4ed6-8ef0-fc4a5e6a5fd8</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -53,7 +52,7 @@
       <name>name</name>
       <type>Main</type>
       <value>description</value>
-      <webElementGuid>9f172fbd-7849-419f-8c06-61a7f38465d2</webElementGuid>
+      <webElementGuid>83c14a45-bed4-48e7-bc63-ba3ba61d2b1e</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -61,7 +60,7 @@
       <name>id</name>
       <type>Main</type>
       <value>:r4v:-form-item</value>
-      <webElementGuid>7847c97b-5029-4891-bae4-777b03a189e6</webElementGuid>
+      <webElementGuid>0965641b-c760-4035-b0ee-832df6ed50d1</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -69,7 +68,7 @@
       <name>aria-describedby</name>
       <type>Main</type>
       <value>:r4v:-form-item-description</value>
-      <webElementGuid>0c3f2410-02ca-4755-8893-d050a728751b</webElementGuid>
+      <webElementGuid>d5469ee5-5450-4bcc-918f-46d84f2cd50f</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -77,7 +76,7 @@
       <name>aria-invalid</name>
       <type>Main</type>
       <value>false</value>
-      <webElementGuid>1dbed14f-67b8-4eff-bfe1-66d7ed131198</webElementGuid>
+      <webElementGuid>7f474bd9-8ab0-4b74-a2d9-2fcaa4a69593</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -85,7 +84,7 @@
       <name>text</name>
       <type>Main</type>
       <value>katalon</value>
-      <webElementGuid>3d16649f-e374-4581-b9db-9e425265b911</webElementGuid>
+      <webElementGuid>7278932e-9024-4e07-962f-0ad0fb04b691</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -93,7 +92,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>id(&quot;:r4v:-form-item&quot;)</value>
-      <webElementGuid>0745a1f8-2748-45b0-9794-90ec0ad71c80</webElementGuid>
+      <webElementGuid>c9c9a1e7-1a0a-4b9f-8df1-35b9ca1f3195</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -101,7 +100,7 @@
       <name>xpath:attributes</name>
       <type>Main</type>
       <value>//textarea[@id=':r4v:-form-item']</value>
-      <webElementGuid>602a0d81-e67f-4282-ac62-5fbdd2f619e6</webElementGuid>
+      <webElementGuid>27669344-25f9-401c-93dc-94d12fb3df77</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -109,7 +108,7 @@
       <name>xpath:idRelative</name>
       <type>Main</type>
       <value>//div[@id='radix-:r4r:']/div/div[3]/form/div/div[2]/textarea</value>
-      <webElementGuid>7a0c656d-86cb-4980-83dc-d9515fcde6e9</webElementGuid>
+      <webElementGuid>03cfc547-c8d7-4d32-8b93-3ee755756401</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -117,7 +116,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Description :'])[1]/following::textarea[1]</value>
-      <webElementGuid>8745792b-541f-413e-a70a-6620eb39c685</webElementGuid>
+      <webElementGuid>8cabd120-34fc-4d31-9dd5-d42880c88810</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -125,7 +124,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Name :'])[1]/following::textarea[1]</value>
-      <webElementGuid>9e3871ab-b992-4fea-b6aa-a61ffd57b635</webElementGuid>
+      <webElementGuid>8508a205-28b5-4659-bb07-58b6f6accda2</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -133,7 +132,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='CANCEL'])[1]/preceding::textarea[1]</value>
-      <webElementGuid>5fcc36d2-c143-48f6-8c80-f492520eaa61</webElementGuid>
+      <webElementGuid>7853c733-3394-4503-b67f-f8274630365f</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -141,7 +140,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='CREATE'])[1]/preceding::textarea[1]</value>
-      <webElementGuid>55260bc5-8eca-4c74-bd42-daa8900cd968</webElementGuid>
+      <webElementGuid>0d725b57-0cc8-4837-95d2-96644670b6b7</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -149,7 +148,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>//*/text()[normalize-space(.)='katalon']/parent::*</value>
-      <webElementGuid>76d060bf-49ec-40e4-afdf-c64f19c44af6</webElementGuid>
+      <webElementGuid>e2eb545b-db89-40f2-a7f6-b8256192c283</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -157,7 +156,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//textarea</value>
-      <webElementGuid>63f6a079-c939-4433-8b99-1e4819d45488</webElementGuid>
+      <webElementGuid>ddda0d9e-939a-43e2-81a4-7b7c03ba89de</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -165,6 +164,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//textarea[@name = 'description' and @id = ':r4v:-form-item' and (text() = 'katalon' or . = 'katalon')]</value>
-      <webElementGuid>9cbc39bc-7d22-47bc-8685-a50db5e915c1</webElementGuid>
+      <webElementGuid>31f0387d-f7c1-430a-9396-baf2be7793a5</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

@@ -30,20 +30,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 
 
 
-// ✅ Fonksiyon: Scroll edip görünür hale getir
-def scrollToVisible(WebElement element, JavascriptExecutor js) {
-	int currentScroll = 0
-	boolean isVisible = false
-	while (!isVisible && currentScroll < 3000) {
-		js.executeScript("window.scrollBy(0, 200)")
-		WebUI.delay(0.5)
-		isVisible = element.isDisplayed()
-		currentScroll += 200
+// ✅ Güvenli scroll fonksiyonu
+WebElement safeScrollTo(TestObject to) {
+	if (to == null) {
+		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
+		return null
 	}
-	return isVisible
+	if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) {
+		KeywordUtil.logInfo("ℹ️ Element not present, scroll işlemi atlandı: ${to.getObjectId()}")
+		return null
+	}
+	WebElement element = WebUiCommonHelper.findWebElement(to, 1)
+	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
+	WebUI.delay(0.5)
+	return element
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -57,8 +61,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFO
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
-
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
@@ -76,7 +79,7 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
@@ -115,6 +118,10 @@ println("📋 Kopyalanan Text: " + Cwetext)
 
 // 1. Filter Options butonuna tıkla
 TestObject filterButton = findTestObject('Object Repository/CVE/FilterOptions')
+// WebElement olarak al
+WebUI.delay(2)
+// Scroll edip görünür yap
+safeScrollTo(findTestObject('Object Repository/CVE/FilterOptions'))
 WebUI.waitForElementClickable(filterButton, 10)
 WebUI.click(filterButton)
 

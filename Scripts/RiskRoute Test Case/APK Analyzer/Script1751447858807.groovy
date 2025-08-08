@@ -46,7 +46,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -79,18 +79,13 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
-// Riskroute sekmesine tıkla
+/*/
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
-
-WebUI.waitForPageLoad(30)
-
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
 WebUI.waitForPageLoad(10)
 
 
-WebUI.click(findTestObject('Object Repository/APK Analyzer/APK Analyzer'))
+WebUI.click(findTestObject('Object Repository/Riskroute/APK Analyzer/APK Analyzer'))
 
 WebUI.delay(3)
 
@@ -113,7 +108,7 @@ while (WebUI.verifyElementPresent(deleteButton, 3, FailureHandling.OPTIONAL)) {
 	WebUI.delay(2)
 	WebUI.click(findTestObject('Object Repository/Channel Management/Page_/button_DELETE'))
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-	WebUI.waitForElementVisible(findTestObject('Object Repository/APK Analyzer/Toast'), 5)
+	WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/APK Analyzer/Toast'), 5)
 }
 
 // İşlem bitti
@@ -123,7 +118,7 @@ WebUI.comment("Tüm delete butonları silindi. Asset List boş.")
 println("Tüm delete ikonları silindi.")
 // Create butonu tıkla
 
-WebUI.click(findTestObject('Object Repository/APK Analyzer/Create butonu'))
+WebUI.click(findTestObject('Object Repository/Riskroute/APK Analyzer/Create butonu'))
 
 WebUI.delay(2)
 
@@ -136,13 +131,13 @@ String projectDir = RunConfiguration.getProjectDir()
 String filePath = projectDir + "/Include/testfiles/bo.xapk"
 
 // Dosyayı yükle
-WebUI.uploadFile(findTestObject('Object Repository/APK Analyzer/uploadFile'), filePath)
+WebUI.uploadFile(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadFile'), filePath)
 
 // Kontrol için yükleme sonrası bir element görünürlüğü kontrol edilebilir mesela
-WebUI.verifyElementPresent(findTestObject('Object Repository/APK Analyzer/uploadSuccess'), 10)
+WebUI.verifyElementPresent(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadSuccess'), 10)
 
 
-WebUI.click(findTestObject('Object Repository/APK Analyzer/button_CREATE'))
+WebUI.click(findTestObject('Object Repository/Riskroute/APK Analyzer/button_CREATE'))
 
 WebUI.delay(2)
 
@@ -200,7 +195,7 @@ WebUI.delay(2)
 WebUI.waitForPageLoad(30)
 
 // Sayfada severity circle geldiğini doğrula
-TestObject circle = findTestObject('Object Repository/APK Analyzer/Stix Circle')
+TestObject circle = findTestObject('Object Repository/Riskroute/APK Analyzer/Stix Circle')
 
 // Div'in görünmesini bekle (maksimum 10 saniye)
 if (WebUI.waitForElementVisible(circle, 10)) {
@@ -229,7 +224,7 @@ if (WebUI.waitForElementVisible(circle, 10)) {
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('Object Repository/APK Analyzer/APK Analyzer'))
+WebUI.click(findTestObject('Object Repository/Riskroute/APK Analyzer/APK Analyzer'))
 
 WebUI.delay(1)
 
@@ -245,7 +240,7 @@ while (WebUI.verifyElementPresent(deleteButton, 3, FailureHandling.OPTIONAL)) {
 	WebUI.delay(2)
 	WebUI.click(findTestObject('Object Repository/Channel Management/Page_/button_DELETE'))
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-	WebUI.waitForElementVisible(findTestObject('Object Repository/APK Analyzer/Toast'), 5)
+	WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/APK Analyzer/Toast'), 5)
 }
 
 // İşlem bitti

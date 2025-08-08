@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_167.94.138.122</name>
+   <tag></tag>
+   <elementGuidId>3c5a1fbc-5d97-4b28-847d-8e55709d9d8d</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[3]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[2]/td[2]/span/span</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;167.94.138.122&quot;i >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>1c7d11ee-b63c-40bc-a350-e55a98055e2b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>inline-block lg:px-3 lg:py-1 md:px-2 md:py-0.5 md:text-[0.60rem] lg:text-[0.65rem] uppercase font-bold rounded-full bg-cyan-500 text-cyan-100 px-2 py-1 text-xs</value>
+      <webElementGuid>54bf1d00-958e-4381-80ed-5161b8a96b6a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>167.94.138.122</value>
+      <webElementGuid>d8a0fe12-3063-42d2-8af6-f0b33bc29497</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[3]/div[@class=&quot;mt-2&quot;]/div[1]/div[@class=&quot;ant-table-wrapper css-m4timi&quot;]/div[@class=&quot;ant-spin-nested-loading css-m4timi&quot;]/div[@class=&quot;ant-spin-container&quot;]/div[@class=&quot;ant-table css-m4timi ant-table-ping-right ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left ant-table-has-fix-right&quot;]/div[@class=&quot;ant-table-container&quot;]/div[@class=&quot;ant-table-content&quot;]/table[1]/tbody[@class=&quot;ant-table-tbody&quot;]/tr[@class=&quot;ant-table-row ant-table-row-level-0&quot;]/td[@class=&quot;ant-table-cell ant-table-cell-row-hover !bg-card !text-card-foreground&quot;]/span[@class=&quot;cursor-pointer&quot;]/span[@class=&quot;inline-block lg:px-3 lg:py-1 md:px-2 md:py-0.5 md:text-[0.60rem] lg:text-[0.65rem] uppercase font-bold rounded-full bg-cyan-500 text-cyan-100 px-2 py-1 text-xs&quot;]</value>
+      <webElementGuid>a50da8ad-72b2-41c1-9a9f-1ea85657e5e8</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[3]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[2]/td[2]/span/span</value>
+      <webElementGuid>edf4ccb2-41e6-43c2-89fc-e178942072ed</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SERVER-WEBAPP invalid HTTP version string'])[1]/following::span[2]</value>
+      <webElementGuid>872d387a-97f0-4391-8309-2dd0349933fc</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Action'])[1]/following::span[3]</value>
+      <webElementGuid>4d02087f-c5ae-4fc3-a7c3-4bc940a88e67</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='honeypot'])[1]/preceding::span[3]</value>
+      <webElementGuid>88ec18d3-5ab0-4d29-8c9c-73b0f7d26bc6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='windows'])[1]/preceding::span[4]</value>
+      <webElementGuid>c7548d23-7aea-4f0d-bd28-a9174514b540</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='167.94.138.122']/parent::*</value>
+      <webElementGuid>731ab404-0ec3-402e-8b44-c1d485ae400c</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//td[2]/span/span</value>
+      <webElementGuid>ba952e3a-717c-4f10-86f3-95a5435f434d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = '167.94.138.122' or . = '167.94.138.122')]</value>
+      <webElementGuid>7c3ad8c2-ced3-4130-9e64-18b0014aaa59</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -53,7 +53,7 @@ WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -82,6 +82,26 @@ CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/firewall-integration')
 WebUI.waitForPageLoad(30)
 
+// Delete butonu tanımı
+TestObject deleteButton1 = new TestObject().addProperty("xpath",
+	com.kms.katalon.core.testobject.ConditionType.EQUALS,
+	"//div[contains(@class, 'cursor-pointer') and contains(@class, 'destructive-foreground')]")
+
+// Buton var mı kontrol edip varsa tıklayarak döngü
+while (WebUI.verifyElementPresent(deleteButton1, 3, FailureHandling.OPTIONAL)) {
+	WebUI.comment("Delete butonu bulundu, tıklanıyor...")
+	WebUI.click(deleteButton1)
+	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+	WebUI.delay(2)
+	WebUI.click(findTestObject('Object Repository/Firewall Entegration/Delete button'))
+	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+	
+	WebUI.waitForElementVisible(findTestObject('Object Repository/Firewall Entegration/Delete Toast Message'), 5)
+}
+
+// İşlem bitti
+WebUI.comment("Tüm delete butonları silindi. Firewall  boş.")
+
 // Cloudflare tipinde firewall ekle
 WebUI.click(findTestObject('Object Repository/Firewall Entegration/Create butonu'))
 WebUI.waitForElementVisible(findTestObject('Object Repository/Firewall Entegration/Cloudflare button'), 5)
@@ -100,11 +120,12 @@ WebUI.setText(findTestObject('Object Repository/Firewall Entegration/Update Time
 WebUI.delay(1)
 // Dropdown combobox buttonuna tıkla (gizli select aktif etmek için)
 WebUI.click(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownButton'))
-WebUI.sendKeys(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownButton'), 'c')
+WebUI.sendKeys(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownButton'), 'F')
 WebUI.click(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownButton'))
 
+
 // cloudflareIntegration seçeneğini seç
-WebUI.selectOptionByLabel(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownSelect'), 'cloudflareIntegration', false)
+WebUI.selectOptionByLabel(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownSelect'), 'Firewall', false)
 
 // Seçimi kontrol et (opsiyonel)
 def selectedOption = WebUI.getAttribute(findTestObject('Object Repository/Firewall Entegration/CloudflareDropdownSelect'), 'value')
@@ -123,13 +144,8 @@ WebUI.click(findTestObject('Object Repository/Firewall Entegration/Total number 
 WebUI.clearText(findTestObject('Object Repository/Firewall Entegration/Total number of'))
 WebUI.setText(findTestObject('Object Repository/Firewall Entegration/Total number of'), '1')
 
-WebUI.click(findTestObject('Object Repository/Firewall Entegration/Previous Butonu'))
-WebUI.delay(1)
-WebUI.click(findTestObject('Object Repository/Firewall Entegration/Next Butonu'))
-WebUI.delay(1)
 WebUI.click(findTestObject('Object Repository/Firewall Entegration/Done butonu'))
-WebUI.refresh()
-WebUI.delay(2)
+WebUI.delay(3)
 WebUI.waitForElementVisible(findTestObject('Object Repository/Firewall Entegration/Toast Message - Create'), 5)
 WebUI.waitForPageLoad(30)
 //Collection textini doğrula
@@ -162,12 +178,28 @@ WebUI.setText(findTestObject('Object Repository/Collections/Filter İnput'), 'ka
 WebUI.click(findTestObject('Object Repository/Collections/threatway button_APPLY AND SEARCH'))
 
 WebUI.delay(2)
-WebUI.click(findTestObject('Object Repository/Firewall Entegration/Delete Butonu'))
-WebUI.delay(2)
-WebUI.click(findTestObject('Object Repository/Firewall Entegration/Delete button'))
-
-WebUI.waitForElementVisible(findTestObject('Object Repository/Firewall Entegration/Delete Toast Message'), 5)
 WebUI.click(findTestObject('Object Repository/Firewall Entegration/Filter Close'))
+
+WebUI.delay(2)
+
+// Delete butonu tanımı
+TestObject deleteButton = new TestObject().addProperty("xpath",
+	com.kms.katalon.core.testobject.ConditionType.EQUALS,
+	"//div[contains(@class, 'cursor-pointer') and contains(@class, 'destructive-foreground')]")
+
+// Buton var mı kontrol edip varsa tıklayarak döngü
+while (WebUI.verifyElementPresent(deleteButton, 5, FailureHandling.OPTIONAL)) {
+	WebUI.comment("Delete butonu bulundu, tıklanıyor...")
+	WebUI.click(deleteButton)
+	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+	WebUI.delay(2)
+	WebUI.click(findTestObject('Object Repository/Firewall Entegration/Delete button'))
+	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+	
+	WebUI.waitForElementVisible(findTestObject('Object Repository/Firewall Entegration/Delete Toast Message'), 5)
+}
+
+
 
 
 

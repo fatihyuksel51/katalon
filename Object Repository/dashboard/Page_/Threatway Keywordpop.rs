@@ -6,12 +6,11 @@
    <elementGuidId>d4d15086-e8fa-4f5b-8386-4d6eddc9ed4a</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>(//span[contains(@class, 'inline-flex') and contains(@class, 'bg-card')])[5]</value>
+         <key>BASIC</key>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(//span[contains(@class, 'inline-flex') and contains(@class, 'bg-card')])[4]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

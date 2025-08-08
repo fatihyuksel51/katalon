@@ -7,11 +7,10 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//div[(text() = 'IPv4' or . = 'IPv4')]</value>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div/div/div/div/form/div[3]/div/div/div/div[5]/select</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

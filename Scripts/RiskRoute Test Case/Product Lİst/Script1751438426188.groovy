@@ -43,7 +43,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -76,21 +76,11 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
+/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
-WebUI.waitForPageLoad(30)
-
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Butonu'))
-
-WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Organization Seçimi'))
-
-WebUI.delay(3)
-
-WebUI.waitForPageLoad(30)
-
+WebUI.delay(2)
 
 WebUI.click(findTestObject('Object Repository/Host List/Hosts'))
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_SERVER-WEBAPP invalid HTTP version string</name>
+   <tag></tag>
+   <elementGuidId>4d53b14a-0a60-4dee-ae11-c24cb3bc6acc</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[3]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[2]/td/span</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;SERVER-WEBAPP invalid HTTP version string&quot;i >> nth=0</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>73ddd9ad-bfc6-41fd-9547-0105ffe4a4c5</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>ant-table-cell-content</value>
+      <webElementGuid>9b330c7a-a350-4c2b-8cca-1f33e99ea240</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>SERVER-WEBAPP invalid HTTP version string</value>
+      <webElementGuid>3647cd52-496c-4f1e-98b3-a321cb1b54a0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/div[@class=&quot;flex-1&quot;]/div[@class=&quot;pb-6&quot;]/div[1]/div[1]/div[3]/div[@class=&quot;mt-2&quot;]/div[1]/div[@class=&quot;ant-table-wrapper css-m4timi&quot;]/div[@class=&quot;ant-spin-nested-loading css-m4timi&quot;]/div[@class=&quot;ant-spin-container&quot;]/div[@class=&quot;ant-table css-m4timi ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left ant-table-has-fix-right&quot;]/div[@class=&quot;ant-table-container&quot;]/div[@class=&quot;ant-table-content&quot;]/table[1]/tbody[@class=&quot;ant-table-tbody&quot;]/tr[@class=&quot;ant-table-row ant-table-row-level-0&quot;]/td[@class=&quot;ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-ellipsis ant-table-cell-row-hover !bg-card !text-card-foreground&quot;]/span[@class=&quot;ant-table-cell-content&quot;]</value>
+      <webElementGuid>eef0216d-fcc2-4e73-8d91-1fcb6bb14dba</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[3]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[2]/td/span</value>
+      <webElementGuid>450b3cc6-399e-4877-9377-1b19b3e0fc52</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Action'])[1]/following::span[1]</value>
+      <webElementGuid>cd82a220-5561-4644-90e8-2b1a5fa10654</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Labels / Decoy / Protocol'])[1]/following::span[1]</value>
+      <webElementGuid>999571a9-f369-4be3-9923-9b7a49d8ee04</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='honeypot'])[1]/preceding::span[5]</value>
+      <webElementGuid>33be1811-8cf6-443d-8f6e-7da8b099b05f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='windows'])[2]/preceding::span[6]</value>
+      <webElementGuid>c0a569be-2093-4057-b054-f9fd69e288b7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='SERVER-WEBAPP invalid HTTP version string']/parent::*</value>
+      <webElementGuid>a925adcc-10b4-4393-9d4e-587a6b9194bb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//td/span</value>
+      <webElementGuid>78a76ba7-5132-4eb0-a68f-3d0ad282fff3</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = 'SERVER-WEBAPP invalid HTTP version string' or . = 'SERVER-WEBAPP invalid HTTP version string')]</value>
+      <webElementGuid>d93137d5-c207-405b-8806-5809fd051822</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

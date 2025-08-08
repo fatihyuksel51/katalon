@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Organization Seçimi</name>
+   <tag></tag>
+   <elementGuidId>3308bf1b-b86f-448c-8855-66642bc867ae</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>span.flex-1.gap-2</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//button[.//div[text()='Threatway']]&#xd;
+</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=button[name=&quot;Threatway&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>a1187a16-01c9-42cb-8b8e-cc4b85679e48</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>flex-1 gap-2</value>
+      <webElementGuid>2727e339-b65c-4433-9589-b11e3fae86c6</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Threatway</value>
+      <webElementGuid>8e74eeec-dc67-4f81-89d1-26a2491f5ccf</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:ri:&quot;)/div[@class=&quot;m-auto w-full flex-col overflow-hidden rounded-md bg-background&quot;]/div[@class=&quot;max-h-96 overflow-x-hidden overflow-y-scroll p-4&quot;]/div[@class=&quot;flex flex-col gap-2&quot;]/div[1]/button[@class=&quot;group relative flex min-h-14 w-full items-center justify-start rounded-md bg-card p-3 hover:bg-gradient-to-tr hover:from-primary hover:to-primary-dark hover:text-primary-foreground hover:shadow-md hover:shadow-accent&quot;]/span[@class=&quot;flex-1 gap-2&quot;]</value>
+      <webElementGuid>ba29e37c-8ed9-40bd-a206-19112e47e628</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:ri:']/div/div[2]/div/div/button/span</value>
+      <webElementGuid>7521ae4c-cd15-4a1b-8e50-6fd9a186a8ae</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ESC'])[1]/following::span[1]</value>
+      <webElementGuid>34258e13-94c0-45c4-9b47-26647be2fd6a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Select Organization'])[1]/following::span[3]</value>
+      <webElementGuid>01c24cec-0967-48c4-96fe-568e00689f90</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Test'])[1]/preceding::span[1]</value>
+      <webElementGuid>2a39fe10-33d4-414f-846e-fcafc6260880</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/div/div[2]/div/div/button/span</value>
+      <webElementGuid>eae3e914-a359-43b8-9a9f-88176320f228</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = 'Threatway' or . = 'Threatway')]</value>
+      <webElementGuid>3fad5685-4f14-4bbd-b4a7-0b8268bc9883</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

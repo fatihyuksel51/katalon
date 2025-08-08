@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>SAVE bUTONU</name>
+   <tag></tag>
+   <elementGuidId>5ba7f7af-47be-409c-b5d0-7ffd53f1beca</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.mt-4.flex.justify-end.gap-2</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//button[text()='SAVE']</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;CANCELSAVE&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>1f08a068-cdf7-4489-a8f6-ea0bd994f34e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mt-4 flex justify-end gap-2</value>
+      <webElementGuid>715fd0ed-3a08-45cc-9e64-4b3069301ab2</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>CANCELSAVE</value>
+      <webElementGuid>4c26ba89-a756-4be8-84a8-39424dbe703c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;radix-:r1b:&quot;)/div[@class=&quot;rounded-md bg-card text-card-foreground&quot;]/div[@class=&quot;flex flex-col space-y-0 p-4 pt-0 md:p-6&quot;]/form[1]/div[@class=&quot;mt-4 flex justify-end gap-2&quot;]</value>
+      <webElementGuid>619c5658-3779-45b8-a0be-ed21fa82df7a</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='radix-:r1b:']/div/div[3]/form/div[2]</value>
+      <webElementGuid>7457fb15-d748-4258-aa16-1c291376ded0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Updated At :'])[1]/following::div[1]</value>
+      <webElementGuid>6e88ff15-0684-4757-8f81-6aa87c9711ad</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Created At :'])[1]/following::div[2]</value>
+      <webElementGuid>c5e2437a-4351-45bb-b3b3-3f418c734211</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/form/div[2]</value>
+      <webElementGuid>c4a10cc4-39d7-4fe7-a15b-ecf1a169fe4a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'CANCELSAVE' or . = 'CANCELSAVE')]</value>
+      <webElementGuid>e26916dd-0c60-4196-9eca-0b929a05b7f2</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

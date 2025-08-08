@@ -1,4 +1,6 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import com.kms.katalon.core.util.KeywordUtil
+
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -14,58 +16,105 @@ import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import internal.GlobalVariable as GlobalVariable
-import org.openqa.selenium.Keys as Keys
+import internal.GlobalVariable
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import org.openqa.selenium.WebElement
+import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.webui.common.WebUiCommonHelper
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.Keys
+import org.openqa.selenium.WebElement as Keys
+import com.kms.katalon.core.testobject.ConditionType
 
+
+// ✅ Fonksiyon: Scroll edip görünür hale getir
+def scrollToVisible(WebElement element, JavascriptExecutor js) {
+	int currentScroll = 0
+	boolean isVisible = false
+	while (!isVisible && currentScroll < 3000) {
+		js.executeScript("window.scrollBy(0, 200)")
+		WebUI.delay(0.5)
+		isVisible = element.isDisplayed()
+		currentScroll += 200
+	}
+	return isVisible
+}
+//
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
+
 WebUI.maximizeWindow()
 
-WebUI.click(findTestObject('null'))
+// Login işlemleri
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
 
-WebUI.setText(findTestObject('null'), 'fatih.yuksel@catchprobe.com')
+WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
-WebUI.setEncryptedText(findTestObject('null'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
 
-WebUI.click(findTestObject('null'))
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
-WebUI.click(findTestObject('null'))
-WebUI.executeJavaScript("document.body.style.zoom='80%'", null)
+WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
-WebUI.click(findTestObject('null'))
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
 
-WebUI.click(findTestObject('null'))
+WebUI.delay(6)
+
+// OTP işlemi
+def randomOtp = (100000 + new Random().nextInt(900000)).toString()
+
+WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+
+WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
+
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+//
 
 
-String text = WebUI.getText(findTestObject('null'))
+// Threatway sekmesine git
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
+WebUI.waitForPageLoad(30)
+WebUI.delay(3)
 
-println('fatttsdsdsdsdsdsdsdssdsdsdsdsdsddsdsdsdsdsdsdsdsxdsds: ' + text)
-String time1 = WebUI.getText(findTestObject('null'))
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+// Collections sekmesine git
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/collections')
+WebUI.waitForPageLoad(10)
+WebUI.delay(2)
 
 
+/// ✅ Collection isimleri için örnek jeneratör
+List<String> collectionNames = (1..25).collect { "Collection_col_${it}" }
 
-// Bekle (örneğin 5 saniye)
-WebUI.delay(15)
+for (String name in collectionNames) {
+	try {
+		// Create Collection butonuna tıkla
+		WebUI.click(findTestObject('Object Repository/Collections/Create Collection'))
 
-// İkinci Time bilgisini al
-String time2 = WebUI.getText(findTestObject('null'))
+		// Input görünene kadar bekle
+		WebUI.waitForElementVisible(findTestObject('Object Repository/Collections/İnput'), 5)
 
-// Zaman değişti mi kontrol et
-if (time1 != time2) {
-	WebUI.comment("✅ Canlı akış aktif. Time değişti: $time1 → $time2" // Testi fail yapar
-		)
-} else {
-	WebUI.comment("⚠️ Uyarı! Time aynı kaldı: $time1")
+		// Collection adını yaz
+		WebUI.setText(findTestObject('Object Repository/Collections/İnput'), name)
 
-	WebUI.takeScreenshot()
-	assert false : "Canlı akış algılandı → test senaryosu başarısız olmalı!"
-	
+		// Create butonuna bas
+		WebUI.click(findTestObject('Object Repository/Collections/File Create'))
+
+		// Toast mesajı kontrol et
+		WebUI.waitForElementVisible(findTestObject('Object Repository/Collections/Toast Message'), 5)
+		String toastMessage = WebUI.getText(findTestObject('Object Repository/Collections/Toast Message')).trim()
+
+		if (toastMessage == 'Collection created successfully.') {
+			KeywordUtil.logInfo("✅ ${name} başarıyla oluşturuldu.")
+		} else {
+			KeywordUtil.markWarning("⚠️ ${name} oluşturulamadı! Toast mesajı: ${toastMessage}")
+		}
+
+		// Biraz bekle, arayüz kasmasın
+		WebUI.delay(1)
+
+	} catch (Exception e) {
+		KeywordUtil.markWarning("❌ ${name} oluşturulurken hata: " + e.getMessage())
+	}
 }
-// İlgili elementi bul
-
-
-// Klavye ile scroll yap (örneğin PAGE_DOWN)
-element.sendKeys(Keys.PAGE_DOWN)
-WebUI.closeBrowser()
-

@@ -36,59 +36,99 @@ import com.kms.katalon.core.mobile.helper.MobileElementCommonHelper
 import com.kms.katalon.core.util.KeywordUtil
 
 import com.kms.katalon.core.webui.exception.WebElementNotFoundException
-import javax.mail.*
-import javax.mail.internet.MimeMultipart
+import jakarta.mail.*
+import jakarta.mail.internet.MimeMultipart
 import java.util.Properties
 
 
+
 public class MailReader {
-    /**
-     * Mail kutusundan son gelen mailin konu satırında belirtilen anahtar kelimeyi içerip içermediğini kontrol eder.
-     */
-    static boolean checkLatestEmail(String host, String username, String password, String keyword) {
-        Properties properties = new Properties()
-        properties.put("mail.store.protocol", "imaps")
-        Session emailSession = Session.getDefaultInstance(properties)
 
-        Store store = emailSession.getStore("imaps")
-        store.connect(host, username, password)
+	static boolean checkLatestEmail(String host, String username, String password, String keyword) {
+		return checkEmailInFolder(host, username, password, "INBOX", keyword)
+	}
 
-        Folder inbox = store.getFolder("INBOX")
-        inbox.open(Folder.READ_ONLY)
+	static boolean checkLatestEmailWithSpam(String host, String username, String password, String keyword) {
+		if (checkEmailInFolder(host, username, password, "INBOX", keyword)) {
+			return true
+		}
+		return checkEmailInFolder(host, username, password, "[Gmail]/Spam", keyword)
+	}
 
-        Message[] messages = inbox.getMessages()
-        if (messages.length == 0) {
-            println "📭 Mail kutusu boş"
-            return false
-        }
+	static boolean checkEmailInFolder(String host, String username, String password, String folderName, String keyword) {
+		Properties properties = new Properties()
+		properties.put("mail.store.protocol", "imaps")
 
-        Message latestMessage = messages[messages.length - 1]
-        String subject = latestMessage.getSubject()
-        String body = getTextFromMessage(latestMessage)
+		Session emailSession = Session.getInstance(properties)
+		Store store = emailSession.getStore("imaps")
+		store.connect(host, username, password)
 
-        println "📨 Son mailin konusu: ${subject}"
-        println "📨 Son mail içeriği: ${body.take(300)}..."
+		Folder folder = store.getFolder(folderName)
+		folder.open(Folder.READ_ONLY)
 
-        boolean result = subject.toLowerCase().contains(keyword.toLowerCase()) || body.toLowerCase().contains(keyword.toLowerCase())
+		Message[] messages = folder.getMessages()
+		if (messages.length == 0) {
+			println "📭 $folderName klasörü boş"
+			folder.close(false)
+			store.close()
+			return false
+		}
 
-        inbox.close(false)
-        store.close()
+		Message latestMessage = messages[messages.length - 1]
+		String subject = latestMessage.getSubject()
+		String body = getTextFromMessage(latestMessage)
 
-        return result
-    }
+		println "📨 $folderName klasöründeki son mailin konusu: ${subject}"
+		println "📨 Son mail içeriği: ${body.take(300)}..."
 
-    private static String getTextFromMessage(Message message) {
-        if (message.isMimeType("text/plain")) {
-            return message.getContent().toString()
-        } else if (message.isMimeType("multipart/*")) {
-            Multipart multipart = (Multipart) message.getContent()
-            for (int i = 0; i < multipart.getCount(); i++) {
-                BodyPart part = multipart.getBodyPart(i)
-                if (part.isMimeType("text/plain")) {
-                    return part.getContent().toString()
-                }
-            }
-        }
-        return ""
-    }
+		boolean result = subject?.toLowerCase()?.contains(keyword.toLowerCase()) ||
+				body?.toLowerCase()?.contains(keyword.toLowerCase())
+
+		folder.close(false)
+		store.close()
+
+		return result
+	}
+
+	private static String getTextFromMessage(Message message) {
+		if (message.isMimeType("text/plain")) {
+			return message.getContent().toString()
+		} else if (message.isMimeType("multipart/*")) {
+			Multipart multipart = (Multipart) message.getContent()
+			for (int i = 0; i < multipart.getCount(); i++) {
+				BodyPart part = multipart.getBodyPart(i)
+				if (part.isMimeType("text/plain")) {
+					return part.getContent().toString()
+				}
+			}
+		}
+		return ""
+	}
+
+	// ✅ YENİ EKLENEN: Mail klasörünü temizler (Inbox, Spam vs.)
+	static void clearFolder(String host, String username, String password, String folderName) {
+		Properties props = new Properties()
+		props.put("mail.store.protocol", "imaps")
+
+		Session session = Session.getInstance(props)
+		Store store = session.getStore("imaps")
+		store.connect(host, username, password)
+
+		Folder folder = store.getFolder(folderName)
+		folder.open(Folder.READ_WRITE)
+
+		Message[] messages = folder.getMessages()
+
+		if (messages.length > 0) {
+			println "🧹 $folderName klasöründen ${messages.length} mail siliniyor..."
+			for (Message msg : messages) {
+				msg.setFlag(Flags.Flag.DELETED, true)
+			}
+		} else {
+			println "📭 $folderName zaten boş"
+		}
+
+		folder.close(true) // true -> silinenleri expunge et
+		store.close()
+	}
 }

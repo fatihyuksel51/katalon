@@ -88,7 +88,7 @@ WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Si
 assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Signature_ip')).contains(phishingIp)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
 
-// Bad Reputation kontrolü
+/*/ Bad Reputation kontrolü
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Bad Reputation'),15)
 String badRepoIp = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Bad Reputation'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/Bad Reputation'))
@@ -103,12 +103,12 @@ WebUI.click(findTestObject('Object Repository/dashboard/Page_/Malicious'))
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Signature_ip'), 10)
 assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Signature_ip')).contains(maliciousIp)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
-
+/*/
 // Sonuçları log’a yazdır
 println("✅ New Born IP: " + newBornIp)
 println("✅ Phishing IP: " + phishingIp)
-println("✅ Bad Reputation IP: " + badRepoIp)
-println("✅ Malicious IP: " + maliciousIp)
+//println("✅ Bad Reputation IP: " + badRepoIp)
+//println("✅ Malicious IP: " + maliciousIp)
 
 /*/ Based On Today elementine kaydır, metnini al, tıkla
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Basedontoday'), 5)

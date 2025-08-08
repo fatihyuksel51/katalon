@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_Attack Flow</name>
+   <tag></tag>
+   <elementGuidId>fa4bb45f-634c-471c-aa1e-6848ac61a229</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/div[2]/main/div/aside/div/div[2]/a[4]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Attack Flow&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>9bd25450-ff66-4d1a-b04d-28a84c705deb</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>relative flex w-full gap-2 rounded-md p-2 hover:bg-background-item hover:text-primary</value>
+      <webElementGuid>dc11da3a-a10c-49e3-a231-0487a68bb57d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>/smartdeceptive/attack-flow</value>
+      <webElementGuid>5f5a388e-92bc-4dbb-96b8-290d9a4404ab</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Attack Flow</value>
+      <webElementGuid>d74d107f-270f-48ff-8332-e98c81b68625</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/div[@class=&quot;ml-24 mr-4 h-full pt-[89px]&quot;]/main[@class=&quot;z-[1] h-full&quot;]/div[@class=&quot;flex h-full w-full justify-between&quot;]/aside[@class=&quot;relative mr-4 hidden w-60 min-w-60 lg:block 2xl:w-80 2xl:min-w-80&quot;]/div[@class=&quot;sticky left-0 top-[89px] z-0&quot;]/div[@class=&quot;flex flex-col gap-1 rounded-md bg-card p-3 text-sm&quot;]/a[@class=&quot;relative flex w-full gap-2 rounded-md p-2 hover:bg-background-item hover:text-primary&quot;]</value>
+      <webElementGuid>9751f440-637d-4b26-8fdd-1b011f28cd4d</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/div[2]/main/div/aside/div/div[2]/a[4]</value>
+      <webElementGuid>bc24c95d-3d8e-40c7-8057-1fcd74d423c8</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Template Settings'])[1]/following::a[1]</value>
+      <webElementGuid>ee084424-4fca-4f19-bfcd-058f81734742</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Deception Operations'])[1]/following::a[2]</value>
+      <webElementGuid>23dd45ee-4098-43f3-a4a5-8fded27324f2</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Alarm List'])[1]/preceding::a[1]</value>
+      <webElementGuid>0fad5ff9-2f98-4f9a-8c27-a2137706cff8</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '/smartdeceptive/attack-flow')]</value>
+      <webElementGuid>990dfb18-a3f6-434f-876b-0b2e5b2ea2ec</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a[4]</value>
+      <webElementGuid>af4daf37-8030-4a74-89bf-8a3bdee1f449</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[@href = '/smartdeceptive/attack-flow' and (text() = 'Attack Flow' or . = 'Attack Flow')]</value>
+      <webElementGuid>0227c914-33e7-4f70-b07a-ac59999305cf</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

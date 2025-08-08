@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_G_relative flex h-62px w-72px flex-col it_4e65ff</name>
+   <tag></tag>
+   <elementGuidId>bb7ce59b-dd35-4c61-b593-1c0c1c0669e0</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='cpApp']/aside/nav/div/div/div/div[2]/button/a</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>.h-full > div > div:nth-child(2) > button > .relative</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>338de09f-3e25-434b-a4c2-c27c749297d9</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>relative flex h-[62px] w-[72px] flex-col items-center justify-center text-primary-foreground hover:bg-primary-dark hover:text-primary-hover</value>
+      <webElementGuid>9f437343-f3a5-4b08-b137-094d78845062</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>/threatway</value>
+      <webElementGuid>65993364-ab63-4e95-99aa-3b1d13b95581</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;cpApp&quot;)/aside[@class=&quot;fixed left-0 z-40 h-full&quot;]/nav[@class=&quot;flex h-full w-[72px] flex-col items-start justify-center border-background bg-primary bg-gradient-to-bl from-sidebar-from to-sidebar-to&quot;]/div[@class=&quot;relative overflow-hidden z-10 w-full flex-1 overflow-y-auto&quot;]/div[@class=&quot;h-full w-full rounded-[inherit]&quot;]/div[1]/div[@class=&quot;flex items-center justify-center&quot;]/button[1]/a[@class=&quot;relative flex h-[62px] w-[72px] flex-col items-center justify-center text-primary-foreground hover:bg-primary-dark hover:text-primary-hover&quot;]</value>
+      <webElementGuid>18142ff0-d756-4c0d-83a5-4faa28bdb0da</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='cpApp']/aside/nav/div/div/div/div[2]/button/a</value>
+      <webElementGuid>9b859b7e-a25e-414c-a920-9d2a2176de27</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='G'])[1]/following::a[3]</value>
+      <webElementGuid>fa8f1a84-1ad5-4157-8944-7ef621458dd1</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='⌘'])[2]/following::a[3]</value>
+      <webElementGuid>4d5c1c93-3765-4cc9-bb6b-d4b2ef03bd0a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ThreatWay'])[1]/preceding::a[1]</value>
+      <webElementGuid>773c7b09-78a6-4e17-8ee8-f260c437193f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '/threatway')]</value>
+      <webElementGuid>e7ee1aee-4803-448f-9c5c-1ea4263890c5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/button/a</value>
+      <webElementGuid>daccd883-5308-4765-a0ea-e9580d69ed85</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[@href = '/threatway']</value>
+      <webElementGuid>360a51d2-d78c-43e9-a482-a505330eff73</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
