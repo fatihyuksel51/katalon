@@ -85,7 +85,7 @@ if (argsList.contains("headless")) {
     WebUI.comment("👉 Normal modda: pencere maximize edildi.")
 }
 
-/*/ Login adımları
+ Login adımları
 WebUI.waitForElementClickable(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 40)
 WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
@@ -104,6 +104,7 @@ def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 
 WebUI.setText(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 WebUI.click(findTestObject('otp/Page_/button_Verify'))
+/*/
 
 // Login sonrası ana ekran elementini bekle
 if (WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/svg_G_lucide lucide-webhook h-6 w-6'), 30)) {
