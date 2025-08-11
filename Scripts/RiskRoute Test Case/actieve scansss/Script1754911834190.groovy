@@ -43,14 +43,14 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
 WebUI.maximizeWindow()
 
-/*/ Login işlemleri
+// Login işlemleri
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
 
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
