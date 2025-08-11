@@ -54,7 +54,8 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 import com.kms.katalon.core.configuration.RunConfiguration
-
+import com.kms.katalon.core.webui.driver.DriverFactory
+import org.openqa.selenium.JavascriptExecutor
 WebUI.openBrowser('')
 
 // IP adresini logla (opsiyonel)
@@ -67,6 +68,10 @@ try {
 
 // URL'ye git
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
+JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+js.executeScript("window.scrollTo(0, document.body.scrollHeight)")
+WebUI.delay(5)
+
 
 // Headless kontrolü
 def driverPrefs = RunConfiguration.getDriverPreferencesProperties()
@@ -80,7 +85,7 @@ if (argsList.contains("headless")) {
     WebUI.comment("👉 Normal modda: pencere maximize edildi.")
 }
 
-// Login adımları
+/*/ Login adımları
 WebUI.waitForElementClickable(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 40)
 WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
 
@@ -145,4 +150,5 @@ if (time1 != time2) {
 
 WebUI.switchToDefaultContent()
 WebUI.closeBrowser()
+/*/
 
