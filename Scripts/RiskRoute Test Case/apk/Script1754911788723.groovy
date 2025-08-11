@@ -141,7 +141,7 @@ try {
 
     // Tek sefer yükleme
     KeywordUtil.logInfo("📤 Dosya yükleniyor: " + filePath)
-    //WebUI.uploadFile(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadFile"), filePath)
+    WebUI.uploadFile(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadFile"), filePath)
 
     // Başarı mesajını bekle
     WebUI.waitForElementVisible(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadSuccess"), 20)
