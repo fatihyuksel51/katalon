@@ -108,10 +108,13 @@ WebUI.delay(1)
 WebUI.waitForPageLoad(30)
 
 // ----------------- GitHub -> TEMP'e indir -----------------
+// Dosya adı ve yolu
 String fileName = "bo.xapk"
-String fileUrl  = "https://raw.githubusercontent.com/fatihyuksl/apk/main/" + fileName
+String fileUrl = "https://raw.githubusercontent.com/fatihyuksl/apk/main/" + fileName
 
-Path tempDir  = Paths.get(System.getProperty("java.io.tmpdir"))
+// Temp klasörüne indir
+import java.nio.file.*
+Path tempDir = Paths.get(System.getProperty("java.io.tmpdir"))
 Path destPath = tempDir.resolve(fileName)
 Files.createDirectories(tempDir)
 
@@ -119,28 +122,38 @@ KeywordUtil.logInfo("📥 TEMP'e indiriliyor: " + destPath.toString())
 Files.copy(new URL(fileUrl).openStream(), destPath, StandardCopyOption.REPLACE_EXISTING)
 KeywordUtil.logInfo("✅ İndirme OK, boyut: " + Files.size(destPath) + " bayt")
 
-// ----------------- Dosyayı upload et -----------------
-// Gizli olabilir: görünür hale getir
-try {
-	WebUI.executeJavaScript("""
-	  var el = document.evaluate("//input[@type='file' and not(@disabled)]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-	  if (el && (getComputedStyle(el).display==='none' || getComputedStyle(el).visibility==='hidden' || el.offsetParent===null)) {
-	    el.style.display='block'; el.style.visibility='visible'; el.style.opacity='1'; el.style.position='fixed'; el.style.zIndex='99999'; el.style.left='-9999px'; el.style.width='1px'; el.style.height='1px';
-	  }
-	""", [])
-} catch (ignored) {}
+// File input görünür yap
+WebUI.executeJavaScript("""
+  var el = document.evaluate("//input[@type='file' and not(@disabled)]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  if (el) {
+    el.style.display='block';
+    el.style.visibility='visible';
+    el.style.opacity='1';
+    el.style.position='fixed';
+    el.style.zIndex='99999';
+    el.style.left='0px';
+    el.style.top='0px';
+    el.style.width='200px';
+    el.style.height='30px';
+  }
+""", [])
 
-TestObject fileInput = new TestObject('apkFileInput')
+// TestObject oluştur
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.ConditionType
+TestObject fileInput = new TestObject('dynamicFileInput')
 fileInput.addProperty('xpath', ConditionType.EQUALS, "//input[@type='file' and not(@disabled)]")
+
+// Yükleme işlemi
+WebUI.waitForElementPresent(fileInput, 10)
 WebUI.uploadFile(fileInput, destPath.toString())
 KeywordUtil.logInfo("📤 Upload tetiklendi: " + destPath.toString())
 
-// ----------------- CREATE butonuna bas (upload sonrası) -----------------
-if (WebUI.waitForElementClickable(findTestObject("Object Repository/Riskroute/APK Analyzer/button_CREATE"), 10, FailureHandling.OPTIONAL)) {
-    WebUI.click(findTestObject("Object Repository/Riskroute/APK Analyzer/button_CREATE"))
-}
-
-
+// CREATE butonuna tıkla
+TestObject createBtn = findTestObject('Object Repository/Riskroute/APK Analyzer/button_CREATE')
+WebUI.waitForElementClickable(createBtn, 10)
+WebUI.click(createBtn)
+KeywordUtil.logInfo("✅ CREATE butonuna basıldı")
 WebUI.delay(2)
 WebUI.waitForPageLoad(30)
 
