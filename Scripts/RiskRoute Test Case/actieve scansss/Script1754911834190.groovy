@@ -83,7 +83,26 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/scan-cron')
 WebUI.waitForPageLoad(30)
 
 //
-// Trigger butonuna bas
+// Scan Cron da Trigger butonuna bas
+// CREATE CRON butonu için TestObject oluştur
+TestObject EDİTBUTTON = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'bg-warning')]")
+
+// 10 saniyeye kadar görünür mü kontrol et
+if (WebUI.waitForElementVisible(EDİTBUTTON, 10, FailureHandling.OPTIONAL)) {
+	WebUI.comment("EDİTBUTTON butonu bulundu.")
+} else {
+	WebUI.comment("EDİTBUTTON butonu bulunamadı, sayfa yenileniyor...")
+	WebUI.refresh()
+	WebUI.waitForPageLoad(10)
+	
+	if (WebUI.waitForElementVisible(EDİTBUTTON, 10, FailureHandling.OPTIONAL)) {
+		WebUI.comment("EDİTBUTTON butonu refresh sonrası bulundu.")
+	} else {
+		KeywordUtil.markFailedAndStop("EDİTBUTTON butonu bulunamadı, test sonlandırılıyor.")
+	}
+}
+
+
 TestObject triggerButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'bg-emerald')]")
 WebUI.click(triggerButton)
 WebUI.comment("Trigger butonuna tıklandı")
