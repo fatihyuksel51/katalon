@@ -44,7 +44,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
-/*/ Tarayıcıyı aç ve siteye git
+// Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -76,7 +76,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_V
 WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
-/*/
+//
 
 // === TEST BAŞLANGICI ===
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
@@ -141,7 +141,7 @@ try {
 
     // Tek sefer yükleme
     KeywordUtil.logInfo("📤 Dosya yükleniyor: " + filePath)
-    WebUI.uploadFile(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadFile"), filePath)
+    //WebUI.uploadFile(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadFile"), filePath)
 
     // Başarı mesajını bekle
     WebUI.waitForElementVisible(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadSuccess"), 20)
