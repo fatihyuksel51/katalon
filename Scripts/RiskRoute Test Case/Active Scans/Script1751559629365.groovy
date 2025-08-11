@@ -43,21 +43,21 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-/*/ Tarayıcıyı aç ve siteye git
+// Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
 WebUI.maximizeWindow()
 
-// Login işlemleri
+/*/ Login işlemleri
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
 
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -78,15 +78,25 @@ WebUI.waitForPageLoad(30)
 
 //
 // Riskroute sekmesine tıkla
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/scan-cron')
 
 WebUI.waitForPageLoad(30)
 
+//
+// Trigger butonuna bas
+TestObject triggerButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'bg-emerald')]")
+WebUI.click(triggerButton)
+WebUI.comment("Trigger butonuna tıklandı")
+WebUI.delay(2)
+WebUI.click(findTestObject('Object Repository/Scan Cron/TRIGGER'))
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-/*/
-
+WebUI.waitForElementVisible(findTestObject('Object Repository/Scan Cron/Trigger Toast'), 15)
+WebUI.refresh()
+WebUI.delay(2)
+WebUI.waitForPageLoad(30)
 
 WebUI.delay(3)
+/*/
 
 WebUI.click(findTestObject('Object Repository/Scan/Scan'))
 
@@ -105,15 +115,18 @@ tableRowObj.addProperty("xpath", ConditionType.EQUALS, "(//div[contains(@class, 
 if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	
 	// Target textini al
-	TestObject targetCell = new TestObject()
-	targetCell.addProperty("xpath", ConditionType.EQUALS, "(//div[contains(@class, 'transition-colors hover')])[1]//div[@class='col-span-4 justify-left text-left flex items-center gap-2 text-sm truncate p-2']")
-	
-	String targetText = WebUI.getText(targetCell)
+	String targetToClick = "catchprobe.org"
+
+	TestObject rowContainingTarget = new TestObject()
+	rowContainingTarget.addProperty("xpath", ConditionType.EQUALS, "(//div[contains(@class, 'transition-colors hover') and .//div[text()='catchprobe.org']]//div)[2]")
+
+	WebUI.waitForElementPresent(rowContainingTarget, 10)
+	String targetText = WebUI.getText(rowContainingTarget)
 	println "Target: " + targetText
 	
 	// Go Scan detail butonuna tıkla
 	TestObject goScanButton = new TestObject()
-	goScanButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href, '/riskroute/recon')])[2]")
+	goScanButton.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'transition-colors hover') and .//div[text()='" + targetToClick + "']]//button[@data-state='closed']/a[contains(@href,'/riskroute/recon')]")
 	
 	WebUI.click(goScanButton)
 	
