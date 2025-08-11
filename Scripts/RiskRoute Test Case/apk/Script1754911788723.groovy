@@ -112,22 +112,48 @@ WebUI.delay(2)
 WebUI.waitForPageLoad(30)
 
 // ✅ TestCloud uyumlu dosya indirme
+// === Dosya yolu ayarları ===
 String projectDir = RunConfiguration.getProjectDir()
-String filePath = projectDir + "/Include/resources/bo.xapk"
-String githubRawUrl = "https://raw.githubusercontent.com/fatihyuksl/apk/main/bo.xapk"
+String resourcesDir = projectDir + "/Include/resources"
+String fileName = "bo.xapk"
+String filePath = resourcesDir + "/" + fileName
+String githubRawUrl = "https://raw.githubusercontent.com/fatihyuksl/apk/main/" + fileName
 
 try {
-	Files.createDirectories(Paths.get(projectDir + "/Include/resources"))
-	Files.copy(new URL(githubRawUrl).openStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING)
-	KeywordUtil.logInfo("✅ Dosya GitHub’dan indirildi: " + filePath)
-} catch (Exception e) {
-	KeywordUtil.markFailedAndStop("❌ GitHub’dan dosya indirilemedi: " + e.message)
-}
+    // Include/resources klasörünü oluştur
+    Files.createDirectories(Paths.get(resourcesDir))
 
+    // Öncelikle GitHub’dan indirmeyi dene
+    try {
+        KeywordUtil.logInfo("📥 GitHub’dan dosya indirilmeye çalışılıyor...")
+        Files.copy(new URL(githubRawUrl).openStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING)
+        KeywordUtil.logInfo("✅ GitHub’dan dosya indirildi: " + filePath)
+    } catch (Exception gitHubError) {
+        KeywordUtil.logInfo("⚠ GitHub’dan indirme başarısız: " + gitHubError.message)
+        
+        // Local fallback
+        if (!Files.exists(Paths.get(filePath))) {
+            KeywordUtil.markFailedAndStop("❌ Dosya ne GitHub’dan indirildi ne de localde bulundu.")
+        } else {
+            KeywordUtil.logInfo("✅ Local dosya bulundu: " + filePath)
+        }
+    }
+
+    // Tek sefer yükleme
+    KeywordUtil.logInfo("📤 Dosya yükleniyor: " + filePath)
+    WebUI.uploadFile(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadFile"), filePath)
+
+    // Başarı mesajını bekle
+    WebUI.waitForElementVisible(findTestObject("Object Repository/Riskroute/APK Analyzer/uploadSuccess"), 20)
+    KeywordUtil.logInfo("✅ Yükleme başarılı")
+
+} catch (Exception e) {
+    KeywordUtil.markFailedAndStop("❌ Hata: " + e.message)
+}
 // Dosya var mı kontrol et ve upload yap
 if (Files.exists(Paths.get(filePath))) {
 	KeywordUtil.logInfo("✅ Yüklenecek dosya bulundu: " + filePath)
-	WebUI.uploadFile(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadFile'), filePath)
+	//WebUI.uploadFile(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadFile'), filePath)
 	WebUI.verifyElementPresent(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadSuccess'), 10)
 } else {
 	KeywordUtil.markFailedAndStop("🚨 bo.xapk dosyası bulunamadı.")
