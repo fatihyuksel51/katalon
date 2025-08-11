@@ -27,6 +27,10 @@ import org.openqa.selenium.interactions.Actions
 import com.kms.katalon.core.configuration.RunConfiguration
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.net.URL
+import java.nio.file.StandardCopyOption
+import org.openqa.selenium.*
+
 
 // ✅ Fonksiyon: Scroll edip görünür hale getir
 def scrollToVisible(WebElement element, JavascriptExecutor js) {
@@ -107,18 +111,26 @@ WebUI.click(findTestObject('Object Repository/Riskroute/APK Analyzer/Create buto
 WebUI.delay(2)
 WebUI.waitForPageLoad(30)
 
-// ✅ TestCloud uyumlu dosya yolu
+// ✅ TestCloud uyumlu dosya indirme
 String projectDir = RunConfiguration.getProjectDir()
 String filePath = projectDir + "/Include/resources/bo.xapk"
+String githubRawUrl = "https://raw.githubusercontent.com/fatihyuksl/apk/main/bo.xapk"
 
-// Dosya var mı kontrol et
+try {
+	Files.createDirectories(Paths.get(projectDir + "/Include/resources"))
+	Files.copy(new URL(githubRawUrl).openStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING)
+	KeywordUtil.logInfo("✅ Dosya GitHub’dan indirildi: " + filePath)
+} catch (Exception e) {
+	KeywordUtil.markFailedAndStop("❌ GitHub’dan dosya indirilemedi: " + e.message)
+}
+
+// Dosya var mı kontrol et ve upload yap
 if (Files.exists(Paths.get(filePath))) {
 	KeywordUtil.logInfo("✅ Yüklenecek dosya bulundu: " + filePath)
 	WebUI.uploadFile(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadFile'), filePath)
 	WebUI.verifyElementPresent(findTestObject('Object Repository/Riskroute/APK Analyzer/uploadSuccess'), 10)
 } else {
-	KeywordUtil.markWarning("🚨 bo.xapk dosyası bulunamadı, upload adımı atlandı.")
-	assert false : "❌ Dosya bulunamadı, test sonlandırıldı."
+	KeywordUtil.markFailedAndStop("🚨 bo.xapk dosyası bulunamadı.")
 }
 
 // CREATE butonu
@@ -126,6 +138,7 @@ WebUI.click(findTestObject('Object Repository/Riskroute/APK Analyzer/button_CREA
 WebUI.delay(2)
 WebUI.waitForPageLoad(30)
 
+// ✅ Dosya adı kontrol
 String expectedFileName = "bo.xapk"
 TestObject fileNameCell = new TestObject()
 fileNameCell.addProperty("xpath", ConditionType.EQUALS,
