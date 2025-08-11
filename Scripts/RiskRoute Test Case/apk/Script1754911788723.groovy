@@ -4,7 +4,6 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberKW
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.model.FailureHandling as FailureHandling
 import com.kms.katalon.core.testcase.TestCase as TestCase
@@ -41,6 +40,39 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
+/*/ Tarayıcıyı aç ve siteye git
+WebUI.openBrowser('')
+
+WebUI.navigateToUrl('https://platform.catchprobe.org/')
+
+WebUI.maximizeWindow()
+
+// Login işlemleri
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+WebUI.delay(5)
+
+// OTP işlemi
+def randomOtp = (100000 + new Random().nextInt(900000)).toString()
+
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+
+WebUI.delay(5)
+
+WebUI.waitForPageLoad(30)
+/*/
 
 // === TEST BAŞLANGICI ===
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
@@ -104,7 +136,7 @@ assert actualFileName == expectedFileName : "❌ Dosya adı eşleşmiyor: " + ac
 
 // ✅ Status kontrol
 int retryCount = 0
-int maxRetries = 2
+int maxRetries = 4
 boolean isSuccess = false
 while (retryCount < maxRetries) {
 	TestObject statusCell = new TestObject()
