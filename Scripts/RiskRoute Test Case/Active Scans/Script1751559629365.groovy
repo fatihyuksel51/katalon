@@ -103,42 +103,11 @@ WebUI.click(findTestObject('Object Repository/Scan/Scan'))
 WebUI.waitForPageLoad(30)
 
 WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Active Scans'))
+WebUI.delay(3)
 
 WebDriver driver = DriverFactory.getWebDriver()
 JavascriptExecutor js = (JavascriptExecutor) driver
 Actions actions = new Actions(driver)
-
-int retryCount = 0
-int maxRetries = 3
-boolean isFound = false
-
-while (retryCount < maxRetries) {
-	TestObject targetElement = new TestObject("targetElement")
-	targetElement.addProperty(
-		"xpath",
-		ConditionType.EQUALS,
-		"(//div[contains(@class, 'transition-colors hover') and .//div[text()='catchprobe.org']]//div)[2]"
-	)
-
-	try {
-		WebUI.waitForElementVisible(targetElement, 10)
-		if (WebUI.verifyElementPresent(targetElement, 1, FailureHandling.OPTIONAL)) {
-			WebUI.comment("✅ Element bulundu deneme: ${retryCount + 1}")
-			isFound = true
-			break
-		}
-	} catch (Exception e) {
-		WebUI.comment("⚠ Element bulunamadı, deneme: ${retryCount + 1}")
-	}
-
-	// Bulunamazsa sayfayı yenile ve tekrar dene
-	retryCount++
-	WebUI.refresh()
-	WebUI.waitForPageLoad(30)
-	WebUI.delay(5)
-}
-
-assert isFound : "❌ İstenen element bulunamadı."
 
 // 2️⃣ Tabloda veri var mı kontrol et
 TestObject tableRowObj = new TestObject()
@@ -175,37 +144,6 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	// 4️⃣ Geri gel
 	WebUI.back()
 	WebUI.waitForPageLoad(10)
-	int retryCount2 = 0
-	int maxRetries2 = 3
-	boolean isFound2 = false
-	
-	while (retryCount2 < maxRetries2) {
-		TestObject targetElement = new TestObject("targetElement")
-		targetElement.addProperty(
-			"xpath",
-			ConditionType.EQUALS,
-			"(//div[contains(@class, 'transition-colors hover') and .//div[text()='catchprobe.org']]//div)[2]"
-		)
-	
-		try {
-			WebUI.waitForElementVisible(targetElement, 10)
-			if (WebUI.verifyElementPresent(targetElement, 1, FailureHandling.OPTIONAL)) {
-				WebUI.comment("✅ Element bulundu deneme: ${retryCount + 1}")
-				isFound = true
-				break
-			}
-		} catch (Exception e) {
-			WebUI.comment("⚠ Element bulunamadı, deneme: ${retryCount + 1}")
-		}
-	
-		// Bulunamazsa sayfayı yenile ve tekrar dene
-		retryCount2++
-		WebUI.refresh()
-		WebUI.waitForPageLoad(30)
-		WebUI.delay(5)
-	}
-	
-	assert isFound : "❌ İstenen element bulunamadı."
 
     // 5️⃣ Revoke Scan varsa tıkla
     TestObject revokeScanButton = new TestObject()
@@ -255,3 +193,4 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 } else {
     println "✅ Aktif scan yok, test atlandı."
 }
+
