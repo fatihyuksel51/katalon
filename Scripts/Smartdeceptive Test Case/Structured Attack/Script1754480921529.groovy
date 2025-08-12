@@ -186,7 +186,7 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	if (WebUI.waitForElementVisible(circle, 10)) {
 
 	// Elementi bul
-		WebElement circleelement = WebUI.findWebElement(circle, 10)
+		WebElement circleelement = WebUI.findWebElement(circle, 3)
 
 		// SVG içinde stroke attribute'u olan bir eleman olup olmadığını kontrol et
 		Boolean circleExistsRisk = WebUI.executeJavaScript(
@@ -212,7 +212,7 @@ WebUI.comment("🔍 Detay Testi Başladı")
 		WebUI.waitForPageLoad(10)
 		
 		WebUI.delay(2)
-		WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
+		WebUI.click(findTestObject('Object Repository/Smartdeceptive/İp close'))
 
 // 6️⃣ Detail on Leakmap butonuna tıkla
 TestObject leakmapBtn = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[@class='col-span-6 flex items-center justify-end md:col-span-2']//button")

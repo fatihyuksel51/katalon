@@ -293,7 +293,7 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	if (WebUI.waitForElementVisible(circle, 10)) {
 
 	// Elementi bul
-		WebElement circleelement = WebUI.findWebElement(circle, 10)
+		WebElement circleelement = WebUI.findWebElement(circle, 3)
 
     	// SVG içinde stroke attribute'u olan bir eleman olup olmadığını kontrol et
     	Boolean circleExistsRisk = WebUI.executeJavaScript(

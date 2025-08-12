@@ -13,6 +13,17 @@ import org.openqa.selenium.WebElement
 
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.TimeZone
+
+
+
+// === jakarta.mail classpath kontrolü (fail hızlı) ===
+try {
+  Class.forName('jakarta.mail.Session')
+  KeywordUtil.logInfo('✅ jakarta.mail classpath OK')
+} catch (ClassNotFoundException e) {
+  KeywordUtil.markFailedAndStop('❌ jakarta.mail bulunamadı. Jar dosyaları repo’da değil. Drivers veya Include/jars commit et ve tekrar dene.')
+}
 
 // === Yardımcı Fonksiyon ===
 WebElement safeScrollTo(TestObject to) {
@@ -89,6 +100,8 @@ TestObject cronDateObj = findTestObject('Object Repository/Scan Cron/LastCronAt'
 String cronDateStr = WebUI.getText(cronDateObj).trim()
 
 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm")
+dateFormat.setLenient(false)
+dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Istanbul"))  // <-- burası
 Date cronDate = dateFormat.parse(cronDateStr)
 Date now = new Date()
 
