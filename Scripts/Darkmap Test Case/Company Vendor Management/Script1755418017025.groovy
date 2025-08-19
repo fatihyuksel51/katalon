@@ -98,6 +98,7 @@ void setCheckbox(int idx, boolean shouldBeChecked){
 
 /* -------------------- TEST -------------------- */
 try{
+	/*/
   WebUI.openBrowser('')
   WebUI.navigateToUrl('https://platform.catchprobe.org/')
   WebUI.maximizeWindow()
@@ -115,6 +116,7 @@ try{
   WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
   WebUI.delay(8)
   WebUI.waitForPageLoad(15)
+  /*/
 
   // Sol menü → Company Vendor Management
   WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/company-vendor-management")

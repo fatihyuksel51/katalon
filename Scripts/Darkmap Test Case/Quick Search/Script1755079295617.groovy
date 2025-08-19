@@ -86,7 +86,7 @@ WebElement safeScrollTo(TestObject to) {
     return element
 }
 
-// ---------- TEST ----------
+/*/ ---------- TEST ----------
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -126,7 +126,7 @@ if (currentOrgText != 'Mail Test') {
 }
 WebUI.delay(3)
 WebUI.waitForPageLoad(20)
-
+/*/
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/quick-search')
 WebUI.delay(4)

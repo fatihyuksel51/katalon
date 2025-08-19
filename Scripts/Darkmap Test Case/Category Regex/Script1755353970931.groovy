@@ -96,6 +96,7 @@ void selectFromCombo(String btnXp, String filterKeys, String expectedText) {
 }
 
 /* ============ Test akışı ============ */
+/*/
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -113,6 +114,7 @@ WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 WebUI.delay(12)
 WebUI.waitForPageLoad(15)
+/*/
 
 // ---- Sayfaya git
 WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/category-regex')

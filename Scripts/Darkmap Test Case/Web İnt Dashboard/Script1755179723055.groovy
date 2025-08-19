@@ -299,6 +299,7 @@ void verifyPaginationByTotalCount(int totalCount) {
 
 /* =================== TEST =================== */
 try {
+	/*/
     WebUI.openBrowser('')
     WebUI.navigateToUrl('https://platform.catchprobe.org/')
     WebUI.maximizeWindow()
@@ -316,6 +317,7 @@ try {
     WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
     WebUI.delay(5)
     WebUI.waitForPageLoad(15)
+    /*/
 
     // ---- Webint Dashboard’a git ----
     WebUI.navigateToUrl('https://platform.catchprobe.org/webint-dashboard')

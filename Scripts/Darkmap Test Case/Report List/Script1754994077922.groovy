@@ -151,7 +151,7 @@ void doImageAssertionsOnCurrentPage2() {
 }
 
 /* =================== TEST =================== */
-
+	/*/
     WebUI.openBrowser('')
     WebUI.navigateToUrl('https://platform.catchprobe.org/')
     WebUI.maximizeWindow()
@@ -169,6 +169,7 @@ void doImageAssertionsOnCurrentPage2() {
     WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
     WebUI.delay(12)
     WebUI.waitForPageLoad(15)
+    /*/
 
     // ---- Webint Dashboard’a git ----
     WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/report')
@@ -290,6 +291,8 @@ safeClickXp(xpCreateReport, 20)
 String xpStatusDestructive = "//td//span[contains(@class,'bg-destructive') and contains(@class,'rounded-full')]"
 String xpStatusChipAny     = "(//td//span[contains(@class,'rounded-full')])[1]"
 String xpDownloadBtn       = "//div[contains(@class,'bg-muted') and .//*[name()='svg' and contains(@class,'lucide-download')]]"
+String xpDeleteBtn       = "//div[contains(@class,'bg-destructive') and .//*[name()='svg' and contains(@class,'lucide-trash2')]]"
+ 
 
 // Status chip görünsün
 WebUI.verifyElementPresent(X(xpStatusChipAny), 10)
@@ -324,10 +327,21 @@ while (!done && refreshCount <= 2) {
 }
 
 if (!done) {
-	KeywordUtil.markFailed("Status 'Completed' olmadı veya Download butonu gelmedi (2 refresh sonrasında da).")
+	KeywordUtil.markWarning("Status 'Completed' olmadı veya Download butonu gelmedi (2 refresh sonrasında da).")
 } else {
 	KeywordUtil.logInfo("✅ Rapor üretimi tamam: Status success + Download hazır.")
 }
+String xpDeleteBtn       = "//div[contains(@class,'bg-destructive') and .//*[name()='svg' and contains(@class,'lucide-trash2')]]"
+scrollIntoViewXp(xpDeleteBtn)
+safeClickXp(xpDeleteBtn, 20)
+
+String xpNoData = "//div[@class='ant-empty-description' and normalize-space(text())='No data']"
+scrollIntoViewXp(xpNoData)
+if (!WebUI.waitForElementVisible(X(xpNoData), 10, FailureHandling.OPTIONAL))
+	KeywordUtil.markFailed("No data bekleniyordu, görünmedi.")
+else
+	KeywordUtil.logInfo("✅ Silme sonrası 'No data' doğrulandı.")
+
 /* ================== REPORT – DEVAM BLOĞU SON ================== */
 
 

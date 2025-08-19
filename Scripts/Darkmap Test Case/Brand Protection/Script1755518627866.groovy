@@ -563,9 +563,10 @@ assert statusFinal.contains("not") : "Advertisor List final durum 'Not Verified'
 ignoreFlowAndValidate("//div[normalize-space(.)='Google']", 'Google')
 }
 
-
+/*/
 /************** TEST START **************/
 try {
+	/*/
     WebUI.openBrowser('')
 	WebUI.navigateToUrl(BASE_URL)
     WebUI.maximizeWindow()
@@ -583,6 +584,7 @@ try {
 	WebUI.waitForPageLoad(15)
 	String Threat = "//span[text()='Threat']"
 	WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
+	/*/
 
     // Navigate to Dashboard (assumes user is already authenticated or SSO)
     WebUI.navigateToUrl(DASHBOARD_URL)
