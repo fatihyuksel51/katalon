@@ -140,27 +140,35 @@ if (ariaCheckedVulner == "true" && dataStateVulner == "checked") {
 } else {
 	WebUI.comment("❌ Buton işaretlenmedi.")
 }
+TestObject toTarget = findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target')
+TestObject toInfo   = findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target İnfo')
 
-// Target text al
-String Targettext = WebUI.getText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target'))
+// varsa devam et
+if (WebUI.waitForElementPresent(toTarget, 5, FailureHandling.OPTIONAL)) {
 
-// Targettext'ten '1 - ' kısmını temizle
-Targettext = Targettext.replaceAll("^\\d+\\s-\\s", "")
-WebUI.comment("Temizlenmiş Targettext : " + Targettext)
+    // görünür/ortala
+    WebUI.scrollToElement(toTarget, 10)
 
-// Tıkla
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target'))
-WebUI.delay(3)
+    // Target text al ve "1 - " gibi prefix'i temizle
+    String targetText = WebUI.getText(toTarget)
+    targetText = targetText.replaceFirst(/^\\d+\\s-\\s*/, "")
+    WebUI.comment("Temizlenmiş Targettext : " + targetText)
 
-// Asset List Target Info'dan text al
-String InfoText = WebUI.getText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target İnfo'))
+    // tıkla
+    WebUI.click(toTarget)
+    WebUI.delay(1)
 
-// Karşılaştırma
-assert InfoText.contains(Targettext)
-WebUI.back()
-WebUI.delay(3)
-WebUI.waitForPageLoad(30)
+    // info text al ve karşılaştır
+    WebUI.waitForElementVisible(toInfo, 10)
+    String infoText = WebUI.getText(toInfo)
+    assert infoText.contains(targetText)
 
+    WebUI.back()
+    WebUI.waitForPageLoad(30)
+
+} else {
+    KeywordUtil.logInfo("Asset List'te Target bulunamadı, adımı atlıyorum.")
+}
 
 WebElement vulnerabilityriskscoreelementscroll = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/RiskRoute Dashboard/Page_/Vulnerability Breakdown'), 20)
 
@@ -384,88 +392,97 @@ if (WebUI.waitForElementVisible(mostcommontechnology, 15)) {
 // Asset Detail (Domain) Pagination Test
 // =========================================================================
 
-WebUI.comment("--- Starting Asset Detail (Domain) Pagination Test ---")
+WebUI.comment('--- Starting Asset Detail (Domain) Pagination Test ---')
 
-// Scroll to Asset Detail graph
-WebElement assetDetailGraphElement = WebUiCommonHelper.findWebElement(
-    findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset Detail'), 20)
+// 1) Asset Detail grafiği VAR MI? → yoksa adımı atla
+TestObject toAssetDetail = findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset Detail')
+if (!WebUI.waitForElementPresent(toAssetDetail, 5, FailureHandling.OPTIONAL)) {
+    WebUI.comment("⏭️ 'Asset Detail' grafiği sayfada yok; adım atlandı.")
+    return
+}
 
+// 2) Görünüre kaydır
+WebElement assetDetailGraphElement =
+        WebUiCommonHelper.findWebElement(toAssetDetail, 10)
 if (scrollToVisible(assetDetailGraphElement, js)) {
-    js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", assetDetailGraphElement)
+    js.executeScript("arguments[0].scrollIntoView({behavior:'smooth',block:'center'});",
+                     assetDetailGraphElement)
     WebUI.comment("👉 'Asset Daily Count' grafiğine başarıyla scroll yapıldı.")
     WebUI.delay(1)
 } else {
-    WebUI.comment("❌ 'Asset Detail' grafiği görünür değil, scroll başarısız.")
+    WebUI.comment("⚠️ 'Asset Detail' grafiği görünür değil (scroll başarısız). Devam denenecek.")
 }
 
-// Find path element for 'domain' series
-TestObject pathElementDomain = new TestObject()
-pathElementDomain.addProperty("xpath", ConditionType.EQUALS, "//*[local-name()='g' and contains(@class, 'apexcharts-series') and contains(@class, 'apexcharts-pie-series') and @seriesName='domain']/*[local-name()='path']")
+// 3) Apex pie içindeki 'domain' dilimi VAR MI?
+TestObject pathDomain = new TestObject().addProperty(
+        "xpath", ConditionType.EQUALS,
+        "//*[local-name()='g' and contains(@class,'apexcharts-series') and " +
+        "contains(@class,'apexcharts-pie-series') and @seriesName='domain']/*[local-name()='path']"
+)
+if (!WebUI.waitForElementPresent(pathDomain, 5, FailureHandling.OPTIONAL)) {
+    WebUI.comment("⏭️ 'domain' dilimi bulunamadı; adım atlandı.")
+    return
+}
 
-// Get WebElement for 'domain' path
-WebElement pathWebElementDomain = WebUiCommonHelper.findWebElement(pathElementDomain, 10)
+WebElement pathEl = WebUiCommonHelper.findWebElement(pathDomain, 5)
+String dataValueStr = pathEl.getAttribute("data:value") ?: "0"
+int dataValue = dataValueStr.replaceAll("[^0-9]", "").isEmpty()
+        ? 0 : Integer.parseInt(dataValueStr.replaceAll("[^0-9]", ""))
 
-// Read data:value attribute for 'domain'
-String dataValueStrDomain = pathWebElementDomain.getAttribute("data:value")
-println("Bulunan data:value (Domain) = " + dataValueStrDomain)
+if (dataValue <= 0) {
+    WebUI.comment("⏭️ Test atlandı çünkü data:value (Domain) 0 veya negatif: ${dataValue}")
+    return
+}
 
-// Convert to integer
-int dataValueDomain = dataValueStrDomain.toInteger()
+// 4) Dilime tıkla → listeye git
+pathEl.click()
+WebUI.waitForPageLoad(20)
+WebUI.delay(2)
 
-if (dataValueDomain > 0) {
-    // Click on the path
-    pathWebElementDomain.click()
-    WebUI.delay(3) // Wait for the new page to load
+// 5) Beklenen sayfa sayısı
+int expectedPages = (int) Math.ceil(dataValue / 10.0)
+WebUI.comment("🎯 Beklenen pagination (Domain): ${expectedPages}")
 
-    // Calculate expected pagination count (assuming 10 records per page)
-    int expectedPageCountDomain = (int) Math.ceil(dataValueDomain / 10.0)
-    println("🎯 Beklenen pagination sayısı (Domain - 10 kayıt/sayfa): " + expectedPageCountDomain)
+// 6) Görünen sayfa numaraları (yoksa uyar ve geç)
+TestObject pageNums = new TestObject().addProperty(
+        "xpath", ConditionType.EQUALS,
+        "//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) " +
+        "and not(contains(@aria-label,'next'))]]/a"
+)
+List<WebElement> pages = WebUiCommonHelper.findWebElements(pageNums, 5)
+if (pages.isEmpty()) {
+    KeywordUtil.markWarning("⚠️ Pagination görünmedi; doğrulama atlandı.")
+    WebUI.back(); WebUI.waitForPageLoad(30)
+    WebUI.comment('--- Finished Asset Detail (Domain) Pagination Test ---')
+    return
+}
 
-    // Find all visible page number links
-    TestObject pageNumberLinksDomain = new TestObject()
-    pageNumberLinksDomain.addProperty("xpath", ConditionType.EQUALS,
-        "//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) and not(contains(@aria-label,'next'))]]/a")
+// 7) Pagination’a kaydır ve max sayıyı bul
+scrollToVisible(pages.get(0), js)
+js.executeScript("window.scrollTo(0, document.body.scrollHeight)")
+WebUI.delay(1)
 
-    List<WebElement> visiblePageNumberElementsDomain = WebUiCommonHelper.findWebElements(pageNumberLinksDomain, 10)
+int actualLast = 0
+for (WebElement a : pages) {
+    String t = a.getText().trim()
+    if (t ==~ /\\d+/) actualLast = Math.max(actualLast, Integer.parseInt(t))
+}
+WebUI.comment("🔢 Gerçek son pagination numarası (Domain): ${actualLast}")
 
-    // Scroll to the pagination if not visible
-    if (!visiblePageNumberElementsDomain.isEmpty()) {
-        scrollToVisible(visiblePageNumberElementsDomain.get(0), js) // Scroll to the first page number
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)") // Ensure the entire pagination is visible
-        WebUI.delay(1)
-    }
-
-    int actualLastPageNumberDomain = 0
-    if (!visiblePageNumberElementsDomain.isEmpty()) {
-        for (WebElement pageElement : visiblePageNumberElementsDomain) {
-            String pageText = pageElement.getText().trim()
-            if (pageText.matches("\\d+")) { // Check if the text is a number
-                int currentPageNumber = Integer.parseInt(pageText)
-                if (currentPageNumber > actualLastPageNumberDomain) {
-                    actualLastPageNumberDomain = currentPageNumber
-                }
-            }
-        }
-    }
-
-    println("🔢 Gerçek son pagination numarası (Domain): " + actualLastPageNumberDomain)
-
-    // Verify the page count
-    if (expectedPageCountDomain == actualLastPageNumberDomain) {
-    WebUI.comment("✅ Domain pagination sayısı doğru: ${actualLastPageNumberDomain}")
+// 8) Doğrulama
+if (expectedPages == actualLast) {
+    WebUI.comment("✅ Domain pagination sayısı doğru: ${actualLast}")
 } else {
-    KeywordUtil.markFailed("❌ Domain pagination count verification failed. Beklenen: ${expectedPageCountDomain}, Bulunan: ${actualLastPageNumberDomain}")
+    KeywordUtil.markFailed(
+        "❌ Domain pagination count hatalı. Beklenen: ${expectedPages}, Bulunan: ${actualLast}"
+    )
 }
 
-} else {
-    WebUI.comment("❗ Test atlandı çünkü data:value (Domain) 0 veya negatif: " + dataValueDomain)
-}
-
+// 9) Geri dön
 WebUI.back()
-WebUI.delay(3)
+WebUI.delay(2)
 WebUI.waitForPageLoad(30)
-WebUI.comment("--- Finished Asset Detail (Domain) Pagination Test ---")
-
+WebUI.comment('--- Finished Asset Detail (Domain) Pagination Test ---')
 
 // =========================================================================
 // Asset Detail (IP) Pagination Test

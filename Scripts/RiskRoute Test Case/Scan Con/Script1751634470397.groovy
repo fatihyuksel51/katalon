@@ -44,6 +44,21 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
+WebElement safeScrollTo(TestObject to) {
+	if (to == null) {
+		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
+		return null
+	}
+	if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) {
+		KeywordUtil.logInfo("ℹ️ Element not present, scroll işlemi atlandı: ${to.getObjectId()}")
+		return null
+	}
+	WebElement element = WebUiCommonHelper.findWebElement(to, 5)
+	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
+	WebUI.delay(0.5)
+	return element
+}
 
 /*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
@@ -59,7 +74,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFO
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -163,6 +178,8 @@ WebUI.setText(TitleInput, "katalon")
 
 // 3️⃣ 'Scan' radio butonunu işaretle
 TestObject autoSelectButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//button[@role='checkbox' and contains(@class,'peer') and @type='button']")
+
+safeScrollTo(autoSelectButton)
 WebUI.click(autoSelectButton)
 WebUI.delay(1)
 

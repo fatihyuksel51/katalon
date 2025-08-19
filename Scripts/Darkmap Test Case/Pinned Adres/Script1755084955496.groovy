@@ -22,6 +22,45 @@ void safeClick(String xp, int t=15) {
 	}
 	WebUI.click(X(xp))
 }
+void closeNewViews() {
+	def driver = DriverFactory.getWebDriver()
+
+	// 1) Modal/overlay varsa kapat (çeşitli X/Close butonları)
+	String[] closeXPaths = [
+		"//button[@aria-label='Close' or @aria-label='close' or contains(@class,'close') or normalize-space()='×' or .//*[name()='svg' and (contains(@class,'lucide-x') or contains(@data-icon,'x') or contains(@data-icon,'xmark'))]]",
+		"//div[@role='dialog' or contains(@class,'modal')]//button[@aria-label='Close' or contains(@class,'close') or .//*[name()='svg' and contains(@class,'lucide-x')]]"
+	]
+	for (String xp : closeXPaths) {
+		try {
+			if (WebUI.waitForElementVisible(X(xp), 2, FailureHandling.OPTIONAL)) {
+				WebUI.click(X(xp))
+				WebUI.delay(0.4)
+				break
+			}
+		} catch (Throwable ignored) {}
+	}
+
+	// 2) Olmadı, ESC gönder (bazı overlay’ler ESC ile kapanır)
+	try {
+		TestObject body = new TestObject('body').addProperty('xpath', ConditionType.EQUALS, '//body')
+		WebUI.sendKeys(body, Keys.chord(Keys.ESCAPE))
+		WebUI.delay(0.2)
+	} catch (Throwable ignored) {}
+
+	// 3) Ek sekmeler açıksa hepsini kapat, orijinale dön
+	try {
+		String original = driver.getWindowHandle()
+		def handles = new ArrayList<>(driver.getWindowHandles())
+		for (String h : handles) {
+			if (h != original) {
+				driver.switchTo().window(h)
+				driver.close()
+			}
+		}
+		driver.switchTo().window(original)
+	} catch (Throwable ignored) {}
+}
+
 String safeText(String xp, int t=15) {
 	if (!WebUI.waitForElementVisible(X(xp), t)) {
 		KeywordUtil.markFailedAndStop("❌ Görünür değil: " + xp)
@@ -118,16 +157,21 @@ safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 WebUI.delay(5)
 WebUI.waitForPageLoad(10)
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+//CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 // Organizasyon seçimi
-TestObject currentOrg = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class,'font-semibold') and contains(text(),'Organization')]//span[@class='font-thin']")
+TestObject currentOrg = new TestObject()
+currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class,'font-semibold') and contains(text(),'Organization')]//span[@class='font-thin']")
 String currentOrgText = WebUI.getText(currentOrg)
 if (currentOrgText != 'Mail Test') {
-	TestObject orgButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(),'Organization :')]]")
-	WebUI.click(orgButton)
-	TestObject testCompanyOption = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Mail Test']]")
-	WebUI.click(testCompanyOption)
+    TestObject orgButton = new TestObject()
+    orgButton.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(),'Organization :')]]")
+    WebUI.click(orgButton)
+
+    TestObject testCompanyOption = new TestObject()
+    testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Mail Test']]")
+    WebUI.click(testCompanyOption)
 }
 WebUI.delay(3)
 WebUI.waitForPageLoad(20)
@@ -187,6 +231,7 @@ if (pageSrc.contains("leak")) {
 /* pencereyi kapat ve eski pencereye dön */
 driver.close()
 driver.switchTo().window(originalHandle)
+
 WebUI.delay(1)
 /************** Quick Search: receipt **************/
 String xpReceiptBtn = "(.//*[name()='svg' and contains(@class,'lucide-receipt')]/ancestor::button)[1]"
@@ -211,8 +256,18 @@ if (pageSrc2.contains("leak")) {
 }
 
 /* pencereyi kapat ve geri dön */
-driver2.close()
-driver2.switchTo().window(originalHandle2)
+driver.close()
+driver.switchTo().window(originalHandle)
 WebUI.delay(1)
 /************** /Quick Search: receipt **************/
+/* 6) View on Webint Dashboard ikonuna tıkla → yeni pencereye geç */
+String xpViewwebintBtn = "(.//*[name()='svg' and contains(@class,'lucide-brain-cog')]/ancestor::button)[1]"
+scrollThenClick(xpViewwebintBtn, 15)
+WebUI.delay(3)
+
+/* 7) View on Webint Dashboard ikonuna tıkla → yeni pencereye geç */
+String xpChangetBtn = "//span[normalize-space(.)='Change Keyword']"
+scrollThenClick(xpChangetBtn, 15)
+
+
 

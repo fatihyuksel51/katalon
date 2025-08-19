@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Company Vendor Management</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>06d0aedd-854f-4bd2-8bf8-76b85ca174f2</testCaseGuid>
+</TestCaseEntity>

@@ -80,7 +80,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
-/*/ Tarayıcıyı aç ve siteye git
+// Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.io/')
 WebUI.maximizeWindow()
@@ -104,7 +104,7 @@ WebUI.click(findTestObject('otp/Page_/button_Verify'))
 WebUI.delay(5)
 WebUI.waitForPageLoad(10)
 
-/*/
+//
 // Smartdeceptive sekmesine tıkla
 
 WebUI.navigateToUrl('https://platform.catchprobe.io/smartdeceptive')
@@ -262,7 +262,7 @@ if (scrollToVisible(assetDetailGraphElementMysql, js)) {
 // Find path element for 'MySQL Server' series
 TestObject pathElementMysql = new TestObject("pathElementMysql")
 pathElementMysql.addProperty("xpath", ConditionType.EQUALS,
-	"(//*[local-name()='g' and contains(@class, 'apexcharts-series') and contains(@class, 'apexcharts-pie-series') and @seriesName='PROTOCOL-SCADAxModbusxuser-definedxfunctionxcodex-x65xtox72']/*[local-name()='path'])[1]")
+	"(//*[local-name()='g' and contains(@class, 'apexcharts-series') and contains(@class, 'apexcharts-pie-series') and @seriesName='APP-DETECTxremotexdesktopxprotocolxattemptedxadministratorxconnectionxrequest']/*[local-name()='path'])[1]")
 
 // Get WebElement for 'MySQL Server' path
 WebElement pathWebElementMysql = WebUiCommonHelper.findWebElement(pathElementMysql, 10)
