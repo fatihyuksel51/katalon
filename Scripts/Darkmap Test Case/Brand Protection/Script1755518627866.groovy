@@ -754,5 +754,5 @@ try {
 		KeywordUtil.logInfo('LinkedIn total == 0, skipping list & pagination as requested')
 	}
 } finally {
-    WebUI.closeBrowser()
+    //WebUI.closeBrowser()
 }
