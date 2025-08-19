@@ -23,6 +23,7 @@ import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import org.openqa.selenium.WebDriver as WebDriver
 import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.util.KeywordUtil
+import org.openqa.selenium.interactions.Actions
 
 
 
@@ -37,6 +38,18 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 		currentScroll += 200
 	}
 	return isVisible
+}
+void safeScrollTo(TestObject to, int timeout = 10) {
+	WebElement el = WebUiCommonHelper.findWebElement(to, timeout)
+	((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript("arguments[0].scrollIntoView({block:'center'});", el)
+	WebUI.delay(0.3)
+}
+// Kısa yardımcılar
+TestObject xp(String x){ def to=new TestObject(); to.addProperty("xpath",ConditionType.EQUALS,x); return to }
+void pressEsc(){ new Actions(DriverFactory.getWebDriver()).sendKeys(Keys.ESCAPE).perform() }
+void waitOverlayGone(int timeout=10){
+  String overlayXp = "//div[@data-state='open' and contains(@class,'fixed') and contains(@class,'inset-0')]"
+  WebUI.waitForElementNotPresent(xp(overlayXp), timeout, FailureHandling.OPTIONAL)
 }
 
 /*/ Tarayıcıyı aç ve siteye git
@@ -143,28 +156,65 @@ if (ariaCheckedVulner == "true" && dataStateVulner == "checked") {
 TestObject toTarget = findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target')
 TestObject toInfo   = findTestObject('Object Repository/RiskRoute Dashboard/Page_/Asset List Target İnfo')
 
-// varsa devam et
-if (WebUI.waitForElementPresent(toTarget, 5, FailureHandling.OPTIONAL)) {
+// Drawer/Modal kök (uygunlaştır)
+String DRAWER_XP = "//div[contains(@class,'fixed') and contains(@class,'inset-0') and @data-state='open']"
+// Drawer kapama butonu (uygunlaştır)
+TestObject toDrawerClose = xp("//button[contains(@class,'right-4') and contains(@class,'ring')]")
 
-    // görünür/ortala
-    WebUI.scrollToElement(toTarget, 10)
+// List sayfasının URL’ini yakala (fallback için)
+String listUrlBefore = WebUI.getUrl()
 
-    // Target text al ve "1 - " gibi prefix'i temizle
+if (WebUI.waitForElementPresent(toTarget, 2, FailureHandling.OPTIONAL)) {
+
+    safeScrollTo(toTarget, 3)
+
+    // "1 - " tarzı prefixi temizle
     String targetText = WebUI.getText(toTarget)
-    targetText = targetText.replaceFirst(/^\\d+\\s-\\s*/, "")
+    targetText = targetText?.replaceFirst(/^\d+\s*-\s*/, "")
     WebUI.comment("Temizlenmiş Targettext : " + targetText)
 
-    // tıkla
+    // Tıkla
     WebUI.click(toTarget)
-    WebUI.delay(1)
 
-    // info text al ve karşılaştır
+    // Drawer mı açıldı?
+    boolean drawerOpened = WebUI.waitForElementPresent(xp(DRAWER_XP), 2, FailureHandling.OPTIONAL)
+
+    // Info görünene kadar kısa bekle
     WebUI.waitForElementVisible(toInfo, 10)
     String infoText = WebUI.getText(toInfo)
     assert infoText.contains(targetText)
 
-    WebUI.back()
-    WebUI.waitForPageLoad(30)
+    if (drawerOpened) {
+        // Drawer ise kapat → ESC, olmazsa X
+        pressEsc()
+        if (WebUI.waitForElementPresent(xp(DRAWER_XP), 1, FailureHandling.OPTIONAL)) {
+            if (WebUI.waitForElementClickable(toDrawerClose, 2, FailureHandling.OPTIONAL)) {
+                WebUI.click(toDrawerClose)
+            }
+        }
+        WebUI.waitForElementNotPresent(xp(DRAWER_XP), 10)
+        waitOverlayGone(5)
+        // Liste tekrar etkileşime hazır mı?
+        WebUI.waitForElementPresent(toTarget, 10, FailureHandling.OPTIONAL)
+
+    } else {
+        // Route değiştiyse geri dön → URL + çapa ile bekle (SPA uyumlu)
+        WebUI.back()
+        boolean backOk = false
+        for (int i=0; i<30; i++) { // ~15 sn
+            if (WebUI.getUrl() == listUrlBefore &&
+                WebUI.waitForElementPresent(toTarget, 1, FailureHandling.OPTIONAL)) {
+                backOk = true; break
+            }
+            WebUI.delay(0.5)
+        }
+        if (!backOk) {
+            // Fallback: liste URL’sine zorla git
+            WebUI.navigateToUrl(listUrlBefore)
+            WebUI.waitForElementPresent(toTarget, 15)
+        }
+        waitOverlayGone(5)
+    }
 
 } else {
     KeywordUtil.logInfo("Asset List'te Target bulunamadı, adımı atlıyorum.")
@@ -443,7 +493,8 @@ WebUI.delay(2)
 int expectedPages = (int) Math.ceil(dataValue / 10.0)
 WebUI.comment("🎯 Beklenen pagination (Domain): ${expectedPages}")
 
-// 6) Görünen sayfa numaraları (yoksa uyar ve geç)
+
+/*/ 6) Görünen sayfa numaraları (yoksa uyar ve geç)
 TestObject pageNums = new TestObject().addProperty(
         "xpath", ConditionType.EQUALS,
         "//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) " +
@@ -468,13 +519,43 @@ for (WebElement a : pages) {
     if (t ==~ /\\d+/) actualLast = Math.max(actualLast, Integer.parseInt(t))
 }
 WebUI.comment("🔢 Gerçek son pagination numarası (Domain): ${actualLast}")
+/*/
+
+// Find all visible page number links for IP
+TestObject pageNumberLinksDomain = new TestObject()
+pageNumberLinksDomain.addProperty("xpath", ConditionType.EQUALS,
+	"//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) and not(contains(@aria-label,'next'))]]/a")
+
+List<WebElement> visiblePageNumberElementsDomain = WebUiCommonHelper.findWebElements(pageNumberLinksDomain, 10)
+
+// Scroll to the pagination if not visible
+if (!visiblePageNumberElementsDomain.isEmpty()) {
+	scrollToVisible(visiblePageNumberElementsDomain.get(0), js) // Scroll to the first page number
+	js.executeScript("window.scrollTo(0, document.body.scrollHeight)") // Ensure the entire pagination is visible
+	WebUI.delay(1)
+}
+
+int actualLastPageNumberDomain = 0
+if (!visiblePageNumberElementsDomain.isEmpty()) {
+	for (WebElement pageElement : visiblePageNumberElementsDomain) {
+		String pageText = pageElement.getText().trim()
+		if (pageText.matches("\\d+")) { // Check if the text is a number
+			int currentPageNumber = Integer.parseInt(pageText)
+			if (currentPageNumber > actualLastPageNumberDomain) {
+				actualLastPageNumberDomain = currentPageNumber
+			}
+		}
+	}
+}
+
+println("🔢 Gerçek son pagination numarası (IP): " + actualLastPageNumberDomain)
 
 // 8) Doğrulama
-if (expectedPages == actualLast) {
-    WebUI.comment("✅ Domain pagination sayısı doğru: ${actualLast}")
+if (expectedPages == actualLastPageNumberDomain) {
+    WebUI.comment("✅ Domain pagination sayısı doğru: ${actualLastPageNumberDomain}")
 } else {
     KeywordUtil.markFailed(
-        "❌ Domain pagination count hatalı. Beklenen: ${expectedPages}, Bulunan: ${actualLast}"
+        "❌ Domain pagination count hatalı. Beklenen: ${expectedPages}, Bulunan: ${actualLastPageNumberDomain}"
     )
 }
 
