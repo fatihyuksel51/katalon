@@ -7,8 +7,13 @@ import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.common.WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-
 import org.openqa.selenium.*
+import org.openqa.selenium.interactions.Actions
+import java.util.Random
+import java.util.List
+import java.util.Map
+import groovy.transform.Field
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
 /* -------------------- Helpers -------------------- */
 TestObject X(String xp) { def to=new TestObject(xp); to.addProperty("xpath", ConditionType.EQUALS, xp); return to }
@@ -46,6 +51,10 @@ void closeNewViews() {
 boolean isPlaceholder(WebElement img) {
     def cur = js().executeScript("return arguments[0].currentSrc || arguments[0].src;", img) as String
     return cur == null || cur.contains("placeholder.webp")
+}
+boolean waitToast(int timeout=8){
+	String xpToast = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')][not(contains(@style,'display: none'))]"
+	return WebUI.waitForElementVisible(X(xpToast), timeout, FailureHandling.OPTIONAL)
 }
 WebElement findFirstRealThumbOnPage() {
     def driver = DriverFactory.getWebDriver()
@@ -150,30 +159,31 @@ void doImageAssertionsOnCurrentPage2() {
 	}
 }
 
-/* =================== TEST =================== */
-	/*/
-    WebUI.openBrowser('')
-    WebUI.navigateToUrl('https://platform.catchprobe.org/')
-    WebUI.maximizeWindow()
 
-    // ---- Login (repo’daki objeler) ----
-    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
-    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
-    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-    WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-    WebUI.delay(2)
-    String randomOtp = (100000 + new Random().nextInt(900000)).toString()
-    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-    WebUI.delay(12)
-    WebUI.waitForPageLoad(15)
-    /*/
+/*/
+WebUI.openBrowser('')
+WebUI.navigateToUrl("https://platform.catchprobe.org/")
+WebUI.maximizeWindow()
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+WebUI.delay(2)
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), 30)
+String randomOtp = (100000 + new Random().nextInt(900000)).toString()
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+WebUI.delay(5)
+WebUI.waitForPageLoad(15)
+String Threat = "//span[text()='Threat']"
+WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
+/*/
 
     // ---- Webint Dashboard’a git ----
-    WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/report')
-    WebUI.waitForPageLoad(20)
+WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/report')
+WebUI.waitForPageLoad(20)
 
 /* 1) Create */
 String xpCreateBtn = "//button[normalize-space(.)='Create'] | //a[normalize-space(.)='CREATE']"
@@ -291,7 +301,6 @@ safeClickXp(xpCreateReport, 20)
 String xpStatusDestructive = "//td//span[contains(@class,'bg-destructive') and contains(@class,'rounded-full')]"
 String xpStatusChipAny     = "(//td//span[contains(@class,'rounded-full')])[1]"
 String xpDownloadBtn       = "//div[contains(@class,'bg-muted') and .//*[name()='svg' and contains(@class,'lucide-download')]]"
-String xpDeleteBtn       = "//div[contains(@class,'bg-destructive') and .//*[name()='svg' and contains(@class,'lucide-trash2')]]"
  
 
 // Status chip görünsün
@@ -334,6 +343,9 @@ if (!done) {
 String xpDeleteBtn       = "//div[contains(@class,'bg-destructive') and .//*[name()='svg' and contains(@class,'lucide-trash2')]]"
 scrollIntoViewXp(xpDeleteBtn)
 safeClickXp(xpDeleteBtn, 20)
+String xpDeleteBtntext = "//button[normalize-space(.)='DELETE']"
+safeClickXp(xpDeleteBtntext, 10)
+waitToast(8)
 
 String xpNoData = "//div[@class='ant-empty-description' and normalize-space(text())='No data']"
 scrollIntoViewXp(xpNoData)

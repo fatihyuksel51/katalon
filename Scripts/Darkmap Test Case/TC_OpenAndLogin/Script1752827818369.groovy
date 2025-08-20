@@ -46,7 +46,12 @@ WebElement safeScrollTo(TestObject to) {
 	WebUI.delay(0.5)
 	return element
 }
-TestObject X(String x)  { return xp(x) }
+TestObject X(String xpath) {
+    TestObject to = new TestObject(xpath)
+    to.addProperty("xpath", ConditionType.EQUALS, xpath)
+    return to
+}
+
 
 // Başlangıç işlemleri
 WebUI.openBrowser('')
@@ -74,7 +79,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_V
 WebUI.delay(5)
 WebUI.waitForPageLoad(10)
 String Threat = "//span[text()='Threat']"
-WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
+WebUI.waitForElementVisible(X(Threat), 10, FailureHandling.OPTIONAL)
 
 
 // 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
