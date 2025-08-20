@@ -494,33 +494,6 @@ int expectedPages = (int) Math.ceil(dataValue / 10.0)
 WebUI.comment("🎯 Beklenen pagination (Domain): ${expectedPages}")
 
 
-/*/ 6) Görünen sayfa numaraları (yoksa uyar ve geç)
-TestObject pageNums = new TestObject().addProperty(
-        "xpath", ConditionType.EQUALS,
-        "//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) " +
-        "and not(contains(@aria-label,'next'))]]/a"
-)
-List<WebElement> pages = WebUiCommonHelper.findWebElements(pageNums, 5)
-if (pages.isEmpty()) {
-    KeywordUtil.markWarning("⚠️ Pagination görünmedi; doğrulama atlandı.")
-    WebUI.back(); WebUI.waitForPageLoad(30)
-    WebUI.comment('--- Finished Asset Detail (Domain) Pagination Test ---')
-    return
-}
-
-// 7) Pagination’a kaydır ve max sayıyı bul
-scrollToVisible(pages.get(0), js)
-js.executeScript("window.scrollTo(0, document.body.scrollHeight)")
-WebUI.delay(1)
-
-int actualLast = 0
-for (WebElement a : pages) {
-    String t = a.getText().trim()
-    if (t ==~ /\\d+/) actualLast = Math.max(actualLast, Integer.parseInt(t))
-}
-WebUI.comment("🔢 Gerçek son pagination numarası (Domain): ${actualLast}")
-/*/
-
 // Find all visible page number links for IP
 TestObject pageNumberLinksDomain = new TestObject()
 pageNumberLinksDomain.addProperty("xpath", ConditionType.EQUALS,
@@ -567,7 +540,7 @@ WebUI.comment('--- Finished Asset Detail (Domain) Pagination Test ---')
 
 // =========================================================================
 // Asset Detail (IP) Pagination Test
-// =========================================================================
+/*/ =========================================================================
 
 WebUI.comment("--- Starting Asset Detail (IP) Pagination Test ---")
 
@@ -654,7 +627,7 @@ WebUI.comment("--- Finished Asset Detail (IP) Pagination Test ---")
 
 WebUI.comment("--- Starting Alarm History (ScanxStart) Pagination Test ---")
 
-/*/ Scroll to Alarm History graph
+// Scroll to Alarm History graph
 WebElement alarmHistoryGraphElementScanStart = WebUiCommonHelper.findWebElement(
     findTestObject('Object Repository/RiskRoute Dashboard/Page_/Alarm History'), 20)
 

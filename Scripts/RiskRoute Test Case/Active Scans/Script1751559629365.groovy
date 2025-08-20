@@ -43,7 +43,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	return isVisible
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -65,7 +65,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_S
 
 WebUI.delay(5)
 
-/*/ OTP işlemi
+// OTP işlemi
 def randomOtp = (100000 + new Random().nextInt(900000)).toString()
 
 WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
@@ -98,12 +98,9 @@ WebUI.waitForPageLoad(30)
 WebUI.delay(3)
 /*/
 
-WebUI.click(findTestObject('Object Repository/Scan/Scan'))
-
-WebUI.waitForPageLoad(30)
-
-WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Active Scans'))
+WebUI.navigateToUrl('https://platform.catchprobe.org/scans/active-scans')
 WebUI.delay(3)
+WebUI.waitForPageLoad(10)
 
 WebDriver driver = DriverFactory.getWebDriver()
 JavascriptExecutor js = (JavascriptExecutor) driver

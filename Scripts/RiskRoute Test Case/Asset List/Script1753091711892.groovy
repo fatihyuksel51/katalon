@@ -62,14 +62,14 @@ WebElement safeScrollTo(TestObject to) {
 	return element
 }
 
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
 WebUI.maximizeWindow()
 
-/*/ Login işlemleri
+// Login işlemleri
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
 
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
@@ -96,12 +96,12 @@ WebUI.delay(5)
 WebUI.waitForPageLoad(30)
 
 /*/
-// Riskroute sekmesine tıkla
+/*/ Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
 WebUI.delay(3)
 
-/*/
+//
 safeScrollTo(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
 WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
 WebUI.delay(2)
