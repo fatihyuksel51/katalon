@@ -577,6 +577,8 @@ try {
 	WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 	WebUI.delay(2)
+	
+	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), 30)
 	String randomOtp = (100000 + new Random().nextInt(900000)).toString()
 	WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
@@ -603,6 +605,15 @@ try {
 
         // Pagination validation (per requirements: total/10)
         assertPaginationBasic(gTotal, 10)
+		TestObject mediaBtn = X("//button[.//span[normalize-space(.)='Select Page Name']]")
+		clickTO(mediaBtn)
+		WebUI.waitForPageLoad(20)
+		WebUI.delay(1.5)
+		TestObject FilterBtn = X("(//div[contains(@class,'items-center') and contains(.,'Teknosa')])[2]")
+		clickTO(FilterBtn)
+		WebUI.waitForPageLoad(20)
+		
+		WebUI.delay(1.5)
 
         // Go to page 2 if exists
         if (exists(X("//a[normalize-space(.)='2' or @aria-label='Page 2']"), 2)) {

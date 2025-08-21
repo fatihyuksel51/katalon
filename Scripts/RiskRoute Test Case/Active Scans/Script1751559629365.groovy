@@ -42,6 +42,12 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
+TestObject X(String xp) {
+	TestObject to = new TestObject(xp)
+	to.addProperty("xpath", ConditionType.EQUALS, xp)
+	return to
+}
+
 
 /*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
@@ -76,14 +82,14 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-//
-// Riskroute sekmesine tıkla
+/*/
+/*/ Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/scan-cron')
 
 WebUI.waitForPageLoad(30)
 
-//
-// Trigger butonuna bas
+/*/
+/*/ Trigger butonuna bas
 TestObject triggerButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'bg-emerald')]")
 WebUI.click(triggerButton)
 WebUI.comment("Trigger butonuna tıklandı")
@@ -109,6 +115,20 @@ Actions actions = new Actions(driver)
 // 2️⃣ Tabloda veri var mı kontrol et
 TestObject tableRowObj = new TestObject()
 tableRowObj.addProperty("xpath", ConditionType.EQUALS, "(//div[contains(@class, 'group relative mb-2')])[2]")
+
+
+String xpSearch   = "//button[.//span[normalize-space(.)='Search'] or normalize-space(.)='SEARCH']"
+// 1) 10 sn bekle; gelmezse refresh
+if (!WebUI.waitForElementVisible(X(xpSearch), 10, FailureHandling.OPTIONAL)) {
+	KeywordUtil.logInfo("🔄 Arama input'u görünmedi (10 sn). Sayfa refresh ediliyor...")
+	WebUI.refresh()
+	WebUI.waitForPageLoad(20)
+	WebUI.delay(1)
+
+	if (!WebUI.waitForElementVisible(X(xpSearch), 10, FailureHandling.OPTIONAL)) {
+		KeywordUtil.markFailedAndStop("Arama input'u refresh sonrası da görünmedi.")
+	}
+}
 
 if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	
@@ -141,10 +161,30 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	// 4️⃣ Geri gel
 	WebUI.back()
 	WebUI.waitForPageLoad(10)
+	
+	// 6️⃣ Revoke Cron varsa tıkla
+	TestObject revokeCronButton = new TestObject()
+	revokeCronButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href, '/scans/active-scans')])[1]")
+
+	if (WebUI.verifyElementPresent(revokeCronButton, 5, FailureHandling.OPTIONAL)) {
+		println "🟠 Revoke Cron butonu bulundu, tıklanıyor..."
+		WebUI.click(revokeCronButton)
+		WebUI.delay(1)
+
+		// Revoke confirm butonu
+		WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Revoke'))
+		WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Active Scan/Revoke succes'), 15)
+
+		// Kapat
+		WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
+		WebUI.refresh()
+		WebUI.delay(1)
+		WebUI.waitForPageLoad(10)
+	}
 
     // 5️⃣ Revoke Scan varsa tıkla
     TestObject revokeScanButton = new TestObject()
-    revokeScanButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href,'/active-scans')])[2]")
+    revokeScanButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href,'/active-scans')])[1]")
 
     if (WebUI.verifyElementPresent(revokeScanButton, 5, FailureHandling.OPTIONAL)) {
         println "🟠 Revoke Scan butonu bulundu, tıklanıyor..."
@@ -162,25 +202,7 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
         WebUI.waitForPageLoad(10)
     }
 
-    // 6️⃣ Revoke Cron varsa tıkla
-    TestObject revokeCronButton = new TestObject()
-    revokeCronButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href, '/scans/active-scans')])[1]")
 
-    if (WebUI.verifyElementPresent(revokeCronButton, 5, FailureHandling.OPTIONAL)) {
-        println "🟠 Revoke Cron butonu bulundu, tıklanıyor..."
-        WebUI.click(revokeCronButton)
-        WebUI.delay(1)
-
-        // Revoke confirm butonu
-        WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Revoke'))
-        WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Active Scan/Revoke succes'), 15)
-
-        // Kapat
-        WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
-        WebUI.refresh()
-        WebUI.delay(1)
-        WebUI.waitForPageLoad(10)
-    }
 
     // 7️⃣ Tablo kalmadıysa testi bitir
     if (!WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {

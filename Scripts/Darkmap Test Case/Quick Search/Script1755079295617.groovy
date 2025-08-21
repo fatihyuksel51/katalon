@@ -132,6 +132,16 @@ WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/quick-search')
 WebUI.delay(4)
 WebUI.waitForPageLoad(20)
 
+// 1) Quick Search search adresi
+String xpAddresBtn = "//input[@name='html_content']"
+WebUI.waitForElementClickable(X(xpAddresBtn), 20)
+WebUI.setText(X(xpAddresBtn), "leak")
+WebUI.delay(0.8)
+String xpSearch   = "//button[.//span[normalize-space(.)='Search'] or normalize-space(.)='Search']"
+safeClick(xpSearch)
+
+KeywordUtil.logInfo("📌 İlk adres: " + xpAddresBtn)
+
 // 1) Quick Search adresi
 String xpAddrBtn = "//button[contains(@class,'text-text-link') and contains(.,'http')]"
 WebUI.waitForElementClickable(X(xpAddrBtn), 20)

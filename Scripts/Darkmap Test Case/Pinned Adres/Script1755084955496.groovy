@@ -1,136 +1,147 @@
-import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.model.FailureHandling
 import com.kms.katalon.core.testobject.ConditionType
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.common.WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.Keys
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebElement
-import org.openqa.selenium.Keys as Keys
+
+import org.openqa.selenium.Keys
+
+import java.util.Locale
+import java.util.Arrays          // <-- eklendi (JS click param için)
+import java.util.Random
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import com.kms.katalon.core.model.FailureHandling   // <-- OPTIONAL için şart
 
-// ---------- helpers ----------
+import java.util.List
+import java.util.Random
+
+// ========================= helpers =========================
 TestObject X(String xp) {
-	TestObject to = new TestObject(xp)
-	to.addProperty("xpath", ConditionType.EQUALS, xp)
-	return to
-}
-void safeClick(String xp, int t=15) {
-	if (!WebUI.waitForElementClickable(X(xp), t)) {
-		KeywordUtil.markFailedAndStop("❌ Tıklanabilir değil: " + xp)
-	}
-	WebUI.click(X(xp))
-}
-void closeNewViews() {
-	def driver = DriverFactory.getWebDriver()
-
-	// 1) Modal/overlay varsa kapat (çeşitli X/Close butonları)
-	String[] closeXPaths = [
-		"//button[@aria-label='Close' or @aria-label='close' or contains(@class,'close') or normalize-space()='×' or .//*[name()='svg' and (contains(@class,'lucide-x') or contains(@data-icon,'x') or contains(@data-icon,'xmark'))]]",
-		"//div[@role='dialog' or contains(@class,'modal')]//button[@aria-label='Close' or contains(@class,'close') or .//*[name()='svg' and contains(@class,'lucide-x')]]"
-	]
-	for (String xp : closeXPaths) {
-		try {
-			if (WebUI.waitForElementVisible(X(xp), 2, FailureHandling.OPTIONAL)) {
-				WebUI.click(X(xp))
-				WebUI.delay(0.4)
-				break
-			}
-		} catch (Throwable ignored) {}
-	}
-
-	// 2) Olmadı, ESC gönder (bazı overlay’ler ESC ile kapanır)
-	try {
-		TestObject body = new TestObject('body').addProperty('xpath', ConditionType.EQUALS, '//body')
-		WebUI.sendKeys(body, Keys.chord(Keys.ESCAPE))
-		WebUI.delay(0.2)
-	} catch (Throwable ignored) {}
-
-	// 3) Ek sekmeler açıksa hepsini kapat, orijinale dön
-	try {
-		String original = driver.getWindowHandle()
-		def handles = new ArrayList<>(driver.getWindowHandles())
-		for (String h : handles) {
-			if (h != original) {
-				driver.switchTo().window(h)
-				driver.close()
-			}
-		}
-		driver.switchTo().window(original)
-	} catch (Throwable ignored) {}
+    TestObject to = new TestObject(xp)
+    to.addProperty("xpath", ConditionType.EQUALS, xp)
+    return to
 }
 
-String safeText(String xp, int t=15) {
-	if (!WebUI.waitForElementVisible(X(xp), t)) {
-		KeywordUtil.markFailedAndStop("❌ Görünür değil: " + xp)
-	}
-	return WebUI.getText(X(xp)).trim()
+void safeClick(String xp, int t = 15) {
+    if (!WebUI.waitForElementClickable(X(xp), t, FailureHandling.OPTIONAL)) {
+        KeywordUtil.markFailedAndStop("❌ Tıklanabilir değil: " + xp)
+    }
+    WebUI.click(X(xp))
 }
-void waitToast(String contains, int t=10) {
-	String toastXp = "//*[contains(@class,'toast') or contains(@class,'alert') or contains(@class,'notification')][contains(.,'"+contains+"')]"
-	WebUI.waitForElementVisible(X(toastXp), t, FailureHandling.OPTIONAL)
+
+String safeText(String xp, int t = 15) {
+    if (!WebUI.waitForElementVisible(X(xp), t, FailureHandling.OPTIONAL)) {
+        KeywordUtil.markFailedAndStop("❌ Görünür değil: " + xp)
+    }
+    return WebUI.getText(X(xp)).trim()
 }
+
 void scrollIntoView(String xp) {
-	def el = WebUiCommonHelper.findWebElement(X(xp), 5)
-	((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript("arguments[0].scrollIntoView({block:'center'});", el)
-}
-// ✅ Güvenli scroll fonksiyonu (Repository objeleri için)
-WebElement safeScrollTo(TestObject to) {
-	if (to == null) {
-		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
-		return null
-	}
-	if (!WebUI.waitForElementPresent(to, 2, FailureHandling.OPTIONAL)) {
-		KeywordUtil.logInfo("ℹ️ Element not present, scroll atlandı: ${to.getObjectId()}")
-		return null
-	}
-	WebElement element = WebUiCommonHelper.findWebElement(to, 2)
-	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
-	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
-	WebUI.delay(0.5)
-	return element
-}
-
-/************** Quick Search: leak + pagination + fingerprint **************/
-void scrollToBottomQS() {
+    WebElement el = WebUiCommonHelper.findWebElement(X(xp), 10)
     ((JavascriptExecutor) DriverFactory.getWebDriver())
-        .executeScript("window.scrollTo(0, document.body.scrollHeight)")
-}
-void zoomOutPage() {
-	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
-	js.executeScript("document.body.style.zoom='0.85'")
-}
-// Sadece END tuşu spami (window/inner scroll yakalasın diye body'ye gönder)
-void endSpam(int times = 10, double pause = 0.2) {
-	TestObject body = new TestObject('body').addProperty('xpath', ConditionType.EQUALS, '//body')
-	for (int i = 0; i < times; i++) {
-		WebUI.sendKeys(body, Keys.chord(Keys.END))
-		WebUI.delay(pause)
-	}
-	// küçük bir fallback: aktif elemana da bir-iki kez gönder
-	try {
-		def driver = DriverFactory.getWebDriver()
-		for (int i = 0; i < 2; i++) {
-			driver.switchTo().activeElement().sendKeys(Keys.END)
-			WebUI.delay(pause)
-		}
-	} catch (Throwable ignore) {}
-}
-void scrollThenClick(String xp, int t=15) {
-	WebUI.waitForElementPresent(X(xp), t, FailureHandling.OPTIONAL)
-	WebUI.waitForElementVisible(X(xp), t)
-	scrollIntoView(xp)
-	ensureClickableAndClick(xp, t)
+            .executeScript("arguments[0].scrollIntoView({block:'center'});", el)
 }
 
-void ensureClickableAndClick(String xp, int t=15) {
-	if (!WebUI.waitForElementClickable(X(xp), t)) {
-		KeywordUtil.markFailedAndStop("❌ Tıklanabilir değil: " + xp)
-	}
-	WebUI.click(X(xp))
+WebElement safeScrollTo(TestObject to) {
+    if (to == null) {
+        KeywordUtil.markFailed("❌ TestObject NULL")
+        return null
+    }
+    if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) return null
+    WebElement el = WebUiCommonHelper.findWebElement(to, 5)
+    ((JavascriptExecutor) DriverFactory.getWebDriver())
+            .executeScript("arguments[0].scrollIntoView({block:'center'});", el)
+    WebUI.delay(0.5)
+    return el
 }
-// ---------- TEST ----------
+
+boolean waitToastContains(String txt, int timeout = 10) {
+    String xp = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')]" +
+            "[not(contains(@style,'display: none'))]//*[contains(normalize-space(.), '" + txt.replace("'", "\\'") + "')]"
+    return WebUI.waitForElementVisible(X(xp), timeout, FailureHandling.OPTIONAL)
+}
+
+boolean waitToast(int timeout = 8) {
+    String xpToast = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')][not(contains(@style,'display: none'))]"
+    return WebUI.waitForElementVisible(X(xpToast), timeout, FailureHandling.OPTIONAL)
+}
+
+void clearAndType(String xp, String value) {
+    TestObject to = X(xp)
+    WebUI.click(to)
+    try {
+        WebUI.clearText(to)
+    } catch (Throwable ignore) {
+        boolean isMac = System.getProperty("os.name")?.toLowerCase()?.contains("mac")
+        Keys mod = isMac ? Keys.COMMAND : Keys.CONTROL
+        WebUI.sendKeys(to, Keys.chord(mod, "a"))
+        WebUI.sendKeys(to, Keys.chord(Keys.DELETE))
+    }
+    WebUI.setText(to, value)
+}
+
+String xpLiteral(String s) {
+    return s.contains("'") ? 'concat(\'' + s.replace("'", '\',"\'' ) + '\')' : "'" + s + "'"
+}
+
+// ---------- Kart/Index yardımcıları ----------
+String basePinButtonsXp() {
+    return "(//button[.//*[name()='svg' and contains(@class,'lucide') and contains(@class,'pin')]])"
+}
+String xpPinBtnByIndex(int i) {
+    return basePinButtonsXp() + "[" + i + "]"
+}
+String xpAddrByIndex(int i) {
+    return "(//button[contains(@class,'text-text-link') and contains(.,'http')])[" + i + "]"
+}
+String cardRootByPinIndex(int i) {
+    return "(" + xpPinBtnByIndex(i) + "/ancestor::*[contains(@class,'rounded') or contains(@class,'border') or contains(@class,'shadow')][1])"
+}
+
+boolean isButtonDisabled(WebElement btn) {
+    String cls   = (btn.getAttribute("class") ?: "")
+    String style = (btn.getAttribute("style") ?: "")
+    String aria  = (btn.getAttribute("aria-disabled") ?: "")
+    boolean disabledAttr = (btn.getAttribute("disabled") != null) || aria.equalsIgnoreCase("true")
+    boolean disabledCss  = cls.contains("pointer-events-none") ||
+            cls.contains("opacity-50") ||
+            cls.matches("(?is).*\\bdisabled\\b.*") ||
+            style.contains("pointer-events: none")
+    return disabledAttr || disabledCss
+}
+
+/** basePinButtonsXp() içindeki ilk tıklanabilir pini bulur (1..maxTry). Bulursa index döner, yoksa -1 */
+int findFirstClickablePinIndex(int maxTry = 12) {
+    for (int i = 1; i <= maxTry; i++) {
+        String xp = xpPinBtnByIndex(i)
+        if (!WebUI.waitForElementPresent(X(xp), 2, FailureHandling.OPTIONAL)) break
+        try {
+            WebElement btn = WebUiCommonHelper.findWebElement(X(xp), 5)
+            if (isButtonDisabled(btn)) continue
+            if (WebUI.waitForElementClickable(X(xp), 3, FailureHandling.OPTIONAL)) return i
+        } catch (Throwable ignore) { /* denemeye devam */ }
+    }
+    return -1
+}
+
+/** Quick Search’te kullanılacak: tıklanabilir pin’i olan ilk kartın index’i */
+int pickUsableCardIndex(int maxTry = 12) {
+    int idx = findFirstClickablePinIndex(maxTry)
+    if (idx == -1) {
+        KeywordUtil.markFailedAndStop("Tıklanabilir pin butonu bulunamadı (ilk " + maxTry + " kart confidential/disabled olabilir).")
+    }
+    if (idx > 1) KeywordUtil.logInfo("ℹ️ İlk sonuç(lar) confidential/disabled. " + idx + ". karta geçiliyor.")
+    return idx
+}
+
+// ========================= TEST =========================
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -157,117 +168,197 @@ safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 WebUI.delay(5)
 WebUI.waitForPageLoad(10)
-//CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
-
-// Organizasyon seçimi
-TestObject currentOrg = new TestObject()
-currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class,'font-semibold') and contains(text(),'Organization')]//span[@class='font-thin']")
+// Organizasyon
+TestObject currentOrg = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class,'font-semibold') and contains(text(),'Organization')]//span[@class='font-thin']")
 String currentOrgText = WebUI.getText(currentOrg)
 if (currentOrgText != 'Mail Test') {
-    TestObject orgButton = new TestObject()
-    orgButton.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(),'Organization :')]]")
+    TestObject orgButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(),'Organization :')]]")
     WebUI.click(orgButton)
-
-    TestObject testCompanyOption = new TestObject()
-    testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Mail Test']]")
+    TestObject testCompanyOption = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Mail Test']]")
     WebUI.click(testCompanyOption)
 }
 WebUI.delay(3)
 WebUI.waitForPageLoad(20)
 
-
+// === QUICK SEARCH ===
 WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/quick-search')
 WebUI.delay(4)
 WebUI.waitForPageLoad(20)
 
+// Kart seçim (ilk tıklanabilir pin’i olan kart)
+int cardIdx = pickUsableCardIndex(12)
 
-/* 1) Arama kutusuna 'leak' yaz + Enter */
-String xpSearchInput = "//input[@name='html_content' and (contains(@placeholder,'Enter a Keyword to Search') or contains(@aria-aria-describedby,'item') or contains(@class,'flex'))]"
-WebUI.waitForElementVisible(X(xpSearchInput), 20)
-WebUI.setText(X(xpSearchInput), "leak")
-WebUI.sendKeys(X(xpSearchInput), Keys.chord(Keys.ENTER))
+// Seçilen kartın adresi
+String firstAddr = safeText(xpAddrByIndex(cardIdx))
+KeywordUtil.logInfo("📌 Seçilen kart (" + cardIdx + ") adres: " + firstAddr)
+
+// PIN
+String xpPinBtn = xpPinBtnByIndex(cardIdx)
+scrollIntoView(xpPinBtn)
+safeClick(xpPinBtn)
+
+// Pin/Unpin diyaloğu
+String xpYesInDialog = "//button[@type='button' and normalize-space(text())='YES']"
+if (WebUI.waitForElementVisible(X(xpYesInDialog), 10, FailureHandling.OPTIONAL)) {
+    safeClick(xpYesInDialog)
+}
+// Toast (opsiyonel)
+waitToastContains("Pinned", 10)
+waitToastContains("Unpinned", 10)
+
+// TAG paneli (seçili kartın içinden)
+String cardRoot = cardRootByPinIndex(cardIdx)
+String xpTagBtn = "(" + cardRoot + "//button[.//*[name()='svg' and contains(@class,'lucide-tag')]])[1]"
+safeClick(xpTagBtn)
+
+// Create Tag → “Katalon”
+String xpCreateTagBtn = "//button[normalize-space()='Create tag' or normalize-space()='CREATE TAG']"
+if (WebUI.waitForElementVisible(X(xpCreateTagBtn), 5, FailureHandling.OPTIONAL)) { safeClick(xpCreateTagBtn) }
+String xpTagInput = "//input[@type='text' and (contains(@placeholder,'Tag') or contains(@aria-label,'Tag') or contains(@class,'input'))]"
+WebUI.setText(X(xpTagInput), "Katalon")
+String xpCreateBtn = "//button[normalize-space()='CREATE' or normalize-space()='Create']"
+safeClick(xpCreateBtn)
+waitToastContains("Tag created", 10)
+
+// “Katalon” switch ON + Mark as Seen
+String xpKatalonSwitch = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button) and (@aria-checked='false' or not(@aria-checked))]"
+safeClick(xpKatalonSwitch)
+String xpKatalonSwitchOn = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='true']"
+WebUI.verifyElementPresent(X(xpKatalonSwitchOn), 10)
+String xpMarkSeen = "//button[normalize-space()='Mark as Seen']"
+safeClick(xpMarkSeen)
+waitToastContains("Tags saved", 10)
+
+// Filter Options
+String xpFilterOpts = "//button[normalize-space()='FILTER OPTIONS' or contains(translate(normalize-space(.),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'FILTER OPTIONS')]"
+WebUI.waitForElementClickable(X(xpFilterOpts), 20)
+safeClick(xpFilterOpts)
+
+String xpSelectTags = "//button[.//span[normalize-space(text())='Select Tags'] or contains(@class,'select')][1]"
+safeClick(xpSelectTags)
+String xpTagKatalonInList = "//*[contains(@role,'option') or self::div or self::button][normalize-space()='Katalon' or normalize-space()='katalon']"
+safeClick(xpTagKatalonInList)
+String xpApplySearch = "//button[normalize-space()='APPLY AND SEARCH' or normalize-space()='Apply & Search' or normalize-space()='Apply and Search']"
+safeClick(xpApplySearch)
 WebUI.waitForPageLoad(15)
 
-/* 2) Sayfanın en altına in → 2. sayfaya tıkla */
+// Kart adresi (görsel doğrulamaya dokunma)
+String xpCardAddr = "(//button[contains(@class,'text-text-link') and contains(.,'http')])[1]"
+WebUI.waitForElementVisible(X(xpCardAddr), 20)
+String currentAddr = safeText(xpCardAddr)
+KeywordUtil.logInfo("🟪 Karttaki adres: " + currentAddr)
+WebUI.verifyMatch(currentAddr, firstAddr, false)
 
-scrollToBottomQS()
-WebUI.delay(2)
-String xpPage2 = "//a[normalize-space(text())='2']"
-zoomOutPage()
-WebUI.delay(2)
-endSpam()
-ensureClickableAndClick(xpPage2, 15)
-WebUI.waitForPageLoad(10)
+// Tag panelini tekrar aç ve switch açık mı?
+safeClick(xpTagBtn)
+WebUI.verifyElementPresent(X(xpKatalonSwitchOn), 10)
 
-/* 3) İlk karttaki adres butonuna kadar scroll (adres metni almıyoruz, sadece pozisyonlamak için) */
-String xpFirstAddrBtn = "(//button[contains(@class,'text-text-link') and contains(.,'http')])[1]"
-WebUI.waitForElementVisible(X(xpFirstAddrBtn), 20)
-scrollIntoView(xpFirstAddrBtn)
+// Switch’i kapat → Mark as Not Seen
+String xpKatalonSwitchOnClickable = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='true']"
+safeClick(xpKatalonSwitchOnClickable)
+String xpKatalonSwitchOff = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='false']"
+WebUI.verifyElementPresent(X(xpKatalonSwitchOff), 10)
+String xpMarkNotSeen = "//button[normalize-space()='Mark as Not Seen' or normalize-space()='Mark as not seen']"
+safeClick(xpMarkNotSeen)
+waitToastContains("Not Seen", 10)
 
-/* 4) Fingerprint ikonuna tıkla → yeni pencereye geç */
-String xpFingerprintBtn = "(.//*[name()='svg' and contains(@class,'lucide-fingerprint')]/ancestor::button)[1]"
-scrollThenClick(xpFingerprintBtn, 15)
+// “No data”
+String xpNoData = "//div[@class='ant-empty-description' and normalize-space(text())='No data']"
+WebUI.waitForElementVisible(X(xpNoData), 20)
+WebUI.verifyElementPresent(X(xpNoData), 10)
 
+KeywordUtil.markPassed("✅ Darkmap Quick Search: pin → tag → filter → doğrulamalar tamam.")
 
-/* yeni pencere/taba geçiş */
-def driver = DriverFactory.getWebDriver()
-String originalHandle = driver.getWindowHandle()
-int spin = 0
-while (driver.getWindowHandles().size() == 1 && spin < 20) { WebUI.delay(0.5); spin++ }
-for (String h : driver.getWindowHandles()) {
-    if (h != originalHandle) { driver.switchTo().window(h); break }
+// === PINNED ADDRESS ===
+WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/pinned-address')
+WebUI.delay(4)
+WebUI.waitForPageLoad(20)
+
+String xpCardAddrpin = "(//button[contains(@class,'text-text-link') and contains(.,'http')])[1]"
+WebUI.waitForElementVisible(X(xpCardAddrpin), 20)
+String currentAddrpin = safeText(xpCardAddrpin)
+KeywordUtil.logInfo("🟪 Pinned kart adres: " + currentAddrpin)
+WebUI.verifyMatch(currentAddr, currentAddrpin, false)
+
+// Unpin (ilk tıklanabilir pin’i dene)
+int pinIdxPinned = findFirstClickablePinIndex(6)   // pinned sayfasında genelde 1 olur; yine de güvenli
+if (pinIdxPinned == -1) {
+    KeywordUtil.markFailedAndStop("Pinned listede tıklanabilir pin bulunamadı.")
 }
-WebUI.delay(4) // içerik yüklenmesi için kısa bekleme
+String xpPinBtnpin = xpPinBtnByIndex(pinIdxPinned)
+scrollIntoView(xpPinBtnpin)
+safeClick(xpPinBtnpin)
 
-/* 5) Yeni pencerede 'leak' var mı kontrol et (page source, case-insensitive) */
-String pageSrc = driver.getPageSource()?.toLowerCase() ?: ""
-if (pageSrc.contains("leak")) {
-    KeywordUtil.logInfo("🔎 Yeni pencerede 'leak' bulundu.")
+// Unpin YES
+String xpYesInDialogpinsdr = "//button[@type='button' and normalize-space(text())='YES']"
+if (WebUI.waitForElementVisible(X(xpYesInDialogpinsdr), 10, FailureHandling.OPTIONAL)) {
+    safeClick(xpYesInDialogpinsdr)
+}
+waitToastContains("Unpinned", 10)
+
+// “No data”
+String xpNoDatapin = "//div[@class='ant-empty-description' and normalize-space(text())='No data']"
+scrollIntoView(xpNoDatapin)
+WebUI.waitForElementVisible(X(xpNoDatapin), 20)
+WebUI.verifyElementPresent(X(xpNoDatapin), 10)
+KeywordUtil.markPassed("✅ Darkmap Pinned Address: unpinned → doğrulamalar tamam.")
+
+// === TAG MANAGEMENT ===
+WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/tag-management")
+WebUI.waitForPageLoad(15)
+
+// Edit (pencil)
+String xpPencilInRow = "//*[@class='lucide lucide-pencil h-4 w-4']"
+scrollIntoView(xpPencilInRow)
+safeClick(xpPencilInRow, 15)
+
+// Güncelle
+String xpMatchTag = "//input[@type='text' and @name='tag']"
+clearAndType(xpMatchTag, "Katalon Text")
+// SAVE
+String xpSave = "//button[normalize-space(.)='SAVE']"
+safeClick(xpSave, 15)
+if (!waitToast(8)) KeywordUtil.markWarning("Başarı bildirimi görünmedi (SAVE).")
+
+// İlk Tag değerini al
+String xpTagSpanFirst = "(//td[contains(@class,'ant-table-cell')]/span)[1]"
+String tagVal = safeText(xpTagSpanFirst, 15)
+KeywordUtil.logInfo("Güncel Tag: " + tagVal)
+
+// Aynı satırdaki göz
+String xpRowByTag = "//tr[.//td[contains(@class,'ant-table-cell')]/span[normalize-space(.)=" + xpLiteral(tagVal) + "]]"
+String xpEyeInRow = xpRowByTag + "//*[@class='lucide lucide-eye h-4 w-4']"
+if (!WebUI.waitForElementPresent(X(xpEyeInRow), 5, FailureHandling.OPTIONAL)) {
+    xpEyeInRow = "(//*[@class='lucide lucide-eye h-4 w-4'])[1]"
+}
+scrollIntoView(xpEyeInRow)
+safeClick(xpEyeInRow, 15)
+
+// Pop-up doğrulama (görsel XPath’ına dokunmuyoruz)
+List<String> popupTexts = (List<String>) WebUI.executeJavaScript(
+        "return Array.from(document.querySelectorAll('span.px-2')).map(e=>e.textContent.trim());", []
+)
+boolean matched = popupTexts.any { it?.toLowerCase()?.contains(tagVal.toLowerCase()) }
+if (!matched) {
+    KeywordUtil.markFailed("Pop-up metinleri Tag değerini içermiyor. Tag: '" + tagVal + "' | Pop-up: " + popupTexts)
 } else {
-    KeywordUtil.markFailed("❌ Yeni pencerede 'leak' bulunamadı.")
+    KeywordUtil.logInfo("✅ Pop-up doğrulandı. Tag '" + tagVal + "' bulundu.")
 }
 
-/* pencereyi kapat ve eski pencereye dön */
-driver.close()
-driver.switchTo().window(originalHandle)
+// DELETE
+String xpDelete = "//*[@class='lucide lucide-trash2 h-4 w-4']"
+safeClick(xpDelete, 10)
 
-WebUI.delay(1)
-/************** Quick Search: receipt **************/
-String xpReceiptBtn = "(.//*[name()='svg' and contains(@class,'lucide-receipt')]/ancestor::button)[1]"
-scrollThenClick(xpReceiptBtn, 15)
+String xpDeleteText = "//button[normalize-space(.)='DELETE']"
+if (!WebUI.waitForElementVisible(X(xpDeleteText), 8, FailureHandling.OPTIONAL))
+    KeywordUtil.markFailedAndStop("Delete onayı görünmedi.")
 
-/* yeni pencere/taba geçiş */
-def driver2 = DriverFactory.getWebDriver()
-String originalHandle2 = driver2.getWindowHandle()
-int spin2 = 0
-while (driver2.getWindowHandles().size() == 1 && spin2 < 20) { WebUI.delay(0.5); spin2++ }
-for (String h2 : driver2.getWindowHandles()) {
-	if (h2 != originalHandle2) { driver2.switchTo().window(h2); break }
-}
-WebUI.delay(4) // içerik yüklenmesi için kısa bekleme
+String xpDeleteBtn = "//button[normalize-space(.)='DELETE']"
+safeClick(xpDeleteBtn, 10)
+waitToast(8)
+if (!waitToastContains("Tag deleted successfully", 12))
+    KeywordUtil.markFailed("Onay toast'ı birebir gelmedi.")
 
-/* İçerikte 'receipt' var mı kontrol et (case-insensitive) */
-String pageSrc2 = driver2.getPageSource()?.toLowerCase() ?: ""
-if (pageSrc2.contains("leak")) {
-	KeywordUtil.logInfo("🧾 Yeni pencerede 'receipt' bulundu.")
-} else {
-	KeywordUtil.markFailed("❌ Yeni pencerede 'receipt' bulunamadı.")
-}
-
-/* pencereyi kapat ve geri dön */
-driver.close()
-driver.switchTo().window(originalHandle)
-WebUI.delay(1)
-/************** /Quick Search: receipt **************/
-/* 6) View on Webint Dashboard ikonuna tıkla → yeni pencereye geç */
-String xpViewwebintBtn = "(.//*[name()='svg' and contains(@class,'lucide-brain-cog')]/ancestor::button)[1]"
-scrollThenClick(xpViewwebintBtn, 15)
-WebUI.delay(3)
-
-/* 7) View on Webint Dashboard ikonuna tıkla → yeni pencereye geç */
-String xpChangetBtn = "//span[normalize-space(.)='Change Keyword']"
-scrollThenClick(xpChangetBtn, 15)
-
-
-
+KeywordUtil.markPassed("✅ Tag Management testi başarıyla tamamlandı.")

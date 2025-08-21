@@ -498,13 +498,8 @@ WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset L�
  // sayfa yüklenme süresi
 
 // Asset List sayfasına geri dön
-TestObject assetListButton = findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Asset List')
-WebElement assetListElementds = WebUI.findWebElement(assetListButton, 10)
-js.executeScript("arguments[0].scrollIntoView(false);", assetListElementds)
-WebUI.delay(0.5)
-assetListElementds.click()
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/asset-list')
 
-assetListElementds.click()
 WebUI.delay(3)
 WebUI.waitForPageLoad(30)
 

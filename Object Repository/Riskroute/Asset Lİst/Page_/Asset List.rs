@@ -6,13 +6,12 @@
    <elementGuidId>3f8f665b-b7f3-443d-8364-8bf497add988</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>svg.lucide.lucide-waypoints.h-6.w-6</value>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='G'])[1]/following::*[name()='svg'][8]</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>//div[@class='flex items-center justify-start' and text()='Asset List']&#xd;
-</value>
+         <key>CSS</key>
+         <value>svg.lucide.lucide-waypoints.h-6.w-6</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
