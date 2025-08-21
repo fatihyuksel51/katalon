@@ -115,7 +115,8 @@ WebUI.delay(5)
 WebUI.waitForPageLoad(10)
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
-// Organizasyon seçimi
+/*/
+/*/ Organizasyon seçimi
 TestObject currentOrg = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class,'font-semibold') and contains(text(),'Organization')]//span[@class='font-thin']")
 String currentOrgText = WebUI.getText(currentOrg)
 if (currentOrgText != 'Mail Test') {

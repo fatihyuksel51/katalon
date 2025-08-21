@@ -1,564 +1,125 @@
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject;
-
-import com.kms.katalon.core.model.FailureHandling
-import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.testobject.TestObject
-import com.kms.katalon.core.util.KeywordUtil
-import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import org.openqa.selenium.By
-import org.openqa.selenium.JavascriptExecutor
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebElement
-import org.openqa.selenium.interactions.Actions
-import org.openqa.selenium.Keys
+import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.common.WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory
-/**********************************************
- * Brand Protection – Dashboard & Lists E2E
- * Source requirements: see linked test brief
+import org.openqa.selenium.*
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import com.kms.katalon.core.model.FailureHandling
+import java.util.Random
 
- **********************************************/
+/* ================= helpers (CI-safe) ================= */
+TestObject X(String xp){ def to=new TestObject(xp); to.addProperty("xpath", ConditionType.EQUALS, xp); return to }
+JavascriptExecutor js(){ (JavascriptExecutor) DriverFactory.getWebDriver() }
+boolean isCI(){ System.getenv('KATALON_AGENT_NAME')!=null || System.getenv('KATALON_TASK_ID')!=null }
+int ciT(int local, int ci){ return isCI()? ci : local }
 
-/************** CONFIG **************/
-String BASE_URL = 'https://platform.catchprobe.org'
-String DASHBOARD_URL = BASE_URL + '/darkmap/brand-protection'
-String IGNORE_LIST_URL = BASE_URL + '/darkmap/brand-protection/ignore-list'
+void scrollIntoViewXp(String xp){
+  WebElement el = WebUiCommonHelper.findWebElement(X(xp), 5)
+  js().executeScript("arguments[0].scrollIntoView({block:'center'});", el)
+}
+void safeClick(String xp, int t=15) {
+	if (!WebUI.waitForElementClickable(X(xp), t)) {
+		KeywordUtil.markFailedAndStop("❌ Tıklanabilir değil: " + xp)
+	}
+	WebUI.click(X(xp))
+}
+void waitToast(String contains, int t=10) {
+    String toastXp = "//*[contains(@class,'toast') or contains(@class,'alert') or contains(@class,'notification')][contains(.,'"+contains+"')]"
+    WebUI.waitForElementVisible(X(toastXp), t, FailureHandling.OPTIONAL)
+}
+boolean waitToast(int timeout=8){
+	String xpToast = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')][not(contains(@style,'display: none'))]"
+	return WebUI.waitForElementVisible(X(xpToast), timeout, FailureHandling.OPTIONAL)
+}
+void clickFast(TestObject to){
+  try{ WebUI.click(to) }catch(Throwable e){
+    try{ WebElement el = WebUiCommonHelper.findWebElement(to, 3); js().executeScript("arguments[0].click()", el) }catch(Throwable ee){
+      KeywordUtil.markFailedAndStop("Tıklanamadı: "+to.getObjectId()+" | "+ee.message)
+    }
+  }
+}
+String safeText(String xp, int t=15) {
+	if (!WebUI.waitForElementVisible(X(xp), t)) {
+		KeywordUtil.markFailedAndStop("❌ Görünür değil: " + xp)
+	}
+	return WebUI.getText(X(xp)).trim()
+}
+void safeClickXp(String xp, int t=15){
+  TestObject to = X(xp)
+  if(!WebUI.waitForElementClickable(to, t, FailureHandling.OPTIONAL)){
+    try{ scrollIntoViewXp(xp) }catch(ignore){}
+    if(!WebUI.waitForElementClickable(to, 3, FailureHandling.OPTIONAL))
+      KeywordUtil.markFailedAndStop("❌ Tıklanabilir değil: "+xp)
+  }
+  clickFast(to)
+}
+String safeTextXp(String xp, int t=15){
+  if(!WebUI.waitForElementVisible(X(xp), t, FailureHandling.OPTIONAL))
+    KeywordUtil.markFailedAndStop("❌ Görünür değil: "+xp)
+  return WebUI.getText(X(xp)).trim()
+}
+String xpLiteral(String s){ s.contains("'") ? 'concat(\''+ s.replace("'", '\',"\'' ) + '\')' : "'"+s+"'" }
+boolean isVisibleXp(String xp, int t=2){ WebUI.waitForElementVisible(X(xp), t, FailureHandling.OPTIONAL) }
 
-/************** HELPERS **************/
-TestObject X(String xp) {
-    TestObject to = new TestObject(xp)
-    to.addProperty('xpath', ConditionType.EQUALS, xp)
-    return to
+boolean waitToastContains(String txt, int timeout=10){
+  String xp = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')]" +
+              "[not(contains(@style,'display: none'))]//*[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), '"+txt.toLowerCase().replace("'", "\\'")+"')]"
+  return WebUI.waitForElementVisible(X(xp), timeout, FailureHandling.OPTIONAL)
 }
 void scrollIntoView(String xp) {
 	def el = WebUiCommonHelper.findWebElement(X(xp), 10)
 	((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript("arguments[0].scrollIntoView({block:'center'});", el)
 }
-String OVERLAY_XPATH() {
-	// Radix/Headless UI overlay’lerini yakalar
-	return "//div[@data-state='open' and contains(@class,'fixed') and contains(@class,'inset-0')]"
+boolean waitToastAny(int timeout=8){
+  String xpToast = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')][not(contains(@style,'display: none'))]"
+  return WebUI.waitForElementVisible(X(xpToast), timeout, FailureHandling.OPTIONAL)
+}
+void clearAndType(String xp, String value){
+  TestObject to = X(xp)
+  WebUI.click(to)
+  try{ WebUI.clearText(to) }catch(ignore){
+    boolean isMac = System.getProperty("os.name")?.toLowerCase()?.contains("mac")
+    Keys mod = isMac ? Keys.COMMAND : Keys.CONTROL
+    WebUI.sendKeys(to, Keys.chord(mod, "a"))
+    WebUI.sendKeys(to, Keys.chord(Keys.DELETE))
   }
-  
-  boolean overlayPresent(int timeout = 1) {
-	return WebUI.waitForElementPresent(X(OVERLAY_XPATH()), timeout, FailureHandling.OPTIONAL)
-  }
-  
-  void waitOverlayGone(int timeout = 10) {
-	WebUI.waitForElementNotPresent(X(OVERLAY_XPATH()), timeout, FailureHandling.OPTIONAL)
-  }
-  
-  void dismissOverlayIfAny(int timeout = 5) {
-	if (overlayPresent(1)) {
-	  try {
-		WebDriver d = DriverFactory.getWebDriver()
-		new Actions(d).sendKeys(Keys.ESCAPE).perform()     // çoğu dialog ESC ile kapanır
-	  } catch (ignored) {}
-	  WebUI.delay(0.3)
-	  waitOverlayGone(timeout)
-	}
-  }
-WebElement $el(TestObject to, int timeout = 15) {
-    WebUI.waitForElementPresent(to, timeout)
-    WebUI.waitForElementVisible(to, timeout)
-    return WebUI.findWebElement(to, timeout)
+  WebUI.setText(to, value)
 }
 
-void jsScrollIntoView(WebElement el) {
-    WebDriver driver = DriverFactory.getWebDriver()
-    ((JavascriptExecutor) driver).executeScript('arguments[0].scrollIntoView({block: "center"});', el)
-}
-void log(String msg) { KeywordUtil.logInfo("[BP] " + msg) }
+/* ------- card helpers: 1 olmazsa 2’yi dene ------- */
+String xpPinBtnByIndex(int i){ "(//button[.//*[name()='svg' and contains(@class,'lucide') and contains(@class,'pin')]])["+i+"]" }
+String xpAddrByIndex(int i){ "(//button[contains(@class,'text-text-link') and contains(.,'http')])["+i+"]" }
+String cardRootByPinIndex(int i){ "("+xpPinBtnByIndex(i)+"/ancestor::*[contains(@class,'rounded') or contains(@class,'border') or contains(@class,'shadow')][1])" }
 
-WebElement safeScrollTo(TestObject to, int timeout = 15) {
-    WebElement el = $el(to, timeout)
-    jsScrollIntoView(el)
-    WebUI.delay(0.2)
-    return el
+boolean isBtnEnabled(String xp){
+  if(!WebUI.waitForElementPresent(X(xp), 5, FailureHandling.OPTIONAL)) return false
+  try{
+    WebElement btn = WebUiCommonHelper.findWebElement(X(xp), 5)
+    String cls = btn.getAttribute("class") ?: ""
+    boolean disabledAttr = btn.getAttribute("disabled")!=null || "true".equalsIgnoreCase(btn.getAttribute("aria-disabled"))
+    boolean disabledCss  = cls.contains("pointer-events-none") || cls.contains("opacity-50") || cls.contains("disabled")
+    return !(disabledAttr || disabledCss)
+  }catch(ignore){ return false }
 }
-
-int intText(TestObject to, int timeout = 10) {
-    WebElement el = $el(to, timeout)
-    String raw = el.getText()?.trim() ?: '0'
-    raw = raw.replaceAll('[^0-9]', '')
-    if (raw.isEmpty()) return 0
-    return Integer.parseInt(raw)
+int pickUsableCardIndex(){
+  if(isBtnEnabled(xpPinBtnByIndex(1))) return 1
+  if(isBtnEnabled(xpPinBtnByIndex(2))){ KeywordUtil.logInfo("ℹ️ 1. kart uygun değil → 2. karta geçiliyor."); return 2 }
+  KeywordUtil.markFailedAndStop("Tıklanabilir pin butonu bulunamadı (ilk iki kart)."); return 1
 }
-
-boolean exists(TestObject to, int timeout = 3) {
-    return WebUI.waitForElementPresent(to, timeout, FailureHandling.OPTIONAL)
-}
-
-void clickTO(TestObject to, int timeout = 15) {
-    safeScrollTo(to, timeout)
-    WebUI.waitForElementClickable(to, timeout)
-    WebUI.click(to)
+void clickYesIfDialogVisible(){
+  String xpYes = "//button[@type='button' and normalize-space(.)='YES']"
+  if(WebUI.waitForElementVisible(X(xpYes), ciT(5,10), FailureHandling.OPTIONAL)) safeClickXp(xpYes, 5)
 }
 
-
-void openAndVerifyExternal(String linkXpath, String hostMustContain = '') {
-    WebDriver driver = DriverFactory.getWebDriver()
-    String original = driver.getWindowHandle()
-
-    clickTO(X(linkXpath))
-    WebUI.delay(1)
-
-    // Switch to new tab
-    Set<String> handles = driver.getWindowHandles()
-    for (String h : handles) {
-        if (h != original) {
-            driver.switchTo().window(h)
-            break
-        }
-    }
-
-    if (hostMustContain) {
-        String url = driver.getCurrentUrl()
-        KeywordUtil.logInfo('Opened URL: ' + url)
-        assert url.contains(hostMustContain) : 'External URL does not contain expected host: ' + hostMustContain
-    }
-
-    driver.close()
-    driver.switchTo().window(original)
-}
-
-int ceilDiv(int total, int perPage) {
-    if (total <= 0) return 0
-    return (int) Math.ceil(total / (double) perPage)
-}
-
-void assertPaginationBasic(int total, int perPage) {
-    int expectedPages = ceilDiv(total, perPage)
-    if (expectedPages <= 1) {
-        KeywordUtil.logInfo("Pagination not required (expectedPages=" + expectedPages + ")")
-        return
-    }
-    // Try to assert there is a page 2 button and navigate to it
-    TestObject page2 = X("//a[normalize-space(.)='2' or @aria-label='Page 2']")
-    assert exists(page2, 3) : 'Expected pagination to show a page 2 button'
-    clickTO(page2)
-    WebUI.delay(2.5)
-
-}
-
-String firstRowContainerXpath() {
-  // İçinde underline’lı bir Page Name linki olan ilk “row/grup”
-  return "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
-}
-String ignorepagename() {
-	// İçinde underline’lı bir Page Name linki olan ilk “row/grup”
-	return "//a[contains(@class, 'font-semibold') and contains(@class, 'underline')]"
-  }
-
-String firstRowPageNameXpath() {
-  return firstRowContainerXpath() + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
-}
-
-
-String firstRowVerifiedCellXpath() {
-  // Aynı satır içinde Verified/Not verified yazan hücre
-  return firstRowContainerXpath() + "//span[contains(normalize-space(.),'Verified') or contains(normalize-space(.),'Not verified')]"
-}
-String firstRowVerifiedCelllnXpath() {
-	// Aynı satır içinde Verified/Not verified yazan hücre
-	return "(//div[contains(@class,'group') and .//a[contains(@class,'underline')]]//span[contains(normalize-space(.),'Verified') or contains(normalize-space(.),'Not verified')])[2]"
-  }
-  
-
-String firstRowCheckIcon() { 
-  return firstRowContainerXpath() + "//*[@class='lucide lucide-check h-4 w-4']"
-}
-String firstRowXIcon() { 
-  return firstRowContainerXpath() + "//*[@class='lucide lucide-x h-4 w-4']"
-}
-String updateButtonXpath() { 
-  return "//button[normalize-space(.)='UPDATE' or normalize-space(.)='Update']"
-}
-String ignoreButtonXpath() {
-  return "//button[normalize-space(.)='IGNORE' or normalize-space(.)='Ignore']"
-}
-
-
-void toggleVerifyFlow() {
-    // Grab first row page name & current verify text
-    String pageName = WebUI.getText(X(firstRowPageNameXpath())).trim()
-    String verifyBefore = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
-    KeywordUtil.logInfo("Row pageName=" + pageName + ", before=" + verifyBefore)
-	log("Row='" + pageName + "' | BEFORE='" + verifyBefore + "'")
-
-  
-    // Click check -> expect Verified
-    clickTO(X(firstRowCheckIcon()))
-    WebUI.delay(0.8)
-    
-
-    // Click X -> expect Not verified
-    // Update again before toggling back (follows requirement order)
-    if (exists(X(updateButtonXpath()), 5)) {
-        clickTO(X(updateButtonXpath()))
-        WebUI.delay(0.7)
-    }
-	String verifyAfterCheck = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
-	log("AFTER CHECK=" + verifyAfterCheck )
-	assert verifyAfterCheck.toLowerCase().contains('verified') && !verifyAfterCheck.toLowerCase().contains('not') : 'Expected Verified after check, got: ' + verifyAfterCheck
-	WebUI.delay(0.8)
-    clickTO(X(firstRowXIcon()))
-    WebUI.delay(0.8)
-	// Update again before toggling back (follows requirement order)
-	if (exists(X(updateButtonXpath()), 5)) {
-		clickTO(X(updateButtonXpath()))
-		WebUI.delay(0.9)
-	}
-	WebUI.delay(1.9)
-	String verifyAfterX = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
-	log("AFTER CHECK X=" + verifyAfterCheck )
-	assert verifyAfterX.toLowerCase().contains('not') : 'Expected Not verified after X, got: ' + verifyAfterX
-}
-void toggleVerifyFlowln() {
-	// Grab first row page name & current verify text
-	String pageName = WebUI.getText(X(firstRowPageNameXpath())).trim()
-	String verifyBefore = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
-	KeywordUtil.logInfo("Row pageName=" + pageName + ", before=" + verifyBefore)
-	log("Row='" + pageName + "' | BEFORE='" + verifyBefore + "'")
-
-
-
-	// Click check -> expect Verified
-	clickTO(X(firstRowCheckIcon()))
-	WebUI.delay(1.1)
-	
-	// Click X -> expect Not verified
-	// Update again before toggling back (follows requirement order)
-	if (exists(X(updateButtonXpath()), 5)) {
-		clickTO(X(updateButtonXpath()))
-		WebUI.delay(1.0)
-	}
-	String verifyAfterCheck = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
-	log("AFTER CHECK=" + verifyAfterCheck )
-	assert verifyAfterCheck.toLowerCase().contains('verified') && !verifyAfterCheck.toLowerCase().contains('not') : 'Expected Verified after check, got: ' + verifyAfterCheck
-	WebUI.delay(0.8)
-	
-	clickTO(X(firstRowXIcon()))
-	WebUI.delay(0.8)
-	// Update again before toggling back (follows requirement order)
-	if (exists(X(updateButtonXpath()), 5)) {
-		clickTO(X(updateButtonXpath()))
-		WebUI.delay(0.4)
-	}
-	String verifyAfterX = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
-	log("AFTER CHECK X=" + verifyAfterCheck )
-	assert verifyAfterX.toLowerCase().contains('not') : 'Expected Not verified after X, got: ' + verifyAfterX
-}
-
-void imageOpenCloseFlow() {
-    clickTO(X("(//img[contains(@class,'cursor-pointer')])[1]"))
-    WebUI.waitForElementVisible(X("//img[@data-nimg='fill' and contains(@class,'object-contain')]"), 15)
-
-    TestObject closeBtn = X("//button[.//span[normalize-space(text())='Close']]")
-    if (WebUI.waitForElementPresent(closeBtn, 2, FailureHandling.OPTIONAL)) {
-        // Bu çağrıda clickTO overlay’i otomatik kapatmayacak (zaten yukarıda değişti)
-        clickTO(closeBtn)
-    } else {
-        // Yedek: ESC ile kapat
-        WebDriver d = DriverFactory.getWebDriver()
-        new org.openqa.selenium.interactions.Actions(d)
-            .sendKeys(org.openqa.selenium.Keys.ESCAPE).perform()
-    }
-    waitOverlayGone(10)   // modal gerçekten kapansın
-    WebUI.delay(01.5)
-}
-void ignoreFlowAndValidate(String networkTabXpath, String expectedNetworkLabel = 'Linkedin') {
-    // Capture page name pre-ignore
-    String pageName = WebUI.getText(X(firstRowPageNameXpath())).trim()
-
-    // Click ignore icon on first row
-    clickTO(X("(//*[@class='lucide lucide-ban h-4 w-4'])[1]"))
-    WebUI.delay(2.6)
-	// Update again before toggling back (follows requirement order)
-	if (exists(X(ignoreButtonXpath()), 5)) {
-		clickTO(X(ignoreButtonXpath()))
-		WebUI.delay(2.4)
-	}
-
-    // Go to Ignore List and select the network tab
-    WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/brand-protection/ignore-list")
-    WebUI.waitForPageLoad(20)
-    // Sayfa hydrate olurken overlay olabiliyor; önce yok olmasını bekle
-    waitOverlayGone(10)
-
-    // Bazı temalarda tab bar lazy-render oluyor; clickable olana kadar bekle
-    WebUI.waitForElementClickable(X(networkTabXpath), 10)
-    clickTO(X(networkTabXpath))
-
-    // Validate page name exists in ignore list
-   
-	String İgnorepagename=WebUI.getText(X(ignorepagename())).trim()
-	KeywordUtil.logInfo("🟪 Karttaki adres: " + İgnorepagename)
-	WebUI.verifyMatch(İgnorepagename, pageName, false)
-	
-	// Click ignore icon on first row
-	clickTO(X("(//*[@class='lucide lucide-ban h-4 w-4'])[1]"))
-	WebUI.delay(2.6)
-	// Update again before toggling back (follows requirement order)
-	if (exists(X(ignoreButtonXpath()), 5)) {
-		clickTO(X(ignoreButtonXpath()))
-		WebUI.delay(2.4)
-	}
-	WebUI.delay(2.4)
-	// (Tercihen daha sağlam bir alternatif: ikon üzerinden)
-	String IGNORE_CLOSE_BY_ICON = "//button[contains(@class, 'absolute right-4 ') and contains(@class, 'opacity-70 ring')]"	
-	TestObject ignoreClose = X(IGNORE_CLOSE_BY_ICON)   // veya X(IGNORE_CLOSE_BY_ICON)
-	clickTO(ignoreClose)
-	WebUI.delay(3.4)
-
-	String xpNoData = "//div[contains(@class,'col-span-12 flex') and normalize-space(text())='No data found.']"
-	scrollIntoView(xpNoData)
-	WebUI.waitForElementVisible(X(xpNoData), 20)
-	WebUI.verifyElementPresent(X(xpNoData), 10)
-	
-	
-}
-void advertisorListGoogle(String networkTabXpath, String expectedNetworkLabel = 'Linkedin') {
-	
-
-	// Yardımcı Xpath parçaları (tek satıra sıkıştırmadan okunabilir)
-	String row1      = "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
-	String nameXp    = row1 + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
-	String verXp     = row1 + "//span[contains(.,'Verified') or contains(.,'Not Verified') or contains(.,'Not verified')]"
-	String checkXp   = row1 + "//*[@class='lucide lucide-check h-4 w-4']"
-	String xXp       = row1 + "//*[@class='lucide lucide-x h-4 w-4']"
-	String googleTab = "//div[normalize-space()='Google']"
-	String VrfyBtnXp  = "//button[normalize-space(.)='Verify' or normalize-space(.)='Unverify']"
-	String IGNORE_CLOSE_BY_ICON = "//button[contains(@class, 'absolute right-4 ') and contains(@class, 'opacity-70 ring')]"
-	TestObject ignoreClose = X(IGNORE_CLOSE_BY_ICON)   // veya X(IGNORE_CLOSE_BY_ICON)
-	
-
-
-	// 1) Advertisor List (Google) sayfasına gel
-	WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/brand-protection/advertisor-list")
-	WebUI.waitForPageLoad(20)
-	
-	 WebUI.waitForElementClickable(X(networkTabXpath), 10)
-    clickTO(X(networkTabXpath))
-
-
-	// 2) İlk satır Page Name’i al ve gerekiyorsa önce Unverify yapıp temiz başla
-	String pageName = WebUI.getText(X(nameXp)).trim()
-	String status0  = WebUI.getText(X(verXp)).trim()
-	log("🟪 Advertisor List ROW name='" + pageName + "', status='" + status0 + "'")
-
-	if (status0.toLowerCase().contains("verified") && exists(X(xXp), 3)) {
-		clickTO(xXp)
-		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
-		WebUI.delay(0.7)
-		clickTO(ignoreClose)
-		WebUI.delay(1.4)
-		String afterClean = WebUI.getText(X(verXp)).trim()
-		assert afterClean.toLowerCase().contains("not")
-	}
-
-	// 3) Verify et ve 'Not Verified' → 'Verified' dönüşümünü doğrula
-	clickTO(X(checkXp))
-	if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
-	WebUI.delay(0.7)
-	clickTO(ignoreClose)
-	WebUI.delay(1.4)
-	String status1 = WebUI.getText(X(verXp)).trim()
-	log("[ADVL] AFTER CHECK = " + status1)
-	assert status1.toLowerCase().contains("verified") && !status1.toLowerCase().contains("not")
-
-	
-// 4) Page Name’e tıkla → Dashboard yeni sekmede açılacak
-int baseWinIndex   = WebUI.getWindowIndex()
-def driver         = DriverFactory.getWebDriver()
-int beforeWinCount = driver.getWindowHandles().size()
-
-clickTO(X(nameXp))
-
-// yeni sekme gelsin
-for (int i = 0; i < 40; i++) {                    // ~10 sn
-    WebUI.delay(0.25)
-    if (DriverFactory.getWebDriver().getWindowHandles().size() > beforeWinCount) break
-}
-int afterCount = DriverFactory.getWebDriver().getWindowHandles().size()
-assert afterCount == beforeWinCount + 1 : "Yeni sekme açılamadı!"
-
-// gerçekten yeni sekmeye geç
-WebUI.switchToWindowIndex(afterCount - 1)
-WebUI.waitForPageLoad(20)
-waitOverlayGone(10)
-
-// Dashboard list yapısı: ilk satır + doğrulama
-String dRow1   = "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
-String dNameXp = dRow1 + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
-String dVerXp  = "(//div[contains(@class,'group') and .//a[contains(@class,'underline')]]//span[contains(.,'Verified') or contains(.,'Not verified') or contains(.,'Not Verified')])[2]"
-String dXXp    = dRow1 + "//*[@class='lucide lucide-x h-4 w-4']"
-
-safeScrollTo(X(dNameXp), 10)
-WebUI.waitForElementVisible(X(dNameXp), 10)
-String dName = WebUI.getText(X(dNameXp)).trim()
-assert dName.equalsIgnoreCase(pageName) : "Dashboard ilk satır adı beklenen değil. Beklenen: ${pageName}, Bulunan: ${dName}"
-
-WebUI.waitForElementVisible(X(dVerXp), 10)
-String dStatus = WebUI.getText(X(dVerXp)).trim().toLowerCase()
-assert dStatus.contains("verified") : "Dashboard status 'Verified' değil: ${dStatus}"
-
-// 5) Dashboard’da Unverify yap ve dönüşümü doğrula
-clickTO(X(dXXp))
-// Click X -> expect Not verified
-	// Update again before toggling back (follows requirement order)
-	if (exists(X(updateButtonXpath()), 5)) {
-		clickTO(X(updateButtonXpath()))
-		WebUI.delay(1.0)
-	}
-waitOverlayGone(10)
-
-
-String dAfterX = WebUI.getText(X(dVerXp)).trim().toLowerCase()
-log("[ADVD] AFTER X = " + dAfterX)
-assert dAfterX.contains("not") : "Unverify sonrası durum 'Not Verified' olmadı: ${dAfterX}"
-
-// 6) Dashboard sekmesini kapat, Advertisor List'e URL'den dön ve Google tabını seç
-WebUI.closeWindowIndex(WebUI.getWindowIndex())
-WebUI.switchToWindowIndex(baseWinIndex)
-
-WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/brand-protection/advertisor-list")
-WebUI.waitForPageLoad(20)
-waitOverlayGone(10)
-
-// Google tab aktif değilse tıkla (tıklamak genelde idempotent, direkt de tıklayabilirsin)
-if (exists(X("//div[normalize-space(.)='Google']"), 2)) {
-    clickTO(X("//div[normalize-space(.)='Google']"))
-}
-waitOverlayGone(10)
-
-// 7) Advertisor List’te aynı satırın tekrar 'Not Verified' olduğunu test et
-String nameAgain = WebUI.getText(X(nameXp)).trim()
-assert nameAgain.equalsIgnoreCase(pageName) : "Advertisor listte beklenen sayfa adı bulunamadı."
-String statusFinal = WebUI.getText(X(verXp)).trim().toLowerCase()
-log("[ADVL] FINAL STATUS = " + statusFinal)
-assert statusFinal.contains("not") : "Advertisor List final durum 'Not Verified' değil!"
-}
-
-void advertisorList(String networkTabXpath, String expectedNetworkLabel = 'Linkedin') {
-
-    // --- Xpath parçaları ---
-    String row1      = "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
-    String nameXp    = row1 + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
-    String verXp     = row1 + "//span[contains(.,'Verified') or contains(.,'Not Verified') or contains(.,'Not verified')]"
-    String checkXp   = row1 + "//*[@class='lucide lucide-check h-4 w-4']"
-    String xXp       = row1 + "//*[@class='lucide lucide-x h-4 w-4']"
-    String VrfyBtnXp = "//button[normalize-space(.)='Verify' or normalize-space(.)='Unverify']"
-    String IGNORE_CLOSE_BY_ICON = "//button[contains(@class, 'absolute right-4 ') and contains(@class, 'opacity-70 ring')]"
-    TestObject ignoreClose = X(IGNORE_CLOSE_BY_ICON)
-
-    // 1) Advertisor List -> ilgili network tab
-    WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/brand-protection/advertisor-list")
-    WebUI.waitForPageLoad(20)
-    WebUI.waitForElementClickable(X(networkTabXpath), 10)
-    clickTO(X(networkTabXpath))
-    waitOverlayGone(10)
-
-    // 2) İlk satır verileri (scroll + visible)
-    safeScrollTo(X(nameXp), 10)
-    WebUI.waitForElementVisible(X(nameXp), 10)
-    String pageName = WebUI.getText(X(nameXp)).trim()
-
-    safeScrollTo(X(verXp), 10)
-    WebUI.waitForElementVisible(X(verXp), 10)
-    String status0  = WebUI.getText(X(verXp)).trim()
-    log("🟪 Advertisor List ROW name='" + pageName + "', status='" + status0 + "'")
-
-    // Gerekirse önce Unverify ile temiz başla
-    if (status0.toLowerCase().contains("verified") && exists(X(xXp), 3)) {
-        clickTO(X(xXp))
-        if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
-        WebUI.delay(0.7)
-        clickTO(ignoreClose)
-        waitOverlayGone(10)
-        String afterClean = WebUI.getText(X(verXp)).trim()
-        assert afterClean.toLowerCase().contains("not")
-    }
-
-    // 3) Verify akışı
-    clickTO(X(checkXp))
-    if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
-    WebUI.delay(0.7)
-    clickTO(ignoreClose)
-    waitOverlayGone(10)
-    String status1 = WebUI.getText(X(verXp)).trim()
-    log("[ADVL] AFTER CHECK = " + status1)
-    assert status1.toLowerCase().contains("verified") && !status1.toLowerCase().contains("not")
-
-    // 4) Page Name’e tıkla → Dashboard yeni sekme
-    int baseWinIndex   = WebUI.getWindowIndex()
-    def driver         = DriverFactory.getWebDriver()
-    int beforeWinCount = driver.getWindowHandles().size()
-
-    clickTO(X(nameXp))
-    for (int i = 0; i < 40; i++) { WebUI.delay(0.25); if (DriverFactory.getWebDriver().getWindowHandles().size() > beforeWinCount) break }
-    int afterCount = DriverFactory.getWebDriver().getWindowHandles().size()
-    assert afterCount == beforeWinCount + 1 : "Yeni sekme açılamadı!"
-
-    WebUI.switchToWindowIndex(afterCount - 1)
-    WebUI.waitForPageLoad(20)
-    waitOverlayGone(10)
-
-    // Dashboard: ilk satıra göreli XPath
-    String dRow1   = "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
-    String dNameXp = dRow1 + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
-    String dVerXp  = "(//div[contains(@class,'group') and .//a[contains(@class,'underline')]]//span[contains(.,'Verified') or contains(.,'Not verified') or contains(.,'Not Verified')])[1]"
-
-    String dXXp    = dRow1 + "//*[@class='lucide lucide-x h-4 w-4']"
-
-    safeScrollTo(X(dNameXp), 10); WebUI.waitForElementVisible(X(dNameXp), 10)
-    String dName = WebUI.getText(X(dNameXp)).trim()
-    assert dName.equalsIgnoreCase(pageName) : "Dashboard ilk satır adı beklenen değil. Beklenen: ${pageName}, Bulunan: ${dName}"
-
-    safeScrollTo(X(dVerXp), 10); WebUI.waitForElementVisible(X(dVerXp), 10)
-    String dStatus = WebUI.getText(X(dVerXp)).trim().toLowerCase()
-    assert dStatus.contains("verified") : "Dashboard status 'Verified' değil: ${dStatus}"
-
-    // 5) Dashboard’da Unverify
-    clickTO(X(dXXp))
-    if (exists(X(updateButtonXpath()), 5)) { clickTO(X(updateButtonXpath())); WebUI.delay(1.0) }
-    waitOverlayGone(10)
-
-    String dAfterX = WebUI.getText(X(dVerXp)).trim().toLowerCase()
-    log("[ADVD] AFTER X = " + dAfterX)
-    assert dAfterX.contains("not") : "Unverify sonrası durum 'Not Verified' olmadı: ${dAfterX}"
-
-    // 6) Dashboard'ı kapat → Advertisor List → aynı tab
-    WebUI.closeWindowIndex(WebUI.getWindowIndex())
-    WebUI.switchToWindowIndex(baseWinIndex)
-
-    WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/brand-protection/advertisor-list")
-    WebUI.waitForPageLoad(20)
-    waitOverlayGone(10)
-    WebUI.waitForElementClickable(X(networkTabXpath), 10)
-    clickTO(X(networkTabXpath))
-    waitOverlayGone(10)
-
-    // 7) Final kontrol
-    safeScrollTo(X(nameXp), 10); WebUI.waitForElementVisible(X(nameXp), 10)
-    String nameAgain = WebUI.getText(X(nameXp)).trim()
-    assert nameAgain.equalsIgnoreCase(pageName) : "Advertisor listte beklenen sayfa adı bulunamadı."
-
-    safeScrollTo(X(verXp), 10); WebUI.waitForElementVisible(X(verXp), 10)
-    String statusFinal = WebUI.getText(X(verXp)).trim().toLowerCase()
-    log("[ADVL] FINAL STATUS = " + statusFinal)
-    assert statusFinal.contains("not") : "Advertisor List final durum 'Not Verified' değil!"
-
-    // 8) İSTEDİĞİN GİBİ: Aynı tab/label ile ignore akışını OTOMATİK çağır
-    ignoreFlowAndValidate(networkTabXpath, expectedNetworkLabel)
-}
-
-
-/************** TEST START **************/
-try {
-    WebUI.openBrowser('')
-	WebUI.navigateToUrl(BASE_URL)
-    WebUI.maximizeWindow()
+/* ======================= TEST ======================= */
+//  // (Login bloğu istersen aç)
+WebUI.openBrowser('')
+	WebUI.navigateToUrl('https://platform.catchprobe.org/')
+	WebUI.maximizeWindow()
+
+	// ---- Login (repo’daki objeler) ----
 	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
 	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
@@ -566,23 +127,242 @@ try {
 	WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 	WebUI.delay(2)
+	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), 30)
+	
 	String randomOtp = (100000 + new Random().nextInt(900000)).toString()
 	WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 	WebUI.delay(5)
 	WebUI.waitForPageLoad(15)
-	String Threat = "//span[text()='Threat']"
-	WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
 
-    // Navigate to Dashboard (assumes user is already authenticated or SSO)
-   
+WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/quick-search')
+WebUI.delay(2)
+WebUI.waitForPageLoad(20)
 
-
-       
-
-
-	advertisorList("//div[normalize-space(.)='Meta' or normalize-space(.)='Meta']", 'Meta')
-
-} finally {
-    WebUI.closeBrowser()
+/* --- Search = leak --- */
+String xpInput = "//input[@name='html_content']"
+String xpSearch = "//button[.//span[normalize-space(.)='Search'] or normalize-space(.)='Search']"
+if(!WebUI.waitForElementVisible(X(xpInput), ciT(10,15), FailureHandling.OPTIONAL)){
+  KeywordUtil.logInfo("🔄 Arama input'u gelmedi, sayfa yenileniyor.")
+  WebUI.refresh(); WebUI.waitForPageLoad(20)
+  WebUI.verifyEqual(WebUI.waitForElementVisible(X(xpInput), ciT(10,15), FailureHandling.OPTIONAL), true)
 }
+clearAndType(xpInput, "leak")
+safeClickXp(xpSearch, ciT(10,15))
+
+/* --- Kart seçim: 1 olmazsa 2 --- */
+int cardIdx = pickUsableCardIndex()
+
+/* --- Seçili kartın adresini al --- */
+String firstAddr = safeTextXp(xpAddrByIndex(cardIdx), ciT(15,20))
+KeywordUtil.logInfo("📌 Kart("+cardIdx+") ilk adres: "+firstAddr)
+
+// 2) Pin
+String xpPinBtn = "(.//*[name()='svg' and contains(@class,'lucide lucide-pin h-4 w-4')]/ancestor::button)[1]"
+scrollIntoView(xpPinBtn)
+safeClick(xpPinBtn)
+
+// 🔔 Pin -> Unpin confirm popup'ı çıkarsa YES'e bas
+String xpYesInDialog = "//button[@type='button' and normalize-space(text())='YES']"
+if (WebUI.waitForElementVisible(X(xpYesInDialog), 10, FailureHandling.OPTIONAL)) {
+    safeClick(xpYesInDialog)
+}
+
+// her iki durumda da olası toast'ları opsiyonel bekle
+waitToast("Pinned", 10)
+waitToast("Unpinned", 10)
+
+
+// 3) Tag
+String xpTagBtn = "(.//*[name()='svg' and contains(@class,'lucide-tag')]/ancestor::button)[1]"
+safeClick(xpTagBtn)
+
+// 4) Create Tag → “Katalon”
+String xpCreateTagBtn = "//button[normalize-space()='Create tag' or normalize-space()='CREATE TAG']"
+if (WebUI.waitForElementVisible(X(xpCreateTagBtn), 5, FailureHandling.OPTIONAL)) { safeClick(xpCreateTagBtn) }
+String xpTagInput = "//input[@type='text' and (contains(@placeholder,'Tag') or contains(@aria-label,'Tag') or contains(@class,'input'))]"
+WebUI.setText(X(xpTagInput), "Katalon")
+String xpCreateBtn = "//button[normalize-space()='CREATE' or normalize-space()='Create']"
+safeClick(xpCreateBtn)
+waitToast("Tag created")
+
+// Switch ON + Mark as Seen
+String xpKatalonSwitch = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button) and (@aria-checked='false' or not(@aria-checked))]"
+safeClickXp(xpKatalonSwitch, 10)
+String xpKatalonOn = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='true']"
+WebUI.verifyElementPresent(X(xpKatalonOn), 10)
+safeClickXp("//button[normalize-space(.)='Mark as Seen']", 10)
+waitToastContains("tags saved", ciT(6,10))
+
+/* ================= Tag Management ================= */
+WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/tag-management")
+WebUI.waitForPageLoad(15)
+// İlk tag değerini al
+String xpTagSpanFirst = "(//td[contains(@class,'ant-table-cell')]/span)[1]"
+String tagVal = safeTextXp(xpTagSpanFirst, 15)
+KeywordUtil.logInfo("Güncel Tag: "+tagVal)
+
+// 3) Aynı satırdaki göz (eye) ikonuna bas
+String xpRowByTag   = "//tr[.//td[contains(@class,'ant-table-cell')]/span[normalize-space(.)="+xpLiteral(tagVal)+"]]"
+String xpEyeInRow   = xpRowByTag + "//*[@class='lucide lucide-eye h-4 w-4']"
+if(!WebUI.waitForElementPresent(X(xpEyeInRow), 2, FailureHandling.OPTIONAL)){
+// fallback: ilk göz
+xpEyeInRow = "(//*[@class='lucide lucide-eye h-4 w-4'])[1]"
+}
+scrollIntoViewXp(xpEyeInRow)
+safeClickXp(xpEyeInRow, 5)
+
+
+// 5) Quick Search/popup içerik doğrulaması
+String xpPopup = "(//span[@class='px-2'])[1]"
+if(!WebUI.waitForElementVisible(X(xpPopup), 12, FailureHandling.OPTIONAL)){
+KeywordUtil.markFailedAndStop("Pop-up içeriği görünmedi (//span[@class='px-2']).")
+}
+scrollIntoViewXp(xpPopup)
+
+// birden fazla px-2 olabilir; hepsinde ara
+List<String> popupTexts = (List<String>) WebUI.executeJavaScript(
+"return Array.from(document.querySelectorAll('span.px-2')).map(e=>e.textContent.trim());", []
+)
+boolean matched = popupTexts.any{ it?.toLowerCase()?.contains(tagVal.toLowerCase()) }
+if(!matched){
+KeywordUtil.markFailed("Pop-up metinleri Tag değerini içermiyor. Tag: '"+tagVal+"' | Pop-up: "+popupTexts)
+} else {
+KeywordUtil.logInfo("✅ Pop-up doğrulandı. Tag '"+tagVal+"' bulundu.")
+}
+String filterclose="//span[contains(@class, 'cursor-pointer') and contains(@class, 'rounded-full bg-destructive')]"
+WebUI.waitForElementClickable(X(filterclose), 20)
+safeClickXp(filterclose)
+
+/* --- FILTER OPTIONS → Katalon --- */
+String xpFilterOpts = "//button[normalize-space()='FILTER OPTIONS' or contains(translate(normalize-space(.),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'FILTER OPTIONS')]"
+safeClickXp(xpFilterOpts, ciT(10,15))
+String xpSelectTags = "//button[.//span[normalize-space(.)='Select Tags'] or contains(@class,'select')][1]"
+safeClickXp(xpSelectTags, 10)
+String xpTagKatalonInList = "//*[contains(@role,'option') or self::div or self::button][translate(normalize-space(.),'KATALON','katalon')='katalon']"
+safeClickXp(xpTagKatalonInList, 10)
+String xpApplySearch = "//button[normalize-space(.)='APPLY AND SEARCH' or normalize-space(.)='Apply & Search' or normalize-space(.)='Apply and Search']"
+safeClickXp(xpApplySearch, 10)
+WebUI.waitForPageLoad(15)
+
+/* --- Kart adresinin doğrulanması --- */
+String xpCardAddr = xpAddrByIndex(1)
+WebUI.waitForElementVisible(X(xpCardAddr), ciT(15,20))
+String currentAddr = safeTextXp(xpCardAddr, 10)
+KeywordUtil.logInfo("🟪 Karttaki adres: "+currentAddr)
+WebUI.verifyMatch(currentAddr, firstAddr, false)
+
+/* --- Tag panelini tekrar aç ve switch açık mı --- */
+safeClickXp(xpTagBtn, 10)
+WebUI.verifyElementPresent(X(xpKatalonOn), 10)
+
+/* --- Switch kapat → Mark as Not Seen --- */
+String xpKatalonOnClickable = xpKatalonOn
+safeClickXp(xpKatalonOnClickable, 10)
+String xpKatalonOff = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='false']"
+WebUI.verifyElementPresent(X(xpKatalonOff), 10)
+String xpMarkNotSeen = "//button[normalize-space(.)='Mark as Not Seen' or normalize-space(.)='Mark as not seen']"
+safeClickXp(xpMarkNotSeen, 10)
+waitToastContains("not seen", ciT(6,10))
+
+/* --- No data bekle --- */
+String xpNoData = "//div[@class='ant-empty-description' and normalize-space(text())='No data']"
+WebUI.waitForElementVisible(X(xpNoData), ciT(15,20))
+WebUI.verifyElementPresent(X(xpNoData), 10)
+KeywordUtil.markPassed("✅ Quick Search: pin → tag → filter → doğrulama tamam.")
+
+/* ================= Pinned Address ================= */
+WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/pinned-address')
+WebUI.delay(2)
+WebUI.waitForPageLoad(20)
+
+String xpCardAddrPin = xpAddrByIndex(1)
+WebUI.waitForElementVisible(X(xpCardAddrPin), ciT(15,20))
+String currentAddrPin = safeTextXp(xpCardAddrPin, 10)
+KeywordUtil.logInfo("🟪 Pinned kart adres: "+currentAddrPin)
+WebUI.verifyMatch(currentAddrPin, currentAddr, false)
+
+// Unpin
+String xpPinBtnPin = "(.//*[name()='svg' and contains(@class,'lucide-pin')]/ancestor::button)[1]"
+scrollIntoViewXp(xpPinBtnPin)
+safeClickXp(xpPinBtnPin, 10)
+clickYesIfDialogVisible()
+waitToastContains("unpinned", ciT(6,10))
+
+// No data
+String xpNoDataPin = "//div[@class='ant-empty-description' and normalize-space(text())='No data']"
+WebUI.waitForElementVisible(X(xpNoDataPin), ciT(15,20))
+WebUI.verifyElementPresent(X(xpNoDataPin), 10)
+KeywordUtil.markPassed("✅ Pinned Address: unpin → no data tamam.")
+
+/* ================= Tag Management ================= */
+WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/tag-management")
+WebUI.waitForPageLoad(15)
+
+
+
+
+// 3) Aynı satırdaki pencil  ikonuna bas
+
+String xpPencilInRow   =  "//*[@class='lucide lucide-pencil h-4 w-4']"
+if(!WebUI.waitForElementPresent(X(xpPencilInRow), 5, FailureHandling.OPTIONAL)){
+}
+scrollIntoViewXp(xpPencilInRow)
+safeClickXp(xpPencilInRow, 15)
+
+// 8) Güncelle + alarm OFF
+String xpMatchTag   = "//input[@type='text' and @name='tag']"
+clearAndType(xpMatchTag,   "Katalon Text")
+// 9) SAVE
+String xpSave = "//button[normalize-space(.)='SAVE']"
+safeClickXp(xpSave, 15)
+	if (!waitToast(8)) KeywordUtil.markWarning("Başarı bildirimi görünmedi (SAVE).")
+	
+// 2) İlk Tag değerini al
+String xpTagSpanSecond = "(//td[contains(@class,'ant-table-cell')]/span)[1]"
+String tagVal2 = safeText(xpTagSpanSecond, 15)
+KeywordUtil.logInfo("İkinci Tag: " + tagVal2)
+// 3) Aynı satırdaki göz (eye) ikonuna bas
+String xpRowByTag2   = "//tr[.//td[contains(@class,'ant-table-cell')]/span[normalize-space(.)="+xpLiteral(tagVal)+"]]"
+String xpEyeInRow2   = xpRowByTag2 + "//*[@class='lucide lucide-eye h-4 w-4']"
+if(!WebUI.waitForElementPresent(X(xpEyeInRow2), 5, FailureHandling.OPTIONAL)){
+// fallback: ilk göz
+xpEyeInRow = "(//*[@class='lucide lucide-eye h-4 w-4'])[1]"
+}
+scrollIntoViewXp(xpEyeInRow)
+safeClickXp(xpEyeInRow, 15)
+
+// birden fazla px-2 olabilir; hepsinde ara
+List<String> popupTexts2 = (List<String>) WebUI.executeJavaScript(
+"return Array.from(document.querySelectorAll('span.px-2')).map(e=>e.textContent.trim());", []
+)
+boolean matched2 = popupTexts.any{ it?.toLowerCase()?.contains(tagVal.toLowerCase()) }
+if(!matched2){
+KeywordUtil.markFailed("Pop-up metinleri Tag değerini içermiyor. Tag: '"+tagVal2+"' | Pop-up: "+popupTexts2)
+} else {
+KeywordUtil.logInfo("✅ Pop-up doğrulandı. Tag '"+tagVal2+"' bulundu.")
+}
+scrollIntoViewXp(xpNoData)
+WebUI.waitForElementVisible(X(xpNoData), 20)
+WebUI.verifyElementPresent(X(xpNoData), 10)
+
+WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/tag-management")
+WebUI.waitForPageLoad(15)
+
+// DELETE
+String xpDelete = "//*[@class='lucide lucide-trash2 h-4 w-4']"
+safeClickXp(xpDelete, 10)
+
+String xpDeleteText = "//button[normalize-space(.)='DELETE']"
+if (!WebUI.waitForElementVisible(X(xpDeleteText), 8, FailureHandling.OPTIONAL))
+	KeywordUtil.markFailedAndStop("Delete onayı görünmedi.")
+
+String xpDeleteBtn = "//button[normalize-space(.)='DELETE']"
+safeClickXp(xpDeleteBtn, 10)
+waitToast(8)
+
+// Onay toast (birebir)
+if(!waitToastContains("Tag deleted successfully", 12))
+  KeywordUtil.markFailed("Onay toast'ı birebir gelmedi.")
+
+KeywordUtil.markPassed("✅ TAg Management testi başarıyla tamamlandı.")
