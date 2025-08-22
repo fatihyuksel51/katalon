@@ -19,6 +19,15 @@ void scrollIntoViewXp(String xp){
   WebElement el = WebUiCommonHelper.findWebElement(X(xp), 5)
   js().executeScript("arguments[0].scrollIntoView({block:'center'});", el)
 }
+/** Sayfayı küçük adımlarla kaydırarak xp'in present olmasını dener. */
+boolean scrollUntilPresent(String xp, int maxSteps = 12) {
+  for (int i = 0; i < maxSteps; i++) {
+	if (WebUI.verifyElementPresent(X(xp), 1, FailureHandling.OPTIONAL)) return true
+	try { js().executeScript("window.scrollBy(0,300)") } catch (Throwable ignore) {}
+	WebUI.delay(0.2)
+  }
+  return WebUI.verifyElementPresent(X(xp), 1, FailureHandling.OPTIONAL)
+}
 
 void safeClickXp(String xp, int t=15){
   TestObject to = X(xp)
@@ -337,48 +346,82 @@ try{
   }
 
   /* ------ Overview + Total 3rd Parties ------ */
-  String xpOverviewTab="//div[normalize-space(.)='Overview']"
-  safeClickXp(xpOverviewTab, ciT(15,20))
-  WebUI.waitForPageLoad(10)
+ String xpOverviewTab = "//div[normalize-space(.)='Overview']"
+safeClickXp(xpOverviewTab, ciT(15,20))
+WebUI.waitForPageLoad(10)
 
-  String xpTotal3rd="(//div[contains(@class,'flex h-32 items-center justify-center text-3xl font-bold')])[2]"
-  String xp3rdBtn  ="(//a[contains(@class,'font-semibold') and contains(@class,'text-text-link') and contains(@class,'underline')])[2]"
-  int total3rd = parseIntSafe(safeTextXp(xpTotal3rd, ciT(10,12)))
-  KeywordUtil.logInfo("Total 3rd Parties: "+total3rd)
+// Kartın büyük sayı alanı (daha önce index [2] ile hedefleniyordu)
+String xpTotal3rd = "(//div[contains(@class,'flex h-32 items-center justify-center text-3xl font-bold')])[2]"
+// Aynı kartın içindeki "View all" linki (eski kodda [2] idi)
+String xp3rdBtn   = "(//a[contains(@class,'font-semibold') and contains(@class,'text-text-link') and contains(@class,'underline')])[2]"
 
-  if(total3rd>0){
-    safeClickXp(xp3rdBtn, ciT(15,20))
-    WebUI.waitForPageLoad(10)
-    verifyPaginationByTotalCount(total3rd)
-    doImageAssertionsOnCurrentPage()
-
-    String xpFirstAddressLink2="(//a[contains(@class,'text-text-link') and contains(.,'http')])[1]"
-    if(WebUI.waitForElementVisible(X(xpFirstAddressLink2), ciT(10,15), FailureHandling.OPTIONAL)){
-      String firstAddrRaw = safeTextXp(xpFirstAddressLink2, 10)
-      String firstHost = hostOfUrlLike(firstAddrRaw)
-      WebUI.click(X(xpFirstAddressLink2))
-      def d=DriverFactory.getWebDriver(); String orig=d.getWindowHandle(); WebUI.delay(1)
-      for(String h: d.getWindowHandles()) if(h!=orig){ d.switchTo().window(h); break }
-      WebUI.waitForPageLoad(15)
-
-      String xpFirstAddrBtn="(//button[contains(@class,'text-text-link') and contains(.,'http')])[1]"
-      if(!WebUI.waitForElementVisible(X(xpFirstAddrBtn), 10, FailureHandling.OPTIONAL))
-        KeywordUtil.markFailedAndStop("Yeni sayfadaki http butonu bulunamadı.")
-      String btnAddrRaw = safeTextXp(xpFirstAddrBtn, 10)
-      String btnHost = hostOfUrlLike(btnAddrRaw)
-      boolean hostMatch = firstHost.equalsIgnoreCase(btnHost)
-      boolean textMatch = btnAddrRaw.toLowerCase().contains(firstHost.toLowerCase()) || firstAddrRaw.toLowerCase().contains(btnHost.toLowerCase())
-
-      if(!(hostMatch||textMatch)){
-        KeywordUtil.markFailed("Yeni sayfa host eşleşmedi.\nfirst: "+firstAddrRaw+"\nbtn:   "+btnAddrRaw+"\nhostFirst: "+firstHost+" | hostBtn: "+btnHost)
-      }else{
-        KeywordUtil.logInfo("✅ Host eşleşti: "+firstHost+" | "+btnHost)
-      }
-      d.close(); d.switchTo().window(orig)
-    }
-  }else{
-    KeywordUtil.logInfo("Total 3rd Parties = 0, liste akımı atlandı.")
+// ➊ Önce sayfayı kaydırarak elemanın P R E S E N T olmasını tetikle
+if (!scrollUntilPresent(xpTotal3rd, 15)) {
+  // Fallback: biraz daha kaydırmayı dene ve açıkça hata ver
+  js().executeScript("window.scrollBy(0,600)")
+  WebUI.delay(0.3)
+  if (!WebUI.verifyElementPresent(X(xpTotal3rd), 2, FailureHandling.OPTIONAL)) {
+    KeywordUtil.markFailedAndStop("Total 3rd Parties kartı DOM’da bulunamadı (index [2]).")
   }
+}
+
+// ➋ Sonra görünür alana getir ve oku
+scrollIntoViewXp(xpTotal3rd)
+int total3rd = parseIntSafe(safeTextXp(xpTotal3rd, ciT(10,12)))
+KeywordUtil.logInfo("Total 3rd Parties: " + total3rd)
+
+if (total3rd > 0) {
+  // Linki de aynı şekilde görünür alana getirip tıkla
+  if (!WebUI.waitForElementClickable(X(xp3rdBtn), ciT(10,15), FailureHandling.OPTIONAL)) {
+    scrollIntoViewXp(xp3rdBtn)
+  }
+  safeClickXp(xp3rdBtn, ciT(10,15))
+
+  WebUI.waitForPageLoad(10)
+  verifyPaginationByTotalCount(total3rd)
+  doImageAssertionsOnCurrentPage()
+
+  // ---- İlk linke tıkla → yeni sekmede ilk http'li butonla eşitle ----
+  String xpFirstAddressLink2 = "(//a[contains(@class,'text-text-link') and contains(.,'http')])[1]"
+  if (WebUI.waitForElementVisible(X(xpFirstAddressLink2), ciT(10,15), FailureHandling.OPTIONAL)) {
+    String firstAddrRaw = safeTextXp(xpFirstAddressLink2, 10)
+    String firstHost    = hostOfUrlLike(firstAddrRaw)
+
+    WebUI.click(X(xpFirstAddressLink2))
+    def d = DriverFactory.getWebDriver()
+    String orig = d.getWindowHandle()
+    WebUI.delay(1)
+    for (String h : d.getWindowHandles()) { if (h != orig) { d.switchTo().window(h); break } }
+    WebUI.waitForPageLoad(15)
+
+    String xpFirstAddrBtn = "(//button[contains(@class,'text-text-link') and contains(.,'http')])[1]"
+    if (!WebUI.waitForElementVisible(X(xpFirstAddrBtn), 10, FailureHandling.OPTIONAL)) {
+      KeywordUtil.markFailedAndStop("Yeni sayfadaki http butonu bulunamadı.")
+    }
+    String btnAddrRaw = safeTextXp(xpFirstAddrBtn, 10)
+    String btnHost    = hostOfUrlLike(btnAddrRaw)
+
+    boolean hostMatch = firstHost.equalsIgnoreCase(btnHost)
+    boolean textMatch = btnAddrRaw.toLowerCase().contains(firstHost.toLowerCase()) ||
+                        firstAddrRaw.toLowerCase().contains(btnHost.toLowerCase())
+
+    if (!(hostMatch || textMatch)) {
+      KeywordUtil.markFailed(
+        "Yeni sayfadaki buton adresi, ilk link ile eşleşmiyor.\n" +
+        "first: " + firstAddrRaw + "\n" +
+        "btn:   " + btnAddrRaw + "\n" +
+        "hostFirst: " + firstHost + " | hostBtn: " + btnHost
+      )
+    } else {
+      KeywordUtil.logInfo("✅ Eşleşti → host: " + firstHost + " | btnHost: " + btnHost)
+    }
+
+    d.close()
+    d.switchTo().window(orig)
+  }
+} else {
+  KeywordUtil.logInfo("Total 3rd Parties = 0, liste akımı atlandı.")
+}
 
   /* ------ Risk History (chart + görsel kontrol) ------ */
   String xpRiskHistoryTitle="//div[normalize-space(.)='Risk History' or normalize-space(.)='Risk history']"

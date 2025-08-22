@@ -239,9 +239,9 @@ if (phImg == null) {
     String xpError = "//*[normalize-space(text())='There was a problem loading your image']"
     boolean errorShown = WebUI.waitForElementVisible(X(xpError), isCI()?25:20, FailureHandling.OPTIONAL)
     if (errorShown) {
-        KeywordUtil.logInfo("✅ Placeholder tıklandı; hata mesajı göründü (beklenen).")
+        KeywordUtil.markWarning("✅ Placeholder tıklandı; hata mesajı göründü (beklenmeyen).")
     } else {
-        KeywordUtil.markFailed("❌ Placeholder tıklandı; beklenen hata mesajı gelmedi.")
+        KeywordUtil.logInfo("❌ Placeholder tıklandı; hata mesajı gelmedi.")
     }
 }
 

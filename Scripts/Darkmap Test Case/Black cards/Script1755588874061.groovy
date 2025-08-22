@@ -179,7 +179,7 @@ void runFlowOnCurrentPage(){
     KeywordUtil.logInfo("✅ 'Black Card list not found' (veya eşdeğeri) mesajı göründü.")
 }
 
-/*/ --------- Test Çalıştırma ---------
+// --------- Test Çalıştırma ---------
 WebUI.openBrowser('')
 WebUI.navigateToUrl("https://platform.catchprobe.org/")
 WebUI.maximizeWindow()
@@ -198,7 +198,7 @@ WebUI.delay(5)
 WebUI.waitForPageLoad(15)
 String Threat = "//span[text()='Threat']"
 WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
-/*/
+//
 
 
 // Sayfaya git

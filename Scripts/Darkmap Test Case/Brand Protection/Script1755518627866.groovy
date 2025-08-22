@@ -470,7 +470,7 @@ void advertisorListGoogle(String networkTabXpath, String expectedNetworkLabel = 
 	log("🟪 Advertisor List ROW name='" + pageName + "', status='" + status0 + "'")
 
 	if (status0.toLowerCase().contains("verified") && exists(X(xXp), 3)) {
-		clickTO(xXp)
+		clickTO(X(xXp))
 		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
 		WebUI.delay(0.7)
 		clickTO(ignoreClose)
@@ -567,7 +567,7 @@ ignoreFlowAndValidate("//div[normalize-space(.)='Google']", 'Google')
 /************** TEST START **************/
 try {
 	/*/
-    WebUI.openBrowser('')
+    WebUI.openBrowser('')   
 	WebUI.navigateToUrl(BASE_URL)
     WebUI.maximizeWindow()
 	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
