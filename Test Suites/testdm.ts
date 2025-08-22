@@ -26,10 +26,10 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>43fc5793-b409-45f1-84d7-9b98ada028c2</guid>
+      <guid>405de3cd-3150-455d-8bdd-acaf0888f11c</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Darkmap Test Case/Brand Protection</testCaseId>
+      <testCaseId>Test Cases/Darkmap Test Case/TestOPs BRand Protection</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>
