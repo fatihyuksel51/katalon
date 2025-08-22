@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuiteEntity>
    <description></description>
-   <name>Riskroute32</name>
+   <name>testdm</name>
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
@@ -12,31 +12,24 @@
    <rerunImmediately>true</rerunImmediately>
    <testSuiteGuid>dfeda89c-df35-469e-8297-af8b8016fe3d</testSuiteGuid>
    <testCaseLink>
-      <guid>557e81f2-adb5-4619-9a11-a21fefd68ed8</guid>
+      <guid>f3667504-d18c-4ee2-bbe4-7dc3673cd3b7</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/RiskRoute Test Case/TC_OpenAndLogin</testCaseId>
+      <testCaseId>Test Cases/Darkmap Test Case/TC_OpenAndLogin</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>9fd823d8-c693-4ef2-a9dd-8114cfe244ae</guid>
+      <guid>aad5e7e6-e26a-427b-bfc1-ca6092019a97</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/RiskRoute Test Case/actieve scansss</testCaseId>
+      <testCaseId>Test Cases/Darkmap Test Case/Category Regex</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>ebcc7d79-10c0-402a-84d3-7059aadcb23d</guid>
+      <guid>43fc5793-b409-45f1-84d7-9b98ada028c2</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/RiskRoute Test Case/apkchatgbt</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>adf908c5-5ae0-4c03-973e-c9cea0f6b331</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/RiskRoute Test Case/cron mail test</testCaseId>
+      <testCaseId>Test Cases/Darkmap Test Case/Brand Protection</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>

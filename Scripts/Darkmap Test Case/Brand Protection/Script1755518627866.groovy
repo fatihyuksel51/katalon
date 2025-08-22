@@ -179,13 +179,36 @@ String ignoreButtonXpath() {
 }
 
 
+
 void toggleVerifyFlow() {
+	String row1      = "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
+	String nameXp    = row1 + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
+	String verXp     = row1 + "//span[contains(.,'Verified') or contains(.,'Not Verified') or contains(.,'Not verified')]"
+	String checkXp   = row1 + "//*[@class='lucide lucide-check h-4 w-4']"
+	String xXp       = row1 + "//*[@class='lucide lucide-x h-4 w-4']"
+	 String googleTab = "//div[normalize-space()='Google']"
+	 String VrfyBtnXp  = "//button[normalize-space(.)='Verify' or normalize-space(.)='Unverify']"
+	 String IGNORE_CLOSE_BY_ICON = "//button[contains(@class, 'absolute right-4 ') and contains(@class, 'opacity-70 ring')]"
+	 TestObject ignoreClose = X(IGNORE_CLOSE_BY_ICON)   // veya X(IGNORE_CLOSE_BY_ICON)
+	// 2) İlk satır Page Name’i al ve gerekiyorsa önce Unverify yapıp temiz başla
+	String pageNameg = WebUI.getText(X(nameXp)).trim()
+	String status0  = WebUI.getText(X(verXp)).trim()
+	log("🟪 Advertisor List ROW name='" + pageNameg + "', status='" + status0 + "'")
     // Grab first row page name & current verify text
     String pageName = WebUI.getText(X(firstRowPageNameXpath())).trim()
     String verifyBefore = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
     KeywordUtil.logInfo("Row pageName=" + pageName + ", before=" + verifyBefore)
 	log("Row='" + pageName + "' | BEFORE='" + verifyBefore + "'")
-
+	
+	if (status0.toLowerCase().contains("verified") && exists(X(xXp), 3)) {
+		clickTO(X(xXp))
+		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
+		WebUI.delay(1.7)
+		clickTO(ignoreClose)
+		WebUI.delay(1.4)
+		String afterClean = WebUI.getText(X(verXp)).trim()
+		assert afterClean.toLowerCase().contains("not")
+	}
   
     // Click check -> expect Verified
     clickTO(X(firstRowCheckIcon()))
@@ -215,13 +238,33 @@ void toggleVerifyFlow() {
 	assert verifyAfterX.toLowerCase().contains('not') : 'Expected Not verified after X, got: ' + verifyAfterX
 }
 void toggleVerifyFlowln() {
+	String row1      = "//div[contains(@class,'group') and .//a[contains(@class,'underline')]]"
+	String nameXp    = row1 + "//a[contains(@class,'underline') and contains(@class,'font-semibold')]"
+	String verXp     = row1 + "//span[contains(.,'Verified') or contains(.,'Not Verified') or contains(.,'Not verified')]"
+	String checkXp   = row1 + "//*[@class='lucide lucide-check h-4 w-4']"
+	String xXp       = row1 + "//*[@class='lucide lucide-x h-4 w-4']"
+	 String googleTab = "//div[normalize-space()='Google']"
+	 String VrfyBtnXp  = "//button[normalize-space(.)='Verify' or normalize-space(.)='Unverify']"
+	 String IGNORE_CLOSE_BY_ICON = "//button[contains(@class, 'absolute right-4 ') and contains(@class, 'opacity-70 ring')]"
+	 TestObject ignoreClose = X(IGNORE_CLOSE_BY_ICON)   // veya X(IGNORE_CLOSE_BY_ICON)
+	// 2) İlk satır Page Name’i al ve gerekiyorsa önce Unverify yapıp temiz başla
+	String pageNameg = WebUI.getText(X(nameXp)).trim()
+	String status0  = WebUI.getText(X(verXp)).trim()
 	// Grab first row page name & current verify text
 	String pageName = WebUI.getText(X(firstRowPageNameXpath())).trim()
 	String verifyBefore = WebUI.getText(X(firstRowVerifiedCelllnXpath())).trim()
 	KeywordUtil.logInfo("Row pageName=" + pageName + ", before=" + verifyBefore)
 	log("Row='" + pageName + "' | BEFORE='" + verifyBefore + "'")
-
-
+	
+	if (status0.toLowerCase().contains("verified") && exists(X(xXp), 3)) {
+		clickTO(X(xXp))
+		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
+		WebUI.delay(1.7)
+		clickTO(ignoreClose)
+		WebUI.delay(1.4)
+		String afterClean = WebUI.getText(X(verXp)).trim()
+		assert afterClean.toLowerCase().contains("not")
+	}
 
 	// Click check -> expect Verified
 	clickTO(X(firstRowCheckIcon()))
@@ -351,7 +394,7 @@ void advertisorList(String networkTabXpath, String expectedNetworkLabel = 'Linke
 	if (status0.toLowerCase().contains("verified") && exists(X(xXp), 3)) {
 		clickTO(X(xXp))
 		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
-		WebUI.delay(0.7)
+		WebUI.delay(1.7)
 		clickTO(ignoreClose)
 		WebUI.delay(1.4)
 		String afterClean = WebUI.getText(X(verXp)).trim()
@@ -361,7 +404,7 @@ void advertisorList(String networkTabXpath, String expectedNetworkLabel = 'Linke
 	// 3) Verify et ve 'Not Verified' → 'Verified' dönüşümünü doğrula
 	clickTO(X(checkXp))
 	if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
-	WebUI.delay(0.7)
+	WebUI.delay(1.7)
 	clickTO(ignoreClose)
 	WebUI.delay(1.4)
 	String status1 = WebUI.getText(X(verXp)).trim()
