@@ -243,7 +243,8 @@ void verifyPaginationByTotalCount(int totalCount){
 
 /* =================== TEST =================== */
 try{
-  /*/ WebInt Dashboard’a git
+  /*/ 
+   
 	WebUI.openBrowser('')
 	WebUI.navigateToUrl('https://platform.catchprobe.org/')
 	WebUI.maximizeWindow()

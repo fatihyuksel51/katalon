@@ -179,7 +179,7 @@ safeClick(xpCreateBtn)
 waitToast("Tag created")
 
 // 5) “Katalon” switch ON + Mark as Seen
-String xpKatalonSwitch = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button) and (@aria-checked='false' or not(@aria-checked))]"
+String xpKatalonSwitch = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button) and (@aria-checked='false' or not(@aria-unchecked))]"
 safeClick(xpKatalonSwitch)
 String xpKatalonSwitchOn = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='true']"
 WebUI.verifyElementPresent(X(xpKatalonSwitchOn), 10)
@@ -257,7 +257,7 @@ safeClick(xpTagBtn)
 WebUI.verifyElementPresent(X(xpKatalonSwitchOn), 10)
 
 // 9) Switch’i kapat → Mark as Not Seen
-String xpKatalonSwitchOnClickable = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='true']"
+String xpKatalonSwitchOnClickable = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button) and (@aria-checked='false' or not(@aria-unchecked))]"
 safeClick(xpKatalonSwitchOnClickable)
 String xpKatalonSwitchOff = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='false']"
 WebUI.verifyElementPresent(X(xpKatalonSwitchOff), 10)
