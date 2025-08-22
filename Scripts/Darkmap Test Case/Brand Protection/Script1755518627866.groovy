@@ -204,7 +204,10 @@ void toggleVerifyFlow() {
 		clickTO(X(xXp))
 		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
 		WebUI.delay(1.7)
-		clickTO(ignoreClose)
+		 if (exists(X(updateButtonXpath()), 5)) {
+        clickTO(X(updateButtonXpath()))
+        WebUI.delay(0.7)
+		 }
 		WebUI.delay(1.4)
 		String afterClean = WebUI.getText(X(verXp)).trim()
 		assert afterClean.toLowerCase().contains("not")
@@ -260,7 +263,10 @@ void toggleVerifyFlowln() {
 		clickTO(X(xXp))
 		if (exists(X(VrfyBtnXp), 5)) clickTO(X(VrfyBtnXp))
 		WebUI.delay(1.7)
-		clickTO(ignoreClose)
+	 if (exists(X(updateButtonXpath()), 5)) {
+        clickTO(X(updateButtonXpath()))
+        WebUI.delay(0.7)
+	 }
 		WebUI.delay(1.4)
 		String afterClean = WebUI.getText(X(verXp)).trim()
 		assert afterClean.toLowerCase().contains("not")
