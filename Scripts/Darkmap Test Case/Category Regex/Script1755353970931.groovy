@@ -105,7 +105,7 @@ WebUI.maximizeWindow()
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 WebUI.delay(2)
@@ -175,6 +175,8 @@ if (WebUI.waitForElementVisible(X(xpAlarmOn), 5, FailureHandling.OPTIONAL)) {
 String xpSave = "//button[normalize-space(.)='SAVE']"
 safeClick(xpSave, 15)
 if (!waitToast(8)) KeywordUtil.markWarning("Başarı bildirimi görünmedi (SAVE).")
+WebUI.refresh()
+WebUI.waitForPageLoad(15)
 
 // 10) Güncellenen satır kontrolleri
 String xpEditedRow = "//tbody[@class='ant-table-tbody']//tr[2]"
