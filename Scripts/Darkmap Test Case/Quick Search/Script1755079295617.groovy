@@ -27,6 +27,9 @@ void safeClick(String xp, int t=15) {
     }
     WebUI.click(X(xp))
 }
+
+
+
 boolean waitToastContains(String txt, int timeout=10){
 	String xp = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')]" +
 				"[not(contains(@style,'display: none'))]//*[contains(normalize-space(.), '"+txt.replace("'", "\\'")+"')]"
@@ -51,7 +54,14 @@ void clearAndType(String xp, String value) {
 	}
 	WebUI.setText(to, value)
 }
-
+ String OVERLAY_XPATH() {
+	  // Radix/Headless UI overlay’lerini yakalar
+	  return "//div[@data-state='open' and contains(@class,'fixed') and contains(@class,'inset-0')]"
+	}
+	
+void waitOverlayGone(int timeout = 10) {
+		WebUI.waitForElementNotPresent(X(OVERLAY_XPATH()), timeout, FailureHandling.OPTIONAL)
+ }
 String xpLiteral(String s){
 	return s.contains("'") ? 'concat(\''+ s.replace("'", '\',"\'' ) + '\')' : "'"+s+"'"
 }
@@ -281,7 +291,7 @@ WebUI.delay(4)
 WebUI.waitForPageLoad(20)
 
 // 11) (İSTENEN WAIT) Kart adresini okumadan önce 20 sn görünürlük bekle
-// ---------------------
+/*/ ---------------------
 String xpCardAddrpin = "(//button[contains(@class,'text-text-link') and contains(.,'http')])[1]"
 WebUI.waitForElementVisible(X(xpCardAddrpin), 20)
 String currentAddrpin = safeText(xpCardAddrpin)
@@ -308,6 +318,49 @@ String xpNoDatapin = "//div[@class='ant-empty-description' and normalize-space(t
 scrollIntoView(xpNoDatapin)
 WebUI.waitForElementVisible(X(xpNoDatapin), 20)
 WebUI.verifyElementPresent(X(xpNoDatapin), 10)
+/*/
+
+// 12) Tüm pin'leri kaldır (tek tek Unpin) sonra "No data" doğrula
+String xpPinButtons      = "(//*[name()='svg' and contains(@class,'lucide-pin')]/ancestor::button)"
+String xpYesInDialog2     = "//button[@type='button' and normalize-space(text())='YES']"
+
+
+int guard = 0
+while (true) {
+	// Sayfadaki mevcut pin butonlarını yakala
+	List<WebElement> pins = WebUiCommonHelper.findWebElements(X(xpPinButtons), 3)
+	if (pins == null || pins.isEmpty()) break   // pin kalmadıysa çık
+
+	// İlk görünen pini kaldır
+	try {
+		WebElement pinBtn = pins.get(0)
+		((JavascriptExecutor)DriverFactory.getWebDriver())
+			.executeScript("arguments[0].scrollIntoView({block:'center'});", pinBtn)
+		pinBtn.click()
+	} catch (Throwable t) {
+		// fallback: Xpath ile ilk pini tıkla
+		safeClick("("+xpPinButtons+")[1]")
+	}
+
+	// Unpin onayı çıkarsa YES
+	if (WebUI.waitForElementVisible(X(xpYesInDialog2), 5, FailureHandling.OPTIONAL)) {
+		safeClick(xpYesInDialog)
+		waitOverlayGone(3)
+	}
+
+	// olası toast'ları opsiyonel bekle
+	try { waitToast("Unpinned", 6) } catch (ignored) {}
+	try { waitToast("Pinned",   3) } catch (ignored) {}
+	WebUI.delay(0.4)
+
+	// güvenlik için sonsuz döngü koruması
+	if (++guard > 30) break
+}
+
+// 13) “No data” görünmeden doğrulama yapma — görünene kadar bekle
+scrollIntoView(xpNoData)
+WebUI.waitForElementVisible(X(xpNoData), 20)
+WebUI.verifyElementPresent(X(xpNoData), 10)
 
 KeywordUtil.markPassed("✅ Darkmap Pinned Adres: →pinned → doğrulamalar tamam.")
 
@@ -357,9 +410,10 @@ KeywordUtil.markFailed("Pop-up metinleri Tag değerini içermiyor. Tag: '"+tagVa
 } else {
 KeywordUtil.logInfo("✅ Pop-up doğrulandı. Tag '"+tagVal2+"' bulundu.")
 }
-scrollIntoView(xpNoDatapin)
-WebUI.waitForElementVisible(X(xpNoDatapin), 20)
-WebUI.verifyElementPresent(X(xpNoDatapin), 10)
+
+scrollIntoView(xpNoData)
+WebUI.waitForElementVisible(X(xpNoData), 20)
+WebUI.verifyElementPresent(X(xpNoData), 10)
 
 WebUI.navigateToUrl("https://platform.catchprobe.org/darkmap/tag-management")
 WebUI.waitForPageLoad(15)
@@ -379,7 +433,7 @@ waitToast(8)
 // Onay toast (birebir)
 if(!waitToastContains("Tag deleted successfully", 12))
   KeywordUtil.markFailed("Onay toast'ı birebir gelmedi.")
-
+  
 KeywordUtil.markPassed("✅ TAg Management testi başarıyla tamamlandı.")
 
 

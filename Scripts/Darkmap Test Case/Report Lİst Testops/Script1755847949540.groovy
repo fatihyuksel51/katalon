@@ -31,6 +31,14 @@ void scrollIntoViewXp(String xp){
   js().executeScript("arguments[0].scrollIntoView({block:'center'});", el)
 }
 
+  String OVERLAY_XPATH() {
+	  // Radix/Headless UI overlay’lerini yakalar
+	  return "//div[@data-state='open' and contains(@class,'fixed') and contains(@class,'inset-0')]"
+	}
+	
+void waitOverlayGone(int timeout = 10) {
+		WebUI.waitForElementNotPresent(X(OVERLAY_XPATH()), timeout, FailureHandling.OPTIONAL)
+ }
 void safeClickXp(String xp, int t=15){
   TestObject to = X(xp)
   if(!WebUI.waitForElementClickable(to, t, FailureHandling.OPTIONAL)){
@@ -193,7 +201,7 @@ void doImageAssertionsOnCurrentPage(){
 }
 
 /******************** TEST ********************/
-/*/
+//
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -213,7 +221,7 @@ WebUI.delay(5)
 WebUI.waitForPageLoad(15)
 String Threat = "//span[text()='Threat']"
 WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
-/*/
+//
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/report')
 WebUI.waitForPageLoad(20)
@@ -240,7 +248,7 @@ scrollIntoViewXp(xpKeywordsBtn)
 safeClickXp(xpKeywordsBtn, 10)
 
 /* 4) Yeşil + */
-String xpGreenPlus = "(//*[name()='button' and contains(@class,'bg-success')])[2]"
+String xpGreenPlus = "(//*[name()='button' and contains(@class,'bg-success')])[1]"
 scrollIntoViewXp(xpGreenPlus)
 safeClickXp(xpGreenPlus, 10)
 WebUI.delay(0.4)
