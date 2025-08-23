@@ -75,20 +75,25 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_V
 WebUI.delay(2)
 /*/
 
-// === Organization kontrol ===
-TestObject currentOrg = new TestObject().addProperty("xpath", ConditionType.EQUALS,
-    "//div[contains(@class, 'font-semibold') and contains(text(), 'Organization')]//span[@class='font-thin']")
+// 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
+TestObject currentOrg = new TestObject()
+currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'font-semibold') and contains(text(), 'Organization')]//span[@class='font-thin']")
+
 String currentOrgText = WebUI.getText(currentOrg)
 
+// 2. Kontrol et: Eğer zaten Katalon ise hiçbir şey yapma
 if (currentOrgText != 'Mail Test') {
-    TestObject orgButton = new TestObject().addProperty("xpath", ConditionType.EQUALS,
-        "//button[.//div[contains(text(), 'Organization :')]]")
-    WebUI.click(orgButton)
+	// 3. Organization butonuna tıkla
+	TestObject orgButton = new TestObject()
+	orgButton.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(), 'Organization :')]]")
+	WebUI.click(orgButton)
 
-    TestObject mailTestOpt = new TestObject().addProperty("xpath", ConditionType.EQUALS,
-        "//button[.//div[normalize-space(text())='Mail Test']]")
-    WebUI.click(mailTestOpt)
+	// 4. Mail Test seçeneğine tıkla
+	TestObject testCompanyOption = new TestObject()
+	testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Mail Test']]")
+	WebUI.click(testCompanyOption)
 }
+
 
 WebUI.delay(3)
 

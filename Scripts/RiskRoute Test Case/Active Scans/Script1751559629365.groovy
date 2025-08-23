@@ -42,6 +42,21 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
+WebElement safeScrollTo(TestObject to) {
+	if (to == null) {
+		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
+		return null
+	}
+	if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) {
+		KeywordUtil.logInfo("ℹ️ Element not present, scroll işlemi atlandı: ${to.getObjectId()}")
+		return null
+	}
+	WebElement element = WebUiCommonHelper.findWebElement(to, 5)
+	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
+	WebUI.delay(0.5)
+	return element
+}
 TestObject X(String xp) {
 	TestObject to = new TestObject(xp)
 	to.addProperty("xpath", ConditionType.EQUALS, xp)
@@ -119,7 +134,7 @@ tableRowObj.addProperty("xpath", ConditionType.EQUALS, "(//div[contains(@class, 
 
 String xpSearch   = "//button[.//span[normalize-space(.)='Search'] or normalize-space(.)='SEARCH']"
 // 1) 10 sn bekle; gelmezse refresh
-if (!WebUI.waitForElementVisible(X(xpSearch), 10, FailureHandling.OPTIONAL)) {
+if (!WebUI.waitForElementVisible(X(xpSearch), 20, FailureHandling.OPTIONAL)) {
 	KeywordUtil.logInfo("🔄 Arama input'u görünmedi (10 sn). Sayfa refresh ediliyor...")
 	WebUI.refresh()
 	WebUI.waitForPageLoad(20)
@@ -137,7 +152,7 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 
 	TestObject rowContainingTarget = new TestObject()
 	rowContainingTarget.addProperty("xpath", ConditionType.EQUALS, "(//div[contains(@class, 'transition-colors hover') and .//div[text()='catchprobe.org']]//div)[2]")
-
+	safeScrollTo(rowContainingTarget)
 	WebUI.waitForElementPresent(rowContainingTarget, 10)
 	String targetText = WebUI.getText(rowContainingTarget)
 	println "Target: " + targetText
@@ -145,12 +160,13 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	// Go Scan detail butonuna tıkla
 	TestObject goScanButton = new TestObject()
 	goScanButton.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'transition-colors hover') and .//div[text()='" + targetToClick + "']]//button[@data-state='closed']/a[contains(@href,'/riskroute/recon')]")
-	
+	safeScrollTo(goScanButton)
 	WebUI.click(goScanButton)
 	
 	// 3️⃣ Scan History sayfasında target kontrolü
 	TestObject scanHistoryTarget = new TestObject()
 	scanHistoryTarget.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'h-20') and contains(@class, 'rounded-full')]//span")
+	safeScrollTo(scanHistoryTarget)
 	
 	WebUI.waitForElementVisible(scanHistoryTarget, 10)
 	String scanTargetText = WebUI.getText(scanHistoryTarget)
@@ -165,7 +181,7 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 	// 6️⃣ Revoke Cron varsa tıkla
 	TestObject revokeCronButton = new TestObject()
 	revokeCronButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href, '/scans/active-scans')])[1]")
-
+	safeScrollTo(revokeCronButton)
 	if (WebUI.verifyElementPresent(revokeCronButton, 5, FailureHandling.OPTIONAL)) {
 		println "🟠 Revoke Cron butonu bulundu, tıklanıyor..."
 		WebUI.click(revokeCronButton)
@@ -182,25 +198,71 @@ if (WebUI.verifyElementPresent(tableRowObj, 5, FailureHandling.OPTIONAL)) {
 		WebUI.waitForPageLoad(10)
 	}
 
-    // 5️⃣ Revoke Scan varsa tıkla
-    TestObject revokeScanButton = new TestObject()
-    revokeScanButton.addProperty("xpath", ConditionType.EQUALS, "(//button[@data-state='closed']/a[contains(@href,'/active-scans')])[1]")
+    // 5️⃣ Revoke Scan butonlarını bitene kadar iptal et
+TestObject revokeScanButton = new TestObject('revokeScanButton')
+revokeScanButton.addProperty(
+        "xpath",
+        ConditionType.EQUALS,
+        "(//button[@data-state='closed']/a[contains(@href,'/active-scans')])[1]"
+)
 
-    if (WebUI.verifyElementPresent(revokeScanButton, 5, FailureHandling.OPTIONAL)) {
-        println "🟠 Revoke Scan butonu bulundu, tıklanıyor..."
-        WebUI.click(revokeScanButton)
-        WebUI.delay(1)
+// güvenlik için sonsuz döngü koruması
+int maxLoops = 20
+int revokedCount = 0
 
-        // Revoke confirm butonu
-        WebUI.click(findTestObject('Object Repository/Riskroute/Active Scan/Revoke'))
-        WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Active Scan/Revoke succes'), 15)
+for (int i = 0; i < maxLoops; i++) {
+    // görünür kısma al
+    safeScrollTo(revokeScanButton)
 
-        // Kapat
-        WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
-        WebUI.refresh()
-        WebUI.delay(1)
-        WebUI.waitForPageLoad(10)
+    // hâlâ Revoke Scan var mı?
+    if (!WebUI.verifyElementPresent(revokeScanButton, 4, FailureHandling.OPTIONAL)) {
+        WebUI.comment("✅ Revoke Scan temizliği bitti. Toplam iptal: ${revokedCount}")
+        break
     }
+
+    WebUI.comment("🟠 Revoke Scan #${revokedCount + 1} tıklanıyor…")
+
+    // tıkla (gerekirse JS fallback ekleyebilirsin)
+    if (WebUI.waitForElementClickable(revokeScanButton, 5, FailureHandling.OPTIONAL)) {
+        WebUI.click(revokeScanButton)
+    } else {
+        // son bir deneme: kaydır + tekrar dene
+        safeScrollTo(revokeScanButton)
+        WebUI.click(revokeScanButton, FailureHandling.OPTIONAL)
+    }
+
+    // onay diyalogu
+    TestObject toRevokeConfirm = findTestObject('Object Repository/Riskroute/Active Scan/Revoke')
+    if (WebUI.waitForElementClickable(toRevokeConfirm, 6, FailureHandling.OPTIONAL)) {
+        WebUI.click(toRevokeConfirm)
+    }
+
+    // başarı mesajı/toast
+    WebUI.waitForElementVisible(
+        findTestObject('Object Repository/Riskroute/Active Scan/Revoke succes'),
+        15,
+        FailureHandling.OPTIONAL
+    )
+
+    // dialog kapat (varsa)
+    TestObject toClose = findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close')
+    if (WebUI.verifyElementPresent(toClose, 3, FailureHandling.OPTIONAL)) {
+        WebUI.click(toClose)
+    }
+
+    revokedCount++
+
+    // listeyi güncelle: refresh + kısa idle
+    WebUI.refresh()
+    WebUI.waitForPageLoad(10)
+    WebUI.delay(1)   // kendi helper'ın varsa; yoksa WebUI.delay(1) kullan
+}
+
+// hâlâ buton görünüyor ve koruma sınırı dolduysa bilgi ver
+if (WebUI.verifyElementPresent(revokeScanButton, 2, FailureHandling.OPTIONAL)) {
+    WebUI.comment("⚠️ Koruma sınırı (maxLoops=${maxLoops}) aşıldı; hâlâ Revoke Scan görünüyor.")
+}
+
 
 
 

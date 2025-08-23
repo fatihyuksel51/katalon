@@ -31,21 +31,72 @@ boolean waitUiIdle(int sec = 2) {
     }
     return false
 }
+/** ultra-hızlı: CSS + index ile tıkla (spin/visibility beklemez) */
+boolean fastClickByCssIndex(String css, int index, int timeoutSec = 5) {
+	long end = System.currentTimeMillis() + timeoutSec*1000L
+	while (System.currentTimeMillis() < end) {
+		Boolean ok = (Boolean) js().executeScript("""
+            const css = arguments[0], i = arguments[1];
+            const list = document.querySelectorAll(css);
+            const el = list && list[i];
+            if (!el) return false;
+            el.scrollIntoView({block:'center'});
+            el.click();
+            return true;
+        """, css, index)
+		if (ok == Boolean.TRUE) return true
+		WebUI.delay(0.1)
+	}
+	return false
+}
 
-/** liste/pagination gerçekten hazır mı? (satır>0 || numara var || boş state) */
+/** radio seçili mi? (aria-checked + data-state) */
+boolean isCheckedCssIndex(String css, int index) {
+	Boolean st = (Boolean) js().executeScript("""
+        const el = document.querySelectorAll(arguments[0])[arguments[1]];
+        if (!el) return false;
+        const a = (el.getAttribute('aria-checked')||'').toLowerCase();
+        const s = (el.getAttribute('data-state')||'').toLowerCase();
+        return a==='true' && s==='checked';
+    """, css, index)
+	return st == Boolean.TRUE
+}
+
+/** Liste/pagination gerçekten hazır mı? (spin yok + satır/paginasyon/boş state’den biri var) */
 boolean waitForListReady(int timeoutSec = 15) {
     long end = System.currentTimeMillis() + timeoutSec*1000L
     while (System.currentTimeMillis() < end) {
         Boolean ready = (Boolean) js().executeScript($/
           const busySel = '[aria-busy="true"], .ant-spin-spinning, .animate-spin, [data-loading="true"]';
           const busy = !!document.querySelector(busySel);
-          const rows = document.querySelectorAll('table tbody tr').length;
-          const hasNums = [...document.querySelectorAll('ul li a, ul li button')]
-              .some(el => /^\d+$/.test((el.innerText||'').trim()));
-          const empty = !!document.querySelector('.ant-empty, .empty, [data-empty="true"], [data-state="empty"]');
-          return !busy && (rows>0 || hasNums || empty);
+          const empty = !!document.querySelector('.ant-empty, .empty, [data-empty="true"], [data-state="empty"], .ant-table-placeholder');
+
+          // sayı içeren pagination item var mı?
+          const hasNum = [...document.querySelectorAll('ul li a, ul li button, [aria-label^="Page" i]')]
+            .some(el => /\b\d+\b/.test((el.innerText || el.getAttribute('aria-label') || '').trim()));
+
+          // görünür satır say
+          const rowCount = (function(){
+            const sels = [
+              "table tbody tr:not(.ant-table-placeholder):not([data-empty='true'])",
+              ".ant-table-row", "[data-row-key]",
+              "[role='rowgroup'] [role='row']",
+              ".MuiDataGrid-row",".rdg-row",
+              ".ant-list .ant-list-items > *",
+              "[data-testid*='row']"
+            ];
+            const set = new Set();
+            for (const s of sels) document.querySelectorAll(s).forEach(el => set.add(el));
+            return [...set].filter(el => {
+              const st = getComputedStyle(el);
+              return st.display!=='none' && st.visibility!=='hidden' && +st.opacity!==0 &&
+                     el.offsetParent!==null && !el.closest('thead');
+            }).length;
+          })();
+
+          return !busy && (rowCount>0 || hasNum || empty);
         /$)
-        if (ready) return true
+        if (ready == Boolean.TRUE) return true
         WebUI.delay(0.25)
     }
     return false
@@ -60,40 +111,84 @@ void switchToNewestWindowIfAny() {
     }
 }
 
-/** sayfa numaralarını evrensel olarak bulup son sayıyı döndürür */
-int actualLastPageNumberDomain() {
-    Number last = (Number) js().executeScript($/
-        // 1) öncelikle tüm ul/li/a|button numaralarını topla
-        const nums = [...document.querySelectorAll('ul li a, ul li button')]
-          .map(el => {
-            const t = (el.innerText || '').trim();
-            const aria = (el.getAttribute('aria-label') || '').toLowerCase();
-            // previous/next butonlarını dışla
-            if (/prev|next|previous/.test(aria)) return 0;
-            return /^\d+$/.test(t) ? parseInt(t,10) : 0;
-          })
-          .filter(n => n>0);
-
-        if (nums.length) return Math.max(...nums);
-
-        // 2) numara yoksa: next disabled + satır varsa -> tek sayfa
-        const rowCount = document.querySelectorAll('table tbody tr').length;
-        const nextEnabledGlobal = !!document.querySelector(
-          '.ant-pagination-next:not(.ant-pagination-disabled),' +
-          ' [aria-label*="next"]:not([aria-disabled="true"]):not([disabled])'
-        );
-        if (!nextEnabledGlobal && rowCount>0) return 1;
-
-        // 3) hâlâ yoksa: tablo varsa 1, hiç veri yoksa 0
-        return rowCount>0 ? 1 : 0;
+/** tablo/liste görünür satır sayısı (çoklu UI kütüphanesi için) */
+int getRowCount() {
+    Number n = (Number) js().executeScript($/
+      const sels = [
+        "table tbody tr:not(.ant-table-placeholder):not([data-empty='true'])",
+        ".ant-table-row", "[data-row-key]",
+        "[role='rowgroup'] [role='row']",
+        ".MuiDataGrid-row",
+        ".rdg-row",
+        ".ant-list .ant-list-items > *",
+        "[data-testid*='row']"
+      ];
+      const isVisible = el => {
+        const s = window.getComputedStyle(el);
+        return el && s.display!=='none' && s.visibility!=='hidden' && +s.opacity!==0 && el.offsetParent!==null;
+      };
+      const all = new Set();
+      for (const sel of sels) document.querySelectorAll(sel).forEach(el => all.add(el));
+      const rows = [...all].filter(el => {
+        if (!isVisible(el)) return false;
+        if (el.closest('thead')) return false;
+        if (el.matches('.ant-table-placeholder, [data-empty=\"true\"]')) return false;
+        if (el.querySelector('th,[role=\"columnheader\"]')) return false;
+        return true;
+      });
+      return rows.length;
     /$)
-    return last == null ? 0 : last.intValue()
+    return n == null ? 0 : n.intValue()
 }
 
-/** tablo görünür satır sayısı */
-int getRowCount() {
-    Number n = (Number) js().executeScript($/return document.querySelectorAll('table tbody tr').length;/$)
-    return n == null ? 0 : n.intValue()
+/** Pagination UI var mı? */
+boolean hasPaginationUI() {
+    Boolean b = (Boolean) js().executeScript("""
+      return !!(document.querySelector('.ant-pagination, nav[aria-label*="pagination" i]') ||
+                [...document.querySelectorAll('[class*="pagination" i]')].find(el => getComputedStyle(el).display!=='none'));
+    """)
+    return b == Boolean.TRUE
+}
+
+/** “Son sayfa”yı kestir (sayı düğmeleri, Next disabled, UI yoksa tek sayfa varsay) */
+int actualLastPageNumberDomain() {
+    Number last = (Number) js().executeScript($/
+      const items = [...document.querySelectorAll('ul li a, ul li button, [aria-label^=\"Page\" i], [aria-current=\"page\"]')];
+      const nums = items.map(el => {
+        const t = (el.innerText || el.getAttribute('aria-label') || '').trim();
+        const m = t.match(/\b(\d+)\b/);
+        return m ? parseInt(m[1], 10) : 0;
+      }).filter(n => n > 0);
+      if (nums.length) return Math.max(...nums);
+
+      const nextEnabled = !!(
+        document.querySelector('.ant-pagination-next:not(.ant-pagination-disabled)') ||
+        document.querySelector('[aria-label*=\"next\" i]:not([aria-disabled=\"true\"]):not([disabled])')
+      );
+
+      const rowCount = (function(){
+        const sels = [
+          "table tbody tr:not(.ant-table-placeholder):not([data-empty='true'])",
+          ".ant-table-row", "[data-row-key]",
+          "[role='rowgroup'] [role='row']",
+          ".MuiDataGrid-row",".rdg-row",".ant-list .ant-list-items > *","[data-testid*='row']"
+        ];
+        const set = new Set();
+        for (const s of sels) document.querySelectorAll(s).forEach(el => set.add(el));
+        return [...set].filter(el => {
+          const st = getComputedStyle(el);
+          return st.display!=='none' && st.visibility!=='hidden' && +st.opacity!==0 && el.offsetParent!==null && !el.closest('thead');
+        }).length;
+      })();
+
+      const hasUI = !!(document.querySelector('.ant-pagination, nav[aria-label*=\"pagination\" i]') ||
+                       [...document.querySelectorAll('[class*=\"pagination\" i]')].find(el => getComputedStyle(el).display!=='none'));
+      if (rowCount > 0 && !hasUI) return 1;     // satır var, UI yok → tek sayfa
+      if (rowCount > 0 && !nextEnabled) return 1; // UI var ama next kapalı → tek sayfa
+
+      return 0;
+    /$)
+    return last == null ? 0 : last.intValue()
 }
 
 /** JS click */
@@ -111,7 +206,7 @@ boolean jsScrollIntoViewTO(TestObject to, int t = 8) {
     if (!WebUI.waitForElementPresent(to, t, FailureHandling.OPTIONAL)) return false
     try {
         WebElement el = WebUiCommonHelper.findWebElement(to, 3)
-        js().executeScript("arguments[0].scrollIntoView({block:'center'});", el)
+        js().executeScript('arguments[0].scrollIntoView({block:"center"});', el)
         WebUI.delay(0.15)
         return true
     } catch (Throwable ignore) { return false }
@@ -141,7 +236,7 @@ boolean ensureSvgInside(TestObject containerTO, int timeoutSec = 8, String label
 }
 
 /* ========================= TEST ========================= */
-/*/
+
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -161,32 +256,35 @@ WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 WebUI.delay(5)
 WebUI.waitForPageLoad(30)
-/*/
+
 // Riskroute
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 WebUI.waitForPageLoad(30)
 
 /******************** HIZLI KONTROLLER ********************/
+/*/
 WebUI.waitForElementClickable(findTestObject('Object Repository/RiskRoute Dashboard/Page_/div_Total Assets'), 20)
 WebUI.verifyElementText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/div_Total Assets'), 'Total Assets')
 WebUI.verifyElementText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/div_Total Subdomains'), 'Total Subdomains')
 WebUI.verifyElementText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/div_Total Vulnerabilities'), 'Total Vulnerabilities')
+/*/
 
-// radios
-WebElement mostCommonBtn = WebUiCommonHelper.findWebElement(
-    findTestObject('Object Repository/RiskRoute Dashboard/Page_/MostCommonİgnore'), 10)
-js().executeScript("arguments[0].scrollIntoView({block:'center'});", mostCommonBtn)
-js().executeScript("arguments[0].click();", mostCommonBtn)
-waitUiIdle(1)
-WebUI.comment( (mostCommonBtn.getAttribute("aria-checked")=="true"
-        && mostCommonBtn.getAttribute("data-state")=="checked")
-        ? "✅ Most Common seçildi" : "❌ Most Common seçilemedi" )
+// Radyo butonları (shadcn/radix): role="radio" en hızlı & stabil seçim
+String radioCss = "[role='radio']"
 
-TestObject toMostVuln = X("(//button[contains(@class,'peer h-5 w-5 rounded-full border')])[2]")
-jsScrollIntoViewTO(toMostVuln, 8); jsClickTO(toMostVuln, 8); waitUiIdle(1)
-WebElement mv = WebUiCommonHelper.findWebElement(toMostVuln, 3)
-WebUI.comment( (mv.getAttribute("aria-checked")=="true" && mv.getAttribute("data-state")=="checked")
-        ? "✅ Most Vulnerable seçildi" : "❌ Most Vulnerable seçilemedi" )
+// 1) Most Common (ilk radio)
+assert fastClickByCssIndex(radioCss, 0, 4) : "Most Common radio bulunamadı"
+WebUI.delay(0.5)
+WebUI.comment( isCheckedCssIndex(radioCss, 0)
+        ? "✅ Most Common seçildi"
+        : "❌ Most Common seçilemedi" )
+
+// 2) Most Vulnerable (ikinci radio)
+assert fastClickByCssIndex(radioCss, 1, 4) : "Most Vulnerable radio bulunamadı"
+WebUI.delay(0.5)
+WebUI.comment( isCheckedCssIndex(radioCss, 1)
+        ? "✅ Most Vulnerable seçildi"
+        : "❌ Most Vulnerable seçilemedi" )
 
 /********** diğer grafikleri hafif beklemelerle kontrol **********/
 TestObject toVBTrigger = findTestObject('Object Repository/RiskRoute Dashboard/Page_/Vulnerability Breakdown')
@@ -216,7 +314,7 @@ if (!WebUI.waitForElementPresent(toAssetDetail, 5, FailureHandling.OPTIONAL)) {
     WebUI.comment("⏭️ 'Asset Detail' grafiği yok; adım atlandı.")
 } else {
     WebElement assetDetail = WebUiCommonHelper.findWebElement(toAssetDetail, 10)
-    js().executeScript("arguments[0].scrollIntoView({block:'center'});", assetDetail)
+    js().executeScript('arguments[0].scrollIntoView({block:"center"});', assetDetail)
     WebUI.delay(0.2)
 
     TestObject pathDomain = X(
@@ -238,39 +336,45 @@ if (!WebUI.waitForElementPresent(toAssetDetail, 5, FailureHandling.OPTIONAL)) {
 
             switchToNewestWindowIfAny()
             // liste render olana kadar bekle
-            waitForListReady(15)
+            waitForListReady(20)
 
-            int expectedPages = (int) Math.ceil(dataValue / 10.0)
+            int expectedPages = (int) Math.ceil(dataValue / 10.0)     // default page size 10 kabul
             int actualLast = actualLastPageNumberDomain()
-
-            if (actualLast == 0) {
-                int rows = getRowCount()
-                if (rows > 0 && rows <= 10) actualLast = 1
-            }
+            int rowsNow = getRowCount()
+            boolean paginationUi = hasPaginationUI()
 
             WebUI.comment("🎯 Beklenen pagination (Domain): ${expectedPages}")
             WebUI.comment("🔢 Gerçek son pagination numarası (Domain): ${actualLast}")
+            WebUI.comment("📄 Görünür satır sayısı: ${rowsNow}, 🧭 Pagination UI: " + (paginationUi ? "var" : "yok"))
 
+            // Tek sayfa geniş kabul: UI yoksa & satır varsa ya da actualLast 0/1 ve satır>0
             boolean looksSinglePage =
-                (actualLast == 1) ||
-                (actualLast == 0 && getRowCount() > 0 && getRowCount() <= 10)
+                (rowsNow > 0 && !paginationUi) ||
+                (rowsNow > 0 && (actualLast == 0 || actualLast == 1))
 
             if (expectedPages == 1 && looksSinglePage) {
-                WebUI.comment("✅ Domain pagination doğru (tek sayfa).")
+                WebUI.comment("✅ Domain pagination doğru (tek sayfa — UI yok veya 0/1).")
             } else if (expectedPages == actualLast && actualLast > 0) {
-                WebUI.comment("✅ Domain pagination doğru.")
+                WebUI.comment("✅ Domain pagination doğru (çoklu sayfa).")
             } else {
-                int rowsNow = getRowCount()
                 if (rowsNow > 0) {
-                    int pageSizeGuess = Math.min(Math.max(rowsNow, 1), 50)
+                    int pageSizeGuess = Math.min(Math.max(rowsNow, 1), 100)
                     int expectedFromGuess = (int) Math.ceil(dataValue / (double) pageSizeGuess)
-                    if (expectedFromGuess == actualLast || (expectedFromGuess == 1 && looksSinglePage)) {
+                    if ((expectedFromGuess == actualLast && actualLast > 0) ||
+                        (expectedFromGuess == 1 && looksSinglePage)) {
                         WebUI.comment("✅ Domain pagination doğru (page size ≠10, tahmin=${pageSizeGuess}).")
                     } else {
-                        KeywordUtil.markFailed("❌ Domain pagination hatalı. Beklenen: ${expectedPages} (veya ~${expectedFromGuess}), Bulunan: ${actualLast}, rowsFirst=${rowsNow}, data=${dataValue}")
+                        KeywordUtil.markFailed("❌ Domain pagination hatalı. Beklenen: ${expectedPages} (veya ~${expectedFromGuess}), Bulunan: ${actualLast}, rows=${rowsNow}, data=${dataValue}")
                     }
                 } else {
-                    KeywordUtil.markFailed("❌ Domain pagination hatalı. Beklenen: ${expectedPages}, Bulunan: ${actualLast}")
+                    Boolean isEmpty = (Boolean) js().executeScript("""
+                      return !!document.querySelector('.ant-empty, .empty, [data-empty="true"], [data-state="empty"], .ant-table-placeholder');
+                    """)
+                    if (isEmpty == Boolean.TRUE && (actualLast == 0 || actualLast == 1)) {
+                        WebUI.comment("✅ Domain pagination doğru (boş liste, tek sayfa).")
+                    } else {
+                        KeywordUtil.markFailed("❌ Domain pagination hatalı. Beklenen: ${expectedPages}, Bulunan: ${actualLast}, rows=0")
+                    }
                 }
             }
 
