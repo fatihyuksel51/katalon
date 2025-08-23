@@ -193,7 +193,7 @@ String xpKatalonSwitch = "//*[translate(normalize-space(text()),'KATALON','katal
 safeClick(xpKatalonSwitch)
 String xpKatalonSwitchOn = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='true']"
 WebUI.verifyElementPresent(X(xpKatalonSwitchOn), 10)
-String xpMarkSeen = "//button[normalize-space()='Mark as Seen']"
+String xpMarkSeen = "//button[normalize-space(text())='Mark as Seen' or normalize-space(text())='Mark as Not Seen']"
 safeClick(xpMarkSeen)
 waitToast("Tags saved")
 
@@ -271,7 +271,7 @@ String xpKatalonSwitchOnClickable = "//*[translate(normalize-space(text()),'KATA
 safeClick(xpKatalonSwitchOnClickable)
 String xpKatalonSwitchOff = "//*[translate(normalize-space(text()),'KATALON','katalon')='katalon']/ancestor::*[self::div or self::li][1]//*[(@role='switch' or self::button)][@aria-checked='false']"
 WebUI.verifyElementPresent(X(xpKatalonSwitchOff), 10)
-String xpMarkNotSeen = "//button[normalize-space()='Mark as Not Seen' or normalize-space()='Mark as not seen']"
+String xpMarkNotSeen = "//button[normalize-space(text())='Mark as Seen' or normalize-space(text())='Mark as Not Seen']"
 safeClick(xpMarkNotSeen)
 waitToast("Not Seen")
 

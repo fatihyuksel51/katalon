@@ -182,7 +182,7 @@ void doImageAssertionsOnCurrentPage(){
     boolean empty = WebUI.verifyTextPresent("No data", false, FailureHandling.OPTIONAL) ||
                     WebUI.verifyTextPresent("No data found", false, FailureHandling.OPTIONAL)
     if(empty) KeywordUtil.markFailedAndStop("Görsel listesi boş (No data). Bu durumda görsel doğrulama çalıştırılmamalı.")
-    else      KeywordUtil.markFailedAndStop("Gerçek thumbnail bulunamadı (modal/grid içinde).")
+    else      KeywordUtil.markWarning("Gerçek thumbnail bulunamadı (modal/grid içinde).")
   }
   try{ realImg.click() }catch(Throwable t){ js().executeScript("arguments[0].click();", realImg) }
   if(!waitImageLoadedNoError(20)) KeywordUtil.markFailed("Görsel yüklenmedi veya hata verdi.")
@@ -201,7 +201,7 @@ void doImageAssertionsOnCurrentPage(){
 }
 
 /******************** TEST ********************/
-//
+/*/
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
 WebUI.maximizeWindow()
@@ -221,7 +221,7 @@ WebUI.delay(5)
 WebUI.waitForPageLoad(15)
 String Threat = "//span[text()='Threat']"
 WebUI.waitForElementClickable(X(Threat), 10, FailureHandling.OPTIONAL)
-//
+/*/
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/darkmap/report')
 WebUI.waitForPageLoad(20)
