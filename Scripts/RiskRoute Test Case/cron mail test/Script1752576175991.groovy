@@ -75,6 +75,8 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_V
 WebUI.delay(2)
 /*/
 
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+WebUI.waitForPageLoad(10)
 // 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
 TestObject currentOrg = new TestObject()
 currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'font-semibold') and contains(text(), 'Organization')]//span[@class='font-thin']")

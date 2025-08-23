@@ -12,24 +12,17 @@
    <rerunImmediately>true</rerunImmediately>
    <testSuiteGuid>dfeda89c-df35-469e-8297-af8b8016fe3d</testSuiteGuid>
    <testCaseLink>
-      <guid>f3667504-d18c-4ee2-bbe4-7dc3673cd3b7</guid>
+      <guid>0c2b0efa-ef21-431b-8749-b56cd2dc4bab</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Darkmap Test Case/TC_OpenAndLogin</testCaseId>
+      <testCaseId>Test Cases/RiskRoute Test Case/TC_OpenAndLogin</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>aad5e7e6-e26a-427b-bfc1-ca6092019a97</guid>
+      <guid>07e8d428-2dcd-4a08-8c6e-2270aec60472</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Darkmap Test Case/Category Regex</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>405de3cd-3150-455d-8bdd-acaf0888f11c</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Darkmap Test Case/TestOPs BRand Protection</testCaseId>
+      <testCaseId>Test Cases/RiskRoute Test Case/cron mail test</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>
