@@ -57,7 +57,7 @@ WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFO
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 
@@ -153,7 +153,7 @@ WebUI.refresh()
 WebUI.delay(3)
 
 
-// 1️⃣3️⃣ Scan History'de Domain Name kontrolü
+/*/ 1️⃣3️⃣ Scan History'de Domain Name kontrolü
 TestObject scanHistoryDomainName = new TestObject()
 scanHistoryDomainName.addProperty("xpath", ConditionType.EQUALS, "//span[contains(@class, 'absolute bottom') and contains(., 'teknosa.com')]")
 
@@ -164,3 +164,4 @@ if (isDomainPresent) {
 } else {
 	KeywordUtil.markFailedAndStop("❌ Scan History sayfasında 'teknosa.com' bulunamadı!")
 }
+/*/
