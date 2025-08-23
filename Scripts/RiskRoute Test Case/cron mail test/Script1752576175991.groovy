@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
 
+// --- TESTİN EN BAŞI ---
+ensureSession()   // << tarayıcı yoksa açar, login + OTP yapar
+// ----------------------
 
 
 // === jakarta.mail classpath kontrolü (fail hızlı) ===
@@ -150,5 +153,40 @@ if (diffMinutes >= 0 && diffMinutes <= 15) {
         gmailUser, gmailPass, mailSubject, startDate, endDate
     )
 }
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.testobject.ObjectRepository as OR
+
+boolean isBrowserOpen() {
+  try { DriverFactory.getWebDriver(); return true } catch(Throwable t) { return false }
+}
+
+void ensureSession() {
+  if (isBrowserOpen()) return
+
+  WebUI.openBrowser('')
+  WebUI.maximizeWindow()
+  WebUI.navigateToUrl('https://platform.catchprobe.org/')
+
+  WebUI.waitForElementVisible(
+	  OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'),
+				'katalon.test@catchprobe.com')
+  WebUI.setEncryptedText(
+	  OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'),
+	  'RigbBhfdqOBDK95asqKeHw==')
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+  WebUI.delay(3) // sayfa ve OTP kutuları gelsin
+
+  // basit OTP (senin akışındaki gibi dummy)
+  def otp = (100000 + new Random().nextInt(900000)).toString()
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+  WebUI.delay(2)
+}
+
 
 WebUI.closeBrowser()
