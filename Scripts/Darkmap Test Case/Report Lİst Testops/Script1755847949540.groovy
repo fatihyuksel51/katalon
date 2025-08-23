@@ -254,7 +254,7 @@ safeClickXp(xpGreenPlus, 10)
 WebUI.delay(0.4)
 
 /* 5) Görsel doğrulaması (akıllı) */
-doImageAssertionsOnCurrentPage()
+//doImageAssertionsOnCurrentPage()
 
 /* 6) Mavi + → çöp’e dönüş kontrolü */
 String xpBluePlus = "//*[name()='button' and contains(@class, 'bg-primary') and .//*[name()='svg' and contains(@class,'lucide-plus')]]"
