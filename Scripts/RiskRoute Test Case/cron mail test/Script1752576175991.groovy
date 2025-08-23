@@ -52,7 +52,8 @@ if (!gmailPass?.trim()) {
 }
 
 
-/*/ === Tarayıcı aç / Login / OTP ===
+// === Tarayıcı aç / Login / OTP ===
+/*/
 WebUI.openBrowser('')
 WebUI.maximizeWindow()
 
