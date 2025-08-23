@@ -112,7 +112,10 @@ String cronDateStr = WebUI.getText(cronDateObj).trim()
 
 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm")
 dateFormat.setLenient(false)
-dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Istanbul"))  // <-- burası
+String tzId = ((JavascriptExecutor) DriverFactory.getWebDriver())
+  .executeScript("return Intl.DateTimeFormat().resolvedOptions().timeZone") as String
+dateFormat.setTimeZone(TimeZone.getTimeZone(tzId ?: TimeZone.getDefault().getID()))
+ // <-- burası
 Date cronDate = dateFormat.parse(cronDateStr)
 Date now = new Date()
 
