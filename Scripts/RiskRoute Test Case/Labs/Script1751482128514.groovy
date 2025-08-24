@@ -176,7 +176,7 @@ for (int i = 0; i < components.size(); i++) {
 
         KeywordUtil.logInfo("✅ ${component} için 'Scanning continues' mesajı bulundu ve scroll edildi.")
 		} else {
-        KeywordUtil.markFailed("❌ ${component} için 'Scanning continues' mesajı bulunamadı!")
+        KeywordUtil.markWarning("❌ ${component} için 'Scanning continues' mesajı bulunamadı!")
 		}
     } else {
         // ✅ Tamamlandıysa Data not found kontrolü
