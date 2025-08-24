@@ -305,6 +305,7 @@ try{
   }
 
   /* ------ Total Vulnerabilities ------ */
+  /*/
   String xpTotalV   = "(//div[contains(@class,'flex h-32 items-center justify-center text-3xl font-bold')])[1]"
   String xpOpenVBtn = "(//a[contains(@class,'font-semibold') and contains(@class,'text-text-link') and contains(@class,'underline')])[1]"
   int totalV = parseIntSafe(safeTextXp(xpTotalV, ciT(10,12)))
@@ -344,7 +345,7 @@ try{
   }else{
     KeywordUtil.logInfo("Total Vulnerabilities = 0, liste akımı atlandı.")
   }
-
+/*/
   /* ------ Overview + Total 3rd Parties ------ */
  String xpOverviewTab = "//div[normalize-space(.)='Overview']"
 safeClickXp(xpOverviewTab, ciT(15,20))
