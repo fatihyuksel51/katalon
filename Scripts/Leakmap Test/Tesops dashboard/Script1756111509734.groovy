@@ -227,5 +227,4 @@ WebUI.waitForElementVisible(resultAgain, 10)
 String secondTitle = WebUI.getText(resultAgain).trim()
 assert secondTitle.contains(firstTitle)
 
-/************ TearDown ************/
-WebUI.closeBrowser()
+

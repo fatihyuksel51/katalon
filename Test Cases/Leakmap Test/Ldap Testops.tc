@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Ldap Testops</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>65c8cb3b-554b-449b-9450-9e06ef32d5ec</testCaseGuid>
+</TestCaseEntity>

@@ -26,17 +26,17 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>1c38c127-dfc4-4ee8-9ead-9f6400e26153</guid>
+      <guid>85b36eb6-a202-4b0c-87fa-7050e7527d38</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Leakmap Test/Quick Search</testCaseId>
+      <testCaseId>Test Cases/Leakmap Test/Quick Search Testops</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>ee0260cb-ed83-4433-8b8b-737086f3f026</guid>
+      <guid>b4b602d1-08a3-415b-ac18-8b73361e02bb</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Leakmap Test/Ldap</testCaseId>
+      <testCaseId>Test Cases/Leakmap Test/Ldap Testops</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>
