@@ -64,25 +64,38 @@ WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Eyebutton'))
 try{ CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'() }catch(e){}
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
 
-// Edit -> Active
+//Edit butonu ile statusu actieve et
 WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Editbutonu'))
-try{ CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'() }catch(e){}
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 safeScrollTo(findTestObject('Object Repository/Leakmap/Ldap/Statusactive'))
 WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Statusactive'))
-WebUI.delay(0.5)
-safeScrollTo(findTestObject('Object Repository/Leakmap/Ldap/Update')); WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Update'))
-try{ CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'() }catch(e){}
+WebUI.delay(1)
+WebUI.sendKeys(findTestObject('Object Repository/Leakmap/Ldap/Statusactive'), 'a')
+WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Statusactive'))
+
+safeScrollTo(findTestObject('Object Repository/Leakmap/Ldap/Update'))
+WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Update'))
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
+// suuces mesajını doğrula
 WebUI.waitForElementVisible(findTestObject('Object Repository/Leakmap/Ldap/Createsuccessfully'), 15)
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
 
-// Assert active
-TestObject aktive=findTestObject('Object Repository/Leakmap/Ldap/Actievetext')
-WebUI.waitForElementVisible(aktive,10)
-assert WebUI.getText(aktive).contains('Active')
+//Actieve yazısını doğrula
+TestObject actieve = findTestObject('Object Repository/Leakmap/Ldap/Actievetext')
+WebUI.waitForElementVisible(actieve, 10)
+String actievetext = WebUI.getText(actieve)
 
-// Delete
+// Sonuç doğrulama
+assert actievetext.contains("Active")
+
+//Ldapi sil
+WebUI.waitForElementVisible(findTestObject('Object Repository/Leakmap/Ldap/Deletebutonu'), 15)
 WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Deletebutonu'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/Leakmap/Ldap/Deleteok'), 10)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Leakmap/Ldap/Deleteok'), 15)
 WebUI.click(findTestObject('Object Repository/Leakmap/Ldap/Deleteok'))
+
+//delete mesajını doğrula
 WebUI.waitForElementVisible(findTestObject('Object Repository/Leakmap/Ldap/Deletesucces'), 15)
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
+
