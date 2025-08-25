@@ -80,7 +80,7 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
-// Tarayıcıyı aç ve siteye git
+/*/ Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://platform.catchprobe.io/')
 WebUI.maximizeWindow()
@@ -104,7 +104,7 @@ WebUI.click(findTestObject('otp/Page_/button_Verify'))
 WebUI.delay(5)
 WebUI.waitForPageLoad(10)
 
-//
+/*/
 // Smartdeceptive sekmesine tıkla
 
 WebUI.navigateToUrl('https://platform.catchprobe.io/smartdeceptive')

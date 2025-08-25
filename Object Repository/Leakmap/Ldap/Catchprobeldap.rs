@@ -6,12 +6,11 @@
    <elementGuidId>af9f6cb7-2ccf-475a-8ec7-a354f0b5bad7</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//div[@data-value='catchprobe']</value>
+         <key>BASIC</key>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>//div[@data-value='berkaysahin.com']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

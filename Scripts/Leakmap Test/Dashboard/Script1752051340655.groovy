@@ -43,8 +43,23 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
+TestObject X(String xp){ def to=new TestObject(xp); to.addProperty("xpath", ConditionType.EQUALS, xp); return to }
+JavascriptExecutor js(){ (JavascriptExecutor) DriverFactory.getWebDriver() }
 
-/*/ Tarayıcıyı aç ve siteye git
+void scrollIntoViewXp(String xp){
+  try {
+	WebElement el = WebUiCommonHelper.findWebElement(X(xp), 5)
+	js().executeScript("arguments[0].scrollIntoView({block:'center'});", el)
+  } catch(Throwable ignore) {}
+}
+
+boolean waitToastContains(String txt, int timeout=10){
+	String xp = "//*[contains(@class,'ant-message') or contains(@class,'ant-notification') or contains(@class,'toast') or contains(@class,'alert')]" +
+				"[not(contains(@style,'display: none'))]//*[contains(normalize-space(.), '"+txt.replace("'", "\\'")+"')]"
+	return WebUI.waitForElementVisible(X(xp), timeout, FailureHandling.OPTIONAL)
+  }
+
+// Tarayıcıyı aç ve siteye git
 WebUI.openBrowser('')
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
@@ -77,8 +92,8 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(30)
 
-/*/
-// Riskroute sekmesine tıkla
+//
+// Leakmap sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/leakmap')
 
 WebUI.waitForPageLoad(10)
@@ -319,6 +334,15 @@ WebUI.click(CreateReportElement)
 
 // Elementin görünür olmasını bekle
 WebUI.waitForElementVisible(findTestObject('Object Repository/Leakmap/Dashboard/DownloadReport'), 35)
+WebUI.delay(1)
+//Download reporta tıkla
+WebUI.click(findTestObject('Object Repository/Leakmap/Dashboard/DownloadReport'))
+
+// Onay toast (birebir)
+if(!waitToastContains("Report downloaded successfully.", 12))
+  KeywordUtil.markFailed("Onay toast'ı birebir gelmedi.")
+
+
 
 // Report sekmesini kapat
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))

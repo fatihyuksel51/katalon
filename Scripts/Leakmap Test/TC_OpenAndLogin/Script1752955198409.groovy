@@ -46,6 +46,12 @@ WebElement safeScrollTo(TestObject to) {
 	WebUI.delay(0.5)
 	return element
 }
+TestObject X(String xpath) {
+    TestObject to = new TestObject(xpath)
+    to.addProperty("xpath", ConditionType.EQUALS, xpath)
+    return to
+}
+
 
 // Başlangıç işlemleri
 WebUI.openBrowser('')
@@ -62,22 +68,39 @@ safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_P
 WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
 safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-WebUI.delay(5)
+WebUI.delay(1)
 
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), 30)
 String randomOtp = (100000 + new Random().nextInt(900000)).toString()
 safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'))
+WebUI.delay(1)
 WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
 safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
 WebUI.delay(5)
 WebUI.waitForPageLoad(10)
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+String Threat = "//span[text()='Threat']"
+WebUI.waitForElementVisible(X(Threat), 10, FailureHandling.OPTIONAL)
 
-safeScrollTo(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
-WebUI.delay(2)
-safeScrollTo(findTestObject('Object Repository/Riskroute/Katalon Organization'))
-WebUI.click(findTestObject('Object Repository/Riskroute/Katalon Organization'))
+
+// 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
+TestObject currentOrg = new TestObject()
+currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'font-semibold') and contains(text(), 'Organization')]//span[@class='font-thin']")
+
+String currentOrgText = WebUI.getText(currentOrg)
+
+// 2. Kontrol et: Eğer zaten Katalon ise hiçbir şey yapma
+if (currentOrgText != 'Katalon') {
+	// 3. Organization butonuna tıkla
+	TestObject orgButton = new TestObject()
+	orgButton.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(), 'Organization :')]]")
+	WebUI.click(orgButton)
+
+	// 4. Mail Test seçeneğine tıkla
+	TestObject testCompanyOption = new TestObject()
+	testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Katalon']]")
+	WebUI.click(testCompanyOption)
+}
 
 WebUI.delay(3)
 WebUI.waitForPageLoad(10)

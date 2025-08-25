@@ -19,10 +19,10 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>931798b1-e9ea-46ea-ba68-0336c4a425f8</guid>
+      <guid>602b8a1d-512c-4f6f-b8b7-b7d97ce2a41f</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Leakmap Test/Dashboard</testCaseId>
+      <testCaseId>Test Cases/Leakmap Test/Tesops dashboard</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>

@@ -47,13 +47,6 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>5966c8d0-2378-4e8f-bbe3-4f4cd5bf0dab</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Firewall Entegration</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
       <guid>921905a6-bdeb-45f0-9f11-ea1f3d08b476</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
