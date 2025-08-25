@@ -16,45 +16,63 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
+import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
+import org.openqa.selenium.JavascriptExecutor as JavascriptExecutor
+import org.openqa.selenium.WebElement as WebElement
+import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
+import org.openqa.selenium.WebDriver as WebDriver
+import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.util.KeywordUtil
-import com.kms.katalon.core.webui.driver.DriverFactory
-import com.catchprobe.utils.TableUtils
+import org.openqa.selenium.By
+import org.openqa.selenium.interactions.Actions
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import com.catchprobe.utils.MailReader
+import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.*
 import com.kms.katalon.core.testobject.ObjectRepository as OR
+WebElement safeScrollTo(TestObject to) {
+	if (to == null) {
+		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
+		return null
+	}
+	if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) {
+		KeywordUtil.logInfo("ℹ️ Element not present, scroll işlemi atlandı: ${to.getObjectId()}")
+		return null
+	}
+	WebElement element = WebUiCommonHelper.findWebElement(to, 5)
+	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
+	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
+	WebUI.delay(0.5)
+	return element
+}
 
-/*// Tarayıcıyı aç ve siteye git
+// Başlangıç işlemleri
+/*/
 WebUI.openBrowser('')
-
 WebUI.navigateToUrl('https://platform.catchprobe.org/')
-
 WebUI.maximizeWindow()
 
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'))
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'))
+WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+WebUI.delay(5)
 
-WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
-
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
-
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
-
-WebUI.delay(6)
-
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
-WebUI.delay(6)
-WebUI.waitForPageLoad(30)
+String randomOtp = (100000 + new Random().nextInt(900000)).toString()
+safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'))
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+WebUI.delay(5)
+WebUI.waitForPageLoad(10)
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 /*/
-
-
-
 // Threatway sekmesine git
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
 WebUI.waitForPageLoad(30)
@@ -113,19 +131,19 @@ WebUI.comment("Tüm delete butonları silindi. My Shared  boş.")
 //Channel Management sayfasına git
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/channel-management')
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.verifyElementText(findTestObject('Object Repository/Channel Management/Page_/Channel Management Text'), 'Channel Management')
 
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/Username copy'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.verifyElementText(findTestObject('Object Repository/Channel Management/Page_/Username_Copy_ToastMessage'), 'Username copied to clipboard successfully!')
 
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/Password Copy'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.verifyElementText(findTestObject('Object Repository/Channel Management/Page_/Password_Copy_ToastMessage'), 
@@ -136,7 +154,7 @@ String firstPassword = WebUI.getText(findTestObject('Object Repository/Channel M
 
 // İlk generate tıklaması
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/button_GENERATE'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 WebUI.delay(2)
 
 // Yeni şifreyi al
@@ -147,7 +165,7 @@ if (firstPassword == secondPassword) {
 	WebUI.comment("⚠️ İlk generate sonrası şifre değişmedi, tekrar denenecek...")
 
 	WebUI.click(findTestObject('Object Repository/Channel Management/Page_/button_GENERATE'))
-	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+	
 	WebUI.delay(2)
 
 	// Son şifreyi al
@@ -210,7 +228,7 @@ WebUI.verifyElementText(findTestObject('Object Repository/Channel Management/Pag
 
 WebUI.waitForElementClickable(findTestObject('Object Repository/Channel Management/Page_/Göz button'), 5)
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/Göz button'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.delay(4)
@@ -219,7 +237,7 @@ WebUI.delay(4)
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/button_Collection'), 5)
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/button_Collection'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/colection share name'), 5)
@@ -227,7 +245,7 @@ String collectionsharetext = WebUI.getText(findTestObject('Object Repository/Cha
 
 WebUI.delay(4)
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/button_Share'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 // TestObject tanımı
@@ -250,19 +268,18 @@ String sellectcollections = WebUI.getText(findTestObject('Object Repository/Chan
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/Button_Select Organization'), 5)
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/Button_Select Organization'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/Share organization name'), 5)
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/Share organization name'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.delay(2)
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/Selected Collections Text'), 5)
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/Selected Collections Text'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 
 WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/button_SHARE (1)'), 5)
@@ -283,8 +300,7 @@ CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
 WebUI.verifyElementText(findTestObject('Object Repository/Channel Management/Page_/Signatureİp'), sellectcollections)
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/Channel Management/Page_/div_Channel Management'), 5)
-WebUI.click(findTestObject('Object Repository/Channel Management/Page_/div_Channel Management'))
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/channel-management')
 CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 
 /*/

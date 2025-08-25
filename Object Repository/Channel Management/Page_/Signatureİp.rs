@@ -6,12 +6,11 @@
    <elementGuidId>9b5ba8b7-e997-4739-9bde-90363f3b008d</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>(//span[contains(@class, 'inline-flex') and contains(@class, 'bg-card')])[1]</value>
+         <key>BASIC</key>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(//button[@role='combobox']//span[@class='truncate'])[2]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

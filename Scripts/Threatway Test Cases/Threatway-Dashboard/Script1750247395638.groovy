@@ -16,13 +16,19 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.webui.driver.DriverFactory
-import org.openqa.selenium.JavascriptExecutor
-import org.openqa.selenium.WebElement
-import com.kms.katalon.core.webui.common.WebUiCommonHelper
-import org.openqa.selenium.WebDriver
+import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
+import org.openqa.selenium.JavascriptExecutor as JavascriptExecutor
+import org.openqa.selenium.WebElement as WebElement
+import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
+import org.openqa.selenium.WebDriver as WebDriver
+import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.util.KeywordUtil
+import org.openqa.selenium.By
+import org.openqa.selenium.interactions.Actions
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
+import com.catchprobe.utils.MailReader
+import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.*
 
 // ✅ Fonksiyon: Scroll edip görünür hale getir
 def scrollToVisible(WebElement element, JavascriptExecutor js) {
@@ -35,6 +41,31 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 		currentScroll += 200
 	}
 	return isVisible
+}
+// küçük helper (yoksa)
+def safeScrollTo(TestObject to) {
+	if (!WebUI.waitForElementPresent(to, 8, FailureHandling.OPTIONAL)) return null
+	def el = WebUiCommonHelper.findWebElement(to, 8)
+	((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript(
+		"arguments[0].scrollIntoView({block:'center'});", el)
+	WebUI.delay(0.3)
+	return el
+}
+
+/** hedef element gelene kadar bekler; gelmezse refresh yapar (maxReload kadar) */
+boolean waitVisibleOrReload(TestObject to, int timeoutEach = 15, int maxReload = 2) {
+	for (int i = 0; i <= maxReload; i++) {
+		if (WebUI.waitForElementVisible(to, timeoutEach, FailureHandling.OPTIONAL)) {
+			return true
+		}
+		if (i < maxReload) {
+			WebUI.comment("⚠️ '${to.getObjectId()}' görünmedi -> Refresh (${i+1}/${maxReload})")
+			WebUI.refresh()
+			WebUI.waitForPageLoad(30)
+			WebUI.delay(1)
+		}
+	}
+	return false
 }
 
 /*/ Tarayıcıyı aç ve siteye git
@@ -61,32 +92,43 @@ WebUI.delay(3)
 
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
 WebUI.waitForPageLoad(30)
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-WebUI.refresh()
-WebUI.delay(5)
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-// Dashboard sekmeleri
+
+// sekmeler (opsiyonel)
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/newborndomain'),15)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Malicious'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Bad Reputation'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Phishing'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_New Born Domain'))
 
-// New Born Domain kontrolü
+// New Born Domain
 String newBornIp = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/newborndomain'))
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/newborndomain'))
-WebUI.delay(5)
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Signature_ip'), 10)
-assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Signature_ip')).contains(newBornIp)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
+safeScrollTo(findTestObject('Object Repository/dashboard/Page_/Threatway iocDetailButton'))
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway iocDetailButton'))
+safeScrollTo(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'), 15)
+assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext')).contains(newBornIp)
+
+// tekrar dashboard
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
+
+// ⛑️ Phishing kartı: 15 sn’de gelmezse 2 kez refresh et
+TestObject toPhishingIp = findTestObject('Object Repository/dashboard/Page_/Phishing-İp')
+if (!waitVisibleOrReload(toPhishingIp, 15, 2)) {
+    WebUI.takeScreenshot()
+    KeywordUtil.markFailedAndStop("❌ Phishing kartı yüklenmedi (2 refresh sonrası).")
+}
 
 // Phishing kontrolü
-WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Phishing-İp'),15)
-String phishingIp = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Phishing-İp'))
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Phishing-İp'))
+String phishingIp = WebUI.getText(toPhishingIp)
+WebUI.click(toPhishingIp)
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Signature_ip'), 10)
-assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Signature_ip')).contains(phishingIp)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/div_Dashboard'))
+safeScrollTo(findTestObject('Object Repository/dashboard/Page_/Threatway iocDetailButton'))
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway iocDetailButton'))
+safeScrollTo(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext'), 15)
+assert WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext')).contains(phishingIp)
 
 /*/ Bad Reputation kontrolü
 WebUI.waitForElementPresent(findTestObject('Object Repository/dashboard/Page_/Bad Reputation'),15)
