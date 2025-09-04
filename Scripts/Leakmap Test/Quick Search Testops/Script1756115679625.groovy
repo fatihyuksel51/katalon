@@ -13,6 +13,12 @@ import org.openqa.selenium.WebElement
 TestObject X(String xp){ def to=new TestObject(xp); to.addProperty("xpath", ConditionType.EQUALS, xp); return to }
 JavascriptExecutor js(){ (JavascriptExecutor) DriverFactory.getWebDriver() }
 boolean isBrowserOpen(){ try{ DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false } }
+void setZoom(double z) {
+	try { js().executeScript("document.body.style.zoom='" + z + "'") } catch (Throwable t) {
+	  KeywordUtil.markWarning("zoom set edilemedi: " + t.message)
+	}
+  }
+  
 void ensureSession(){
   if (isBrowserOpen()) return
   WebUI.openBrowser(''); WebUI.maximizeWindow()
@@ -109,6 +115,8 @@ if (isSeen) {
 
   WebUI.click(findTestObject('Object Repository/Leakmap/QuickSearch/Button_Eye_Detail'))
   WebUI.delay(1)
+
+  setZoom(0.6)           // veya js().executeScript("document.body.style.zoom='0.6'")
   WebUI.click(findTestObject('Object Repository/Leakmap/Dashboard/AI INSIGHT'))
   TestObject insight = X("(//div[@data-radix-scroll-area-viewport])[4]")
   WebUI.waitForElementVisible(insight, 20)

@@ -7,11 +7,10 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//div[@id='cpApp']/div[2]/main/div/div/div/div/div/div[2]/div/div/div/div/form/div[4]/button</value>
+         <value>//button[normalize-space(.)='SEARCH']</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

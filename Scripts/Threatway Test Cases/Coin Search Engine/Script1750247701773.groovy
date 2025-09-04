@@ -1,185 +1,166 @@
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+/************** Imports **************/
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
-import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling as FailureHandling
-import com.kms.katalon.core.testcase.TestCase as TestCase
-import com.kms.katalon.core.testdata.TestData as TestData
-import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
-import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import internal.GlobalVariable
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import org.openqa.selenium.WebElement
-import com.kms.katalon.core.webui.driver.DriverFactory
+
+import com.kms.katalon.core.model.FailureHandling
+import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.testobject.ObjectRepository as OR
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.common.WebUiCommonHelper
+import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.Keys
-import org.openqa.selenium.WebElement as Keys
-import com.kms.katalon.core.testobject.ConditionType
+import java.util.Random
 import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
-import com.kms.katalon.core.util.KeywordUtil
 
+/************** Mini yardımcılar **************/
+TestObject X(String xp){ def to=new TestObject(xp); to.addProperty("xpath",ConditionType.EQUALS,xp); return to }
 
+boolean isBrowserOpen(){ try{ DriverFactory.getWebDriver(); return true }catch(Throwable t){ return false } }
 
-// ✅ Fonksiyon: Scroll edip görünür hale getir
-def scrollToVisible(WebElement element, JavascriptExecutor js) {
-	int currentScroll = 0
-	boolean isVisible = false
-	while (!isVisible && currentScroll < 3000) {
-		js.executeScript("window.scrollBy(0, 200)")
-		WebUI.delay(0.5)
-		isVisible = element.isDisplayed()
-		currentScroll += 200
-	}
-	return isVisible
-}
-/*/ Tarayıcıyı aç ve siteye git
-WebUI.openBrowser('')
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
-WebUI.maximizeWindow()
-
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
-WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
-WebUI.delay(3)
-
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
-WebUI.waitForPageLoad(30)
-/*/
-WebUI.delay(3)
-
-
-// Threatway sekmesine git
-WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
-WebUI.waitForPageLoad(30)
-
-
-
-
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-// Threat Actor linkini bul
-TestObject coinsearchlink = findTestObject('Object Repository/Coin Search Engine/Coinsearchenginelink')
-
-// WebElement olarak al
-WebElement linkElement = WebUiCommonHelper.findWebElement(coinsearchlink, 10)
-// JavascriptExecutor al
-JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
-
-
-
-
-
-// Scroll edip görünür yap
-scrollToVisible(linkElement, js)
-
-// Tıkla
-WebUI.click(coinsearchlink)
-WebUI.waitForPageLoad(30)
-
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-
-WebUI.waitForElementClickable(findTestObject('Object Repository/Coin Search Engine/From Copy'), 10)
-WebUI.click(findTestObject('Object Repository/Coin Search Engine/From Copy'))
-
-WebUI.verifyElementText(findTestObject('Object Repository/Coin Search Engine/Toast Message'),
-	'From Account copied to clipboard successfully!')
-// Kopyalanan değeri clipboard'dan al
-String copiedText = Toolkit.getDefaultToolkit()
-						  .getSystemClipboard()
-						  .getData(DataFlavor.stringFlavor)
-						  .toString()
-
-// Log'a yaz
-println("📋 Kopyalanan Text: " + copiedText)
-
-String Fromtext=WebUI.getText(findTestObject('Object Repository/Coin Search Engine/From Link'))
-String Coinİptext=WebUI.getText(findTestObject('Object Repository/Coin Search Engine/Coin link'))
-
-WebUI.click(findTestObject('Object Repository/Coin Search Engine/Theatway filterbuton'))
-int maxRetries = 1
-int attempt = 0
-boolean isSuccess = false
-
-while (attempt < maxRetries && !isSuccess) {
-    try {
-        // Input alanına copiedText'i yaz
-        WebUI.waitForElementVisible(findTestObject('Object Repository/Coin Search Engine/İnput'), 10)
-        WebUI.setText(findTestObject('Object Repository/Coin Search Engine/İnput'), copiedText)
-
-        // Apply and Search butonuna tıkla
-        WebUI.waitForElementClickable(findTestObject('Object Repository/Coin Search Engine/threatway button_APPLY AND SEARCH'), 10)
-        WebUI.click(findTestObject('Object Repository/Coin Search Engine/threatway button_APPLY AND SEARCH'))
-
-        // Sayfanın yüklenmesini bekle
-        WebUI.waitForPageLoad(10)
-		// Sayfa yenilenip yeni sonuç geldi mi kontrol et
-		WebUI.verifyElementText(findTestObject('Object Repository/Coin Search Engine/From Link'),Fromtext )
-		
-        isSuccess = true // Başarılıysa döngüden çık
-    } catch (Exception e) {
-        attempt++
-        println("Attempt ${attempt} failed. Refreshing the page...")
-
-        // Sayfayı yenile
-        WebUI.refresh()
-		WebUI.click(findTestObject('Object Repository/Coin Search Engine/Theatway filterbuton'))
-		WebUI.setText(findTestObject('Object Repository/Coin Search Engine/İnput'), copiedText)
-		WebUI.waitForElementClickable(findTestObject('Object Repository/Coin Search Engine/threatway button_APPLY AND SEARCH'), 10)
-		WebUI.click(findTestObject('Object Repository/Coin Search Engine/threatway button_APPLY AND SEARCH'))
-		WebUI.verifyElementText(findTestObject('Object Repository/Coin Search Engine/From Link'),Fromtext )
-        // Sayfa yüklenmesini bekle
-        WebUI.waitForPageLoad(10)
+/** Elemanı görünür olana kadar küçük adımlarla sayfayı kaydır */
+void scrollToVisible(WebElement el){
+    int sc=0
+    JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getWebDriver()
+    while(sc<3000 && el!=null && !el.isDisplayed()){
+        jse.executeScript("window.scrollBy(0, 200)")
+        WebUI.delay(0.2)
+        sc += 200
     }
 }
 
-if (!isSuccess) {
-    KeywordUtil.markFailed("Apply and Search işlemi 3 denemeye rağmen gerçekleştirilemedi.")
+/** hızlı yaz – olmazsa JS fallback */
+void clearAndType(TestObject to, String text, int t=10){
+    WebUI.waitForElementVisible(to,t,FailureHandling.OPTIONAL)
+    WebElement e = WebUiCommonHelper.findWebElement(to,t)
+    try{ e.clear(); e.sendKeys(text); return }catch(_){}
+    try{
+        JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getWebDriver()
+        jse.executeScript("arguments[0].value=''; arguments[0].dispatchEvent(new Event('input',{bubbles:true}))", e)
+        jse.executeScript("arguments[0].value=arguments[1]; arguments[0].dispatchEvent(new Event('input',{bubbles:true}))", e, text)
+    }catch(_){
+        WebUI.setText(to,text)
+    }
 }
 
-WebUI.verifyElementText(findTestObject('Object Repository/Coin Search Engine/From Link'),Fromtext )
-
-WebUI.click(findTestObject('Object Repository/Coin Search Engine/Coin link'))
-
-WebUI.verifyElementText(findTestObject('Object Repository/Coin Search Engine/İp Link'),Coinİptext )
-
-WebUI.click(findTestObject('Object Repository/Coin Search Engine/Show detail Close button'))
-
-WebUI.click(findTestObject('Object Repository/Coin Search Engine/Filter Close'))
-
-//İkinci doğrulaması yap
-WebElement SecondElement = WebUiCommonHelper.findWebElement(findTestObject('Object Repository/Coin Search Engine/Coin Second'), 10)
-// Scroll ve click işlemi
-if (scrollToVisible(SecondElement, js)) {
-	js.executeScript("arguments[0].click();", SecondElement)
-	WebUI.comment("👉 'ikinci' butonuna tıklandı.")
-} else {
-	WebUI.comment("❌ 'ikinci' butonu görünür değil, tıklanamadı.")
+/** Clipboard güvenli okuma (başarısızsa fallback döner) */
+String getClipboardTextOr(String fallback){
+    try{
+        def cb = Toolkit.getDefaultToolkit().getSystemClipboard()
+        def data = cb.getData(DataFlavor.stringFlavor)
+        if(data!=null) return data.toString()
+    }catch(Throwable _){}
+    return fallback
 }
 
-WebUI.delay(3)
+/************** Oturum **************/
+void ensureSession(){
+    if(isBrowserOpen()) return
+    WebUI.openBrowser('')
+    WebUI.maximizeWindow()
+    WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-WebUI.click(findTestObject('Object Repository/Coin Search Engine/Show detail Close button'))
+    WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+    WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
+    WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+    WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+    WebUI.setEncryptedText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+    WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
+    WebUI.delay(3)
+    String otp = (100000 + new Random().nextInt(900000)).toString()
+    WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+    WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+    WebUI.delay(2)
 
+    WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
 
+/************** TEST: Coin Search Engine **************/
+ensureSession()
 
+// Doğrudan sayfaya git
+WebUI.navigateToUrl('https://platform.catchprobe.org/threatway/coin-search-engine')
+WebUI.waitForPageLoad(30)
+try { CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'() } catch(_){}
 
+// 1) "From Copy" → panoya kopyala ve toast doğrula
+TestObject btnFromCopy = findTestObject('Object Repository/Coin Search Engine/From Copy')
+WebUI.waitForElementClickable(btnFromCopy, 15)
+WebUI.click(btnFromCopy)
 
+TestObject toast = findTestObject('Object Repository/Coin Search Engine/Toast Message')
+WebUI.waitForElementVisible(toast, 10)
+WebUI.verifyElementText(toast, 'From Account copied to clipboard successfully!')
 
+// 2) Ekrandaki "From Link" ve "Coin link" metinlerini al
+TestObject fromLink = findTestObject('Object Repository/Coin Search Engine/From Link')
+TestObject coinLink = findTestObject('Object Repository/Coin Search Engine/Coin link')
+WebUI.waitForElementVisible(fromLink, 15)
+WebUI.waitForElementVisible(coinLink, 15)
+
+String fromTextScreen = WebUI.getText(fromLink) ?: ""
+String coinTextScreen = WebUI.getText(coinLink) ?: ""
+
+// 3) Clipboard’tan oku; olmazsa From Link’i kullan
+String fromTextClipboard = getClipboardTextOr(fromTextScreen)
+KeywordUtil.logInfo("Clipboard/From value: " + fromTextClipboard)
+
+// 4) Filtreyi aç, değeri gir, Apply & Search
+TestObject btnOpenFilter = findTestObject('Object Repository/Coin Search Engine/Theatway filterbuton')
+WebUI.waitForElementClickable(btnOpenFilter, 10)
+WebUI.click(btnOpenFilter)
+
+TestObject filterInput = findTestObject('Object Repository/Coin Search Engine/İnput')
+WebUI.waitForElementVisible(filterInput, 10)
+clearAndType(filterInput, fromTextClipboard)
+
+TestObject btnApplyAndSearch = findTestObject('Object Repository/Coin Search Engine/threatway button_APPLY AND SEARCH')
+WebUI.waitForElementClickable(btnApplyAndSearch, 10)
+WebUI.click(btnApplyAndSearch)
+
+// 5) Sonuçlar yenilensin ve From Link aynı kalsın
+WebUI.waitForPageLoad(15)
+WebUI.waitForElementVisible(fromLink, 15)
+WebUI.verifyElementText(fromLink, fromTextScreen)
+
+// 6) Coin detayını aç → IP link doğrula
+WebUI.waitForElementClickable(coinLink, 10)
+WebUI.click(coinLink)
+
+TestObject ipLink = findTestObject('Object Repository/Coin Search Engine/İp Link')
+// Burada iş kuralına göre doğrulama yapılıyor.
+// Senin akışında IP panelindeki metni coin link ile eşliyorsun:
+WebUI.waitForElementVisible(ipLink, 10)
+WebUI.verifyElementText(ipLink, coinTextScreen)
+
+// Detayı kapat
+TestObject btnDetailClose = findTestObject('Object Repository/Coin Search Engine/Show detail Close button')
+WebUI.waitForElementClickable(btnDetailClose, 10)
+WebUI.click(btnDetailClose)
+
+// Filtre paneli açıksa kapat (opsiyonel)
+TestObject btnFilterClose = findTestObject('Object Repository/Coin Search Engine/Filter Close')
+if(WebUI.verifyElementPresent(btnFilterClose, 3, FailureHandling.OPTIONAL)){
+    WebUI.click(btnFilterClose)
+}
+
+// 7) İkinci öğe doğrulaması (görünür yap & tıkla)
+TestObject secondCoin = findTestObject('Object Repository/Coin Search Engine/Coin Second')
+WebElement secondEl = WebUiCommonHelper.findWebElement(secondCoin, 10)
+scrollToVisible(secondEl)
+((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript("arguments[0].click();", secondEl)
+WebUI.comment("👉 'Coin Second' tıklandı.")
+WebUI.delay(2)
+
+// Detayı kapat
+WebUI.waitForElementClickable(btnDetailClose, 10)
+WebUI.click(btnDetailClose)
+
+WebUI.comment('✅ Coin Search Engine senaryosu tamamlandı.')

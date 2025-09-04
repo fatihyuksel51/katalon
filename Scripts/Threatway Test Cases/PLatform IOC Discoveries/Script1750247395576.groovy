@@ -98,13 +98,13 @@ WebUI.click(findTestObject('Object Repository/dashboard/Page_/Theatway filterbut
 WebUI.delay(2)
 
 WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 5)
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway favori_ip'), 30)
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway first signature'), 30)
 
 
 WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 30)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'), 30)
+WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway first ip'), 30)
 
 WebUI.scrollToElement(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 5)
 WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 10)
@@ -144,8 +144,8 @@ WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_A
 
 
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway first ip'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway first ip'))
 
 
 
@@ -373,8 +373,8 @@ try {
 WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 30)
 WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'))
 
-WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'), 30)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway a_113.27.28.61'))
+WebUI.waitForElementClickable(findTestObject('Object Repository/dashboard/Page_/Threatway first ip'), 30)
+WebUI.click(findTestObject('Object Repository/dashboard/Page_/Threatway first ip'))
 
 //Abuse Report butonuna tıkla
 WebUI.waitForElementClickable(findTestObject('Object Repository/Platform IOC Discoveries/Abuse Report'), 30)

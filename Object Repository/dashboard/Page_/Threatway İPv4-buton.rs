@@ -7,7 +7,8 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//label[contains(.,'Observable Types :')]/following::button[1]</value>
+         <value>//button[span[text()='All Observable Types']]&#xd;
+</value>
       </entry>
       <entry>
          <key>BASIC</key>

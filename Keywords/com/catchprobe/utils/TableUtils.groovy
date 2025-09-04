@@ -19,7 +19,7 @@ import com.kms.katalon.core.model.FailureHandling
 
 class TableUtils {
 	static void clickDateInTable(WebDriver driver, WebElement tableContainer, String currentDate) {
-		List<WebElement> cells = tableContainer.findElements(By.cssSelector("td"))
+		List<WebElement> cells = tableContainer.findElements(By.xpath("//div[contains(@class, 'col-span-3')]//span[contains(@class, 'text-xs text-muted-foreground')]"))
 		boolean isFound = false
 
 		for (WebElement cell : cells) {
@@ -42,7 +42,7 @@ class TableUtils {
 		JavascriptExecutor js = (JavascriptExecutor) driver
 
 		try {
-			WebElement tableContainer = driver.findElement(By.cssSelector(".ant-table-content"))
+			WebElement tableContainer = driver.findElement(By.cssSelector("div.group.relative.grid.grid-cols-24.bg-card"))
 			String xpath = "//span[contains(text(),'" + locationText + "')]"
 			List<WebElement> locationElements = driver.findElements(By.xpath(xpath))
 

@@ -7,11 +7,10 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>(//div[@class='rounded-md bg-card text-card-foreground'])[3]</value>
+         <value>(//div[@id='apexchartsthreatway_chart_number_of_views_by_collection'])[1]</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

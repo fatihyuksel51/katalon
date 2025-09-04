@@ -6,12 +6,11 @@
    <elementGuidId>c71f70ea-5f16-4f2a-ad3b-ac36dd7b69a3</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(//div/span[contains(@class,'font-bold')and contains(.,'Keylogging')])[1]</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>(//div/a[contains(@class,'relative inline-flex items-center')and contains(.,'Keylogging')])[1]</value>
+         <key>BASIC</key>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

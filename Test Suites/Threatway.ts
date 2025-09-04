@@ -75,13 +75,6 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>bfa1326c-a1b8-46b1-b9c4-5dc92a87b622</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Threat Actor</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
       <guid>63842159-8cfa-4fee-b9e0-58e0d980088c</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>

@@ -7,11 +7,10 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//button[@type='button' and contains(@class, 'absolute') and contains(@class, 'top-4')]</value>
+         <value>(//button[@type='button' and contains(@class, 'absolute') and contains(@class, 'top-4')])[2]</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

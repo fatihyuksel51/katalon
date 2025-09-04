@@ -7,7 +7,8 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//label[contains(.,'Start Date :')]/following::button[1]</value>
+         <value>//button[span[text()='Select Start Date']]&#xd;
+</value>
       </entry>
       <entry>
          <key>BASIC</key>

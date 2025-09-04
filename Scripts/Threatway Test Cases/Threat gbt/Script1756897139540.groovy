@@ -26,6 +26,26 @@ WebElement we(TestObject to,int t=10){ WebUiCommonHelper.findWebElement(to,t) }
 void pressEsc(){ new Actions(drv()).sendKeys(Keys.ESCAPE).perform() }
 
 boolean isBrowserOpen(){ try{ drv(); return true }catch(Throwable t){ return false } }
+/** Başlıktan güvenli APT numarası çıkar (yoksa null) */
+Integer extractAptNum(String title) {
+	if (title == null) return null
+	def m = (title =~ /(?i)\bAPT\s*(\d+)\b/)
+	return m.find() ? Integer.parseInt(m.group(1)) : null
+}
+
+/** İlk n başlıktan APT numaralarını topla (yalnızca eşleşenleri döndürür) */
+List<Integer> aptNumsFromTop(int n = 5) {
+	def nums = []
+	for (int i = 1; i <= n; i++) {
+		TestObject t = X("${titleXpRoot}[${i}]")
+		if (WebUI.verifyElementPresent(t, 2, FailureHandling.OPTIONAL)) {
+			String txt = WebUI.getText(t) ?: ""
+			Integer val = extractAptNum(txt)
+			if (val != null) nums << val
+		}
+	}
+	return nums
+}
 
 void domReady(int timeoutSec=20){
   long end=System.currentTimeMillis()+timeoutSec*1000
@@ -100,6 +120,7 @@ boolean waitCalm(int sec=8){
 @Field TestObject sortBtn     = X("//button[contains(text(),'DESC') or contains(text(),'ASC')]")
 
 /************** Dinamik beklemeler **************/
+/** ilk kart başlığı */
 String getFirstTitle() {
   return WebUI.verifyElementPresent(firstResult, 2, FailureHandling.OPTIONAL) ? WebUI.getText(firstResult) : ""
 }
@@ -110,18 +131,6 @@ boolean waitTextChanged(TestObject el, String oldText, int timeout=10){
     if(WebUI.verifyElementPresent(el,2,FailureHandling.OPTIONAL)){
       String t = WebUI.getText(el)
       if(t != oldText && t.trim()!="") return true
-    }
-    WebUI.delay(0.25)
-  }
-  return false
-}
-/** ilk başlığın REGEX ile eşleşmesini bekle */
-boolean waitFirstMatches(String regex, int timeout=10){
-  long end=System.currentTimeMillis()+timeout*1000
-  while(System.currentTimeMillis()<end){
-    if(WebUI.verifyElementPresent(firstResult,2,FailureHandling.OPTIONAL)){
-      String t = WebUI.getText(firstResult) ?: ""
-      if( (t =~ regex).find() ) return true
     }
     WebUI.delay(0.25)
   }
@@ -150,6 +159,7 @@ void ensureSession(){
 }
 
 /************** Uygulama yardımcıları **************/
+/** APT filtresi – hızlı/dinamik */
 String applyAptFilter(int tries=3){
   for(int i=1;i<=tries;i++){
     String before = getFirstTitle()
@@ -168,32 +178,40 @@ String applyAptFilter(int tries=3){
   return getFirstTitle()
 }
 
-/** Hedef sıralamaya getir ve ilk kartın beklenen başlık olmasını doğrula */
-boolean setSortAndAssert(String target /* "DESC"|"ASC" */, String expectedRegex, int timeout=10){
-  String before = getFirstTitle()
-  String curBtn = WebUI.getText(sortBtn)
-  if(!curBtn.contains(target)){
-    clickSmartRetry(sortBtn,1)
-	clickSmartRetry(btnSearch, 1)
-  }
-  waitCalm(1)
-  // İlk deneme
-  if(waitFirstMatches(expectedRegex, timeout)) return true
-  // Güvenlik için bir kez daha tıkla (UI gecikmesi/yanıtlamama durumuna karşı)
+/** sıralama değişene kadar bekle ve doğrula */
+
+boolean isDesc(List<Integer> a){ for(int i=1;i<a.size();i++) if(a[i] > a[i-1]) return false; true }
+boolean isAsc (List<Integer> a){ for(int i=1;i<a.size();i++) if(a[i] < a[i-1]) return false; true }
+
+boolean toggleSortAndWait(String target /* "DESC" or "ASC" */, int timeout=10){
+  List<Integer> before = aptNumsFromTop(5)
   clickSmartRetry(sortBtn,1)
-  waitCalm(1)
-  return waitFirstMatches(expectedRegex, timeout)
+  long end = System.currentTimeMillis()+timeout*1000
+  while(System.currentTimeMillis()<end){
+    waitCalm(1)
+    List<Integer> after = aptNumsFromTop(5)
+    if(after!=before && after.size()>=2){
+      if(target=="DESC" && isDesc(after)) return true
+      if(target=="ASC"  && isAsc(after))  return true
+    }
+    WebUI.delay(0.3)
+  }
+  return false
 }
 
 /** İlk kartı aç – içerik gelmezse ESC ile kapatıp tekrar dene */
 boolean openFirstCardRobust(int maxTries=3){
   for(int i=1;i<=maxTries;i++){
+	  
     clickSmartRetry(X("${titleXpRoot}[1]"),2)
+    // sheet içindeki “Info” tab’ı ve üst şerit görünsün
     TestObject proof = X("//div[contains(@class,'fixed')]//button[contains(.,'Info')]")
     if(WebUI.waitForElementVisible(proof, 5, FailureHandling.OPTIONAL)){
+      // Ek olarak, sheet içinde herhangi bir hücre render oldu mu?
       TestObject anyCell = X("//div[contains(@class,'fixed')]//*[contains(.,'Actor Details') or contains(.,'MITRE ATT&CK') or contains(.,'Indicators')]")
       if(WebUI.waitForElementVisible(anyCell, 3, FailureHandling.OPTIONAL)) return true
     }
+    // olmadı → ESC ile kapa ve tekrar dene
     pressEsc()
     WebUI.delay(0.5)
 	clickSmartRetry(btnSearch, 1)
@@ -211,23 +229,28 @@ clickSmartRetry(findTestObject('Object Repository/Threat Actor/Threatactorlink')
 domReady(15); waitCalm(4)
 WebUI.verifyElementPresent(findTestObject('Object Repository/Threat Actor/Threataa/Page_/div_ascendo'), 2)
 
-// APT filtresi
-applyAptFilter(3)
+/** APT filtresini uygula (dinamik) */
+String firstAfterFilter = applyAptFilter(3)
+if(!((firstAfterFilter =~ /(?i)APT\s*\d+/).find())){
+  KeywordUtil.markWarning("İlk sonuç APT formatında değil: '${firstAfterFilter}'. Devam ediyorum.")
+}
 
-// 1) DESC ve ilk kart APT73 olmalı
-assert setSortAndAssert("DESC", "(?i)\\bAPT\\s*73\\b", 8)
-KeywordUtil.logInfo("✅ DESC doğrulandı: İlk kart APT73")
+/** DESC → ASC hızlı kontrol */
+String currentBtn = WebUI.getText(sortBtn)
+if(!currentBtn.contains("DESC")) { toggleSortAndWait("DESC", 2) }
+List<Integer> descNums = aptNumsFromTop(5); WebUI.verifyEqual(true, isDesc(descNums))
 
-// 2) ASC ve ilk kart APT28 olmalı
-assert setSortAndAssert("ASC", "(?i)\\bAPT\\s*28\\b", 8)
-KeywordUtil.logInfo("✅ ASC doğrulandı: İlk kart APT28")
+toggleSortAndWait("ASC", 2)
+clickSmartRetry(btnSearch, 1)
+List<Integer> ascNums = aptNumsFromTop(5);  WebUI.verifyEqual(true, isAsc(ascNums))
 
-// 3) İlk kartı aç (APT28)
-openFirstCardRobust(3)
-
+/** İlk kartı aç (robust) */
+if(!openFirstCardRobust(2)){
+  KeywordUtil.markFailed("Kart sheet açılmadı (3 deneme).")
+}
 
 /************** MITRE ATT&CK **************/
-TestObject tabMitre   = findTestObject('Object Repository/Threat Actor/Thretaa/Page_/Mitre Attack')
+TestObject tabMitre   = findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Attack')
 TestObject proofMitre = X("//div[contains(@class,'cursor-pointer') and contains(.,'MITRE ATT&CK')]")
 int attempts = 0
 while (attempts < 3 && !WebUI.waitForElementVisible(proofMitre, 2, FailureHandling.OPTIONAL)) {

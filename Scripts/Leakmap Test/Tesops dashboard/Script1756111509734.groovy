@@ -169,7 +169,7 @@ String mailUser = "catchprobe.testmail@gmail.com"
 String mailPassword = "eqebhxweatxsocbx"
 String keyword = "LeakMap"
 
-try { MailReader.clearFolder(mailHost, mailUser, mailPassword, "INBOX") } catch(Throwable ignored){}
+
 
 int maxWait = 180, step = 10, waited = 0
 boolean mailArrived = false
