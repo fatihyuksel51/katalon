@@ -1,64 +1,92 @@
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+/************** Imports **************/
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
-import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling as FailureHandling
-import com.kms.katalon.core.testcase.TestCase as TestCase
-import com.kms.katalon.core.testdata.TestData as TestData
-import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
-import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+
+import com.kms.katalon.core.model.FailureHandling
+import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.testobject.ObjectRepository as OR
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.util.KeywordUtil
+import com.kms.katalon.core.webui.common.WebUiCommonHelper
+import com.kms.katalon.core.webui.driver.DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import internal.GlobalVariable as GlobalVariable
-import org.openqa.selenium.Keys as Keys
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
-import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling as FailureHandling
-import com.kms.katalon.core.testcase.TestCase as TestCase
-import com.kms.katalon.core.testdata.TestData as TestData
-import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
-import com.kms.katalon.core.testobject.TestObject as TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-import internal.GlobalVariable as GlobalVariable
-import org.openqa.selenium.Keys as Keys
-import com.kms.katalon.core.testobject.ConditionType as ConditionType
+
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebElement
+import java.util.Random
+
+/************** Mini yardımcılar **************/
+TestObject X(String xp){
+  def to=new TestObject(xp)
+  to.addProperty("xpath",ConditionType.EQUALS,xp)
+  return to
+}
+
+boolean isBrowserOpen(){
+  try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
+}
+
+/** Elemanı görünür olana kadar küçük adımlarla sayfayı kaydır */
+void scrollToVisible(WebElement el){
+  if(el==null) return
+  int sc=0
+  JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getWebDriver()
+  while(sc<3000 && !el.isDisplayed()){
+    jse.executeScript("window.scrollBy(0, 200)")
+    WebUI.delay(0.2)
+    sc+=200
+  }
+}
+
+/** Görünür + tıklanabilir bekleyip tıkla */
+void clickSmart(TestObject to, int t=10){
+  WebUI.waitForElementVisible(to, t)
+  WebUI.waitForElementClickable(to, t)
+  WebUI.click(to)
+}
+
+/** Input’a hızlı yaz – JS fallback */
+void clearAndType(TestObject to, String text, int t=10){
+  WebUI.waitForElementVisible(to,t,FailureHandling.OPTIONAL)
+  WebElement e = WebUiCommonHelper.findWebElement(to,t)
+  try { e.clear(); e.sendKeys(text); return } catch(_){}
+  try {
+    JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getWebDriver()
+    jse.executeScript("arguments[0].value=''; arguments[0].dispatchEvent(new Event('input',{bubbles:true}))", e)
+    jse.executeScript("arguments[0].value=arguments[1]; arguments[0].dispatchEvent(new Event('input',{bubbles:true}))", e, text)
+  } catch(_){
+    WebUI.setText(to,text)
+  }
+}
+
+/************** Oturum **************/
+void ensureSession(){
+  if(isBrowserOpen()) return
+
+  WebUI.openBrowser('')
+  WebUI.maximizeWindow()
+  WebUI.navigateToUrl('https://platform.catchprobe.org/')
+
+  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+
+  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+  WebUI.setEncryptedText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+  WebUI.delay(3)
+  String otp = (100000 + new Random().nextInt(900000)).toString()
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+  WebUI.delay(2)
+
+  WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
+
+/************** TEST: Collections **************/
+ensureSession()
 
 
-
-/*// Tarayıcıyı aç ve siteye git
-WebUI.openBrowser('')
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
-WebUI.maximizeWindow()
-
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
-WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
-WebUI.delay(3)
-
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Verify'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-/*/ 
-//Threatway sekmesine tıkla
 // Threatway sekmesine git
 WebUI.navigateToUrl('https://platform.catchprobe.org/threatway')
 WebUI.waitForPageLoad(30)

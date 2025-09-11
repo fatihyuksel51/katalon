@@ -75,13 +75,6 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>63842159-8cfa-4fee-b9e0-58e0d980088c</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/Coin Search Engine</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
       <guid>1e1176d8-ee62-406c-8eeb-68de762590ca</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
