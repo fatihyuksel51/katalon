@@ -6,12 +6,11 @@
    <elementGuidId>0bfc54af-3fb0-433f-b33a-89302427da10</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(//td[contains(@class,'ant-table-cell-fix')]//span[@class='truncate'])[2]</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>//td[contains(@class,'ant-table-cell-fix')]//span[@class='truncate']</value>
+         <key>BASIC</key>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

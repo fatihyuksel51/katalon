@@ -27,12 +27,17 @@ import org.openqa.selenium.By
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
-import com.kms.katalon.core.configuration.RunConfiguration
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import java.text.SimpleDateFormat
+import java.util.Date
+import com.kms.katalon.core.testobject.ObjectRepository as OR
 
 
 
-
+TestObject X(String xp){
+	def to=new TestObject(xp)
+	to.addProperty("xpath",ConditionType.EQUALS,xp)
+	return to
+  }
 // ✅ Fonksiyon: Scroll edip görünür hale getir
 def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	int currentScroll = 0
@@ -45,41 +50,38 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
+boolean isBrowserOpen(){
+	try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
+  }
+  
+/************** Oturum **************/
+void ensureSession(){
+  if(isBrowserOpen()) return
 
-/*/ Tarayıcıyı aç ve siteye git
-WebUI.openBrowser('')
+  WebUI.openBrowser('')
+  WebUI.maximizeWindow()
+  WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
+  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
-WebUI.maximizeWindow()
+  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+  WebUI.setEncryptedText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+  WebUI.delay(3)
+  String otp = (100000 + new Random().nextInt(900000)).toString()
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+  WebUI.delay(2)
+  String Threat = "//span[text()='Threat']"
+  WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
 
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+/************** TEST: Collections **************/
+ensureSession()
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.delay(5)
-
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.delay(5)
-
-WebUI.waitForPageLoad(30)
-
-/*/
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 

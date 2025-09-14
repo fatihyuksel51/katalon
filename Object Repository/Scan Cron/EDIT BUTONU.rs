@@ -6,12 +6,11 @@
    <elementGuidId>ae8dbfd2-9f5e-4599-ac71-01813e968187</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>//button[text()='SAVE']</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>//button[text()='EDIT']</value>
+         <key>BASIC</key>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

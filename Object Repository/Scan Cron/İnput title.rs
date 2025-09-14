@@ -6,12 +6,11 @@
    <elementGuidId>b746da23-f2b4-43e0-8a1c-859fac77288e</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(//input[@name='title' and @type='text'])[2]</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>//input[@name='title' and @type='text']</value>
+         <key>BASIC</key>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

@@ -1,4 +1,5 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import com.kms.katalon.core.testobject.ObjectRepository as OR
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -32,18 +33,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 
 
 
-// ✅ Fonksiyon: Scroll edip görünür hale getir
-def scrollToVisible(WebElement element, JavascriptExecutor js) {
-	int currentScroll = 0
-	boolean isVisible = false
-	while (!isVisible && currentScroll < 3000) {
-		js.executeScript("window.scrollBy(0, 200)")
-		WebUI.delay(0.5)
-		isVisible = element.isDisplayed()
-		currentScroll += 200
-	}
-	return isVisible
-}
+
 WebElement safeScrollTo(TestObject to) {
 	if (to == null) {
 		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
@@ -60,39 +50,54 @@ WebElement safeScrollTo(TestObject to) {
 	return element
 }
 
-/*/ Tarayıcıyı aç ve siteye git
-WebUI.openBrowser('')
+TestObject X(String xp){
+	def to=new TestObject(xp)
+	to.addProperty("xpath",ConditionType.EQUALS,xp)
+	return to
+  }
+// ✅ Fonksiyon: Scroll edip görünür hale getir
+def scrollToVisible(WebElement element, JavascriptExecutor js) {
+	int currentScroll = 0
+	boolean isVisible = false
+	while (!isVisible && currentScroll < 3000) {
+		js.executeScript("window.scrollBy(0, 200)")
+		WebUI.delay(0.5)
+		isVisible = element.isDisplayed()
+		currentScroll += 200
+	}
+	return isVisible
+}
+boolean isBrowserOpen(){
+	try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
+  }
+  
+/************** Oturum **************/
+void ensureSession(){
+  if(isBrowserOpen()) return
 
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
+  WebUI.openBrowser('')
+  WebUI.maximizeWindow()
+  WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-WebUI.maximizeWindow()
+  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+  WebUI.setEncryptedText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+  WebUI.delay(3)
+  String otp = (100000 + new Random().nextInt(900000)).toString()
+  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+  WebUI.delay(2)
+  String Threat = "//span[text()='Threat']"
+  WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.delay(5)
-
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.delay(5)
-
-WebUI.waitForPageLoad(30)
-/*/
+/************** TEST: Collections **************/
+ensureSession()
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
 WebUI.delay(5)
@@ -173,7 +178,7 @@ WebUI.delay(2)
 js.executeScript("document.body.style.zoom='0.8'")
 
 // 7️⃣ Description titlre 'test' yaz
-TestObject TitleInput = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//input[@name='title' and @type='text']")
+TestObject TitleInput = new TestObject().addProperty("xpath", ConditionType.EQUALS, "(//input[@name='title' and @type='text'])[2]")
 WebUI.setText(TitleInput, "katalon")
 
 // 3️⃣ 'Scan' radio butonunu işaretle
@@ -195,7 +200,7 @@ todayButton.addProperty("xpath", ConditionType.EQUALS, "//button[@name='day' and
 WebUI.click(todayButton)
 WebUI.delay(1)
 
-// 6️⃣ Saat ve Dakika seçimini yap
+/*/ 6️⃣ Saat ve Dakika seçimini yap
 // Saat butonu
 TestObject hourButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "(//div[@class='flex gap-2']//button[@role='combobox'])[1]")
 WebUI.click(hourButton)
@@ -218,6 +223,7 @@ WebUI.selectOptionByValue(minuteSelect, nextMinute.toString().padLeft(2, '0'), f
 WebUI.delay(0.5)
 
 int cronMinute = nextMinute
+/*/
 
 // 7️⃣ Description inputuna 'test' yaz
 TestObject descriptionInput = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//input[@name='description' and @type='text']")

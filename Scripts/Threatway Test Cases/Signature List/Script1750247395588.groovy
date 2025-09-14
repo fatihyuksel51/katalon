@@ -231,14 +231,36 @@ String dayXp = (d.toInteger() >= 26)
 clickSmart(X(dayXp))
 WebUI.delay(1)
 
-// İlk signature’ı al, uygula ve ara
-visibleCenter(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'), 10)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'))
-visibleCenter(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), 10)
-String signature = WebUI.getText(findTestObject('Object Repository/dashboard/Page_/Threatway first signature'))
-WebUI.setText(findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters'), signature)
-WebUI.click(findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/dashboard/Page_/Threatway first signature'), 20)
+TestObject btnApply   = findTestObject('Object Repository/dashboard/Page_/threatway button_APPLY AND SEARCH')
+TestObject inpKeyword = findTestObject('Object Repository/dashboard/Page_/Threatway input_Keyword_search_filters')
+TestObject firstSig   = findTestObject('Object Repository/dashboard/Page_/Threatway first signature')
+
+// 1) Önce input görünür ve odaklanır
+visibleCenter(inpKeyword, 10)
+WebUI.click(inpKeyword)
+
+// 2) Signature metnini al (satır sonu vs. temizle)
+String signature = WebUI.getText(firstSig)
+signature = signature?.replaceAll("\\s+", " ")?.trim()
+
+// 3) React kontrollü input'a JS ile yaz ve gerekli event'leri gönder
+WebElement inpEl = WebUiCommonHelper.findWebElement(inpKeyword, 10)
+String js = """
+  var node = arguments[0];
+  var val  = arguments[1] || '';
+  node.focus();
+  node.value = val;
+  node.dispatchEvent(new Event('input',  { bubbles: true }));
+  node.dispatchEvent(new Event('change', { bubbles: true }));
+"""
+WebUI.executeJavaScript(js, Arrays.asList(inpEl, signature))
+
+// 4) Şimdi tek kez Apply'a bas
+visibleCenter(btnApply, 10)
+WebUI.click(btnApply)
+
+// 5) Sonucun geldiğini doğrula
+WebUI.waitForElementVisible(firstSig, 20)
 
 // Export CSV (varsa)
 if (WebUI.waitForElementPresent(X(EXPORT_CSV_BTN_XP), 5, FailureHandling.OPTIONAL)) {
@@ -465,12 +487,26 @@ if (visibleCenter(btnShowDetail, 8)) {
 
 // Show detail – IP profile text == signature
 TestObject toIpProfile = findTestObject('Object Repository/dashboard/Page_/Show detail text')
+
 if (visibleCenter(toIpProfile, 10)) {
-    WebElement ipProfileEl = el(toIpProfile, 10)
-    String ipProfileVal = ipProfileEl.getAttribute("value") ?: ipProfileEl.getText()
-    KeywordUtil.logInfo("IP Profile: " + ipProfileVal)
-    if (ipProfileVal && !ipProfileVal.trim().isEmpty() && ipProfileVal != 'No') {
-        WebUI.verifyMatch(ipProfileVal, signature, false)
+    WebElement ipProfileEl = WebUiCommonHelper.findWebElement(toIpProfile, 10)
+
+    // value varsa onu, yoksa text'i al
+    String ipProfileVal = ipProfileEl.getAttribute('value')
+    if (ipProfileVal == null || ipProfileVal.trim().isEmpty()) {
+        ipProfileVal = ipProfileEl.getText()
+    }
+
+    // normalize et
+    String normProfile = (ipProfileVal ?: '').replaceAll('\\s+', ' ').trim()
+    String normSig     = (signature   ?: '').replaceAll('\\s+', ' ').trim()
+
+    KeywordUtil.logInfo("IP Profile: " + normProfile)
+
+    if (normProfile && !normProfile.equalsIgnoreCase('No')) {
+        WebUI.verifyMatch(normProfile, normSig, false)   // tam eşleşme
+        // Eğer kısmi arama istersen:
+        // assert normProfile.contains(normSig)
     } else {
         KeywordUtil.markWarning("IP Profile boş/No.")
     }
@@ -504,9 +540,10 @@ if (visibleCenter(sightingMapRoot, 12)) {
 }
 
 // Zoom out/in (isteğe bağlı)
-js().executeScript("document.body.style.zoom='0.7'")
+WebUI.executeJavaScript("document.body.style.zoom='0.7'", null)
+
 WebUI.delay(0.2)
-js().executeScript("document.body.style.zoom='1'")
+
 
 // Show detail kapat
 TestObject showDetailClose = findTestObject('Object Repository/dashboard/Page_/Show detail Close button')
