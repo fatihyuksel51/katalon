@@ -10,7 +10,7 @@
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>//a[contains(@href,'/smartdeceptive/attack-flow?ip_address=')]&#xd;
+         <value>//span[contains(concat(' ', normalize-space(@class), ' '), ' break-words ')]&#xd;
 </value>
       </entry>
    </selectorCollection>

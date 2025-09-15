@@ -468,7 +468,7 @@ if (visibleCenter(iocDetailBtn, 8)) {
 }
 
 // IndicatorText == signature
-TestObject indicatorTo = findTestObject('Object Repository/dashboard/Page_/Threatway İndicatortext')
+TestObject indicatorTo = X("//a[contains(@href,'/smartdeceptive/attack-flow?ip_address=')] ")
 if (visibleCenter(indicatorTo, 10)) {
     String indicatorText = WebUI.getText(indicatorTo)
     KeywordUtil.logInfo("Indicator: " + indicatorText)
