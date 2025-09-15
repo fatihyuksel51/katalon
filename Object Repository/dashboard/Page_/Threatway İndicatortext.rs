@@ -6,12 +6,12 @@
    <elementGuidId>7801293e-799e-4216-9d7f-72e7f4dfc634</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//div/div/div[2]/div[2]/div/span[2]</value>
+         <key>BASIC</key>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>//a[contains(@href,'/smartdeceptive/attack-flow?ip_address=')]&#xd;
+</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

@@ -400,7 +400,7 @@ if (!isDeleteButtonExist) {
 	WebUI.comment("Başarılı: Delete butonu silindi, veri kalmadı.")
 }
 
-
+/*/
 
 
 
