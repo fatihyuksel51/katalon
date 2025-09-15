@@ -27,6 +27,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
+import com.kms.katalon.core.testobject.ObjectRepository as OR
 
 
 
@@ -46,40 +47,75 @@ WebElement safeScrollTo(TestObject to) {
 	WebUI.delay(0.5)
 	return element
 }
+boolean isBrowserOpen(){ try{ DriverFactory.getWebDriver(); return true }catch(Throwable t){ return false } }
+TestObject X(String xp) {
+	TestObject to = new TestObject(xp)
+	to.addProperty("xpath", ConditionType.EQUALS, xp)
+	return to
+}
+void openFilters() {
+	TestObject filterBtn = X("//div[text()='FILTER OPTIONS']")
+	safeScrollTo(filterBtn)
+	WebUI.waitForElementClickable(filterBtn, 10)
+	WebUI.click(filterBtn)
+	WebUI.delay(1)
+}
 
-/*/ Tarayıcıyı aç ve siteye git
-WebUI.openBrowser('')
+void typeIntoNthInput(int n, String text) {
+	TestObject inp = X("(//input)[" + n + "]")
+	WebUI.waitForElementVisible(inp, 10)
+	WebUI.setText(inp, text)
+}
 
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
+void clickApplyAndWait() {
+	TestObject applyBtn = X("//button[text()='APPLY AND SEARCH']")
+	WebUI.waitForElementClickable(applyBtn, 10)
+	WebUI.click(applyBtn)
+	WebUI.delay(1)
+	WebUI.waitForPageLoad(10)
+}
 
-WebUI.maximizeWindow()
+void expectNoDataAndScroll() {
+	TestObject noData = X("//div[@class='ant-empty-description' and normalize-space(text())='No data']")
+	safeScrollTo(noData)
+	WebUI.waitForElementVisible(noData, 10)
+	WebUI.verifyElementVisible(noData)
+}
 
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+void clearWithXOnce() {
+	TestObject xBtn = X("//*[local-name()='svg' and contains(@class,'lucide-x')]")
+	if (WebUI.waitForElementClickable(xBtn, 3, FailureHandling.OPTIONAL)) {
+		WebUI.click(xBtn)
+		WebUI.delay(0.5)
+	} else {
+		KeywordUtil.logInfo("ℹ️ Temizleme için X butonu bulunamadı (zaten temiz olabilir).")
+	}
+}
+void ensureSession(){
+    if(isBrowserOpen()) return
+    WebUI.openBrowser('')
+    WebUI.maximizeWindow()
+    WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+    WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+    WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+    WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+    WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+    WebUI.setEncryptedText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+    WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+    WebUI.delay(3)
+    String otp = (100000 + new Random().nextInt(900000)).toString()
+    WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+    WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+    WebUI.delay(2)
 
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+    WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
 
-WebUI.delay(5)
-
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.delay(5)
-
-WebUI.waitForPageLoad(30)
-
-/*/
+/************** TEST: Coin Search Engine **************/
+ensureSession()
 // Riskroute sekmesine tıkla
 WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
 
@@ -113,14 +149,16 @@ if (WebUI.waitForElementVisible(İdtext, 10, FailureHandling.OPTIONAL)) {
 String Cwetext=WebUI.getText(findTestObject('Object Repository/CVE/cwe id'))
 println("📋 Kopyalanan Text: " + Cwetext)
 
-// 1. Filter Options butonuna tıkla
-TestObject filterButton = findTestObject('Object Repository/CVE/FilterOptions')
-// WebElement olarak al
-WebUI.delay(2)
-// Scroll edip görünür yap
-safeScrollTo(findTestObject('Object Repository/CVE/FilterOptions'))
-WebUI.waitForElementClickable(filterButton, 10)
-WebUI.click(filterButton)
+/************** NEGATİF FİLTRE TESTLERİ **************/
+// 1) Search -> ğğğğ -> No data
+openFilters()
+typeIntoNthInput(1, "ğğğğ")
+clickApplyAndWait()
+expectNoDataAndScroll()
+clearWithXOnce()
+
+
+
 
 // 2. input'a idText değerini yaz
 TestObject searchInput = findTestObject('Object Repository/CVE/SearchInput')
