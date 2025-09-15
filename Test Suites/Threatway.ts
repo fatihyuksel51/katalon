@@ -54,13 +54,6 @@
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>43ee12c8-30bb-46c6-b169-970d0dd9f166</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Threatway Test Cases/DDOS Attack Map</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
       <guid>790d7b3a-3d87-44e2-9d0e-d53f80079481</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>

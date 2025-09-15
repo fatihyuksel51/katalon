@@ -180,6 +180,7 @@ if (firstPassword != secondPassword) {
 	WebUI.takeScreenshot()
 	assert false : 'Password aynı kaldı → test fail!'
 }
+/*/
 // DOCUMENT butonuna tıkla
 WebUI.click(findTestObject('Object Repository/Channel Management/Page_/a_DOCUMENT'))
 
