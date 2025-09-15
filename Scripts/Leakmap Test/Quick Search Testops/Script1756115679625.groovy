@@ -116,7 +116,8 @@ if (isSeen) {
   WebUI.click(findTestObject('Object Repository/Leakmap/QuickSearch/Button_Eye_Detail'))
   WebUI.delay(1)
 
-  setZoom(0.6)           // veya js().executeScript("document.body.style.zoom='0.6'")
+// Zoom out/in (isteğe bağlı)
+  WebUI.executeJavaScript("document.body.style.zoom='0.7'", null)
   WebUI.click(findTestObject('Object Repository/Leakmap/Dashboard/AI INSIGHT'))
   TestObject insight = X("(//div[@data-radix-scroll-area-viewport])[4]")
   WebUI.waitForElementVisible(insight, 20)
