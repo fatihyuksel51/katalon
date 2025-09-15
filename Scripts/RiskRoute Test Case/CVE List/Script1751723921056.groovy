@@ -212,7 +212,7 @@ WebUI.delay(3)
 
 // 7. Yeni sayfada başlık değerini al
 TestObject detailTitleObject = findTestObject('Object Repository/CVE/Cvedetailpage')
-WebUI.waitForElementVisible(detailTitleObject, 10)
+WebUI.waitForElementVisible(detailTitleObject, 5)
 String detailTitle = WebUI.getText(detailTitleObject)
 WebUI.delay(1)
 

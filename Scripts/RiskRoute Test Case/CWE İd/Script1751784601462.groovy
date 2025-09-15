@@ -56,20 +56,20 @@ TestObject X(String xp) {
 void openFilters() {
 	TestObject filterBtn = X("//div[text()='FILTER OPTIONS']")
 	safeScrollTo(filterBtn)
-	WebUI.waitForElementClickable(filterBtn, 10)
+	WebUI.waitForElementClickable(filterBtn, 5)
 	WebUI.click(filterBtn)
 	WebUI.delay(1)
 }
 
 void typeIntoNthInput(int n, String text) {
 	TestObject inp = X("(//input)[" + n + "]")
-	WebUI.waitForElementVisible(inp, 10)
+	WebUI.waitForElementVisible(inp, 5)
 	WebUI.setText(inp, text)
 }
 
 void clickApplyAndWait() {
 	TestObject applyBtn = X("//button[text()='APPLY AND SEARCH']")
-	WebUI.waitForElementClickable(applyBtn, 10)
+	WebUI.waitForElementClickable(applyBtn, 5)
 	WebUI.click(applyBtn)
 	WebUI.delay(1)
 	WebUI.waitForPageLoad(10)
@@ -78,7 +78,7 @@ void clickApplyAndWait() {
 void expectNoDataAndScroll() {
 	TestObject noData = X("//div[@class='ant-empty-description' and normalize-space(text())='No data']")
 	safeScrollTo(noData)
-	WebUI.waitForElementVisible(noData, 10)
+	WebUI.waitForElementVisible(noData, 3)
 	WebUI.verifyElementVisible(noData)
 }
 

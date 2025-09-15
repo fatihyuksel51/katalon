@@ -7,11 +7,10 @@
    <selectorCollection>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>//div[contains(@class, 'mb-4 text-xl font-semibold text-text-title')]</value>
+         <value>//div[contains(@class, 'truncate pb-6 pl-4 pr-8 text-3xl')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
