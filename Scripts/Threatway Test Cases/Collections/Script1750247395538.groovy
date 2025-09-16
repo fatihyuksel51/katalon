@@ -43,6 +43,89 @@ void clickSmart(TestObject to, int t=10){
   WebUI.waitForElementClickable(to, t)
   WebUI.click(to)
 }
+/************** Toplu temizlik: Tüm koleksiyonları sil **************/
+void purgeAllCollections(){
+  KeywordUtil.logInfo("🧹 Koleksiyonları temizleme başlıyor...")
+
+  // Sayfa içinde “Delete” butonlarını taramak için esnek XPATH
+  String DELETE_BTN_XP = "//button[normalize-space(.)='Delete' or .//span[normalize-space(.)='Delete'] or @aria-label='Delete']"
+  // Onay pop-up'ındaki “Delete” butonu: mevcut TestObject’i kullan
+  TestObject CONFIRM_DELETE = OR.findTestObject('Object Repository/Collections/Delete button')
+  // Silme toast’ı: mevcut TestObject’i kullan
+  TestObject DELETE_TOAST  = OR.findTestObject('Object Repository/Collections/Delete Toast Message')
+
+  // Pagination (genel/olasılıklı XPATH’ler; yoksa zaten düşmez)
+  TestObject NEXT_PAGE_BTN  = X("//button[(@aria-label='Next' or contains(., 'Next') or contains(@class,'next')) and not(@disabled)]")
+  TestObject FIRST_PAGE_BTN = X("//button[@aria-label='First' or contains(., 'First') or contains(@class,'first')]")
+
+  JavascriptExecutor jse = (JavascriptExecutor) DriverFactory.getWebDriver()
+
+  // Tüm sayfalar bitene kadar dön
+  while (true){
+	// Bu sayfadaki görünür delete butonlarını al
+	List<WebElement> delBtns
+	try {
+	  delBtns = WebUiCommonHelper.findWebElements(X(DELETE_BTN_XP), 5)
+	} catch(Throwable _){
+	  delBtns = Collections.emptyList()
+	}
+
+	// Her sayfada, sondan başa sil (DOM kaymaları için daha stabil)
+	boolean anyDeletedOnThisPage = false
+	for (int i = delBtns.size()-1; i >= 0; i--){
+	  WebElement btn = delBtns[i]
+	  try {
+		// Görünür yap + tıkla (JS fallback)
+		try { jse.executeScript("arguments[0].scrollIntoView({block:'center',inline:'nearest'})", btn) } catch(_){}
+		try { btn.click() } catch(_){ jse.executeScript("arguments[0].click()", btn) }
+
+		// Onay kutusu ve toast bekle
+		clickSmart(CONFIRM_DELETE, 10)
+		WebUI.waitForElementVisible(DELETE_TOAST, 10)
+		WebUI.delay(0.2) // ufak nefes
+
+		anyDeletedOnThisPage = true
+	  } catch(Throwable e){
+		KeywordUtil.markWarning("Silme denemesi atlandı: " + e.getMessage())
+	  }
+	}
+
+	// Bu sayfada hiç silinmediyse ve ileri sayfa yoksa biter
+	boolean hasNext = WebUI.verifyElementPresent(NEXT_PAGE_BTN, 2, FailureHandling.OPTIONAL)
+			
+
+	if (!anyDeletedOnThisPage && !hasNext){
+	  break
+	}
+
+	// Bu sayfada silme olduysa: aynı sayfayı yeniden tara (kalanlar olabilir)
+	if (anyDeletedOnThisPage){
+	  continue
+	}
+
+	// Silme yok ama “Next” var → sonraki sayfaya geç
+	try {
+	  WebUI.click(NEXT_PAGE_BTN)
+	  WebUI.waitForPageLoad(10)
+	  WebUI.delay(0.5)
+	} catch(_){
+	  // Next tıklanamadıysa döngüden çık
+	  break
+	}
+  }
+
+  // Başlangıca dön (varsa)
+  if (WebUI.verifyElementPresent(FIRST_PAGE_BTN, 1, FailureHandling.OPTIONAL)){
+	try {
+	  WebUI.click(FIRST_PAGE_BTN)
+	  WebUI.waitForPageLoad(10)
+	  WebUI.delay(0.5)
+	} catch(_){}
+  }
+
+  KeywordUtil.logInfo("✅ Koleksiyon temizliği bitti.")
+}
+
 
 /** Input’a hızlı yaz – JS fallback */
 void clearAndType(TestObject to, String text, int t=10){
