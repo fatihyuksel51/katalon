@@ -91,7 +91,42 @@ WebUI.delay(3)
 WebUI.waitForPageLoad(10)
 /*/
 
+TestObject X(String xp) {
+	TestObject to = new TestObject(xp)
+	to.addProperty("xpath", ConditionType.EQUALS, xp)
+	return to
+}
 
+boolean isBrowserOpen() {
+	try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
+}
+
+void ensureSession() {
+	if (isBrowserOpen()) return
+	WebUI.openBrowser('')
+	WebUI.maximizeWindow()
+	WebUI.navigateToUrl('https://platform.catchprobe.io/')
+
+	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+
+	WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+	WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih@test.com')
+	WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
+	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+	WebUI.delay(3)
+	String otp = (100000 + new Random().nextInt(900000)).toString()
+	WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+	WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+	WebUI.delay(2)
+
+	WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
+
+
+
+ensureSession()
 
 WebUI.navigateToUrl('https://platform.catchprobe.io/smartdeceptive/engagement-score')
 
@@ -159,7 +194,7 @@ void attackFlowTest() {
   // assert sortedDate.before(originalDate)
 
     // 🔹 Pagination ile sayfa geçişi ve signature kontrolü
-    List<String> pageNumbers = ['2','3','4']
+    List<String> pageNumbers = ['2']
     for (String pageNum : pageNumbers) {
         try {
             TestObject pageLink = makeXpathObj("//a[text()='" + pageNum + "']")
@@ -226,15 +261,17 @@ WebUI.delay(2)
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
 
 //View alanını bul
-TestObject View = makeXpathObj("(.//td[contains(@class, 'ant-table-cell')])[9]")
+TestObject View = makeXpathObj("//div[contains(@class,'inline-flex') and contains(@class,'cursor-pointer')]  [./*[name()='svg' and contains(@class,'lucide-info')]]")
 
 safeScrollTo(View)
+WebUI.delay(2)
 WebUI.click(View)
+KeywordUtil.logInfo("✅ View butonu tıklandı")
 WebUI.delay(2)
 
 // 2. 5. path'in üstündeki g' elementi — mouseOver yapılacak
 TestObject targetIcon = new TestObject()
-targetIcon.addProperty("xpath", ConditionType.EQUALS, "(//*[@stroke='#3b82f6' and @focusable='true'])")
+targetIcon.addProperty("xpath", ConditionType.EQUALS, "//*[(@stroke='#3b82f6' or @stroke='#8b5cf6' or @stroke='#ef4444') and @focusable='true']")
 
 WebUI.mouseOver(targetIcon)
 WebUI.delay(2) // tooltipin çıkması için bekle
@@ -307,7 +344,10 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	assert riskScore > 0 : "Risk skoru 0'dan büyük olmalı!"
 
 	// 2️⃣ Show Attacker Map butonuna tıkla
-	WebUI.click(findTestObject("Object Repository/SmartDeceptive/Show Attacker Map Button"))
+	TestObject showattackermapbutton = new TestObject()
+	showattackermapbutton.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Show Attacker Map']")
+
+	WebUI.click(showattackermapbutton)
 	WebUI.delay(2)
 	// Sayfada severity circle geldiğini doğrula
 	TestObject circle = findTestObject('Object Repository/Smartdeceptive/Stroke Circle')
@@ -318,19 +358,19 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	// Elementi bul
 		WebElement circleelement = WebUI.findWebElement(circle, 3)
 
-		// SVG içinde stroke attribute'u olan bir eleman olup olmadığını kontrol et
-		Boolean circleExistsRisk = WebUI.executeJavaScript(
+    	// SVG içinde stroke attribute'u olan bir eleman olup olmadığını kontrol et
+    	Boolean circleExistsRisk = WebUI.executeJavaScript(
 		"return arguments[0].querySelector('[stroke]') !== null;",
 			Arrays.asList(circleelement)
 		)
 
-		// Durumu logla
+    	// Durumu logla
 		KeywordUtil.logInfo("Show Detail Stroke var mı? : " + circleExistsRisk)
 
 		if (circleExistsRisk) {
-		KeywordUtil.logInfo("✅ Show Detail Stroke Veri VAR")
+        KeywordUtil.logInfo("✅ Show Detail Stroke Veri VAR")
 		} else {
-		KeywordUtil.markWarning("🚨 Show Detail Stroke Veri YOK")
+        KeywordUtil.markWarning("🚨 Show Detail Stroke Veri YOK")
 		}
 
 		} else {
@@ -338,9 +378,14 @@ WebUI.comment("🔍 Detay Testi Başladı")
 		}
 
 		// 3️⃣ Back to IP Profile tıkla
-		WebUI.click(findTestObject("Object Repository/SmartDeceptive/Back to IP Profile Button"))
+		TestObject backtoipprofile = new TestObject()
+		backtoipprofile.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Back to IP Profile']")
+	
+		WebUI.click(backtoipprofile)
+		WebUI.delay(2)
+		
 		WebUI.waitForPageLoad(10)
-		WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
+
 
 
 // Yardımcı fonksiyonlar

@@ -47,65 +47,53 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import java.text.SimpleDateFormat
 
-/**
- * Smartdeceptive Dashboard bileşenlerini dinamik ID üzerinden kontrol eder.
- * <g> elementi var mı ve "no data" içeriyor mu diye denetler.
- * Hata varsa test fail olur.
- */
-
+TestObject X(String xp) {
+    TestObject to = new TestObject(xp)
+    to.addProperty("xpath", ConditionType.EQUALS, xp)
+    return to
+}
 WebElement safeScrollTo(TestObject to) {
-	if (to == null) {
-		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
+	if (to == null || !WebUI.waitForElementPresent(to, 1)) {
+		KeywordUtil.markFailed("❌ Scroll edilemedi: ${to.getObjectId()}")
 		return null
 	}
-	if (!WebUI.waitForElementPresent(to, 2, FailureHandling.OPTIONAL)) {
-		KeywordUtil.markFailed("❌ Element not present – scroll edilemedi: ${to.getObjectId()}")
-		return null
-	}
-	WebElement element = WebUiCommonHelper.findWebElement(to, 2)
+	WebElement element = WebUiCommonHelper.findWebElement(to, 1)
 	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
 	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
 	WebUI.delay(0.5)
 	return element
 }
-// ✅ Fonksiyon: Scroll edip görünür hale getir
-def scrollToVisible(WebElement element, JavascriptExecutor js) {
-	int currentScroll = 0
-	boolean isVisible = false
-	while (!isVisible && currentScroll < 3000) {
-		js.executeScript("window.scrollBy(0, 200)")
-		WebUI.delay(0.5)
-		isVisible = element.isDisplayed()
-		currentScroll += 200
-	}
-	return isVisible
+
+boolean isBrowserOpen() {
+    try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
 }
-/*/ Tarayıcıyı aç ve siteye git
-WebUI.openBrowser('')
-WebUI.navigateToUrl('https://platform.catchprobe.io/')
-WebUI.maximizeWindow()
 
-// Login işlemleri
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'), 30)
-WebUI.click(findTestObject('Object Repository/otp/Page_/a_PLATFORM LOGIN'))
-WebUI.waitForElementVisible(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 30)
-WebUI.setText(findTestObject('Object Repository/otp/Page_/input_Email Address_email'), 'fatih@test.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/otp/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
-WebUI.click(findTestObject('Object Repository/otp/Page_/button_Sign in'))
-WebUI.delay(5)
-WebUI.waitForPageLoad(10)
+void ensureSession() {
+    if (isBrowserOpen()) return
+    WebUI.openBrowser('')
+    WebUI.maximizeWindow()
+    WebUI.navigateToUrl('https://platform.catchprobe.io/')
 
-// OTP işlemi
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-WebUI.setText(findTestObject('otp/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
-WebUI.click(findTestObject('otp/Page_/button_Verify'))
-//
-WebUI.delay(5)
-WebUI.waitForPageLoad(10)
+    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih@test.com')
+    WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
-/*/
-// Smartdeceptive sekmesine tıkla
+    WebUI.delay(3)
+    String otp = (100000 + new Random().nextInt(900000)).toString()
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+    WebUI.delay(2)
+
+    WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
+
+
+
+ensureSession()
 
 WebUI.navigateToUrl('https://platform.catchprobe.io/smartdeceptive')
 
@@ -249,74 +237,85 @@ WebUI.comment("--- Starting Asset Detail (MySQL Server) Pagination Test ---")
 
 // Scroll to Asset Detail graph for MySQL Server
 WebElement assetDetailGraphElementMysql = WebUiCommonHelper.findWebElement(
-	findTestObject('Object Repository/Smartdeceptive/Page_/Dashboard-UsedTecniques'), 20)
+    findTestObject('Object Repository/Smartdeceptive/Page_/Dashboard-UsedTecniques'), 20)
 
 if (scrollToVisible(assetDetailGraphElementMysql, js)) {
-	js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", assetDetailGraphElementMysql)
-	WebUI.comment("👉 'Asset Detail' grafiğine başarıyla scroll yapıldı (MySQL Server).")
-	WebUI.delay(1)
+    js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", assetDetailGraphElementMysql)
+    WebUI.comment("👉 'Asset Detail' grafiğine başarıyla scroll yapıldı (MySQL Server).")
+    WebUI.delay(1)
 } else {
-	WebUI.comment("❌ 'Asset Detail' grafiği görünür değil, scroll başarısız (MySQL Server).")
+    WebUI.comment("❌ 'Asset Detail' grafiği görünür değil, scroll başarısız (MySQL Server).")
 }
 
-// Find path element for 'MySQL Server' series
-TestObject pathElementMysql = new TestObject("pathElementMysql")
-pathElementMysql.addProperty("xpath", ConditionType.EQUALS,
-	"(//*[local-name()='g' and contains(@class, 'apexcharts-series') and contains(@class, 'apexcharts-pie-series') and @seriesName='APP-DETECTxremotexdesktopxprotocolxattemptedxadministratorxconnectionxrequest']/*[local-name()='path'])[1]")
+// ---- Doğrudan <path> slice'ı hedefle ----
+// Not: j='3' ve/veya donut-slice-3 sınıfı MySQL slice'a karşılık geliyor (ekranda gördüğünle uyumlu).
+TestObject mysqlSliceTO = new TestObject("mysqlSliceTO")
+mysqlSliceTO.addProperty("xpath", ConditionType.EQUALS,
+  // seriesName ile grubu sabitle, içindeki path'i al
+  "//*[local-name()='g' and contains(@class,'apexcharts-pie-series')" +
+  "   and contains(translate(@seriesName,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'APP-DETECT')]" +
+  "//*/self::*[local-name()='path' and contains(@class,'apexcharts-pie-area') and (@j='3' or contains(@class,'apexcharts-donut-slice'))]"
+)
 
-// Get WebElement for 'MySQL Server' path
-WebElement pathWebElementMysql = WebUiCommonHelper.findWebElement(pathElementMysql, 10)
+// WebElement'i al
+WebElement mysqlSliceEl = WebUiCommonHelper.findWebElement(mysqlSliceTO, 10)
 
-// Read data:value attribute for 'MySQL Server'
-String dataValueStrMysql = pathWebElementMysql.getAttribute("data:value")
-println("Bulunan data:value (MySQL Server) = " + dataValueStrMysql)
+// ---- data:value'ı JS ile oku (getAttribute yerine) ----
+String dataValueStrMysql = WebUI.executeJavaScript(
+    "return arguments[0].getAttribute('data:value') || arguments[0].getAttribute('data-value');",
+    [mysqlSliceEl]
+) as String
 
-// Convert to integer
-int dataValueMysql = dataValueStrMysql.toInteger()
+KeywordUtil.logInfo("Bulunan data:value (MySQL) = " + dataValueStrMysql)
+
+// Güvenli parse
+int dataValueMysql = 0
+try {
+    dataValueMysql = Integer.parseInt((dataValueStrMysql ?: "0").trim())
+} catch (Exception e) {
+    KeywordUtil.markWarning("data:value sayı değil veya okunamadı: " + dataValueStrMysql)
+}
 
 if (dataValueMysql > 0) {
-	// Click on the path
-	pathWebElementMysql.click()
-	WebUI.delay(3) // Wait for the new page to load
+    // Slice'a tıkla (gerekirse JS fallback)
+    try {
+        mysqlSliceEl.click()
+    } catch (Exception e) {
+        WebUI.executeJavaScript("arguments[0].click();", [mysqlSliceEl])
+    }
+    WebUI.delay(3) // yeni sayfa/yükleme
 
-	// Beklenen pagination sayısını hesapla (her sayfa 10 kayıt alıyor varsayımıyla)
-	int expectedPageCountMysql = (int) Math.ceil(dataValueMysql / 10.0)
-	println("🎯 Beklenen pagination sayısı (MySQL - 10 kayıt/sayfa): " + expectedPageCountMysql)
+    // Beklenen sayfa sayısı (10 kayıt/sayfa varsayımı)
+    int expectedPageCountMysql = (int) Math.ceil(dataValueMysql / 10.0)
+    println("🎯 Beklenen pagination sayısı (MySQL - 10 kayıt/sayfa): " + expectedPageCountMysql)
 
-	// Find all visible page number links for MySQL
-	TestObject pageNumberLinksMysql = new TestObject("pageNumberLinksMysql")
-	pageNumberLinksMysql.addProperty("xpath", ConditionType.EQUALS,
-		"//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) and not(contains(@aria-label,'next'))]]/a")
+    // Pagination linkleri
+    TestObject pageNumberLinksMysql = new TestObject("pageNumberLinksMysql")
+    pageNumberLinksMysql.addProperty("xpath", ConditionType.EQUALS,
+        "//ul[contains(@class,'flex')]/li[a[not(contains(@aria-label,'previous')) and not(contains(@aria-label,'next'))]]/a")
 
-	List<WebElement> visiblePageNumberElementsMysql = WebUiCommonHelper.findWebElements(pageNumberLinksMysql, 10)
+    List<WebElement> visiblePageNumberElementsMysql = WebUiCommonHelper.findWebElements(pageNumberLinksMysql, 10)
 
-	// Scroll to the pagination if not visible
-	if (!visiblePageNumberElementsMysql.isEmpty()) {
-		scrollToVisible(visiblePageNumberElementsMysql.get(0), js) // Scroll to the first page number
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)") // Ensure the entire pagination is visible
-		WebUI.delay(1)
-	}
+    // Pagination'a in
+    if (!visiblePageNumberElementsMysql.isEmpty()) {
+        scrollToVisible(visiblePageNumberElementsMysql.get(0), js)
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)")
+        WebUI.delay(1)
+    }
 
-	int actualLastPageNumberMysql = 0
-	if (!visiblePageNumberElementsMysql.isEmpty()) {
-		for (WebElement pageElement : visiblePageNumberElementsMysql) {
-			String pageText = pageElement.getText().trim()
-			if (pageText.matches("\\d+")) { // Check if the text is a number
-				int currentPageNumber = Integer.parseInt(pageText)
-				if (currentPageNumber > actualLastPageNumberMysql) {
-					actualLastPageNumberMysql = currentPageNumber
-				}
-			}
-		}
-	}
+    int actualLastPageNumberMysql = 0
+    for (WebElement pageElement : visiblePageNumberElementsMysql) {
+        String pageText = pageElement.getText().trim()
+        if (pageText.matches("\\d+")) {
+            actualLastPageNumberMysql = Math.max(actualLastPageNumberMysql, Integer.parseInt(pageText))
+        }
+    }
 
-	println("🔢 Gerçek son pagination numarası (MySQL): " + actualLastPageNumberMysql)
-
-	// Verify the page count
-	//WebUI.verifyEqual(actualLastPageNumberMysql, expectedPageCountMysql)
+    println("🔢 Gerçek son pagination numarası (MySQL): " + actualLastPageNumberMysql)
+    // WebUI.verifyEqual(actualLastPageNumberMysql, expectedPageCountMysql)
 
 } else {
-	WebUI.comment("❗ Test atlandı çünkü data:value (MySQL) 0 veya negatif: " + dataValueMysql)
+    WebUI.comment("❗ Test atlandı çünkü data:value (MySQL) 0/boş: " + dataValueMysql)
 }
 
 WebUI.back()
@@ -520,3 +519,41 @@ if (WebUI.verifyElementPresent(badReputationBar, 10, FailureHandling.OPTIONAL)) 
 		KeywordUtil.markWarning("❌ Malware bar path elementi bulunamadı!")
 	}
 
+	// === Helpers: scrollToVisible ===
+	boolean scrollToVisible(WebElement el, JavascriptExecutor js, int maxTries = 6) {
+		if (el == null) return false
+		for (int i = 0; i < maxTries; i++) {
+			// viewport içinde mi?
+			boolean inView = (Boolean) js.executeScript(
+				"var r=arguments[0].getBoundingClientRect();" +
+				"var h=(window.innerHeight||document.documentElement.clientHeight);" +
+				"var w=(window.innerWidth||document.documentElement.clientWidth);" +
+				"return r.top>=0 && r.left>=0 && r.bottom<=h && r.right<=w;", el)
+	
+			if (inView && el.isDisplayed()) return true
+	
+			// merkeze getir, sticky header için hafif yukarı kaydır
+			js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", el)
+			js.executeScript("window.scrollBy(0,-80);")  // header offset
+			WebUI.delay(0.3)
+	
+			// ek fallback: mouse move
+			try {
+				new org.openqa.selenium.interactions.Actions(DriverFactory.getWebDriver())
+					.moveToElement(el).perform()
+			} catch (Exception ignore) {}
+		}
+		return (Boolean) js.executeScript(
+			"var r=arguments[0].getBoundingClientRect();" +
+			"var h=(window.innerHeight||document.documentElement.clientHeight);" +
+			"var w=(window.innerWidth||document.documentElement.clientWidth);" +
+			"return r.top>=0 && r.left>=0 && r.bottom<=h && r.right<=w;", el)
+	}
+	
+	// TestObject ile kullanmak istersen:
+	boolean scrollToVisible(TestObject to, JavascriptExecutor js, int timeout = 10) {
+		if (!WebUI.waitForElementPresent(to, timeout, FailureHandling.OPTIONAL)) return false
+		WebElement el = WebUiCommonHelper.findWebElement(to, timeout)
+		return scrollToVisible(el, js)
+	}
+	
