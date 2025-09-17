@@ -292,16 +292,19 @@ WebUI.comment("🔍 Detay Testi Başladı")
 
 		// 3️⃣ Back to IP Profile tıkla
 		TestObject backtoipprofile = new TestObject()
-		backtoipprofile.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Show Attacker Map']")
+		backtoipprofile.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Back to IP Profile']")
 	
-		//WebUI.click(showattackermapbutton)
+		WebUI.click(backtoipprofile)
 		WebUI.delay(2)
-		WebUI.click(findTestObject('Object Repository/SmartDeceptive/Back to IP Profile Button'))
+		
 		WebUI.waitForPageLoad(10)
 
 	// 4️⃣ Cyber Kill Chain tıkla
-	WebUI.click(findTestObject('Object Repository/SmartDeceptive/Cyber Kill Chain Button'))
-	WebUI.delay(2)
+		TestObject cyberkillchain = new TestObject()
+		cyberkillchain.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Cyber Kill Chain']")
+	
+		WebUI.click(cyberkillchain)
+		WebUI.delay(2)
 
 	boolean foundValidButton = false
 // 5️⃣ Butonlar arasında 0 < count < 1000 olanı bul
