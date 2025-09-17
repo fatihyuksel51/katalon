@@ -284,7 +284,11 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	assert riskScore > 0 : "Risk skoru 0'dan büyük olmalı!"
 
 	// 2️⃣ Show Attacker Map butonuna tıkla
-	WebUI.click(findTestObject('Object Repository/SmartDeceptive/Show Attacker Map Button'))
+	
+	TestObject showattackermapbutton = new TestObject()
+	showattackermapbutton.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Show Attacker Map']")
+
+	WebUI.click(showattackermapbutton)
 	WebUI.delay(2)
 	// Sayfada severity circle geldiğini doğrula
 	TestObject circle = findTestObject('Object Repository/Smartdeceptive/Stroke Circle')
