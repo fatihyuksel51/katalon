@@ -235,8 +235,11 @@ WebUI.click(applyButton)
 WebUI.delay(2)
 
 //Hostname alanını bul
-TestObject Hostnameelement = makeXpathObj("(.//td[contains(@class, 'ant-table-cell')])[2]")
+TestObject Hostnameelement = makeXpathObj("//span[contains(@class,'bg-warning')"+
+      " and contains(@class,'text-warning-foreground')"+
+     " and contains(@class,'rounded-full')]")
 safeScrollTo(Hostnameelement)
+WebUI.delay(2)
 WebUI.click(Hostnameelement)
 WebUI.delay(2)
 
