@@ -281,7 +281,11 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	assert riskScore > 0 : "Risk skoru 0'dan büyük olmalı!"
 
 	// 2️⃣ Show Attacker Map butonuna tıkla
-	WebUI.click(findTestObject('Object Repository/SmartDeceptive/Show Attacker Map Button'))
+	
+	TestObject showattackermapbutton = new TestObject()
+	showattackermapbutton.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Show Attacker Map']")
+
+	WebUI.click(showattackermapbutton)
 	WebUI.delay(2)
 	// Sayfada severity circle geldiğini doğrula
 	TestObject circle = findTestObject('Object Repository/Smartdeceptive/Stroke Circle')
@@ -312,12 +316,20 @@ WebUI.comment("🔍 Detay Testi Başladı")
 		}
 
 		// 3️⃣ Back to IP Profile tıkla
-		WebUI.click(findTestObject("Object Repository/SmartDeceptive/Back to IP Profile Button"))
+		TestObject backtoipprofile = new TestObject()
+		backtoipprofile.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Back to IP Profile']")
+	
+		WebUI.click(backtoipprofile)
+		WebUI.delay(2)
+		
 		WebUI.waitForPageLoad(10)
 
 	// 4️⃣ Cyber Kill Chain tıkla
-	WebUI.click(findTestObject("Object Repository/SmartDeceptive/Cyber Kill Chain Button"))
-	WebUI.delay(2)
+		TestObject cyberkillchain = new TestObject()
+		cyberkillchain.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Cyber Kill Chain']")
+	
+		WebUI.click(cyberkillchain)
+		WebUI.delay(2)
 
 	boolean foundValidButton = false
 

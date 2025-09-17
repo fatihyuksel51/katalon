@@ -31,72 +31,42 @@ import com.catchprobe.utils.MailReader as MailReader
 import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.*
 import java.text.SimpleDateFormat
 
-/*/ ✅ Güvenli scroll fonksiyonu
-
-WebUI.openBrowser('')
-
-WebUI.navigateToUrl('https://platform.catchprobe.io/')
-
-WebUI.maximizeWindow()
-
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
-
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'))
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih@test.com')
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'))
-
-WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.delay(5)
-
-String randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'))
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.delay(5)
-
-WebUI.waitForPageLoad(10)
-
-
-
-// 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
-TestObject currentOrg = new TestObject()
-currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'font-semibold') and contains(text(), 'Organization')]//span[@class='font-thin']")
-
-String currentOrgText = WebUI.getText(currentOrg)
-
-// 2. Kontrol et: Eğer zaten TEST COMPANY ise hiçbir şey yapma
-if (currentOrgText != 'TEST COMPANY') {
-	// 3. Organization butonuna tıkla
-	TestObject orgButton = new TestObject()
-	orgButton.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(), 'Organization :')]]")
-	WebUI.click(orgButton)
-
-	// 4. TEST COMPANY seçeneğine tıkla
-	TestObject testCompanyOption = new TestObject()
-	testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='TEST COMPANY']]")
-	WebUI.click(testCompanyOption)
+TestObject X(String xp) {
+    TestObject to = new TestObject(xp)
+    to.addProperty("xpath", ConditionType.EQUALS, xp)
+    return to
 }
-WebUI.waitForPageLoad(10)
-/*/
+
+boolean isBrowserOpen() {
+    try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
+}
+
+void ensureSession() {
+    if (isBrowserOpen()) return
+    WebUI.openBrowser('')
+    WebUI.maximizeWindow()
+    WebUI.navigateToUrl('https://platform.catchprobe.io/')
+
+    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+
+    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih@test.com')
+    WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+    WebUI.delay(3)
+    String otp = (100000 + new Random().nextInt(900000)).toString()
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+    WebUI.delay(2)
+
+    WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
+
+
+
+ensureSession()
 // 1️⃣ Structured Attack sayfasına git
 WebUI.navigateToUrl('https://platform.catchprobe.io/smartdeceptive/structured-attacks')
 
@@ -177,7 +147,11 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	assert riskScore > 0 : "Risk skoru 0'dan büyük olmalı!"
 
 	// 2️⃣ Show Attacker Map butonuna tıkla
-	WebUI.click(findTestObject("Object Repository/SmartDeceptive/Show Attacker Map Button"))
+	
+	TestObject showattackermapbutton = new TestObject()
+	showattackermapbutton.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Show Attacker Map']")
+
+	WebUI.click(showattackermapbutton)
 	WebUI.delay(2)
 	// Sayfada severity circle geldiğini doğrula
 	TestObject circle = findTestObject('Object Repository/Smartdeceptive/Stroke Circle')
@@ -208,10 +182,13 @@ WebUI.comment("🔍 Detay Testi Başladı")
 		}
 
 		// 3️⃣ Back to IP Profile tıkla
-		WebUI.click(findTestObject("Object Repository/SmartDeceptive/Back to IP Profile Button"))
-		WebUI.waitForPageLoad(10)
-		
+		TestObject backtoipprofile = new TestObject()
+		backtoipprofile.addProperty("xpath", ConditionType.EQUALS, "//button[normalize-space(.)='Back to IP Profile']")
+	
+		WebUI.click(backtoipprofile)
 		WebUI.delay(2)
+		
+		
 		WebUI.click(findTestObject('Object Repository/Smartdeceptive/İp close'))
 
 // 6️⃣ Detail on Leakmap butonuna tıkla
