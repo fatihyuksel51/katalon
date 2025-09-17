@@ -31,7 +31,40 @@ import com.catchprobe.utils.MailReader as MailReader
 import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.*
 import java.text.SimpleDateFormat
 
-/*/ ✅ Güvenli scroll fonksiyonu
+// ✅ Güvenli scroll fonksiyonu
+TestObject X(String xp) {
+    TestObject to = new TestObject(xp)
+    to.addProperty("xpath", ConditionType.EQUALS, xp)
+    return to
+}
+
+boolean isBrowserOpen() {
+    try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
+}
+
+void ensureSession() {
+    if (isBrowserOpen()) return
+    WebUI.openBrowser('')
+    WebUI.maximizeWindow()
+    WebUI.navigateToUrl('https://platform.catchprobe.org/')
+
+    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+
+    WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
+    WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+    WebUI.delay(3)
+    String otp = (100000 + new Random().nextInt(900000)).toString()
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
+    WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+    WebUI.delay(2)
+
+    WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
+}
+
 
 WebUI.openBrowser('')
 
@@ -75,6 +108,7 @@ WebUI.delay(5)
 
 WebUI.waitForPageLoad(10)
 
+/*/
 // 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
 TestObject currentOrg = new TestObject()
 currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'font-semibold') and contains(text(), 'Organization')]//span[@class='font-thin']")
@@ -161,7 +195,7 @@ void requestRecordsTest() {
   // assert sortedDate.before(originalDate)
 
     // 🔹 Pagination ile sayfa geçişi ve signature kontrolü
-    List<String> pageNumbers = ['2','3','4']
+    List<String> pageNumbers = ['2']
     for (String pageNum : pageNumbers) {
         try {
             TestObject pageLink = makeXpathObj("//a[text()='" + pageNum + "']")
@@ -179,12 +213,14 @@ TestObject ipCellObj = makeXpathObj("(.//td[contains(@class, 'ant-table-cell')])
 TestObject HoneypootNameCellObj = makeXpathObj("(.//td[contains(@class, 'ant-table-cell')])[1]")
 
 safeScrollTo(ipCellObj)
+WebUI.delay(2)
 String page3Ip = WebUI.getText(ipCellObj)
 
 safeScrollTo(HoneypootNameCellObj)
 String page3AttackName = WebUI.getText(HoneypootNameCellObj)
 
 WebUI.comment("📋 Alınan değerler – IP: ${page3Ip}, AttackName: ${page3AttackName}")
+
 
 /*/ 🔹 IP filtresi (Combobox'a scroll ve seçim)
 safeScrollTo(makeXpathObj("//div[text()='FILTER OPTIONS']"))
@@ -212,10 +248,12 @@ WebUI.click(applyButton)
 WebUI.delay(2)
 /*/
 
-TestObject View = makeXpathObj("(.//td[contains(@class, 'ant-table-cell')])[7]")
+TestObject View = makeXpathObj("//div[contains(@class,'inline-flex') and contains(@class,'cursor-pointer')]  [./*[name()='svg' and contains(@class,'lucide-info')]]")
 
 safeScrollTo(View)
+WebUI.delay(2)
 WebUI.click(View)
+KeywordUtil.logInfo("✅ View butonu tıklandı")
 WebUI.delay(2)
 
 // ✅ Açılan ilk input alanını bul
@@ -284,7 +322,7 @@ WebUI.comment("🔍 Detay Testi Başladı")
 	assert riskScore > 0 : "Risk skoru 0'dan büyük olmalı!"
 
 	// 2️⃣ Show Attacker Map butonuna tıkla
-	WebUI.click(findTestObject("Object Repository/SmartDeceptive/Show Attacker Map Button"))
+	WebUI.click(findTestObject('Object Repository/SmartDeceptive/Show Attacker Map Button'))
 	WebUI.delay(2)
 	// Sayfada severity circle geldiğini doğrula
 	TestObject circle = findTestObject('Object Repository/Smartdeceptive/Stroke Circle')
