@@ -52,8 +52,8 @@ void ensureSession() {
     WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
     WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-    WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+    WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih@test.com')
+    WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
     WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
     WebUI.delay(3)
@@ -66,47 +66,6 @@ void ensureSession() {
 }
 
 
-WebUI.openBrowser('')
-
-WebUI.navigateToUrl('https://platform.catchprobe.io/')
-
-WebUI.maximizeWindow()
-
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
-
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'))
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih@test.com')
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'))
-
-WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'v4yvAQ7Q279BF5ny4hDiTA==')
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.delay(5)
-
-String randomOtp = (100000 + new Random().nextInt(900000)).toString()
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'))
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-
-safeScrollTo(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-
-WebUI.delay(5)
-
-WebUI.waitForPageLoad(10)
 
 /*/
 // 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
@@ -129,7 +88,7 @@ if (currentOrgText != 'TEST COMPANY') {
 }
 WebUI.waitForPageLoad(10)
 /*/
-
+ensureSession()
 WebUI.navigateToUrl('https://platform.catchprobe.io/smartdeceptive/request-records')
 
 WebUI.delay(5) 
