@@ -208,7 +208,7 @@ void attackFlowTest() {
     }
 
   // 🔹 3. sayfadaki ilk IP ve attack name’i al
-TestObject ipCellObj = makeXpathObj("(.//td[contains(@class, 'ant-table-cell')])[1]")
+TestObject ipCellObj = makeXpathObj("//span[contains(@class,'inline-block') and contains(@class,'bg-cyan-500')]")
 
 
 safeScrollTo(ipCellObj)
@@ -299,6 +299,8 @@ WebUI.delay(2)
 JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
 js.executeScript("document.body.style.zoom='0.65'")
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
+WebUI.refresh()
+WebUI.waitForPageLoad(10)
 
 safeScrollTo(ipCellObj)
 WebUI.click(ipCellObj)

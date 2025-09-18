@@ -270,7 +270,7 @@ WebUI.verifyElementText(findTestObject('Object Repository/RiskRoute Dashboard/Pa
 /*/
 
 // Radyo butonları (shadcn/radix): role="radio" en hızlı & stabil seçim
-String radioCss = "[role='radio']"
+String radioCss = "[role='checkbox']"
 
 // 1) Most Common (ilk radio)
 assert fastClickByCssIndex(radioCss, 0, 4) : "Most Common radio bulunamadı"
