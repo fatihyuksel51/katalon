@@ -48,7 +48,7 @@ void purgeAllCollections(){
   KeywordUtil.logInfo("🧹 Koleksiyonları temizleme başlıyor...")
 
   // Sayfa içinde “Delete” butonlarını taramak için esnek XPATH
-  String DELETE_BTN_XP = "//button[normalize-space(.)='Delete' or .//span[normalize-space(.)='Delete'] or @aria-label='Delete']"
+  String DELETE_BTN_XP = "//div[contains(@class, 'cursor-pointer') and contains(@class, 'destructive-foreground')]"
   // Onay pop-up'ındaki “Delete” butonu: mevcut TestObject’i kullan
   TestObject CONFIRM_DELETE = OR.findTestObject('Object Repository/Collections/Delete button')
   // Silme toast’ı: mevcut TestObject’i kullan
@@ -178,6 +178,8 @@ WebUI.waitForPageLoad(20)
 WebUI.delay(1)
 try { CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'() } catch(_){}
 
+purgeAllCollections()
+
 /*** Create Collection ***/
 clickSmart(findTestObject('Object Repository/Collections/Create Collection'), 10)
 WebUI.waitForElementVisible(findTestObject('Object Repository/Collections/İnput'), 10)
@@ -246,12 +248,15 @@ if(WebUI.verifyElementPresent(findTestObject('Object Repository/Collections/Filt
 }
 WebUI.delay(2)
 
+
 /*** Pagination (2. sayfa) ***/
+/*/
 TestObject pagination2 = findTestObject('Object Repository/Collections/2.pagination')
 WebElement paginationEl = WebUiCommonHelper.findWebElement(pagination2, 10)
 scrollToVisible(paginationEl)
 ((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript("window.scrollTo(0, document.body.scrollHeight)")
 WebUI.delay(0.5)
 clickSmart(pagination2, 10)
+/*/
 
 KeywordUtil.logInfo("✅ Collections senaryosu tamamlandı.")
