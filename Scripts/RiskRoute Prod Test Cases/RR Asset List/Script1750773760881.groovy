@@ -27,9 +27,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
-import java.text.SimpleDateFormat
-import java.util.Date
-import com.kms.katalon.core.testobject.ObjectRepository as OR
+
 
 
 // ✅ Fonksiyon: Scroll edip görünür hale getir
@@ -44,76 +42,55 @@ def scrollToVisible(WebElement element, JavascriptExecutor js) {
 	}
 	return isVisible
 }
-TestObject X(String xp){
-	def to=new TestObject(xp)
-	to.addProperty("xpath",ConditionType.EQUALS,xp)
-	return to
-  }
 
-// ✅ Güvenli scroll fonksiyonu
-WebElement safeScrollTo(TestObject to) {
-	if (to == null) {
-		KeywordUtil.markFailed("❌ TestObject NULL – Repository yolunu kontrol et.")
-		return null
-	}
-	if (!WebUI.waitForElementPresent(to, 5, FailureHandling.OPTIONAL)) {
-		KeywordUtil.logInfo("ℹ️ Element not present, scroll işlemi atlandı: ${to.getObjectId()}")
-		return null
-	}
-	WebElement element = WebUiCommonHelper.findWebElement(to, 5)
-	JavascriptExecutor js = (JavascriptExecutor) DriverFactory.getWebDriver()
-	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element)
-	WebUI.delay(0.5)
-	return element
-}
-boolean isBrowserOpen(){
-	try { DriverFactory.getWebDriver(); return true } catch(Throwable t){ return false }
-  }
-  
-/************** Oturum **************/
-void ensureSession(){
-  if(isBrowserOpen()) return
+// Tarayıcıyı aç ve siteye git
+WebUI.openBrowser('')
 
-  WebUI.openBrowser('')
-  WebUI.maximizeWindow()
-  WebUI.navigateToUrl('https://platform.catchprobe.org/')
+WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
-  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
+WebUI.maximizeWindow()
 
-  WebUI.waitForElementVisible(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
-  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-  WebUI.setEncryptedText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+// Login işlemleri
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
 
-  WebUI.delay(3)
-  String otp = (100000 + new Random().nextInt(900000)).toString()
-  WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), otp)
-  WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-  WebUI.delay(2)
-  String Threat = "//span[text()='Threat']"
-  WebUI.waitForElementVisible(X("//span[text()='Threat']"), 10, FailureHandling.OPTIONAL)
-}
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
-/************** TEST: Collections **************/
-ensureSession()
-/*/ Riskroute sekmesine tıkla
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 30)
 
-WebUI.delay(3)
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'fatih.yuksel@catchprobe.com')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
+
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
+
+WebUI.delay(5)
+
+// OTP işlemi
+def randomOtp = (100000 + new Random().nextInt(900000)).toString()
+
+WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
+
+WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
+
+WebUI.delay(5)
+
+WebUI.waitForPageLoad(30)
 
 //
-safeScrollTo(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
-WebUI.delay(2)
-safeScrollTo(findTestObject('Object Repository/Riskroute/MailTest Organization'))
-WebUI.click(findTestObject('Object Repository/Riskroute/MailTest Organization'))
+// Riskroute sekmesine tıkla
+WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+
+WebUI.waitForPageLoad(10)
+
+CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
+
 
 WebUI.delay(3)
-/*/
+
+WebUI.waitForPageLoad(30)
 
 
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/asset-list')
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Asset List'))
 
 WebUI.waitForPageLoad(10)
 
@@ -156,8 +133,15 @@ if (targetIndexCatchprobeOrgRow == -1) {
     String textTooltipCatchprobeOrg = elementTooltipCatchprobeOrg.getText()
     println "catchprobe.org Asset Flow Tooltip Text: " + textTooltipCatchprobeOrg
 
-  if (textTooltipCatchprobeOrg.contains("Asset Flow")) {
-    println "✅ 'catchprobe.org' için Asset Flow bulundu, ikon tıklanıyor..."
+    // Kontrol ve aksiyon
+    if (textTooltipCatchprobeOrg.contains("Asset Flow")) {
+        println "✅ 'catchprobe.org' için Asset Flow bulundu, ikon tıklanıyor..."
+    } else if (textTooltipCatchprobeOrg.equalsIgnoreCase("No Scan")) {
+        KeywordUtil.logInfo("❌ 'catchprobe.org' için tooltip 'No Scan' geldi, test devam!")
+    } else {
+        println "ℹ️ 'catchprobe.org' için tooltip: '${textTooltipCatchprobeOrg}', işlem yapılmadı."
+    }
+
     elementAssetFlowIconCatchprobeOrg.click()
 
     // Download Image butonu kontrolü
@@ -176,12 +160,6 @@ if (targetIndexCatchprobeOrgRow == -1) {
     // Close butonuna tıkla
     WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
     WebUI.delay(3)
-
-  } else if (textTooltipCatchprobeOrg.equalsIgnoreCase("No Scan")) {
-    KeywordUtil.logInfo("❌ 'catchprobe.org' için tooltip 'No Scan' geldi, test devam!")
-  } else {
-    println "ℹ️ 'catchprobe.org' için tooltip: '${textTooltipCatchprobeOrg}', işlem yapılmadı."
-  }
 }
 
 
@@ -209,11 +187,11 @@ while (WebUI.verifyElementPresent(deleteButton, 3, FailureHandling.OPTIONAL)) {
         WebUI.delay(2)
 
         // Onay butonuna tıkla
-        WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/button_DELETE'))
+        WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/button_DELETE'))
         CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()    
 
         // Toast kontrolü
-        WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Delete Toast'), 5)
+        WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Delete Toast'), 5)
 
     } catch (Exception e) {
         // Eğer buton yoksa veya işlem sırasında hata olursa logla ve döngüden çık
@@ -226,19 +204,19 @@ while (WebUI.verifyElementPresent(deleteButton, 3, FailureHandling.OPTIONAL)) {
 WebUI.comment("Tüm delete butonları silindi ya da hiç yoktu. Asset List temiz.")
 println("Tüm delete ikonları silindi ya da yoktu.")
 
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Create Asset'))
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Create Asset'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Single Target'), 30)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Single Target'), 30)
 
-WebUI.setText(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Single Target'), '8.8.8.8/30')
+WebUI.setText(findTestObject('Object Repository/Asset Lİst/Page_/Single Target'), '8.8.8.8/30')
 
 // Description alanına 'katalon' yaz
-WebUI.setText(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/YourDescriptionInputObject'), 'katalon')
+WebUI.setText(findTestObject('Object Repository/Asset Lİst/Page_/YourDescriptionInputObject'), 'katalon')
 
 // Create butonuna tıkla
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Create buton'))
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Create buton'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Asset successfully'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Asset successfully'), 15)
 
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
 
@@ -253,8 +231,8 @@ List<String> SubnettargetList = [
 
 
 List<String> SubnettypeList = [
-	'IP',
-	'IP'
+	'ip',
+	'ip'
 ]
 // Description listesi
 List<String> SubnetdescList = []
@@ -322,9 +300,9 @@ while (WebUI.verifyElementPresent(deleteButtonsubnet, 3, FailureHandling.OPTIONA
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
 	WebUI.delay(2)
 
-	WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/button_DELETE'))
+	WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/button_DELETE'))
 	CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-	WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Delete Toast'), 5)
+	WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Delete Toast'), 5)
 }
 
 // İşlem bitti
@@ -332,24 +310,6 @@ WebUI.comment("Tüm delete butonları silindi. Asset List boş.")
 println("Tüm delete ikonları silindi.")
 
 //WebUI.refresh()
-// CREATE CRON butonu için TestObject oluştur
-TestObject EDİTBUTTON1 = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[@class='ant-empty-description' and normalize-space()='No data']")
-
-// 10 saniyeye kadar görünür mü kontrol et
-if (WebUI.waitForElementVisible(EDİTBUTTON1, 10, FailureHandling.OPTIONAL)) {
-	WebUI.comment("EDİTBUTTON butonu bulundu.")
-} else {
-	WebUI.comment("EDİTBUTTON butonu bulunamadı, sayfa yenileniyor...")
-	WebUI.refresh()
-	WebUI.waitForPageLoad(10)
-	
-	if (WebUI.waitForElementVisible(EDİTBUTTON1, 10, FailureHandling.OPTIONAL)) {
-		WebUI.comment("EDİTBUTTON butonu refresh sonrası bulundu.")
-	} else {
-		KeywordUtil.markFailedAndStop("EDİTBUTTON butonu bulunamadı, test sonlandırılıyor.")
-	}
-}
-
 
 WebUI.delay(3)
 
@@ -359,40 +319,42 @@ WebUI.delay(3)
 // Target listesi
 List<String> targetList = [
 	'catchprobe.org',	
+	'catchprobe',
 	'teknosa',
 	'176.9.66.101'
 ]
 
 List<String> typeList = [
-	'Domain',	
-	'Keyword',	
-	'Keyword',
-	'IP'
+	'domain',	
+	'keyword',	
+	'keyword',
+	'ip'
 ]
 
 List<String> AssetList = [
-	'catchprobe.org',	
+	'catchprobe.org',
+	'catchprobe',
 	'teknosa',
 	'176.9.66.101'
 	
 ]
 
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Create Asset'))
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Create Asset'))
 WebUI.delay(2)
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Add Multiple Assets'))
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Add Multiple Assets'))
 
 
 // Target input alanına targetList değerlerini virgülle ekle
 String targets = targetList.join(', ')
-WebUI.setText(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/TargetInputObject'), targets)
+WebUI.setText(findTestObject('Object Repository/Asset Lİst/Page_/TargetInputObject'), targets)
 
 // Description alanına 'katalon' yaz
-WebUI.setText(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/YourDescriptionInputObject'), 'katalon')
+WebUI.setText(findTestObject('Object Repository/Asset Lİst/Page_/YourDescriptionInputObject'), 'katalon')
 
 // Create butonuna tıkla
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Create buton'))
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/Create buton'))
 
-WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Asset successfully'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Asset successfully'), 15)
 
 WebUI.click(findTestObject('Object Repository/Threat Actor/Threataa/Page_/Mitre Close'))
 
@@ -492,15 +454,20 @@ js.executeScript("arguments[0].scrollIntoView(true);", quickSearchIcon)
 quickSearchIcon.click()
 
 WebUI.delay(1)
-WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Toast Message'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Toast Message'), 15)
 
 
 
  // sayfa yüklenme süresi
 
 // Asset List sayfasına geri dön
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/asset-list')
+TestObject assetListButton = findTestObject('Object Repository/Asset Lİst/Page_/Asset List')
+WebElement assetListElementds = WebUI.findWebElement(assetListButton, 10)
+js.executeScript("arguments[0].scrollIntoView(false);", assetListElementds)
+WebUI.delay(0.5)
+assetListElementds.click()
 
+assetListElementds.click()
 WebUI.delay(3)
 WebUI.waitForPageLoad(30)
 
@@ -545,20 +512,20 @@ String editButtonXpath = "(.//*[normalize-space(text()) and normalize-space(.)='
 
 WebUI.delay(2)
 
-WebUI.verifyElementNotClickable(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/SAVE bUTONU'))
+WebUI.verifyElementNotClickable(findTestObject('Object Repository/Asset Lİst/Page_/SAVE bUTONU'))
 
 WebUI.delay(1)
-TestObject descInput = findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/input_Description_description')
+TestObject descInput = findTestObject('Object Repository/Asset Lİst/Page_/input_Description_description')
 WebUI.waitForElementVisible(descInput, 5)
 WebUI.waitForElementClickable(descInput, 5)
 WebUI.click(descInput)
 WebUI.clearText(descInput)
 WebUI.setText(descInput, 'Katalon Text')
-WebUI.verifyElementClickable(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/button_SAVE'))
+WebUI.verifyElementClickable(findTestObject('Object Repository/Asset Lİst/Page_/button_SAVE'))
 
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/button_SAVE'))
+WebUI.click(findTestObject('Object Repository/Asset Lİst/Page_/button_SAVE'))
 
-WebUI.verifyElementText(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/div_Asset edited successfully'),
+WebUI.verifyElementText(findTestObject('Object Repository/Asset Lİst/Page_/div_Asset edited successfully'),
 	'Asset edited successfully')
 
 // Tüm target hücrelerini bul
@@ -584,95 +551,6 @@ if (targetIndexthree != -1) {
 } else {
     println "katalon text satırı bulunamadı!"
 }
-
-/*/
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/scan-cron')
-
-WebUI.delay(5)
-
-// Trigger butonuna bas
-TestObject triggerButton = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'bg-emerald')]")
-WebUI.click(triggerButton)
-WebUI.comment("Trigger butonuna tıklandı")
-WebUI.delay(2)
-WebUI.click(findTestObject('Object Repository/Scan Cron/TRIGGER'))
-CustomKeywords.'com.catchprobe.utils.TableUtils.checkForUnexpectedToasts'()
-WebUI.waitForElementVisible(findTestObject('Object Repository/Scan Cron/Trigger Toast'), 15)
-WebUI.refresh()
-WebUI.delay(2)
-WebUI.waitForPageLoad(30)
-
-// Cron tablosundaki Last Cron At değeri
-TestObject lastCronAtObj = new TestObject().addProperty("xpath", ConditionType.EQUALS, "(//span[contains(@class,'text-text-light')])[2]")
-String lastCronAtText = WebUI.getText(lastCronAtObj)
-WebUI.comment("Scan Cron tablosundaki Last Cron At: " + lastCronAtText)
-
-// Tarihi Date objesine çevir
-SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm")
-Date cronDate = dateFormat.parse(lastCronAtText)
-
-// Scan History sayfasına git
-WebUI.click(findTestObject('Object Repository/Scan/Scan'))
-WebUI.delay(1)
-
-WebUI.waitForPageLoad(30)
-
-WebUI.click(findTestObject('Object Repository/Scan History'))
-WebUI.delay(1)
-WebUI.waitForPageLoad(10)
-
-// CREATE CRON butonu için TestObject oluştur
-TestObject createCronButtonTrigger = new TestObject().addProperty("xpath", ConditionType.EQUALS, "//div[text()='CREATE SCAN']")
-
-// 10 saniyeye kadar görünür mü kontrol et
-if (WebUI.waitForElementVisible(createCronButtonTrigger, 10, FailureHandling.OPTIONAL)) {
-	WebUI.comment("CREATE CRON butonu bulundu.")
-} else {
-	WebUI.comment("CREATE CRON butonu bulunamadı, sayfa yenileniyor...")
-	WebUI.refresh()
-	WebUI.waitForPageLoad(10)
-	
-	if (WebUI.waitForElementVisible(createCronButtonTrigger, 10, FailureHandling.OPTIONAL)) {
-		WebUI.comment("CREATE CRON butonu refresh sonrası bulundu.")
-	} else {
-		KeywordUtil.markFailedAndStop("CREATE CRON butonu bulunamadı, test sonlandırılıyor.")
-	}
-}
-
-
-
-// Scan History tablosundaki en son tarih
-TestObject lastHistoryCronAtObj = new TestObject().addProperty("xpath", ConditionType.EQUALS, "(//td[@class='ant-table-cell ant-table-cell-ellipsis !bg-card !text-card-foreground']/span)[3]")
-String lastHistoryCronAtText = WebUI.getText(lastHistoryCronAtObj)
-WebUI.comment("Scan History tablosundaki Last Cron At: " + lastHistoryCronAtText)
-
-// Tarihi Date objesine çevir
-Date historyDate = dateFormat.parse(lastHistoryCronAtText)
-
-// Aradaki farkı hesapla
-long diffMillis = Math.abs(cronDate.getTime() - historyDate.getTime())
-long diffMinutes = diffMillis / (60 * 1000)
-
-// Sonuç kontrol
-if (diffMinutes <= 1) {
-	KeywordUtil.markPassed("Tarih değerleri uyumlu, aradaki fark ${diffMinutes} dakika.")
-} else {
-	KeywordUtil.markFailed("Tarih farkı 1 dakikadan fazla: ${diffMinutes} dakika.")
-}
-
-
-
-
-WebUI.delay(3)
-safeScrollTo(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
-WebUI.click(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Organization Butonu'))
-WebUI.delay(2)
-safeScrollTo(findTestObject('Object Repository/Riskroute/Katalon Organization'))
-WebUI.click(findTestObject('Object Repository/Riskroute/Katalon Organization'))
-
-WebUI.delay(3)
-WebUI.waitForPageLoad(10)
-/*/
 
 
 
@@ -717,7 +595,7 @@ quickSearchIconIp176.click()
 
 
 WebUI.delay(1)
-WebUI.waitForElementVisible(findTestObject('Object Repository/Riskroute/Asset Lİst/Page_/Toast Message'), 15)
+WebUI.waitForElementVisible(findTestObject('Object Repository/Asset Lİst/Page_/Toast Message'), 15)
 
 
 // Asset List sayfasına geri dön

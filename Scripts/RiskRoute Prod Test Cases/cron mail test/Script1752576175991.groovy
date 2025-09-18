@@ -46,8 +46,8 @@ WebElement safeScrollTo(TestObject to) {
 }
 
 // === Gmail bilgileri (direkt kod içinde) ===
-String gmailUser   = "alarm.rule@gmail.com"
-String gmailPass   = "cxdiuswtfvknhlte" // Gmail App Password (16 haneli)
+String gmailUser   = "alarm.prod.test@gmail.com"
+String gmailPass   = "hqdbomloqrnrbsyj" // Gmail App Password (16 haneli)
 String mailSubject = "Katalon Mail Triggered"
 
 if (!gmailPass?.trim()) {
@@ -55,31 +55,9 @@ if (!gmailPass?.trim()) {
 }
 
 
-// === Tarayıcı aç / Login / OTP ===
-/*/
-WebUI.openBrowser('')
-WebUI.maximizeWindow()
 
-WebUI.navigateToUrl('https://platform.catchprobe.org/')
 
-// Login adımları
-WebUI.waitForElementVisible(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
-
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'), 'katalon.test@catchprobe.com')
-WebUI.setEncryptedText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'), 'RigbBhfdqOBDK95asqKeHw==')
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
-
-WebUI.delay(5)
-
-// Random OTP
-def randomOtp = (100000 + new Random().nextInt(900000)).toString()
-WebUI.setText(findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_OTP Digit_vi_1_2_3_4_5'), randomOtp)
-WebUI.click(findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Verify'))
-WebUI.delay(2)
-/*/
-
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute')
+WebUI.navigateToUrl('https://platform.catchprobe.io/riskroute')
 WebUI.waitForPageLoad(10)
 // 1. Sayfa yüklendikten sonra mevcut organizasyonu oku
 TestObject currentOrg = new TestObject()
@@ -88,7 +66,7 @@ currentOrg.addProperty("xpath", ConditionType.EQUALS, "//div[contains(@class, 'f
 String currentOrgText = WebUI.getText(currentOrg)
 
 // 2. Kontrol et: Eğer zaten Katalon ise hiçbir şey yapma
-if (currentOrgText != 'Mail Test') {
+if (currentOrgText != 'Company Test') {
 	// 3. Organization butonuna tıkla
 	TestObject orgButton = new TestObject()
 	orgButton.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[contains(text(), 'Organization :')]]")
@@ -96,7 +74,7 @@ if (currentOrgText != 'Mail Test') {
 
 	// 4. Mail Test seçeneğine tıkla
 	TestObject testCompanyOption = new TestObject()
-	testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Mail Test']]")
+	testCompanyOption.addProperty("xpath", ConditionType.EQUALS, "//button[.//div[text()='Company Test']]")
 	WebUI.click(testCompanyOption)
 }
 
@@ -104,7 +82,7 @@ if (currentOrgText != 'Mail Test') {
 WebUI.delay(3)
 
 // === Scan Cron sayfası ===
-WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/scan-cron')
+WebUI.navigateToUrl('https://platform.catchprobe.io/riskroute/scan-cron')
 WebUI.waitForPageLoad(10)
 
 TestObject cronDateObj = findTestObject('Object Repository/Scan Cron/LastCronAt')
@@ -129,7 +107,7 @@ if (diffMinutes > 135) {
 // === Mail kontrol ===
 if (diffMinutes >= 0 && diffMinutes <= 15) {
     // Scan History kontrol
-    WebUI.navigateToUrl('https://platform.catchprobe.org/riskroute/scan-history')
+    WebUI.navigateToUrl('https://platform.catchprobe.io/riskroute/scan-history')
     WebUI.waitForPageLoad(10)
 
     TestObject updatedAtObj = new TestObject().addProperty("xpath", ConditionType.EQUALS,
@@ -169,17 +147,17 @@ void ensureSession() {
 
   WebUI.openBrowser('')
   WebUI.maximizeWindow()
-  WebUI.navigateToUrl('https://platform.catchprobe.org/')
+  WebUI.navigateToUrl('https://platform.catchprobe.io/')
 
   WebUI.waitForElementVisible(
 	  OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'), 30)
   WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/a_PLATFORM LOGIN'))
 
   WebUI.setText(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Email Address_email'),
-				'katalon.test@catchprobe.com')
+				'fatih@test.com')
   WebUI.setEncryptedText(
 	  OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/input_Password_password'),
-	  'RigbBhfdqOBDK95asqKeHw==')
+	  'v4yvAQ7Q279BF5ny4hDiTA==')
   WebUI.click(OR.findTestObject('Object Repository/RiskRoute Dashboard/Page_/button_Sign in'))
 
   WebUI.delay(3) // sayfa ve OTP kutuları gelsin
